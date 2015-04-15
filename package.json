@@ -1,0 +1,27 @@
+{
+  "name": "node-prelude",
+  "version": "0.1.0",
+  "description": "A port of the Haskell Prelude to JavaScript/NodeJS",
+  "main": "prelude.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scravy/node-prelude.git"
+  },
+  "keywords": [
+    "prelude",
+    "haskell",
+    "functional",
+    "functional-programming",
+    "utility",
+    "library"
+  ],
+  "author": "Julian Fleischer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scravy/node-prelude/issues"
+  },
+  "homepage": "https://github.com/scravy/node-prelude"
+}

@@ -6,6 +6,19 @@ var isArray = Array.isArray || function(arr) {
     return Object.prototype.toString.call(arr) === '[object Array]';
 };
 
+function func(f) {
+    switch (f.length) {
+    case 1:
+        return func1(f);
+    case 2:
+        return func2(f);
+    case 3:
+        return func3(f);
+    case 4:
+        return func4(f);
+    }
+}
+
 function func1(f) {
     return freeze(function (x) {
         return f(x);
@@ -93,12 +106,12 @@ function _flip(f) {
         return f.apply(null, args);
     };
 }
-Prelude.flip = func1(_flip);
+Prelude.flip = func(_flip);
 
 function _on(g, f, a, b) {
     return g(f(a), f(b))
 }
-Prelude.on = func4(_on);
+Prelude.on = func(_on);
 
 /* curry/uncurry - omitted */
 
@@ -113,7 +126,7 @@ function _maybe(def, fun, maybe) {
     }
     return fun(maybe);
 }
-Prelude.maybe = func3(_maybe);
+Prelude.maybe = func(_maybe);
 
 function _isJust(value) {
     return value !== undefined && value !== null;
@@ -123,7 +136,7 @@ Prelude.isJust = func(_isJust);
 function _isNothing(value) {
     return value === undefined || value === null;
 }
-Prelude.isNothing = func1(_isNothing);
+Prelude.isNothing = func(_isNothing);
 
 function _fromMaybe(def, maybe) {
     if (maybe === undefined || maybe === null) {
@@ -131,13 +144,13 @@ function _fromMaybe(def, maybe) {
     }
     return maybe;
 }
-Prelude.fromMaybe = func2(_fromMaybe);
+Prelude.fromMaybe = func(_fromMaybe);
 /* Prelude.fromMaybe = _flip(maybe)(id); */
 
 function _listToMaybe(xs) {
     return xs[0];
 }
-Prelude.listToMaybe = func1(_listToMaybe);
+Prelude.listToMaybe = func(_listToMaybe);
 
 function _maybeToList(maybe) {
     if (maybe === undefined || maybe === null) {
@@ -145,17 +158,17 @@ function _maybeToList(maybe) {
     }
     return [maybe];
 }
-Prelude.maybeToList = func1(_maybeToList);
+Prelude.maybeToList = func(_maybeToList);
 
 function _catMaybes(xs) {
     return _filter(_isJust, xs);
 }
-Prelude.catMaybes = func1(_catMaybes);
+Prelude.catMaybes = func(_catMaybes);
 
 function _mapMaybe(f, xs) {
     return _filter(_isJust, _map(f, xs));
 }
-Prelude.mapMaybe = func2(_mapMaybe);
+Prelude.mapMaybe = func(_mapMaybe);
 
 
 // Either
@@ -171,42 +184,42 @@ function _either(afun, bfun, either) {
     }
     return null;
 }
-Prelude.either = func3(_either);
+Prelude.either = func(_either);
 
 function _Left(value) {
     return { left: value };
 }
-Prelude.Left = func1(_Left);
+Prelude.Left = func(_Left);
 
 function _Right(value) {
     return { right: value };
 }
-Prelude.Right = func1(_Right);
+Prelude.Right = func(_Right);
 
 function _isLeft(val) {
     return val.left !== undefined || (val[0] !== undefined && val[0] !== null);
 }
-Prelude.isLeft = func1(_isLeft);
+Prelude.isLeft = func(_isLeft);
 
 function _isRight(val) {
     return (val.right !== undefined || val[1] !== undefined) && !_isLeft(val);
 }
-Prelude.isRight = func1(_isRight);
+Prelude.isRight = func(_isRight);
 
 function _lefts(xs) {
     return _filter(_isLeft, xs);
 }
-Prelude.lefts = func1(lefts);
+Prelude.lefts = func(_lefts);
 
 function _rights(xs) {
     return _filter(_isRight, xs);
 }
-Prelude.rights = func1(rights);
+Prelude.rights = func(_rights);
 
 function _partitionEithers(xs) {
     return [ _lefts(xs), _rights(xs) ];
 }
-Prelude.partitionEithers = func1(_partitionEithers);
+Prelude.partitionEithers = func(_partitionEithers);
 
 
 // Bool
@@ -214,22 +227,22 @@ Prelude.partitionEithers = func1(_partitionEithers);
 function _and(a, b) {
     return a && b;
 }
-Prelude.and = func2(_and);
+Prelude.and = func(_and);
 
 function _or(a, b) {
     return a || b;
 }
-Prelude.or = func2(_or);
+Prelude.or = func(_or);
 
 function _not(value) {
     return !value;
 }
-Prelude.not = func1(_not);
+Prelude.not = func(_not);
 
 function _bool(yes, no, bool) {
     return bool ? yes : no;
 }
-Prelude.bool = func3(_bool);
+Prelude.bool = func(_bool);
 
 
 // Tuple
@@ -237,12 +250,12 @@ Prelude.bool = func3(_bool);
 function _fst(arr) {
     return arr[0];
 }
-Prelude.fst = func1(_fst);
+Prelude.fst = func(_fst);
 
 function _snd(arr) {
     return arr[1];
 }
-Prelude.snd = func1(_snd);
+Prelude.snd = func(_snd);
 
 
 // Eq
@@ -250,12 +263,12 @@ Prelude.snd = func1(_snd);
 function _eq(a, b) {
     return a === b;
 }
-Prelude.eq = func2(_eq);
+Prelude.eq = func(_eq);
 
 function _neq(a, b) {
     return a !== b;
 }
-Prelude.neq = func2(_neq);
+Prelude.neq = func(_neq);
 
 
 // Ord
@@ -263,22 +276,22 @@ Prelude.neq = func2(_neq);
 function _lt(a, b) {
     return a < b;
 }
-Prelude.lt = func2(_lt);
+Prelude.lt = func(_lt);
 
 function _gt(a, b) {
     return a > b;
 }
-Prelude.gt = func2(_gt);
+Prelude.gt = func(_gt);
 
 function _lte(a, b) {
     return a <= b;
 }
-Prelude.lte = func2(_lte);
+Prelude.lte = func(_lte);
 
 function _gte(a, b) {
     return a >= b;
 }
-Prelude.gte = func2(_gte);
+Prelude.gte = func(_gte);
 
 function _max(a, b) {
     if (a > b) {
@@ -294,17 +307,17 @@ function _min(a, b) {
     }
     return b;
 }
-Prelude.min = func2(_min);
+Prelude.min = func(_min);
 
 function _compare(a, b) {
     return Math.sign(a - b);
 }
-Prelude.compare = func2(_compare);
+Prelude.compare = func(_compare);
 
 function _comparing(f, a, b) {
-    return _compare(f a, f b);
+    return _compare(f(a), f(b));
 }
-Prelude.comparing = func3(_comparing);
+Prelude.comparing = func(_comparing);
 
 
 // Num
@@ -312,29 +325,29 @@ Prelude.comparing = func3(_comparing);
 function _add(a, b) {
     return a + b;
 }
-Prelude.add = func2(_add);
+Prelude.add = func(_add);
 Prelude['+'] = Prelude.add;
 
 function _sub(a, b) {
     return a - b;
 }
-Prelude.sub = func2(_sub);
+Prelude.sub = func(_sub);
 Prelude['-'] = Prelude.sub;
 
 function _mul(a, b) {
     return a * b;
 }
-Prelude.mul = func2(_mul);
+Prelude.mul = func(_mul);
 Prelude['*'] = Prelude.mul;
 
-Prelude.abs = func1(Math.abs);
+Prelude.abs = func(Math.abs);
 
 function _negate(a) {
     return -a;
 }
-Prelude.negate = func2(_negate);
+Prelude.negate = func(_negate);
 
-Prelude.signum = func1(Math.sign);
+Prelude.signum = func(Math.sign);
 
 
 // Integral
@@ -342,35 +355,35 @@ Prelude.signum = func1(Math.sign);
 function _div(a, b) {
     return Math.floor(a / b);
 }
-Prelude.div = func2(_div);
+Prelude.div = func(_div);
 
 function _quot(a, b) {
     var r = a / b;
     return r >= 0 ? Math.floor(r) : Math.ceil(r);
 }
-Prelude.quot = func2(_quot);
+Prelude.quot = func(_quot);
 
 function _rem(a, b) {
     return a % b;
 }
-Prelude.rem = func2(_rem);
+Prelude.rem = func(_rem);
 
 function _mod(a, b) {
     var q = _quot(a, b);
     var r = _rem(a, b);
     return Math.sign(r) == -Math.sign(b) ? r + b : r;
 }
-Prelude.mod = func2(_mod);
+Prelude.mod = func(_mod);
 
 function _divMod(a, b) {
     return [_div(a, b), _mod(a, b)];
 }
-Prelude.divMod = func2(_divMod);
+Prelude.divMod = func(_divMod);
 
 function _quotRem(a, b) {
     return [_quot(a, b), _rem(a, b)];
 }
-Prelude.quotRem = func2(_quotRem);
+Prelude.quotRem = func(_quotRem);
 
 
 // Fractional
@@ -378,40 +391,40 @@ Prelude.quotRem = func2(_quotRem);
 function _frac(a, b) {
     return a / b;
 }
-Prelude.frac = func2(frac);
+Prelude.frac = func(_frac);
 Prelude['/'] = Prelude.frac;
 
 function _recip(a) {
     return 1 / a;
 }
-Prelude.recip = func1(_recip);
+Prelude.recip = func(_recip);
 
 
 // Floating
 
-Prelude.exp = func1(Math.exp);
-Prelude.sqrt = func1(Math.sqrt);
-Prelude.log = func1(Math.log);
+Prelude.exp = func(Math.exp);
+Prelude.sqrt = func(Math.sqrt);
+Prelude.log = func(Math.log);
 
 function _logBase(a, b) {
     return Math.log(a) / Math.log(b);
 }
-Prelude.logBase = func2(_logBase);
+Prelude.logBase = func(_logBase);
 
 Prelude.pow = func2(Math.pow);
 Prelude['**'] = Prelude.pow;
 
-Prelude.sin = func1(Math.sin);
-Prelude.tan = func1(Math.tan);
-Prelude.cos = func1(Math.cos);
+Prelude.sin = func(Math.sin);
+Prelude.tan = func(Math.tan);
+Prelude.cos = func(Math.cos);
 
-Prelude.asin = func1(Math.asin);
-Prelude.atan = func1(Math.atan);
-Prelude.acos = func1(Math.acos);
+Prelude.asin = func(Math.asin);
+Prelude.atan = func(Math.atan);
+Prelude.acos = func(Math.acos);
 
-Prelude.sinh = func1(Math.sinh);
-Prelude.tanh = func1(Math.tanh);
-Prelude.cosh = func1(Math.cosh);
+Prelude.sinh = func(Math.sinh);
+Prelude.tanh = func(Math.tanh);
+Prelude.cosh = func(Math.cosh);
 
 /* asinh, atanh, acosh */
 
@@ -422,15 +435,24 @@ function _properFraction(x) {
 }
 
 function _truncate(x) {
+    switch (Math.sign(x)) {
+    case -1:
+        return Math.ceil(x);
+    case 1:
+        return Math.floor(x);
+    }
+    return 0;
 }
 
 function _round(x) {
 }
 
 function _ceiling(x) {
+    return Math.ceil(x);
 }
 
 function _floor(x) {
+    return Math.floor(x);
 }
 
 // RealFloat
@@ -465,10 +487,16 @@ function _map(f, xs) {
     });
     return ys;
 }
-Prelude.map = func2(_map);
+Prelude.map = func(_map);
 
-/*  ++
- */
+function _append(xs, ys) {
+    var zs = [];
+    [].push.apply(zs, xs);
+    [].push.apply(zs, ys);
+    return zs;
+}
+Prelude.append = func(_append);
+Prelude['++'] = Prelude.append;
 
 function _filter(p, xs) {
     var ys = isArray(xs) ? [] : {};
@@ -479,17 +507,52 @@ function _filter(p, xs) {
     });
     return ys;
 }
-Prelude.filter = func2(_filter);
+Prelude.filter = func(_filter);
 
-/*  head
- *  last
- *  tail
- *  init
- *  null
- *  length
- *  !!
- *  reverse
- */
+function _head(xs) {
+    return xs[0];
+}
+Prelude.head = func(_head);
+
+function _last(xs) {
+    return xs[xs.length - 1];
+}
+Prelude.last = func(_last);
+
+function _tail(xs) {
+    return xs.slice(1);
+}
+Prelude.tail = func(_tail);
+
+function _init(xs) {
+    return xs.slice(0, xs.length - 1);
+}
+Prelude.init = func(_init);
+
+function _null(xs) {
+    return xs.length === 0;
+}
+Prelude.null = func(_null);
+
+function _length(xs) {
+    return xs.length;
+}
+Prelude.length = func(_length);
+
+function _at(xs, ix) {
+    return xs[ix];
+}
+Prelude.at = func(_at);
+Prelude['!!'] = Prelude.at;
+
+function _reverse(xs) {
+    var zs = [];
+    for (var i = 0; i < xs.length; i++) {
+        zs[xs.length - i - 1] = xs[i];
+    }
+    return zs;
+}
+Prelude.reverse = func(_reverse);
 
 /*  intersperse
  *  intercalate
@@ -546,11 +609,27 @@ Prelude.filter = func2(_filter);
  *  minimumBy
  */
 
-/*  foldl
- *  foldl1
- *  foldr
- *  foldr1
- *
+function _foldl(f, x, xs) {
+}
+Prelude.foldl = func(_foldl);
+
+function _foldl1(f, xs) {
+}
+Prelude.foldl1 = func(_foldl1);
+
+function _foldr(f, x, xs) {
+}
+Prelude.foldr = func(_foldr);
+
+function _foldr1(f, xs) {
+}
+Prelude.foldr1 = func(_foldr1);
+
+//function _and(xs) {
+//}
+//Prelude.and = func(_and);
+
+/*
  *  and
  *  or
  *  any

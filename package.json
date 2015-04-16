@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/scravy/node-prelude/issues"
   },
-  "homepage": "https://github.com/scravy/node-prelude"
+  "homepage": "https://github.com/scravy/node-prelude",
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
 }

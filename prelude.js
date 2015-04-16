@@ -749,16 +749,54 @@ function _all() {
 Prelude.all = func(_all);
 
 
-// 
+
+function _scanl(f, x, xs) {
+    var zs = [x];
+    for (var i = 0; i < xs.length; i++) {
+        x = f(x, xs[i]);
+        zs.push(x);
+    }
+    return zs;
+}
+Prelude.scanl = func(_scanl);
+
+function _scanl1(f, xs) {
+    var x = xs[0];
+    var zs = [x];
+    for (var i = 1; i < xs.length; i++) {
+        x = f(x, xs[i]);
+        zs.push(x);
+    }
+    return zs;
+}
+Prelude.scanl1 = func(_scanl1);
+
+function _scanr(f, x, xs) {
+    var zs = [x];
+    for (var i = xs.length - 1; i >= 0; i--) {
+        x = f(xs[i], x);
+        zs.push(x);
+    }
+    return zs;
+}
+Prelude.scanr = func(_scanr);
+
+function _scanr1(f, xs) {
+    var x = xs[xs.length - 1];
+    var zs = [x];
+    for (var i = xs.length - 2; i >= 0; i--) {
+        x = f(xs[i], x);
+        zs.push(x);
+    }
+    return zs;
+}
+Prelude.scanr1 = func(_scanr1);
+
+
 
 /*
  *  concat
  *  concatMap
- *
- *  scanl
- *  scanl1
- *  scanr
- *  scanr1
  *
  *  iterate
  *  repeat
@@ -785,9 +823,6 @@ Prelude.all = func(_all);
  *  transpose
  *  subsequences
  *  permutations
- *
- *  foldl'
- *  foldl1'
  *
  *  mapAccumL
  *  mapAccumR

@@ -224,15 +224,17 @@ Prelude.partitionEithers = func(_partitionEithers);
 
 // Bool
 
-function _and(a, b) {
+function _AND(a, b) {
     return a && b;
 }
-Prelude.and = func(_and);
+Prelude.AND = func(_AND);
+Prelude['&&'] = Prelude.AND;
 
-function _or(a, b) {
+function _OR(a, b) {
     return a || b;
 }
-Prelude.or = func(_or);
+Prelude.OR = func(_OR);
+Prelude['||'] = Prelude.OR;
 
 function _not(value) {
     return !value;
@@ -263,12 +265,16 @@ Prelude.snd = func(_snd);
 function _eq(a, b) {
     return a === b;
 }
-Prelude.eq = func(_eq);
+Prelude.eq    = func(_eq);
+Prelude.EQ    = Prelude.eq;
+Prelude['=='] = Prelude.eq;
 
 function _neq(a, b) {
     return a !== b;
 }
-Prelude.neq = func(_neq);
+Prelude.neq   = func(_neq);
+Prelude.NEQ   = Prelude.neq;
+Prelude['/='] = Prelude.neq;
 
 
 // Ord
@@ -276,22 +282,30 @@ Prelude.neq = func(_neq);
 function _lt(a, b) {
     return a < b;
 }
-Prelude.lt = func(_lt);
+Prelude.lt   = func(_lt);
+Prelude.LT   = Prelude.lt;
+Prelude['<'] = Prelude.lt;
 
 function _gt(a, b) {
     return a > b;
 }
-Prelude.gt = func(_gt);
+Prelude.gt   = func(_gt);
+Prelude.GT   = Prelude.gt;
+Prelude['>'] = Prelude.gt;
 
 function _lte(a, b) {
     return a <= b;
 }
-Prelude.lte = func(_lte);
+Prelude.lte   = func(_lte);
+Prelude.LTE   = Prelude.lte;
+Prelude['<='] = Prelude.lte;
 
 function _gte(a, b) {
     return a >= b;
 }
-Prelude.gte = func(_gte);
+Prelude.gte   = func(_gte);
+Prelude.GTE   = Prelude.gte;
+Prelude['>='] = Prelude.gte;
 
 function _max(a, b) {
     if (a > b) {
@@ -310,7 +324,7 @@ function _min(a, b) {
 Prelude.min = func(_min);
 
 function _compare(a, b) {
-    return Math.sign(a - b);
+    return _signum(a - b);
 }
 Prelude.compare = func(_compare);
 
@@ -325,20 +339,29 @@ Prelude.comparing = func(_comparing);
 function _add(a, b) {
     return a + b;
 }
-Prelude.add = func(_add);
+Prelude.add  = func(_add);
+Prelude.plus = Prelude.add;
+Prelude.PLUS = Prelude.add;
 Prelude['+'] = Prelude.add;
 
 function _sub(a, b) {
     return a - b;
 }
-Prelude.sub = func(_sub);
-Prelude['-'] = Prelude.sub;
+Prelude.sub      = func(_sub);
+Prelude.subtract = Prelude.sub;
+Prelude.minus    = Prelude.sub;
+Prelude.SUB      = Prelude.sub;
+Prelude.MINUS    = Prelude.sub;
+Prelude['-']     = Prelude.sub;
 
 function _mul(a, b) {
     return a * b;
 }
-Prelude.mul = func(_mul);
-Prelude['*'] = Prelude.mul;
+Prelude.mul   = func(_mul);
+Prelude.times = Prelude.mul;
+Prelude.MUL   = Prelude.mul;
+Prelude.TIMES = Prelude.mul;
+Prelude['*']  = Prelude.mul;
 
 Prelude.abs = func(Math.abs);
 
@@ -347,7 +370,15 @@ function _negate(a) {
 }
 Prelude.negate = func(_negate);
 
-Prelude.signum = func(Math.sign);
+function _signum(x) {
+    if (x < 0) {
+        return -1;
+    } else if (x > 0) {
+        return 1;
+    }
+    return 0;
+}
+Prelude.signum = func(_signum);
 
 
 // Integral
@@ -371,7 +402,7 @@ Prelude.rem = func(_rem);
 function _mod(a, b) {
     var q = _quot(a, b);
     var r = _rem(a, b);
-    return Math.sign(r) == -Math.sign(b) ? r + b : r;
+    return _signum(r) == -_signum(b) ? r + b : r;
 }
 Prelude.mod = func(_mod);
 
@@ -422,20 +453,25 @@ Prelude.asin = func(Math.asin);
 Prelude.atan = func(Math.atan);
 Prelude.acos = func(Math.acos);
 
-Prelude.sinh = func(Math.sinh);
-Prelude.tanh = func(Math.tanh);
-Prelude.cosh = func(Math.cosh);
+//Prelude.sinh = func(Math.sinh);
+//Prelude.tanh = func(Math.tanh);
+//Prelude.cosh = func(Math.cosh);
 
-/* asinh, atanh, acosh */
+//Prelude.asinh = func(Math.asinh);
+//Prelude.atanh = func(Math.atanh);
+//Prelude.acosh = func(Math.acosh);
 
 
 // RealFrac
 
 function _properFraction(x) {
+    var num = _truncate(x);
+    return [ num, -(num - x) ];
 }
+Prelude.properFraction = func(_properFraction);
 
 function _truncate(x) {
-    switch (Math.sign(x)) {
+    switch (_signum(x)) {
     case -1:
         return Math.ceil(x);
     case 1:
@@ -443,17 +479,26 @@ function _truncate(x) {
     }
     return 0;
 }
+Prelude.truncate = func(_truncate);
 
 function _round(x) {
+    // Haskell's round and JavaScripts Math.round are different
+    var fraction = _properFraction(x);
+    var n = fraction[0];
+    var m = fraction[1] < 0 ? n - 1 : n + 1;
+    switch (_signum(Math.abs(fraction[1]) - 0.5)) {
+        case -1:
+            return n;
+        case 0:
+            return n % 2 === 0 ? n : m;
+        case 1:
+            return m;
+    }
 }
+Prelude.round = func(_round);
 
-function _ceiling(x) {
-    return Math.ceil(x);
-}
-
-function _floor(x) {
-    return Math.floor(x);
-}
+Prelude.ceiling = func(Math.ceil);
+Prelude.floor = func(Math.floor);
 
 // RealFloat
 
@@ -462,32 +507,59 @@ function _floor(x) {
 
 // Numeric
 
-/* even, odd, gcd, lcm, ^, ^^ */
-
-
-// Monad (>>=, >>, return, fail) - omitted
-
-// Functor (fmap) - omitted
-
-/* mapM, mapM_, sequence, sequence_, =<< - omitted */
-
-
-/*  until
- *  asTypeOf - omitted
- *  error
- *  undefined
- *  seq
- *  $!
- */
-
-function _map(f, xs) {
-    var ys = isArray(xs) ? [] : {};
-    Object.keys(xs).forEach(function (key) {
-        ys[key] = xs[key];
-    });
-    return ys;
+function _gcd(a, b) {
+    var c;
+    while (b !== 0) {
+        c = _rem(a, b);
+        a = b;
+        b = c;
+    }
+    return a;
 }
-Prelude.map = func(_map);
+Prelude.gcd = func(_gcd);
+
+function _lcm(a, b) {
+    if (a == 0 || b == 0) {
+        return 0;
+    }
+    return Math.abs(_quot(a, _gcd(a, b)) * b);
+}
+Prelude.lcm = func(_lcm);
+
+Prelude['^'] = Prelude.pow;
+Prelude['^^'] = Prelude.pow;
+
+function _even(x) {
+    return x % 2 === 0;
+}
+Prelude.even = func(_even);
+
+function _odd(x) {
+    return x % 2 !== 0;
+}
+Prelude.odd = func(_odd);
+
+
+// Control
+
+function _until(p, f, v) {
+    while (!p(v)) {
+        v = f(v);
+    }
+    return v;
+}
+Prelude.until = func(_until);
+
+
+// List
+
+function _cons(x, xs) {
+    var zs = [x];
+    [].push.apply(zs, xs);
+    return zs;
+}
+Prelude.cons = func(_cons);
+Prelude[':'] = Prelude.cons;
 
 function _append(xs, ys) {
     var zs = [];
@@ -497,6 +569,15 @@ function _append(xs, ys) {
 }
 Prelude.append = func(_append);
 Prelude['++'] = Prelude.append;
+
+function _map(f, xs) {
+    var ys = isArray(xs) ? [] : {};
+    Object.keys(xs).forEach(function (key) {
+        ys[key] = xs[key];
+    });
+    return ys;
+}
+Prelude.map = func(_map);
 
 function _filter(p, xs) {
     var ys = isArray(xs) ? [] : {};
@@ -554,6 +635,151 @@ function _reverse(xs) {
 }
 Prelude.reverse = func(_reverse);
 
+function _take(n, xs) {
+
+}
+Prelude.take = func(_take);
+
+function _drop(n, xs) {
+
+}
+Prelude.drop = func(_drop);
+
+function _splitAt(n, xs) {
+
+}
+Prelude.splitAt = func(_splitAt);
+
+function _takeWhile(p, xs) {
+    
+}
+Prelude.takeWhile = func(_takeWhile);
+
+function _dropWhile(p, xs) {
+    
+}
+Prelude.dropWhile = func(_dropWhile);
+
+function _span(p, xs) {
+    
+}
+Prelude.span = func(_span);
+
+function _break(p, xs) {
+    
+}
+Prelude.break = func(_break);
+
+function _elem(x, xs) {
+    
+}
+Prelude.elem = func(_elem);
+
+function _notElem(x, xs) {
+    
+}
+Prelude.notElem = func(_notElem);
+
+function _lookup(x, xs) {
+
+}
+Prelude.lookup = func(_lookup);
+
+function _foldl(f, x, xs) {
+    for (var i = 0; i < xs.length; i++) {
+        x = f(x, xs[i]);
+    }
+    return x;
+}
+Prelude.foldl = func(_foldl);
+Prelude['foldl\''] = Prelude.foldl;
+
+function _foldl1(f, xs) {
+    var x = xs[0];
+    for (var i = 1; i < xs.length; i++) {
+        x = f(x, xs[i]);
+    }
+    return x;
+}
+Prelude.foldl1 = func(_foldl1);
+Prelude['foldl1\''] = Prelude.foldl1;
+
+function _foldr(f, x, xs) {
+    for (var i = xs.length - 1; i >= 0; i--) {
+        x = f(xs[i], x);
+    }
+    return x;
+}
+Prelude.foldr = func(_foldr);
+
+function _foldr1(f, xs) {
+    var x = xs[xs.length - 1];
+    for (var i = xs.length - 2; i >= 0; i--) {
+        x = f(xs[i], x);
+    }
+    return x;
+}
+Prelude.foldr1 = func(_foldr1);
+
+Prelude.and     = Prelude.foldl(_AND, true);
+Prelude.or      = Prelude.foldl(_OR, false);
+Prelude.sum     = Prelude.foldl(_add, 0);
+Prelude.product = Prelude.foldl(_mul, 1);
+Prelude.maximum = Prelude.foldl(_max, -Infinity);
+Prelude.minimum = Prelude.foldl(_min, +Infinity);
+
+function _any(xs) {
+    for (var i = 0; i < xs.length; i++) {
+        if (xs[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+Prelude.any = func(_any);
+
+function _all() {
+    for (var i = 0; i < xs.length; i++) {
+        if (xs[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+Prelude.all = func(_all);
+
+
+// 
+
+/*
+ *  concat
+ *  concatMap
+ *
+ *  scanl
+ *  scanl1
+ *  scanr
+ *  scanr1
+ *
+ *  iterate
+ *  repeat
+ *  replicate
+ *  cycle
+ *
+ *  zip
+ *  zip3
+ *  zipWith
+ *  zipWith3
+ *  unzip
+ *  unzip3
+ *
+ *  lines
+ *  words
+ *  unlines
+ *  unwords
+ */
+
+
+
 /*  intersperse
  *  intercalate
  *  transpose
@@ -609,106 +835,8 @@ Prelude.reverse = func(_reverse);
  *  minimumBy
  */
 
-function _foldl(f, x, xs) {
-}
-Prelude.foldl = func(_foldl);
-
-function _foldl1(f, xs) {
-}
-Prelude.foldl1 = func(_foldl1);
-
-function _foldr(f, x, xs) {
-}
-Prelude.foldr = func(_foldr);
-
-function _foldr1(f, xs) {
-}
-Prelude.foldr1 = func(_foldr1);
-
 //function _and(xs) {
 //}
 //Prelude.and = func(_and);
-
-/*
- *  and
- *  or
- *  any
- *  all
- *  sum
- *  product
- *  concat
- *  concatMap
- *  maximum
- *  minimum
- *
- *  scanl
- *  scanl1
- *  scanr
- *  scanr1
- *
- *  iterate
- *  repeat
- *  replicate
- *  cycle
- *
- *  take
- *  drop
- *  splitAt
- *  takeWhile
- *  dropWhile
- *  span
- *  break
- *
- *  elem
- *  notElem
- *  lookup
- *
- *  zip
- *  zip3
- *  zipWith
- *  zipWith3
- *  unzip
- *  unzip3
- *
- *  lines
- *  words
- *  unlines
- *  unwords
- *
- *  ShowS
- *  Show (show, showsPrec, showList)
- *  shows
- *  showChar
- *  showString
- *  showParen
- *
- *  ReadS
- *  Read (readsPrec, readPrec, readList)
- *  reads
- *  readParen
- *  read
- *  lex
- *
- *  putChar
- *  putStr
- *  putStrLn
- *  print
- *
- *  getChar
- *  getLine
- *  getContents
- *  interact
- *
- *  FilePath
- *  readFile
- *  writeFile
- *  appendFile
- *  readIO
- *  readLn
- *
- *  IOError
- *  ioError
- *  userError
- */
 
 module.exports = Prelude;

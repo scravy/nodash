@@ -6,19 +6,6 @@ var isArray = Array.isArray || function(arr) {
     return Object.prototype.toString.call(arr) === '[object Array]';
 };
 
-function func(f) {
-    switch (f.length) {
-    case 1:
-        return func1(f);
-    case 2:
-        return func2(f);
-    case 3:
-        return func3(f);
-    case 4:
-        return func4(f);
-    }
-}
-
 function func1(f) {
     return freeze(function (x) {
         return f(x);
@@ -73,6 +60,18 @@ function func4(f) {
     });
 }
 
+function func(f) {
+    switch (f.length) {
+    case 1:
+        return func1(f);
+    case 2:
+        return func2(f);
+    case 3:
+        return func3(f);
+    case 4:
+        return func4(f);
+    }
+}
 
 // Function
 
@@ -112,10 +111,6 @@ function _on(g, f, a, b) {
     return g(f(a), f(b))
 }
 Prelude.on = func(_on);
-
-/* curry/uncurry - omitted */
-
-/* Bounded - omitted */
 
 
 // Maybe
@@ -453,13 +448,39 @@ Prelude.asin = func(Math.asin);
 Prelude.atan = func(Math.atan);
 Prelude.acos = func(Math.acos);
 
-//Prelude.sinh = func(Math.sinh);
-//Prelude.tanh = func(Math.tanh);
-//Prelude.cosh = func(Math.cosh);
+Prelude.sinh = func(Math.sinh || function (x) {
+    return (Math.exp(x) - Math.exp(-x)) / 2;
+});
 
-//Prelude.asinh = func(Math.asinh);
-//Prelude.atanh = func(Math.atanh);
-//Prelude.acosh = func(Math.acosh);
+Prelude.tanh = func(Math.tanh || function(x) {
+    if (x === Infinity) {
+        return 1;
+    } else if (x === -Infinity) {
+        return -1;
+    } else {
+        return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
+    }
+});
+
+Prelude.cosh = func(Math.cosh || function(x) {
+    return (Math.exp(x) + Math.exp(-x)) / 2;
+});
+
+Prelude.asinh = func(Math.asinh || function(x) {
+    if (x === -Infinity) {
+      return x;
+    } else {
+        return Math.log(x + Math.sqrt(x * x + 1));
+    }
+};);
+
+Prelude.atanh = func(Math.atanh || function(x) {
+  return Math.log((1 + x) / (1 - x)) / 2;
+};);
+
+Prelude.acosh = func(Math.acosh || function(x) {
+  return Math.log(x + Math.sqrt(x * x - 1));
+};);
 
 
 // RealFrac
@@ -498,7 +519,7 @@ function _round(x) {
 Prelude.round = func(_round);
 
 Prelude.ceiling = func(Math.ceil);
-Prelude.floor = func(Math.floor);
+Prelude.floor   = func(Math.floor);
 
 // RealFloat
 
@@ -636,52 +657,87 @@ function _reverse(xs) {
 Prelude.reverse = func(_reverse);
 
 function _take(n, xs) {
-
+    return xs.slice(0, n);
 }
 Prelude.take = func(_take);
 
 function _drop(n, xs) {
-
+    return xs.slice(n);
 }
 Prelude.drop = func(_drop);
 
 function _splitAt(n, xs) {
-
+    return [ _take(n, xs), _drop(n, xs) ];
 }
 Prelude.splitAt = func(_splitAt);
 
 function _takeWhile(p, xs) {
-    
+    var i = 0;
+    while (i < xs.length && !p(xs[i])) {
+        i++;
+    }
+    return xs.slice(0, i);
 }
 Prelude.takeWhile = func(_takeWhile);
 
 function _dropWhile(p, xs) {
-    
+    var i = 0;
+    while (i < xs.length && p(xs[i])) {
+        i++;
+    }
+    return xs.slice(i);
 }
 Prelude.dropWhile = func(_dropWhile);
 
 function _span(p, xs) {
-    
+    var i = 0;
+    while (i < xs.length && p(xs[i])) {
+        i++;
+    }
+    return [ xs.slice(0, i), xs.slice(i) ];    
 }
 Prelude.span = func(_span);
 
 function _break(p, xs) {
-    
+    var i = 0;
+    while (i < xs.length && !p(xs[i])) {
+        i++;
+    }
+    return [ xs.slice(0, i), xs.slice(i) ];
 }
 Prelude.break = func(_break);
 
 function _elem(x, xs) {
-    
+    var keys = Objects.keys(xs);
+    for (var i = 0; i < keys.length; i++) {
+        if (xs[i] === x) {
+            return true;
+        }
+    }
+    return false;
 }
 Prelude.elem = func(_elem);
 
 function _notElem(x, xs) {
-    
+    var keys = Objects.keys(xs);
+    for (var i = 0; i < keys.length; i++) {
+        if (xs[i] === x) {
+            return false;
+        }
+    }
+    return true;
 }
 Prelude.notElem = func(_notElem);
 
 function _lookup(x, xs) {
-
+    if (isArray(xs)) {
+        for (var i = 0; i < keys.length; i++) {
+            if (xs[i] && xs[i][0] === x) {
+                return xs[i][1];
+            }
+        }
+    }
+    return xs[x];
 }
 Prelude.lookup = func(_lookup);
 

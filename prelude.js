@@ -32,6 +32,15 @@ function register() {
     case 4:
         f = func4(f);
         break;
+    case 5:
+        f = func5(f);
+        break;
+    case 6:
+        f = func6(f);
+        break;
+    case 7:
+        f = func7(f);
+        break;
     }
     for (i = 0; i < aliases.length; i++) {
         Prelude[aliases[i]] = f;
@@ -40,13 +49,13 @@ function register() {
 }
 
 function func1(f) {
-    return freeze(function (x) {
+    return function (x) {
         return f(x);
-    });
+    };
 }
 
 function func2(f) {
-    return freeze(function (a, b) {
+    return function (a, b) {
         switch (arguments.length) {
         case 1:
             return function (b) {
@@ -54,11 +63,11 @@ function func2(f) {
             };
         }
         return f(a, b);
-    });
+    };
 }
 
 function func3(f) {
-    return freeze(function (a, b, c) {
+    return function (a, b, c) {
         switch (arguments.length) {
         case 1:
             return func2(function (b, c) {
@@ -70,11 +79,11 @@ function func3(f) {
             };
         }
         return f(a, b, c);
-    });
+    };
 }
 
 function func4(f) {
-    return freeze(function (a, b, c, d) {
+    return function (a, b, c, d) {
         switch (arguments.length) {
         case 1:
             return func3(function (b, c, d) {
@@ -90,15 +99,99 @@ function func4(f) {
             };
         }
         return f(a, b, c, d);
-    });
+    };
+}
+
+function func5(f) {
+    return function (a, b, c, d, e) {
+        switch (arguments.length) {
+        case 1:
+            return func3(function (b, c, d, e) {
+                return f(a, b, c, d, e);
+            });
+        case 2:
+            return func2(function (c, d, e) {
+                return f(a, b, c, d, e);
+            });
+        case 3:
+            return function (d, e) {
+                return f(a, b, c, d, e);
+            };
+        case 4:
+            return function (e) {
+                return f(a, b, c, d, e);
+            };
+        }
+        return f(a, b, c, d, e);
+    };
+}
+
+function func6(f) {
+    return function (a, b, c, d, e, f) {
+        switch (arguments.length) {
+        case 1:
+            return func3(function (b, c, d, e, f) {
+                return f(a, b, c, d, e, f);
+            });
+        case 2:
+            return func2(function (c, d, e, f) {
+                return f(a, b, c, d, e, f);
+            });
+        case 3:
+            return function (d, e, f) {
+                return f(a, b, c, d, e, f);
+            };
+        case 4:
+            return function (e, f) {
+                return f(a, b, c, d, e, f);
+            };
+        case 5:
+            return function (f) {
+                return f(a, b, c, d, e, f);
+            };
+        }
+        return f(a, b, c, d, e, f);
+    };
+}
+
+function func7(f) {
+    return function (a, b, c, d, e, f, g) {
+        switch (arguments.length) {
+        case 1:
+            return func3(function (b, c, d, e, f, g) {
+                return f(a, b, c, d, e, f, g);
+            });
+        case 2:
+            return func2(function (c, d, e, f, g) {
+                return f(a, b, c, d, e, f, g);
+            });
+        case 3:
+            return function (d, e, f, g) {
+                return f(a, b, c, d, e, f, g);
+            };
+        case 4:
+            return function (e, f, g) {
+                return f(a, b, c, d, e, f, g);
+            };
+        case 5:
+            return function (f, g) {
+                return f(a, b, c, d, e, f, g);
+            };
+        case 6:
+            return function (g) {
+                return f(a, b, c, d, e, f, g);
+            };
+        }
+        return f(a, b, c, d, e, f, g);
+    };
 }
 
 // Function
 
 register('id', function _id(x) { return x; });
 register('const', function _const(a, b) { return a; });
-register('apply', '$', function _apply(f, x) { return f(x); });
-register('compose', '.', function _compose(f, g, x) { return f(g(x)); });
+register('$', 'apply', function _apply(f, x) { return f(x); });
+register('.', 'compose', function _compose(f, g, x) { return f(g(x)); });
 register('flip', function _flip(f) {
     return function () {
         var args = Array.prototype.slice.call(arguments, 0);
@@ -114,8 +207,8 @@ register('on', function _on(g, f, a, b) {
 
 // Bool
 
-register('AND', '&&', function _AND(a, b) { return a && b; });
-register('OR',  '||', function _OR(a, b) { return a || b; });
+register('&&', 'AND', function _AND(a, b) { return a && b; });
+register('||', 'OR', function _OR(a, b) { return a || b; });
 register('not', function _not(value) { return !value; });
 register('bool', function _bool(yes, no, bool) { return bool ? yes : no; });
 
@@ -124,20 +217,25 @@ register('bool', function _bool(yes, no, bool) { return bool ? yes : no; });
 
 register('fst', function _fst(arr) { return arr[0]; });
 register('snd', function _snd(snd) { return arr[1]; });
-
+register(',', function (a, b) { return [ a, b ]; });
+register(',,', function (a, b, c) { return [ a, b, c ] });
+register(',,,', function (a, b, c, d) { return [ a, b, c, d ] });
+register(',,,,', function (a, b, c, d, e) { return [ a, b, c, d, e ] });
+register(',,,,,', function (a, b, c, d, e, f) { return [ a, b, c, d, e, f ] });
+register(',,,,,,', function (a, b, c, d, e, f, g) { return [ a, b, c, d, e, f, g ] });
 
 // Eq
 
-register('eq',  'EQ',  '==', function _eq(a, b)  { return a === b; });
-register('neq', 'NEQ', '/=', function _neq(a, b) { return a !== b; });
+register('==', 'eq',  'EQ', function _eq(a, b)  { return a === b; });
+register( '/=', 'neq', 'NEQ',function _neq(a, b) { return a !== b; });
 
 
 // Ord
 
-register('lt', 'LT', '<', function _lt(a, b) { return a < b; });
-register('gt', 'GT', '>', function _gt(a, b) { return a > b; });
-register('lte', 'LTE', '<=', function _lte(a, b) { return a <= b; });
-register('gte', 'GTE', '>=', function _gte(a, b) { return a >= b; });
+register('<', 'lt', 'LT', function _lt(a, b) { return a < b; });
+register('>', 'gt', 'GT', function _gt(a, b) { return a > b; });
+register('<=', 'lte', 'LTE', function _lte(a, b) { return a <= b; });
+register('>=', 'gte', 'GTE', function _gte(a, b) { return a >= b; });
 register('max', function _max(a, b) {
     if (a > b) {
         return a;
@@ -236,7 +334,7 @@ register('cosh', Math.cosh || function(x) {
 });
 register('asinh', Math.asinh || function _asinh(x) {
     if (x === -Infinity) {
-      return x;
+        return x;
     } else {
         return Math.log(x + Math.sqrt(x * x + 1));
     }
@@ -529,53 +627,63 @@ register('replicate', function _replicate() {
 register('cycle', function _cycle() {
     // TODO
 });
-register('zip', function _zip() {
-    
+register('zipWith', function _zipWith(f, as, bs) {
+    var length = Math.min(as.length, bs.length);
+    var zs = [];
+    for (var i = 0; i < length; i++) {
+        zs[i] = f(as[i], bs[i]);
+    }
+    return zs;
 });
-
-function _zip3() {
-}
-Prelude.zip3 = register(_zip3);
-
-function _zip4() {
-}
-Prelude.zip4 = register(_zip4);
-
-function _zip5() {
-}
-Prelude.zip5 = register(_zip5);
-
-function _zip6() {
-}
-Prelude.zip6 = register(_zip6);
-
-function _zip7() {
-}
-Prelude.zip7 = register(_zip7);
-
-function _zipWith() {
-}
-Prelude.zipWith = register(_zipWith);
-
-function _zipWith3() {
-}
-Prelude.zipWith3 = register(_zipWith3);
-
-function _zipWith4() {
-}
-Prelude.zipWith4 = register(_zipWith4);
-
-function _zipWith5() {
-}
-Prelude.zipWith5 = register(_zipWith5);
-
-function _zipWith6() {
-}
-Prelude.zipWith6 = register(_zipWith6);
-
-function _zipWith7() {
-}
-Prelude.zipWith7 = register(_zipWith7);
+register('zipWith3', function _zipWith3(f, as, bs, cs) {
+    var length = Prelude.minimum([as.length, bs.length, cs.length]);
+    var zs = [];
+    for (var i = 0; i < length; i++) {
+        zs[i] = f(as[i], bs[i], cs[i]);
+    }
+    return zs;
+});
+register('zipWith4', function _zipWith4(f, as, bs, cs, ds) {
+    var length = Prelude.minimum([as.length, bs.length, cs.length, ds.length]);
+    var zs = [];
+    for (var i = 0; i < length; i++) {
+        zs[i] = f(as[i], bs[i], cs[i], ds[i]);
+    }
+    return zs;
+});
+register('zipWith5', function _zipWith4(f, as, bs, cs, ds, es) {
+    var length = Prelude.minimum([
+            as.length, bs.length, cs.length, ds.length, es.length]);
+    var zs = [];
+    for (var i = 0; i < length; i++) {
+        zs[i] = f(as[i], bs[i], cs[i], ds[i], es[i]);
+    }
+    return zs;
+});
+register('zipWith6', function _zipWith4(f, as, bs, cs, ds, es, fs) {
+    var length = Prelude.minimum([
+            as.length, bs.length, cs.length, ds.length, es.length, fs.length]);
+    var zs = [];
+    for (var i = 0; i < length; i++) {
+        zs[i] = f(as[i], bs[i], cs[i], ds[i], es[i], fs[i]);
+    }
+    return zs;
+});
+register('zipWith7', function _zipWith4(f, as, bs, cs, ds, es, fs, gs) {
+    var length = Prelude.minimum([
+            as.length, bs.length, cs.length, ds.length, es.length, fs.length, gs.length]);
+    var zs = [];
+    for (var i = 0; i < length; i++) {
+        zs[i] = f(as[i], bs[i], cs[i], ds[i], es[i], fs[i], gs[i]);
+    }
+    return zs;
+});
+register('zip',  Prelude.zipWith(Prelude[',']));
+register('zip3', Prelude.zipWith(Prelude[',,']));
+register('zip4', Prelude.zipWith(Prelude[',,,']));
+register('zip5', Prelude.zipWith(Prelude[',,,,']));
+register('zip6', Prelude.zipWith(Prelude[',,,,,']));
+register('zip7', Prelude.zipWith(Prelude[',,,,,,']));
 
 
 // Maybe

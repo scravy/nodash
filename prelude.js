@@ -431,7 +431,7 @@ register('++', 'append', function _append(xs, ys) {
 register('map', function _map(f, xs) {
     var ys = isArray(xs) ? [] : {};
     Object.keys(xs).forEach(function (key) {
-        ys[key] = xs[key];
+        ys[key] = f(xs[key]);
     });
     return ys;
 });
@@ -608,24 +608,19 @@ register('scanr1', function _scanr1(f, xs) {
 register('concat', function _concat(xs) {
     var zs = [];
     Object.keys(xs).forEach(function (key) {
-        zs.push.apply(null, xs[key]);
+        [].push.apply(zs, xs[key]);
     });
     return zs;
 });
-register('concatMap', function _concatMap(f, xs) {
-    // TODO
+register('concatMap', function (f, xs) {
+    return Prelude.concat(Prelude.map(f, xs));
 });
-register('iterate', function _iterate() {
-    // TODO
-});
-register('repeat', function _repeat() {
-    // TODO
-});
-register('replicate', function _replicate() {
-    // TODO
-});
-register('cycle', function _cycle() {
-    // TODO
+register('replicate', function _replicate(n, x) {
+    var xs = [];
+    for (var i = 0; i < n; i++) {
+        xs.push(x);
+    }
+    return xs;
 });
 register('zipWith', function _zipWith(f, as, bs) {
     var length = Math.min(as.length, bs.length);
@@ -807,9 +802,5 @@ register('partitionEithers', function _partitionEithers(xs) {
  *  maximumBy
  *  minimumBy
  */
-
-//function _and(xs) {
-//}
-//Prelude.and = register(_and);
 
 module.exports = Prelude;

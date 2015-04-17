@@ -741,66 +741,97 @@ register('partitionEithers', function _partitionEithers(xs) {
     return [ _lefts(xs), _rights(xs) ];
 });
 
+register('lines', function _lines() {
+});
+register('unlines', function _unlines() {
+});
+register('words', function _words() {
+});
+register('undwords', function _undwords() {
+});
 
-/*
- *  lines
- *  words
- *  unlines
- *  unwords
- */
 
+register('intersperse', function _intersperse() {
+});
+register('intercalate', function _intercalate() {
+});
+register('transpose', function _transpose() {
+});
+register('subsequences', function _subsequences() {
+});
+register('permutations', function _permutations() {
+});
 
+register('mapAccumL', function _mapAccumL() {
+});
+register('mapAccumR', function _mapAccumR() {
+});
+register('unfoldr', function _unfoldr() {
+});
 
-/*  intersperse
- *  intercalate
- *  transpose
- *  subsequences
- *  permutations
- *
- *  mapAccumL
- *  mapAccumR
- *
- *  unfoldr
- */
+register('stripPrefix', function _stripPrefix() {
+});
 
-/*  stripPrefix
- *  group
- *  inits
- *  tails
- *
- *  isPrefixOf
- *  isSuffixOf
- *  isInfixOf
- *
- *  find
- *  (filter)
- *  partition
- *
- *  elemIndex
- *  elemIndices
- *  findIndex
- *  findIndices
- *
- *  nub
- *  delete
- *  \\
- *  union
- *  intersect
- *
- *  sort
- *  insert
- *
- *  nubBy
- *  deleteBy
- *  deleteFirstBy
- *  unionBy
- *  intersectBy
- *  groupBy
- *
- *  sortBy
- *  insertBy
- *  maximumBy
- *  minimumBy
- */
+register('group', function _group() {
+});
+register('inits', function _inits() {
+});
+register('tails', function _tails() {
+});
+register('isPrefixOf', function _isPrefixOf() {
+});
+register('isSuffixOf', function _isSuffixOf() {
+});
+register('isInfixOf', function _isInfixOf() {
+});
+
+register('find', function _find() {
+});
+register('partition', function _partition() {
+});
+
+register('elemIndex', function _elemIndex() {
+});
+register('elemIndices', function _elemIndices() {
+});
+register('findIndex', function _findIndex() {
+});
+register('findIndices', function _findIndices() {
+});
+
+register('nub', function _nub() {
+});
+register('delete', function _delete() {
+});
+register('\\\\', function () {
+});
+register('union', function () {
+});
+register('intersect', function () {
+});
+
+register('sort', function () {
+});
+register('insert', function () {
+});
+
+register('nubBy', function () {
+});
+register('deleteBy', function () {
+});
+register('unionBy', function () {
+});
+register('intersectBy', function () {
+});
+register('groupBy', function () {
+});
+register('sortBy', function () {
+});
+register('insertBy', function () {
+});
+register('maximumBy', function () {
+});
+register('minimumBy', function () {
+});
 
 module.exports = Prelude;

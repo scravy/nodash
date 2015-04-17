@@ -1,4 +1,6 @@
-var Prelude = {};
+function prelude(Prelude) {
+
+Prelude = Prelude || {};
 
 var freeze = Object.freeze || function (x) { return x; };
 
@@ -1058,4 +1060,6 @@ register('minimumBy', function (f, xs) {
     }, +Infinity, xs);
 });
 
-module.exports = Prelude;
+};
+
+module.exports = prelude;

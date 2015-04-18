@@ -13,7 +13,25 @@ var jshint = require('gulp-jshint'),
      mocha = require('gulp-mocha'),
   istanbul = require('gulp-istanbul'),
   enforcer = require('gulp-istanbul-enforcer'),
+    minify = require('gulp-esmangle'),
+    rename = require('gulp-rename'),
+      gzip = require('gulp-gzip'),
       gulp = require('gulp');
+
+gulp.task('minify', [ 'lint' ], function (done) {
+  gulp.src('prelude.js')
+      .pipe(minify({ legacy: false }))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(gulp.dest('.'))
+      .on('finish', done);
+});
+
+gulp.task('gzip', [ 'minify' ], function (done) {
+  gulp.src('prelude.min.js')
+      .pipe(gzip({ append: true }))
+      .pipe(gulp.dest('.'))
+      .on('finish', done);
+});
 
 gulp.task('lint', function (done) {
   gulp.src([ 'prelude.js', 'test/*.js' ])
@@ -40,5 +58,5 @@ gulp.task('test', [ 'lint' ], function (done) {
     });
 });
 
-gulp.task('default', [ 'test' ]);
+gulp.task('default', [ 'test', 'gzip' ]);
 

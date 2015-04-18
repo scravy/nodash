@@ -1135,6 +1135,14 @@ function install(Prelude, Math, Array) {
     return Prelude;
 }
 
-module.exports = install({
+var P = install({
     install: install
 });
+
+if (typeof(module) !== 'undefined' && module.exports) {
+    module.exports = P;
+} else if (typeof define === 'function' && define.amd) {
+    define(function () { return P; });
+} else {
+    window.Prelude = P;
+}

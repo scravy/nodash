@@ -1,3 +1,5 @@
+(function () {
+
 var NativeMath  = Math;
 var NativeArray = Array;
 
@@ -1158,3 +1160,5 @@ if (typeof(module) !== 'undefined' && module.exports) {
 } else {
     window.Prelude = P;
 }
+
+}());

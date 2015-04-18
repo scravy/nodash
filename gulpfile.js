@@ -15,10 +15,12 @@ var jshint = require('gulp-jshint'),
   enforcer = require('gulp-istanbul-enforcer'),
       gulp = require('gulp');
 
-gulp.task('lint', function () {
-  return gulp.src([ 'prelude.js', 'test/*.js' ])
+gulp.task('lint', function (done) {
+  gulp.src([ 'prelude.js', 'test/*.js' ])
              .pipe(jshint())
              .pipe(jshint.reporter('default'))
+             .pipe(jshint.reporter('fail'))
+             .on('finish', done);
 });
 
 gulp.task('test', [ 'lint' ], function (done) {

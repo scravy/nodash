@@ -3,10 +3,10 @@
 "use strict";
 
 var thresholds = {
-  statements: 50,
-    branches: 50,
-       lines: 50,
-   functions: 50
+  statements: 80,
+    branches: 60,
+       lines: 60,
+   functions: 80
 };
 
 var jshint = require('gulp-jshint'),

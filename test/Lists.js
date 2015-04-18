@@ -1,67 +1,94 @@
 var P = require('../prelude').install(GLOBAL);
 var assert = require('assert');
 
-describe('Data.List', function () {
+describe('Lists', function () {
 
-    it('partition', function () {
-        assert.deepEqual(
-            [ [ 0, -3, -3, -10 ], [ 4, 5, 14 ] ],
-            partition(gte(0), [ 0, -3, 4, 5, -3, -10, 14 ])
-        );
+    it('isNull', function () {
+        assert.strictEqual(true, isNull([]));
+        assert.strictEqual(false, isNull([ 1 ]));
     });
 
-    it('partition /w string', function () {
-        assert.deepEqual(
-            [ " ", "HelloWorld!" ],
-            partition(function isSpace(chr) {
-                return chr === ' ';
-            }, "Hello World!")
-        );
+    it('isNull /w string', function () {
+        assert.strictEqual(true, isNull(""));
+        assert.strictEqual(false, isNull("x"));
     });
 
-    it('transpose', function () {
-        assert.deepEqual(
-            [ ['a', 'd', 'f'], ['b', 'e', 'g'], ['c', 'h'], ['i'] ],
-            transpose([ ['a', 'b', 'c'], ['d', 'e'], ['f', 'g', 'h', 'i' ] ])
-        );
+    it('length', function () {
+        assert.strictEqual(0, length([]));
+        assert.strictEqual(1, length([ 1 ]));
     });
 
-    it('transpose /w string', function () {
-        assert.deepEqual(
-            [ "adf", "beg", "ch", "i" ],
-            transpose([ "abc", "de", "fghi" ])
-        );
+    it('length /w string', function () {
+        assert.strictEqual(0, length(""));
+        assert.strictEqual(1, length("x"));
     });
 
-    it('group', function () {
-        assert.deepEqual(
-            [ ['H'], ['e'], ['l', 'l'], ['o'], [' '],
-              ['W'], ['o'], ['r'], ['l'], ['d'], ['!']],
-            group(['H', 'e', 'l' ,'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', '!'])
-        );
-        assert.deepEqual([], groupBy(neq, []));
+    it('head', function () {
+        assert.strictEqual(10, head([ 10, 4, 21 ]));
     });
 
-    it('group /w string', function () {
-        assert.deepEqual(
-            [ "H", "e", "ll", "o", " ", "W", "o", "r", "l", "d", "!" ],
-            group("Hello World!")
-        );
-        assert.deepEqual([], groupBy(neq, []));
+    it('head /w string', function () {
+        assert.strictEqual('a', head("abc"));
     });
 
-    it('maximumBy', function () {
-        var list = [2, 10, 5, 8, 21, 1, 9, 8, 3];
-        assert.strictEqual(minimum(list), maximumBy(function (a, b) {
-            return -compare(a, b);
-        }, list));
+    it('tail', function () {
+        assert.deepEqual([ 4, 21 ], tail([ 10, 4, 21 ]));
     });
 
-    it('minimumBy', function () {
-        var list = [2, 10, 5, 8, 21, 1, 9, 8, 3];
-        assert.strictEqual(maximum(list), minimumBy(function (a, b) {
-            return -compare(a, b);
-        }, list));
+    it('tail /w string', function () {
+        assert.strictEqual("bc", tail("abc"));
+    });
+
+    it('init', function () {
+        assert.deepEqual([ 10, 4 ], init([ 10, 4, 21 ]));
+    });
+
+    it('init /w string', function () {
+        assert.strictEqual("ab", init("abc"));
+    });
+
+    it('last', function () {
+        assert.strictEqual(21, last([ 10, 4, 21 ]));
+    });
+
+    it('last /w string', function () {
+        assert.strictEqual('c', last("abc"));
+    });
+
+    it('take', function () {
+        assert.deepEqual([], take(0, [ 10, 4, 18, 17 ]));
+        assert.deepEqual([], take(10, []));
+        assert.deepEqual([ 10, 4 ], take(2, [ 10, 4, 18, 17 ]));
+        assert.deepEqual([ 10, 4 ], take(4, [ 10, 4 ]));
+    });
+
+    it('take /w string', function () {
+        assert.deepEqual("abc", take(3, "abc"));
+        assert.deepEqual("", take(0, ""));
+    });
+
+    it('drop', function () {
+
+    });
+
+    it('drop /w string', function () {
+
+    });
+
+    it('takeWhile', function () {
+
+    });
+
+    it('takeWhile /w string', function () {
+
+    });
+
+    it('dropWhile', function () {
+
+    });
+
+    it('dropWhile /w string', function () {
+
     });
 });
 

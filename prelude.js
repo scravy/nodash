@@ -572,7 +572,7 @@ function install(Prelude, Math, Array) {
 
     register('init', function _init(xs) { return xs.slice(0, xs.length - 1); });
 
-    register('null', function _null(xs) { return xs.length === 0; });
+    register('isNull', function _null(xs) { return xs.length === 0; });
 
     register('length', function _length(xs) { return xs.length; });
 
@@ -595,7 +595,7 @@ function install(Prelude, Math, Array) {
     });
 
     register('splitAt', function _splitAt(n, xs) {
-        return [ _take(n, xs), _drop(n, xs) ];
+        return [ xs.slice(0, n), xs.slice(n) ];
     });
 
     register('takeWhile', function _takeWhile(p, xs) {

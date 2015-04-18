@@ -12,6 +12,8 @@ function install(Prelude, Math, Array) {
         return Object.prototype.toString.call(arr) === '[object Array]';
     };
 
+    function listToString(x) { return x.join(''); }
+
     function register() {
         var f, i, arg, aliases = [];
         for (i = 0; i < arguments.length; i++) {
@@ -972,6 +974,9 @@ function install(Prelude, Math, Array) {
             }
             j += 1;
         } while (current.length > 0 && zs.push(current));
+        if (typeof xss[0] === 'string') {
+            zs = Prelude.map(listToString, zs);
+        }
         return zs;
     });
 
@@ -1039,6 +1044,9 @@ function install(Prelude, Math, Array) {
         for (var i = 0; i < xs.length; i++) {
             (p(xs[i]) ? as : bs).push(xs[i]);
         }
+        if (typeof xs === 'string') {
+            return Prelude.map(listToString, [ as, bs ]);
+        }
         return [ as, bs ];
     });
 
@@ -1104,6 +1112,9 @@ function install(Prelude, Math, Array) {
             }
         }
         zs.push(current);
+        if (typeof xs === 'string') {
+            zs = Prelude.map(listToString, zs);
+        }
         return zs;
     });
 
@@ -1115,22 +1126,22 @@ function install(Prelude, Math, Array) {
     register('insertBy', function () {
     });
 
-    register('maximumBy', function () {
-        Prelude.foldl(function (a, b) {
+    register('maximumBy', function (f, xs) {
+        return Prelude.foldl1(function (a, b) {
             if (f(a, b) > 0) {
                 return a;
             }
             return b;
-        }, -Infinity, xs);
+        }, xs);
     });
 
     register('minimumBy', function (f, xs) {
-        Prelude.foldl(function (a, b) {
+        return Prelude.foldl1(function (a, b) {
             if (f(a, b) < 0) {
                 return a;
             }
             return b;
-        }, +Infinity, xs);
+        }, xs);
     });
 
     return Prelude;

@@ -9,23 +9,24 @@ A port of the Haskell Prelude to JavaScript/NodeJS.
 
 Usage:
 
-    // have it in a variable P
-    var P = require('node-prelude');
+```JavaScript
+// have it in a variable P
+var P = require('node-prelude');
 
-    var reverse = P.foldl(P.flip(P.cons), []);
+var reverse = P.foldl(P.flip(P.cons), []);
 
-    // have it in a variable Prelude
-    var Prelude = require('node-prelude');
+// have it in a variable Prelude
+var Prelude = require('node-prelude');
 
-    var reverse = Prelude.foldl(Prelude.flip(Prelude.cons), []);
+var reverse = Prelude.foldl(Prelude.flip(Prelude.cons), []);
 
-    // install it globally
-    require('node-prelude').install(GLOBAL);
+// install it globally
+require('node-prelude').install(GLOBAL);
 
-    var reverse = foldl(flip(cons), []);
+var reverse = foldl(flip(cons), []);
 
-    // combined
-    var P = require('node-prelude').install(GLOBAL);
+// combined
+var P = require('node-prelude').install(GLOBAL);
 
-    var reverse = foldl(flip(P[':']), []);
-
+var reverse = foldl(flip(P[':']), []);
+```

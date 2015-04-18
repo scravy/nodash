@@ -1,10 +1,11 @@
 require('../prelude').install(GLOBAL);
 var assert = require('assert');
 
-describe('RealFrac', function () {
+describe('Function', function () {
 
     it('const', function () {
-        
+        //FIXME: This will not work due to the nature of function application
+        //assert.strictEqual(4, foldl(constant(plus(1)), 0, [1,4,3,2]));
     });
 
     it('apply', function () {

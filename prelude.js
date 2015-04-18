@@ -2,6 +2,7 @@ var NativeMath  = Math;
 var NativeArray = Array;
 
 function install(Prelude, Math, Array) {
+    "use strict";
 
     Math    = Math    || NativeMath;
     Array   = Array   || NativeArray;
@@ -237,12 +238,15 @@ function install(Prelude, Math, Array) {
 
     register('id', function _id(x) { return x; });
 
-    register('const', function _const(a, b) { return a; });
+    // TODO: constant is tricky (think this through...)
+    register('const', 'constant', function _const(a, b) { return a; });
 
     register('$', 'apply', function _apply(f, x) { return f(x); });
 
+    // TODO: think this through with curried functions
     register('.', 'compose', function _compose(f, g, x) { return f(g(x)); });
 
+    // TODO: think this through with curried functions
     register('flip', function _flip(f) {
         return func2(function () {
             var args = [].slice.call(arguments, 0);

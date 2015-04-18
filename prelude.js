@@ -371,14 +371,18 @@ function install(Prelude, Math, Array) {
     register('rem', function _rem(a, b) { return a % b; });
 
     register('mod', function _mod(a, b) {
-        var q = _quot(a, b);
-        var r = _rem(a, b);
-        return _signum(r) == -_signum(b) ? r + b : r;
+        var q = Prelude.quot(a, b);
+        var r = Prelude.rem(a, b);
+        return Prelude.signum(r) == -Prelude.signum(b) ? r + b : r;
     });
 
-    register('divMod',  function _divMod(a, b)  { return [_div(a, b),  _mod(a, b)]; });
+    register('divMod',  function _divMod(a, b)  {
+        return [Prelude.div(a, b), Prelude.mod(a, b)];
+    });
 
-    register('quotRem', function _quotRem(a, b) { return [_quot(a, b), _rem(a, b)]; });
+    register('quotRem', function _quotRem(a, b) {
+        return [Prelude.quot(a, b), Prelude.rem(a, b)];
+    });
 
 
     // Fractional

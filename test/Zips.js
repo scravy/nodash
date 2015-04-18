@@ -1,6 +1,10 @@
 require('../prelude').install(GLOBAL);
 var assert = require('assert');
 
+function maximum7(a, b, c, d, e, f, g) {
+    return maximum([a, b, c, d, e, f, g]);
+}
+
 describe('Zips', function () {
 
     it('zip', function () {
@@ -46,6 +50,12 @@ describe('Zips', function () {
         );
     });
 
+    it('zipWith7', function () {
+        assert.deepEqual(
+            [13, 14],
+            zipWith7( maximum7, [1,2], [3,4], [5,6], [7,8], [9,10], [11,12], [13,14] )
+        );
+    });
 });
 
 
@@ -195,6 +205,24 @@ describe('Zips (curried)', function () {
             [ [1,4,7,10,13,16,19], [2,5,8,11,14,17,20], [3,6,9,12,15,18,21] ],
             zip7_6( [19,20,21] )
         );
+    });
+
+    it('zipWith7', function () {
+        var zip7_1 = zipWith7( maximum7, [1,2] );
+        var zip7_2 = zipWith7( maximum7, [1,2], [3,4] );
+        var zip7_3 = zipWith7( maximum7, [1,2], [3,4], [5,6] );
+        var zip7_4 = zipWith7( maximum7, [1,2], [3,4], [5,6], [7,8] );
+        var zip7_5 = zipWith7( maximum7, [1,2], [3,4], [5,6], [7,8], [9,10] );
+        var zip7_6 = zipWith7( maximum7, [1,2], [3,4], [5,6], [7,8], [9,10], [11,12] );
+
+        var result = [ 13, 14 ];
+
+        assert.deepEqual(result, zip7_1([3,4], [5,6], [7,8], [9,10], [11,12], [13,14]));
+        assert.deepEqual(result, zip7_2([5,6], [7,8], [9,10], [11,12], [13,14]));
+        assert.deepEqual(result, zip7_3([7,8], [9,10], [11,12], [13,14]));
+        assert.deepEqual(result, zip7_4([9,10], [11,12], [13,14]));
+        assert.deepEqual(result, zip7_5([11,12], [13,14]));
+        assert.deepEqual(result, zip7_6([13,14]));
     });
 
 });

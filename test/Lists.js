@@ -87,6 +87,13 @@ describe('Lists', function () {
         assert.deepEqual([ 3 ], filter(flip(gt)(2), [ 3 ]));
     });
 
+    it('filter /w string', function () {
+        assert.deepEqual("", filter(constant(false), "abc"));
+        assert.deepEqual("bcbc", filter(function (x) {
+            return x == 'b' || x == 'c';
+        }, "abcdabcd"));
+    });
+
     it('takeWhile', function () {
         
     });

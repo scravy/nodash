@@ -557,7 +557,21 @@ function install(Prelude, Math, Array) {
     });
 
     register('filter', function _filter(p, xs) {
-        var ys = isArray(xs) ? [] : {};
+        var ys;
+        var isString = typeof xs === 'string';
+        if (isArray(xs) || isString) {
+            ys = [];
+            for (var i = 0; i < xs.length; i++) {
+                if (p(xs[i])) {
+                    ys.push(xs[i]);
+                }
+            }
+            if (isString) {
+                ys = listToString(ys);
+            }
+            return ys;
+        }
+        ys = {};
         Object.keys(xs).forEach(function (key) {
             if (p(xs[key])) {
                 ys[key] = xs[key];

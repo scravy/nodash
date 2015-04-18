@@ -244,12 +244,12 @@ function install(Prelude, Math, Array) {
     register('.', 'compose', function _compose(f, g, x) { return f(g(x)); });
 
     register('flip', function _flip(f) {
-        return function () {
+        return func2(function () {
             var args = [].slice.call(arguments, 0);
             args[0] = arguments[1];
             args[1] = arguments[0];
             return f.apply(null, args);
-        };
+        });
     });
 
     register('on', function _on(g, f, a, b) {
@@ -319,11 +319,11 @@ function install(Prelude, Math, Array) {
     });
 
     register('compare', function _compare(a, b) {
-        return _signum(a - b);
+        return Prelude.signum(a - b);
     });
 
     register('comparing', function _comparing(f, a, b) {
-        return _compare(f(a), f(b));
+        return Prelude.compare(f(a), f(b));
     });
 
 

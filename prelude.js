@@ -464,10 +464,10 @@ function install(Prelude, Math, Array) {
 
     register('round', function _round(x) {
         // Haskell's round and JavaScripts Math.round are different
-        var fraction = _properFraction(x);
+        var fraction = Prelude.properFraction(x);
         var n = fraction[0];
         var m = fraction[1] < 0 ? n - 1 : n + 1;
-        switch (_signum(Math.abs(fraction[1]) - 0.5)) {
+        switch (Prelude.signum(Math.abs(fraction[1]) - 0.5)) {
             case -1:
                 return n;
             case 0:
@@ -492,7 +492,7 @@ function install(Prelude, Math, Array) {
     register('gcd', function _gcd(a, b) {
         var c;
         while (b !== 0) {
-            c = _rem(a, b);
+            c = Prelude.rem(a, b);
             a = b;
             b = c;
         }
@@ -503,12 +503,12 @@ function install(Prelude, Math, Array) {
         if (a === 0 || b === 0) {
             return 0;
         }
-        return Math.abs(_quot(a, _gcd(a, b)) * b);
+        return Math.abs(Prelude.quot(a, Prelude.    gcd(a, b)) * b);
     });
 
-    register('even', function _even(x) { return x % 2 === 0; });
+    register('even', function _even(x) { return (x % 2) === 0; });
 
-    register('odd', function _odd(x) { return x % 2 !== 0; });
+    register('odd', function _odd(x) { return (x % 2) !== 0; });
 
 
     // Control

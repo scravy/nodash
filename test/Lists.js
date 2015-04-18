@@ -94,6 +94,27 @@ describe('Lists', function () {
         }, "abcdabcd"));
     });
 
+    it('elem', function () {
+        assert.strictEqual(true, elem(10, [ 10, 20, 30 ]));
+        assert.strictEqual(false, elem(15, [ 10, 20, 30 ]));
+    });
+
+    it('elem /w string', function () {
+        assert.strictEqual(true, elem('a', "abcd"));
+        assert.strictEqual(false, elem('x', "abcd"));
+    });
+
+    it('notElem', function () {
+        assert.strictEqual(true, notElem(15, []));
+        assert.strictEqual(true, notElem(15, [ 10, 20, 30 ]));
+        assert.strictEqual(false, notElem(10, [ 10, 20, 30 ]));
+    });
+
+    it('notElem /w string', function () {
+        assert.strictEqual(true, notElem('x', "abcd"));
+        assert.strictEqual(false, notElem('a', "abcd"));
+    });
+
     it('takeWhile', function () {
         
     });

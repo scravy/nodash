@@ -647,8 +647,7 @@ function install(Prelude, Math, Array) {
     });
 
     register('elem', function _elem(x, xs) {
-        var keys = Objects.keys(xs);
-        for (var i = 0; i < keys.length; i++) {
+        for (var i = 0; i < xs.length; i++) {
             if (xs[i] === x) {
                 return true;
             }
@@ -657,8 +656,7 @@ function install(Prelude, Math, Array) {
     });
 
     register('notElem', function _notElem(x, xs) {
-        var keys = Objects.keys(xs);
-        for (var i = 0; i < keys.length; i++) {
+        for (var i = 0; i < xs.length; i++) {
             if (xs[i] === x) {
                 return false;
             }
@@ -668,7 +666,7 @@ function install(Prelude, Math, Array) {
 
     register('lookup', function _lookup(x, xs) {
         if (isArray(xs)) {
-            for (var i = 0; i < keys.length; i++) {
+            for (var i = 0; i < xs.length; i++) {
                 if (xs[i] && xs[i][0] === x) {
                     return xs[i][1];
                 }

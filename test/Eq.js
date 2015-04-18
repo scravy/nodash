@@ -12,7 +12,7 @@ describe('Eq', function () {
         assert.strictEqual(false, flip(eq)(0, 10));
     });
 
-    it("eq", function () {
+    it("neq", function () {
         assert.strictEqual(false, neq(0, 0));
         assert.strictEqual(false, flip(neq)(0, 0));
         assert.strictEqual(false, neq('hello', 'hello'));

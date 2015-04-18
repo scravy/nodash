@@ -68,11 +68,18 @@ describe('Lists', function () {
     });
 
     it('drop', function () {
-
+        assert.deepEqual([ 10, 4, 18, 17 ], drop(0, [ 10, 4, 18, 17 ]));
+        assert.deepEqual([], drop(10, []));
+        assert.deepEqual([ 18, 17 ], drop(2, [ 10, 4, 18, 17 ]));
+        assert.deepEqual([], drop(4, [ 10, 4 ]));       
     });
 
     it('drop /w string', function () {
-
+        assert.deepEqual("", drop(3, "abc"));
+        assert.deepEqual("", drop(5, "abc"));
+        assert.deepEqual("abcde", drop(0, "abcde"));
+        assert.deepEqual("de", drop(3, "abcde"));
+        assert.deepEqual("", drop(0, ""));
     });
 
     it('takeWhile', function () {

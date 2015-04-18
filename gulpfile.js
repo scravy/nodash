@@ -5,8 +5,8 @@
 var thresholds = {
   statements: 80,
     branches: 60,
-       lines: 60,
-   functions: 80
+   functions: 60,
+       lines: 80
 };
 
 var jshint = require('gulp-jshint'),

@@ -276,7 +276,7 @@ function install(Prelude, Math, Array) {
 
     register('fst', function _fst(arr) { return arr[0]; });
 
-    register('snd', function _snd(snd) { return arr[1]; });
+    register('snd', function _snd(arr) { return arr[1]; });
 
     register(',', function (a, b) { return [ a, b ]; });
 

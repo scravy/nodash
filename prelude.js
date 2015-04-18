@@ -970,6 +970,7 @@ function install(Prelude, Math, Array) {
                     current.push(xss[i][j]);
                 }
             }
+            j += 1;
         } while (current.length > 0 && zs.push(current));
         return zs;
     });

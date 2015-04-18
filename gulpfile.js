@@ -15,8 +15,14 @@ var jshint = require('gulp-jshint'),
   enforcer = require('gulp-istanbul-enforcer'),
     minify = require('gulp-esmangle'),
     rename = require('gulp-rename'),
+     chalk = require('chalk'),
       gzip = require('gulp-gzip'),
       gulp = require('gulp');
+
+process.on('uncaughtException', function (err) {
+  console.log(chalk.red(err.message));
+  process.exit(-1);
+});
 
 gulp.task('minify', [ 'lint' ], function (done) {
   gulp.src('prelude.js')

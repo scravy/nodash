@@ -3,7 +3,6 @@ var assert = require('assert');
 
 describe('Num', function () {
 
-    
 
 });
 

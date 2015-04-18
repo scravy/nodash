@@ -17,12 +17,13 @@ var DumbMath = {
 };
 
 var assert = require('assert');
+var P = require('../prelude').install({}, DumbMath, {});
+
 
 describe('Polyfills', function () {
 
     it('isArray in map', function () {
-        require('../prelude').install(GLOBAL, DumbMath, {});
-        var plus1 = map(plus(1));
+        var plus1 = P.map(P.plus(1));
         assert.deepEqual([2, 3, 4], plus1([1, 2, 3]));
     });
 

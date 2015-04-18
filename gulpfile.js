@@ -13,7 +13,7 @@ var jshint = require('gulp-jshint'),
      mocha = require('gulp-mocha'),
   istanbul = require('gulp-istanbul'),
   enforcer = require('gulp-istanbul-enforcer'),
-    minify = require('gulp-esmangle'),
+    uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
      chalk = require('chalk'),
       gzip = require('gulp-gzip'),
@@ -26,7 +26,7 @@ process.on('uncaughtException', function (err) {
 
 gulp.task('minify', [ 'lint' ], function (done) {
   gulp.src('prelude.js')
-      .pipe(minify({ legacy: false }))
+      .pipe(uglify({  }))
       .pipe(rename({ suffix: '.min' }))
       .pipe(gulp.dest('.'))
       .on('finish', done);

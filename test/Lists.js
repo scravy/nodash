@@ -82,6 +82,11 @@ describe('Lists', function () {
         assert.deepEqual("", drop(0, ""));
     });
 
+    it('filter', function () {
+        assert.deepEqual([], filter(flip(gte)(10), [ 1, 2, 3 ]));
+        assert.deepEqual([ 3 ], filter(flip(gt)(2), [ 3 ]));
+    });
+
     it('takeWhile', function () {
         
     });

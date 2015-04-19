@@ -261,6 +261,8 @@ function install(Prelude, Math, Array) {
     // TODO: think this through with curried functions
     register('.', 'compose', function _compose(f, g, x) { return f(g(x)); });
 
+    register('compose2', function _compose2(f, g, x, y) { return f(g(x, y)); });
+
     // TODO: think this through with curried functions
     register('flip', function _flip(f) {
         return funcs[2](function () {
@@ -338,7 +340,26 @@ function install(Prelude, Math, Array) {
     });
 
     register('compare', function _compare(a, b) {
-        return Prelude.signum(a - b);
+        switch (typeof a) {
+        case 'string':
+            return a.localeCompare(b);
+        case 'object':
+            if (typeof a.compareTo === 'function') {
+                return a.compareTo(b);
+            } else if (isArray(a)) {
+                for (var i = 0; i < Math.min(a.length, b.length); i++) {
+                    var r = Prelude.compare(a[i], b[i]);
+                    if (r !== 0) {
+                        return r;
+                    }
+                }
+                return 0;
+            }
+            return a.toString().localeCompare(b.toString());
+        case 'number':
+            return Prelude.signum(a - b);
+        }
+        return 0;
     });
 
     register('comparing', function _comparing(f, a, b) {
@@ -606,11 +627,9 @@ function install(Prelude, Math, Array) {
     register('!!', 'at', 'AT', function _at(xs, ix) { return xs[ix]; });
 
     register('reverse', function _reverse(xs) {
-        var zs = [];
-        for (var i = 0; i < xs.length; i++) {
-            zs[xs.length - i - 1] = xs[i];
-        }
-        return zs;
+        var zs = typeof xs === 'string' ? "".split.call(xs, '') : [].slice.call(xs);
+        zs.reverse();
+        return typeof xs === 'string' ? zs.join('') : zs;
     });
 
     register('take', function _take(n, xs) {
@@ -1103,8 +1122,19 @@ function install(Prelude, Math, Array) {
     register('intersect', function () {
     });
 
-
-    register('sort', function () {
+    register('sort', function (xs) {
+        if (xs.length <= 1) {
+            return xs;
+        }
+        var zs = typeof xs === 'string' ? "".split.call(xs, '') : [].slice.call(xs);
+        if (typeof zs[0] === 'number') {
+            zs.sort(function (a, b) { return a - b; });
+        } else if (typeof zs[0] === 'string') {
+            zs.sort(function (a, b) { return a.localeCompare(b); });
+        } else {
+            zs.sort(Prelude.compare);
+        }
+        return typeof xs === 'string' ? zs.join('') : zs;
     });
 
     register('insert', function () {
@@ -1146,7 +1176,13 @@ function install(Prelude, Math, Array) {
 
     register('group', Prelude.groupBy(Prelude['==']));
 
-    register('sortBy', function () {
+    register('sortBy', function (fn, xs) {
+        if (xs.length <= 1) {
+            return xs;
+        }
+        var zs = typeof xs === 'string' ? "".split.call(xs, '') : [].slice.call(xs);
+        zs.sort(fn);
+        return typeof xs === 'string' ? zs.join('') : zs;
     });
 
     register('insertBy', function () {

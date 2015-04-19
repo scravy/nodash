@@ -1,5 +1,5 @@
 var P = require('../prelude').install(GLOBAL);
-var assert = require('assert');
+var assert = map(flip, require('assert'));
 
 describe('Lists', function () {
 
@@ -169,6 +169,14 @@ describe('Lists', function () {
 
     it('dropWhile /w string', function () {
         assert.strictEqual("hasd03x", dropWhile(isDigit, "849hasd03x"));
+    });
+
+    it('reverse', function () {
+        assert.deepEqual([4, 3, 2, 1], reverse([1, 2, 3, 4]));
+    });
+
+    it('reverse /w string', function () {
+        assert.deepEqual('dcba', reverse('abcd'));
     });
 });
 

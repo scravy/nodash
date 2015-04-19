@@ -971,7 +971,11 @@ function install(Prelude, Math, Array) {
     // Strings
 
     register('lines', function _lines(string) {
-        return string.split(/\n/);
+        var result = string.split(/\n/);
+        if (result[result.length - 1].length === 0) {
+            delete result[result.length - 1];
+        }
+        return result;
     });
 
     register('unlines', function _unlines(lines) {
@@ -979,11 +983,11 @@ function install(Prelude, Math, Array) {
     });
 
     register('words', function _words(string) {
-        return string.split(/\n\r\v\t /);
+        return string.split(/[\n\r\v\t ]/);
     });
 
     register('unwords', function _unwords(words) {
-        words.join(' ');
+        return words.join(' ');
     });
 
 

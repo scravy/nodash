@@ -10,6 +10,10 @@ describe('Either', function () {
         assert.strictEqual(19, either(constant(17), id, Right(19)));
     });
 
+    it("either /w not an either", function () {
+        assert.strictEqual(null, either(constant(17), constant(13), {}));
+    });
+
     it("Left", function () {
         assert.deepEqual({ left: 7 }, Left(7));
     });
@@ -19,13 +23,23 @@ describe('Either', function () {
     });
 
     it("isLeft", function () {
+        assert.strictEqual(true, isLeft([ 7 ]));
         assert.strictEqual(true, isLeft(Left(7)));
         assert.strictEqual(false, isLeft(Right(7)));
     });
 
     it("isRight", function () {
+        assert.strictEqual(true, isRight([ null, 7 ]));
         assert.strictEqual(false, isRight(Left(7)));
         assert.strictEqual(true, isRight(Right(7)));
+    });
+
+    it("fromLeft /w tuple", function () {
+        assert.strictEqual(17, fromLeft([ 17 ]));
+    });
+
+    it("fromRight /w tuple", function () {
+        assert.strictEqual(17, fromRight([ null, 17 ]));
     });
 
     it("lefts", function () {

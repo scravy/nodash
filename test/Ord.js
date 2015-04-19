@@ -31,6 +31,10 @@ describe('Ord', function () {
         assert.strictEqual(+1, P.compare(20, -20));
     });
 
+    it('compare on function should yield undefined', function () {
+        assert.strictEqual(undefined, P.compare(id, id));
+    });
+
     it('comparing', function () {
         assert.strictEqual(0, P.comparing(P.negate, 20, 20));
         assert.strictEqual(+1, P.comparing(P.negate, -20, 20));

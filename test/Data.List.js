@@ -140,6 +140,44 @@ describe('Data.List', function () {
         ], sort([ [ 0, 1 ], [ 1, 2, 3 ], [ 0, 1, 2 ], [ 1, 2, 3 ] ]));
     });
 
+    it('sort /w object + toString', function () {
+
+        function Person(id, name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        Person.prototype.toString = function _Person_toString() {
+            return this.name;
+        };
+
+        var jim = new Person(12, "Jim");
+        var jack = new Person(28, "Jack");
+        var johnny = new Person(39, "Johnny");
+
+        var xs = [ jim, jack, johnny ];
+        assert.deepEqual([ jack, jim, johnny ], sort(xs));
+    });
+
+    it('sort /w object + compareTo', function () {
+
+        function Person(id, name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        Person.prototype.compareTo = function _Person_compareTo(person) {
+            return compare([ this.name, this.id ], [ person.name, person.id ]);
+        };
+
+        var jim = new Person(12, "Jim");
+        var jim2 = new Person(28, "Jim");
+        var johnny = new Person(39, "Johnny");
+
+        var xs = [ johnny, jim, jim2 ];
+        assert.deepEqual([ jim, jim2, johnny ], sort(xs));
+    });
+
     it('sortBy', function () {
         assert.deepEqual([], sortBy(compose2(negate, compare), []));
         assert.deepEqual([{}], sortBy(compose2(negate, compare), [{}]));
@@ -151,20 +189,76 @@ describe('Data.List', function () {
     });
 
     it('sortBy /w object', function () {
-        var xs = [ { name: "Jim", id: 19 },
-                   { name: "Jack", id: 17 },
-                   { name: "Johnny", id: 13 } ];
 
-    assert.deepEqual(
-        [ { name: "Jack", id: 17 }, { name: "Jim", id: 19 }, { name: "Johnny", id: 13 } ],
-        sortBy(on(compare, flip(at)('name')), xs)
-    );
-    assert.deepEqual(
-        [ { name: "Johnny", id: 13 }, { name: "Jack", id: 17 }, { name: "Jim", id: 19 } ],
-        sortBy(on(compare, flip(at)('id')), xs)
-    );
+        var jim = { name: "Jim", id: 19 };
+        var jack = { name: "Jack", id: 17 };
+        var johnny = { name: "Johnny", id: 13 };
 
+        var xs = [ jim, jack, johnny ];
+        assert.deepEqual(
+            [ jack, jim, johnny ],
+            sortBy(on(compare, flip(at)('name')), xs)
+        );
+        assert.deepEqual(
+            [ johnny, jack, jim ],
+            sortBy(on(compare, flip(at)('id')), xs)
+        );
     });
 
+    it('find', function () {
+        assert.strictEqual(20, find(compose(eq(10),flip(div)(2)), [10, 20, 30]));
+        assert.strictEqual(null, find(compose(eq(10),flip(div)(2)), [10, 30]));
+        assert.strictEqual(null, find(compose(eq(10),flip(div)(2)), []));
+    });
+
+    it('find /w string', function () {
+        assert.strictEqual('y', find(eq('y'), "xyz"));
+    });
+
+    it('isPrefixOf', function () {
+        assert.strictEqual(true, isPrefixOf([ 0, 1 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(false, isPrefixOf([ 2, 3 ], [ 0, 1, 2, 3 ]));
+    });
+
+    it('isPrefixOf /w string', function () {
+        assert.strictEqual(true, isPrefixOf('ab', 'abcd'));
+        assert.strictEqual(false, isPrefixOf('cd', 'abcd'));
+    });
+
+    it('isSuffixOf', function () {
+        assert.strictEqual(false, isSuffixOf([ 0, 1 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(true, isSuffixOf([ 2, 3 ], [ 0, 1, 2, 3 ]));
+    });
+
+    it('isSuffixOf /w string', function () {
+        assert.strictEqual(false, isSuffixOf('ab', 'abcd'));
+        assert.strictEqual(true, isSuffixOf('cd', 'abcd'));
+    });
+
+    it('isInfixOf', function () {
+        assert.strictEqual(true, isInfixOf([ 0, 1 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(true, isInfixOf([ 1, 2 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(true, isInfixOf([ 2, 3 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(false, isInfixOf([ 2, 4 ], [ 0, 1, 2, 3 ]));
+    });
+
+    it('isInfixOf /w string', function () {
+        assert.strictEqual(true, isInfixOf('ab', 'abcd'));
+        assert.strictEqual(true, isInfixOf('bc', 'abcd'));
+        assert.strictEqual(true, isInfixOf('cd', 'abcd'));
+        assert.strictEqual(false, isInfixOf('dcdde', 'abcdcdef'));
+        assert.strictEqual(true, isInfixOf('cde', 'abcdcdef'));
+        assert.strictEqual(false, isInfixOf('ce', 'abcd'));
+    });
+
+    it('intersperse', function () {
+        assert.deepEqual([], intersperse(0, []));
+        assert.deepEqual([1,0,2,0,3], intersperse(0, [1,2,3]));
+    });
+
+    it('intercalate', function () {
+        assert.deepEqual([], intercalate([1,2], []));
+        assert.deepEqual([3,4,1,2,5,6], intercalate([1,2], [[3,4],[5,6]]));
+    });
 });
 

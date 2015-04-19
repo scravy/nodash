@@ -1,18 +1,53 @@
 (function () {
 
-var NativeMath  = Math;
-var NativeArray = Array;
+var NativeMath   = Math;
+var NativeArray  = Array;
+var NativeObject = Object;
 
-function install(Prelude, Math, Array) {
+function install(Prelude, Math, Array, Object) {
     "use strict";
 
     Math    = Math    || NativeMath;
     Array   = Array   || NativeArray;
+    Object  = Object  || NativeObject;
     Prelude = Prelude || {};
 
     var isArray = Array.isArray || function _isArray(arr) {
-        return Object.prototype.toString.call(arr) === '[object Array]';
+        return NativeObject.prototype.toString.call(arr) === '[object Array]';
     };
+
+    var keys = Object.keys || (function() {
+        var hasOwnProperty = NativeObject.prototype.hasOwnProperty,
+            hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+            dontEnums = [
+              'toString',
+              'toLocaleString',
+              'valueOf',
+              'hasOwnProperty',
+              'isPrototypeOf',
+              'propertyIsEnumerable',
+              'constructor'
+            ],
+            dontEnumsLength = dontEnums.length;
+
+        return function _Object_keys(obj) {
+            var result = [], prop, i;
+
+            for (prop in obj) {
+                if (hasOwnProperty.call(obj, prop)) {
+                    result.push(prop);
+                }
+            }
+            if (hasDontEnumBug) {
+                for (i = 0; i < dontEnumsLength; i++) {
+                    if (hasOwnProperty.call(obj, dontEnums[i])) {
+                        result.push(dontEnums[i]);
+                    }
+                }
+            }
+            return result;
+        };
+    }());
 
     function id(x) { return x; }
 
@@ -230,12 +265,15 @@ function install(Prelude, Math, Array) {
 
     Prelude.curried = function (fn) { return funcs[fn.length](fn); };
 
+    Prelude.functions = {};
+
     function register() {
-        var f, i, arg, aliases = [];
+        var f, i, arg, aliases = [], name;
         for (i = 0; i < arguments.length; i++) {
             arg = arguments[i];
             switch (typeof arg) {
             case 'string':
+                name = name || arg;
                 aliases.push(arg);
                 break;
             case 'function':
@@ -246,12 +284,23 @@ function install(Prelude, Math, Array) {
         for (i = 0; i < aliases.length; i++) {
             Prelude[aliases[i]] = f;
         }
+        aliases.shift();
+        Prelude.functions[name] = {
+            aliases: aliases,
+            arity: f.length
+        };
         return f;
     }
 
     // Function
 
     register('id', id);
+
+    register('idf', function _idf(x) {
+        return function () {
+            return x;
+        };
+    });
 
     // TODO: constant is tricky (think this through...)
     register('const', 'constant', function _const(a, b) { return a; });
@@ -359,7 +408,7 @@ function install(Prelude, Math, Array) {
         case 'number':
             return Prelude.signum(a - b);
         }
-        return 0;
+        return undefined;
     });
 
     register('comparing', function _comparing(f, a, b) {
@@ -367,17 +416,28 @@ function install(Prelude, Math, Array) {
     });
 
 
+    // Data.Char
+    
+    register('isDigit', function (x) {
+        return !!x.match(/[0-9]/);
+    });
+
+    register('isAsciiLetter', function (x) {
+        return !!x.match(/[a-zA-Z]/);
+    });
+
+
     // Num
 
-    register('add', 'ADD', 'plus', 'PLUS', '+', function _add(a, b) {
+    register('+', 'add', 'ADD', 'plus', 'PLUS', function _add(a, b) {
         return a + b;
     });
 
-    register('sub', 'SUB', 'minus', 'MINUS', 'subtract', '-', function _sub(a, b) {
+    register('-', 'sub', 'SUB', 'minus', 'MINUS', 'subtract', function _sub(a, b) {
         return a - b;
     });
 
-    register('mul', 'MUL', 'times', 'TIMES', '*', function _mul(a, b) {
+    register('*', 'mul', 'MUL', 'times', 'TIMES', function _mul(a, b) {
         return a * b;
     });
 
@@ -423,7 +483,7 @@ function install(Prelude, Math, Array) {
 
     // Fractional
 
-    register('frac', '/', function _frac(a, b) { return a / b; });
+    register('/', 'frac', function _frac(a, b) { return a / b; });
 
     register('recip', function _recip(a) { return 1 / a; });
 
@@ -440,7 +500,7 @@ function install(Prelude, Math, Array) {
         return Math.log(a) / Math.log(b);
     });
 
-    register('pow', '**', '^', '^^', Math.pow);
+    register('**', 'pow', '^', '^^', Math.pow);
 
     register('sin', Math.sin);
 
@@ -582,7 +642,7 @@ function install(Prelude, Math, Array) {
 
     register('map', function _map(f, xs) {
         var ys = isArray(xs) ? [] : {};
-        Object.keys(xs).forEach(function (key) {
+        keys(xs).forEach(function (key) {
             ys[key] = f(xs[key]);
         });
         return ys;
@@ -604,7 +664,7 @@ function install(Prelude, Math, Array) {
             return ys;
         }
         ys = {};
-        Object.keys(xs).forEach(function (key) {
+        keys(xs).forEach(function (key) {
             if (p(xs[key])) {
                 ys[key] = xs[key];
             }
@@ -805,15 +865,13 @@ function install(Prelude, Math, Array) {
 
     register('concat', function _concat(xs) {
         var zs = [];
-        Object.keys(xs).forEach(function (key) {
+        keys(xs).forEach(function (key) {
             [].push.apply(zs, xs[key]);
         });
         return zs;
     });
 
-    register('concatMap', function (f, xs) {
-        return Prelude.concat(Prelude.map(f, xs));
-    });
+    register('concatMap', Prelude.compose2(Prelude.concat, Prelude.map));
 
     register('replicate', function _replicate(n, x) {
         var xs = [];
@@ -1236,7 +1294,7 @@ var P = install({
 if (typeof(module) !== 'undefined' && module.exports) {
     module.exports = P;
 } else if (typeof define === 'function' && define.amd) {
-    define(function () { return P; });
+    define(P.idf(P));
 } else {
     window.Prelude = P;
 }

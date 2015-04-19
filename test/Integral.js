@@ -1,5 +1,5 @@
 var P = require('../prelude').install(GLOBAL);
-var assert = require('assert');
+var assert = map(flip, require('assert'));
 
 describe('Integral', function () {
 

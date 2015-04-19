@@ -3,9 +3,12 @@ var assert = require('assert');
 
 describe('Function', function () {
 
+    it('idf', function () {
+        assert.strictEqual(3, idf(3)());
+    });
+
     it('const', function () {
-        //FIXME: This will not work due to the nature of function application
-        //assert.strictEqual(4, foldl(constant(plus(1)), 0, [1,4,3,2]));
+        //assert.strictEqual(4, foldl(compose(constant, plus(1)), 0, [1,9,37,0]));
     });
 
     it('apply', function () {

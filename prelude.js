@@ -893,81 +893,6 @@ function install(Prelude, Math, Array) {
     register('zip7', Prelude.zipWith7(Prelude[',,,,,,']));
 
 
-    // Maybe
-
-    register('maybe', function _maybe(def, fun, maybe) {
-        if (maybe === undefined || maybe === null) {
-            return def;
-        }
-        return fun(maybe);
-    });
-
-    register('isJust', function _isJust(value) {
-        return value !== undefined && value !== null;
-    });
-
-    register('isNothing', function _isNothing(value) {
-        return value === undefined || value === null;
-    });
-
-    register('fromMaybe', function _fromMaybe(def, maybe) {
-        if (maybe === undefined || maybe === null) {
-            return def;
-        }
-        return maybe;
-    });
-
-    register('listToMaybe', function _listToMaybe(xs) { return xs[0]; });
-
-    register('maybeToList', function _maybeToList(maybe) {
-        if (maybe === undefined || maybe === null) {
-            return [];
-        }
-        return [maybe];
-    });
-
-    register('catMaybes', Prelude.filter(Prelude.isJust));
-
-    register('mapMaybe', function _mapMaybe(f, xs) {
-        return _filter(_isJust, _map(f, xs));
-    });
-
-
-    // Either
-
-    register('either', function _either(afun, bfun, either) {
-        var left = either.left || either[0];
-        if (left) {
-            return afun(left);
-        }
-        var right = either.right || either[1];
-        if (right) {
-            return bfun(right);
-        }
-        return null;
-    });
-
-    register('Left', function _Left(value) { return { left: value }; });
-
-    register('Right', function _Right(value) { return { right: value }; });
-
-    register('isLeft', function _isLeft(val) {
-        return val.left !== undefined || (val[0] !== undefined && val[0] !== null);
-    });
-
-    register('isRight', function _isRight(val) {
-        return (val.right !== undefined || val[1] !== undefined) && !_isLeft(val);
-    });
-
-    register('lefts', Prelude.filter(Prelude.isLeft));
-
-    register('rights', Prelude.filter(Prelude.isRight));
-
-    register('partitionEithers', function _partitionEithers(xs) {
-        return [ _lefts(xs), _rights(xs) ];
-    });
-
-
     // Strings
 
     register('lines', function _lines(string) {
@@ -1209,6 +1134,80 @@ function install(Prelude, Math, Array) {
             return b;
         }, xs);
     });
+
+
+    // Maybe
+
+    register('maybe', function _maybe(def, fun, maybe) {
+        if (maybe === undefined || maybe === null) {
+            return def;
+        }
+        return fun(maybe);
+    });
+
+    register('isJust', function _isJust(value) {
+        return value !== undefined && value !== null;
+    });
+
+    register('isNothing', function _isNothing(value) {
+        return value === undefined || value === null;
+    });
+
+    register('fromMaybe', function _fromMaybe(def, maybe) {
+        if (maybe === undefined || maybe === null) {
+            return def;
+        }
+        return maybe;
+    });
+
+    register('listToMaybe', function _listToMaybe(xs) { return xs[0]; });
+
+    register('maybeToList', function _maybeToList(maybe) {
+        if (maybe === undefined || maybe === null) {
+            return [];
+        }
+        return [maybe];
+    });
+
+    register('catMaybes', Prelude.filter(Prelude.isJust));
+
+    register('mapMaybe', function _mapMaybe(f, xs) {
+        return _filter(_isJust, _map(f, xs));
+    });
+
+
+    // Either
+
+    register('either', function _either(afun, bfun, either) {
+        var left = either.left || either[0];
+        if (left) {
+            return afun(left);
+        }
+        var right = either.right || either[1];
+        if (right) {
+            return bfun(right);
+        }
+        return null;
+    });
+
+    register('Left', function _Left(value) { return { left: value }; });
+
+    register('Right', function _Right(value) { return { right: value }; });
+
+    register('isLeft', function _isLeft(val) {
+        return val.left !== undefined || (val[0] !== undefined && val[0] !== null);
+    });
+
+    register('isRight', function _isRight(val) {
+        return (val.right !== undefined || val[1] !== undefined) && !_isLeft(val);
+    });
+
+    register('lefts', Prelude.filter(Prelude.isLeft));
+
+    register('rights', Prelude.filter(Prelude.isRight));
+
+    register('partitionEithers', Prelude.partition(Prelude.isLeft));
+
 
     return Prelude;
 }

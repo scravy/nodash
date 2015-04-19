@@ -4,8 +4,8 @@
 
 var thresholds = {
   statements: 80,
-    branches: 60,
-   functions: 60,
+    branches: 70,
+   functions: 70,
        lines: 80
 };
 

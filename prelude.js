@@ -14,6 +14,8 @@ function install(Prelude, Math, Array) {
         return Object.prototype.toString.call(arr) === '[object Array]';
     };
 
+    function id(x) { return x; }
+
     function listToString(x) { return x.join(''); }
 
     function indexOf(word, string) {
@@ -59,6 +61,175 @@ function install(Prelude, Math, Array) {
         return -1;
     }
 
+    var funcs = {
+
+        0: id,
+        1: id,
+        2: function (fn) {
+            return function (a, b) {
+                switch (arguments.length) {
+                case 1:
+                    return function (b) {
+                        return fn(a, b);
+                    };
+                }
+                return fn(a, b);
+            };
+        },
+        3: function (fn) {
+            return function (a, b, c) {
+                switch (arguments.length) {
+                case 1:
+                    return funcs[2](function (b, c) {
+                        return fn(a, b, c);
+                    });
+                case 2:
+                    return function (c) {
+                        return fn(a, b, c);
+                    };
+                }
+                return fn(a, b, c);
+            };
+        },
+        4: function (fn) {
+            return function (a, b, c, d) {
+                switch (arguments.length) {
+                case 1:
+                    return funcs[3](function (b, c, d) {
+                        return fn(a, b, c, d);
+                    });
+                case 2:
+                    return funcs[2](function (c, d) {
+                        return fn(a, b, c, d);
+                    });
+                case 3:
+                    return function (d) {
+                        return fn(a, b, c, d);
+                    };
+                }
+                return fn(a, b, c, d);
+            };
+        },
+        5: function (fn) {
+            return function (a, b, c, d, e) {
+                switch (arguments.length) {
+                case 1:
+                    return funcs[4](function (b, c, d, e) {
+                        return fn(a, b, c, d, e);
+                    });
+                case 2:
+                    return funcs[3](function (c, d, e) {
+                        return fn(a, b, c, d, e);
+                    });
+                case 3:
+                    return funcs[2](function (d, e) {
+                        return fn(a, b, c, d, e);
+                    });
+                case 4:
+                    return function (e) {
+                        return fn(a, b, c, d, e);
+                    };
+                }
+                return fn(a, b, c, d, e);
+            };
+        },
+        6: function (fn) {
+            return function (a, b, c, d, e, f) {
+                switch (arguments.length) {
+                case 1:
+                    return funcs[5](function (b, c, d, e, f) {
+                        return fn(a, b, c, d, e, f);
+                    });
+                case 2:
+                    return funcs[4](function (c, d, e, f) {
+                        return fn(a, b, c, d, e, f);
+                    });
+                case 3:
+                    return funcs[3](function (d, e, f) {
+                        return fn(a, b, c, d, e, f);
+                    });
+                case 4:
+                    return funcs[2](function (e, f) {
+                        return fn(a, b, c, d, e, f);
+                    });
+                case 5:
+                    return function (f) {
+                        return fn(a, b, c, d, e, f);
+                    };
+                }
+                return fn(a, b, c, d, e, f);
+            };
+        },
+        7: function (fn) {
+            return function (a, b, c, d, e, f, g) {
+                switch (arguments.length) {
+                case 1:
+                    return funcs[6](function (b, c, d, e, f, g) {
+                        return fn(a, b, c, d, e, f, g);
+                    });
+                case 2:
+                    return funcs[5](function (c, d, e, f, g) {
+                        return fn(a, b, c, d, e, f, g);
+                    });
+                case 3:
+                    return funcs[4](function (d, e, f, g) {
+                        return fn(a, b, c, d, e, f, g);
+                    });
+                case 4:
+                    return funcs[3](function (e, f, g) {
+                        return fn(a, b, c, d, e, f, g);
+                    });
+                case 5:
+                    return funcs[2](function (f, g) {
+                        return fn(a, b, c, d, e, f, g);
+                    });
+                case 6:
+                    return function (g) {
+                        return fn(a, b, c, d, e, f, g);
+                    };
+                }
+                return fn(a, b, c, d, e, f, g);
+            };
+        },
+        8: function (fn) {
+            return function (a, b, c, d, e, f, g, h) {
+                switch (arguments.length) {
+                case 1:
+                    return funcs[7](function (b, c, d, e, f, g, h) {
+                        return fn(a, b, c, d, e, f, g, h);
+                    });
+                case 2:
+                    return funcs[6](function (c, d, e, f, g, h) {
+                        return fn(a, b, c, d, e, f, g, h);
+                    });
+                case 3:
+                    return funcs[5](function (d, e, f, g, h) {
+                        return fn(a, b, c, d, e, f, g, h);
+                    });
+                case 4:
+                    return funcs[4](function (e, f, g, h) {
+                        return fn(a, b, c, d, e, f, g, h);
+                    });
+                case 5:
+                    return funcs[3](function (f, g, h) {
+                        return fn(a, b, c, d, e, f, g, h);
+                    });
+                case 6:
+                    return funcs[2](function (g, h) {
+                        return fn(a, b, c, d, e, f, g, h);
+                    });
+                case 7:
+                    return function (h) {
+                        return fn(a, b, c, d, e, f, g, h);
+                    };
+                }
+                return fn(a, b, c, d, e, f, g, h);
+            };
+        }
+    };
+
+    Prelude.curried = function (fn) { return funcs[fn.length](fn); };
+
     function register() {
         var f, i, arg, aliases = [];
         for (i = 0; i < arguments.length; i++) {
@@ -68,37 +239,9 @@ function install(Prelude, Math, Array) {
                 aliases.push(arg);
                 break;
             case 'function':
-                f = arg;
+                f = Prelude.curried(arg);
                 break;
             }
-        }
-        switch (f.length) {
-        case 0:
-            break;
-        case 1:
-            f = func1(f);
-            break;
-        case 2:
-            f = func2(f);
-            break;
-        case 3:
-            f = func3(f);
-            break;
-        case 4:
-            f = func4(f);
-            break;
-        case 5:
-            f = func5(f);
-            break;
-        case 6:
-            f = func6(f);
-            break;
-        case 7:
-            f = func7(f);
-            break;
-        case 8:
-            f = func8(f);
-            break;
         }
         for (i = 0; i < aliases.length; i++) {
             Prelude[aliases[i]] = f;
@@ -106,184 +249,9 @@ function install(Prelude, Math, Array) {
         return f;
     }
 
-    function func1(fn) {
-        return function (x) {
-            return fn(x);
-        };
-    }
-
-    function func2(fn) {
-        return function (a, b) {
-            switch (arguments.length) {
-            case 1:
-                return function (b) {
-                    return fn(a, b);
-                };
-            }
-            return fn(a, b);
-        };
-    }
-
-    function func3(fn) {
-        return function (a, b, c) {
-            switch (arguments.length) {
-            case 1:
-                return func2(function (b, c) {
-                    return fn(a, b, c);
-                });
-            case 2:
-                return function (c) {
-                    return fn(a, b, c);
-                };
-            }
-            return fn(a, b, c);
-        };
-    }
-
-    function func4(fn) {
-        return function (a, b, c, d) {
-            switch (arguments.length) {
-            case 1:
-                return func3(function (b, c, d) {
-                    return fn(a, b, c, d);
-                });
-            case 2:
-                return func2(function (c, d) {
-                    return fn(a, b, c, d);
-                });
-            case 3:
-                return function (d) {
-                    return fn(a, b, c, d);
-                };
-            }
-            return fn(a, b, c, d);
-        };
-    }
-
-    function func5(fn) {
-        return function (a, b, c, d, e) {
-            switch (arguments.length) {
-            case 1:
-                return func4(function (b, c, d, e) {
-                    return fn(a, b, c, d, e);
-                });
-            case 2:
-                return func3(function (c, d, e) {
-                    return fn(a, b, c, d, e);
-                });
-            case 3:
-                return func2(function (d, e) {
-                    return fn(a, b, c, d, e);
-                });
-            case 4:
-                return function (e) {
-                    return fn(a, b, c, d, e);
-                };
-            }
-            return fn(a, b, c, d, e);
-        };
-    }
-
-    function func6(fn) {
-        return function (a, b, c, d, e, f) {
-            switch (arguments.length) {
-            case 1:
-                return func5(function (b, c, d, e, f) {
-                    return fn(a, b, c, d, e, f);
-                });
-            case 2:
-                return func4(function (c, d, e, f) {
-                    return fn(a, b, c, d, e, f);
-                });
-            case 3:
-                return func3(function (d, e, f) {
-                    return fn(a, b, c, d, e, f);
-                });
-            case 4:
-                return func2(function (e, f) {
-                    return fn(a, b, c, d, e, f);
-                });
-            case 5:
-                return function (f) {
-                    return fn(a, b, c, d, e, f);
-                };
-            }
-            return fn(a, b, c, d, e, f);
-        };
-    }
-
-    function func7(fn) {
-        return function (a, b, c, d, e, f, g) {
-            switch (arguments.length) {
-            case 1:
-                return func6(function (b, c, d, e, f, g) {
-                    return fn(a, b, c, d, e, f, g);
-                });
-            case 2:
-                return func5(function (c, d, e, f, g) {
-                    return fn(a, b, c, d, e, f, g);
-                });
-            case 3:
-                return func4(function (d, e, f, g) {
-                    return fn(a, b, c, d, e, f, g);
-                });
-            case 4:
-                return func3(function (e, f, g) {
-                    return fn(a, b, c, d, e, f, g);
-                });
-            case 5:
-                return func2(function (f, g) {
-                    return fn(a, b, c, d, e, f, g);
-                });
-            case 6:
-                return function (g) {
-                    return fn(a, b, c, d, e, f, g);
-                };
-            }
-            return fn(a, b, c, d, e, f, g);
-        };
-    }
-
-    function func8(fn) {
-        return function (a, b, c, d, e, f, g, h) {
-            switch (arguments.length) {
-            case 1:
-                return func7(function (b, c, d, e, f, g, h) {
-                    return fn(a, b, c, d, e, f, g, h);
-                });
-            case 2:
-                return func6(function (c, d, e, f, g, h) {
-                    return fn(a, b, c, d, e, f, g, h);
-                });
-            case 3:
-                return func5(function (d, e, f, g, h) {
-                    return fn(a, b, c, d, e, f, g, h);
-                });
-            case 4:
-                return func4(function (e, f, g, h) {
-                    return fn(a, b, c, d, e, f, g, h);
-                });
-            case 5:
-                return func3(function (f, g, h) {
-                    return fn(a, b, c, d, e, f, g, h);
-                });
-            case 6:
-                return func2(function (g, h) {
-                    return fn(a, b, c, d, e, f, g, h);
-                });
-            case 7:
-                return function (h) {
-                    return fn(a, b, c, d, e, f, g, h);
-                };
-            }
-            return fn(a, b, c, d, e, f, g, h);
-        };
-    }
-
-
     // Function
 
-    register('id', function _id(x) { return x; });
+    register('id', id);
 
     // TODO: constant is tricky (think this through...)
     register('const', 'constant', function _const(a, b) { return a; });
@@ -295,7 +263,7 @@ function install(Prelude, Math, Array) {
 
     // TODO: think this through with curried functions
     register('flip', function _flip(f) {
-        return func2(function () {
+        return funcs[2](function () {
             var args = [].slice.call(arguments, 0);
             args[0] = arguments[1];
             args[1] = arguments[0];

@@ -1195,15 +1195,36 @@ function install(Prelude, Math, Array) {
     });
 
     register('isRight', function _isRight(val) {
-        return (val.right !== undefined || val[1] !== undefined) && !_isLeft(val);
+        return (val.right !== undefined || val[1] !== undefined) && !Prelude.isLeft(val);
     });
 
-    register('lefts', Prelude.filter(Prelude.isLeft));
+    register('fromLeft', function _fromLeft(val) {
+        if (val.left !== undefined) {
+            return val.left;
+        }
+        return val[0];
+    });
 
-    register('rights', Prelude.filter(Prelude.isRight));
+    register('fromRight', function _fromRight(val) {
+        if (val.right !== undefined) {
+            return val.right;
+        }
+        return val[1];
+    });
 
-    register('partitionEithers', Prelude.partition(Prelude.isLeft));
+    register('lefts', Prelude.compose(
+                Prelude.map(Prelude.fromLeft),
+                Prelude.filter(Prelude.isLeft)
+    ));
 
+    register('rights', Prelude.compose(
+                Prelude.map(Prelude.fromRight),
+                Prelude.filter(Prelude.isRight)
+    ));
+
+    register('partitionEithers', function _partitionEithers(xs) {
+        return [ Prelude.lefts(xs), Prelude.rights(xs) ];
+    });
 
     return Prelude;
 }

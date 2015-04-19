@@ -4,6 +4,9 @@ var assert = map(flip, require('assert'));
 describe('Maybe', function () {
 
     it("maybe", function () {
+        assert.strictEqual(8, maybe(8, constant(7), null));
+        assert.strictEqual(7, maybe(8, constant(7), 9));
+        assert.strictEqual(9, maybe(8, id, 9));
     });
 
     it("isJust", function () {
@@ -51,8 +54,16 @@ describe('Maybe', function () {
     });
 
     it("catMaybes", function () {
+        assert.deepEqual(
+            [ 7, 9, "hello", {} ],
+            catMaybes([null, 7, 9, undefined, "hello", null, {}])
+        );
     });
 
     it("mapMaybe", function () {
+        assert.deepEqual(
+            [ 2, 4 ],
+            mapMaybe(function (x) { return even(x) ? x : null; }, [1,2,3,4,5])
+        );
     });
 });

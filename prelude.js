@@ -953,25 +953,23 @@ function install(Prelude, Math, Array) {
         return zs;
     });
 
-    register('subsequences', function _subsequences() {
+//    register('subsequences', function _subsequences() {
+//    });
 
-    });
+//    register('permutations', function _permutations() {
+//    });
 
-    register('permutations', function _permutations() {
+//    register('mapAccumL', function _mapAccumL() {
+//    });
 
-    });
+//    register('mapAccumR', function _mapAccumR() {
+//    });
 
-    register('mapAccumL', function _mapAccumL() {
-    });
+//    register('unfoldr', function _unfoldr() {
+//    });
 
-    register('mapAccumR', function _mapAccumR() {
-    });
-
-    register('unfoldr', function _unfoldr() {
-    });
-
-    register('stripPrefix', function _stripPrefix() {
-    });
+//    register('stripPrefix', function _stripPrefix() {
+//    });
 
     register('heads', Prelude.map(Prelude.head));
 
@@ -1024,32 +1022,32 @@ function install(Prelude, Math, Array) {
         return [ as, bs ];
     });
 
-    register('elemIndex', function _elemIndex() {
-    });
+//    register('elemIndex', function _elemIndex() {
+//    });
 
-    register('elemIndices', function _elemIndices() {
-    });
+//    register('elemIndices', function _elemIndices() {
+//    });
 
-    register('findIndex', function _findIndex() {
-    });
+//    register('findIndex', function _findIndex() {
+//    });
 
-    register('findIndices', function _findIndices() {
-    });
+//    register('findIndices', function _findIndices() {
+//    });
 
-    register('nub', function _nub() {
-    });
+//    register('nub', function _nub() {
+//    });
 
-    register('delete', function _delete() {
-    });
+//    register('delete', function _delete() {
+//    });
 
-    register('\\\\', function () {
-    });
+//    register('\\\\', function () {
+//    });
 
-    register('union', function () {
-    });
+//    register('union', function () {
+//    });
 
-    register('intersect', function () {
-    });
+//    register('intersect', function () {
+//    });
 
     register('sort', function (xs) {
         if (xs.length <= 1) {
@@ -1066,20 +1064,20 @@ function install(Prelude, Math, Array) {
         return typeof xs === 'string' ? zs.join('') : zs;
     });
 
-    register('insert', function () {
-    });
+//    register('insert', function () {
+//    });
 
-    register('nubBy', function () {
-    });
+//    register('nubBy', function () {
+//    });
 
-    register('deleteBy', function () {
-    });
+//    register('deleteBy', function () {
+//    });
 
-    register('unionBy', function () {
-    });
+//    register('unionBy', function () {
+//    });
 
-    register('intersectBy', function () {
-    });
+//    register('intersectBy', function () {
+//    });
 
     register('groupBy', function (p, xs) {
         if (xs.length === 0) {
@@ -1114,8 +1112,8 @@ function install(Prelude, Math, Array) {
         return typeof xs === 'string' ? zs.join('') : zs;
     });
 
-    register('insertBy', function () {
-    });
+//    register('insertBy', function () {
+//    });
 
     register('maximumBy', function (f, xs) {
         return Prelude.foldl1(function (a, b) {
@@ -1171,9 +1169,7 @@ function install(Prelude, Math, Array) {
 
     register('catMaybes', Prelude.filter(Prelude.isJust));
 
-    register('mapMaybe', function _mapMaybe(f, xs) {
-        return _filter(_isJust, _map(f, xs));
-    });
+    register('mapMaybe', Prelude.compose2(Prelude.filter(Prelude.isJust), Prelude.map));
 
 
     // Either

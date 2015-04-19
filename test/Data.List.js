@@ -104,7 +104,7 @@ describe('Data.List', function () {
     it('sort /w list of strings', function () {
         assert.deepEqual(
             ["Amdahl", "Babbage", "Church", "Curry", "Dijkstra", "Eich",
-             "Feynman", "Floyd", "Gosling", "Graham", "Gödel", "Hamming",
+             "Feynman", "Floyd", "Gosling", "Graham", "Hamming",
              "Hoare", "Hollerith", "Hopper", "Huffman", "Hughes", "Ichbiah",
              "Joy", "Karp", "Kay", "Kleene", "Knuth", "Kolmogorov",
              "Kruskal", "Lamport", "Liskov", "Lovelace", "McCarthy",
@@ -118,7 +118,7 @@ describe('Data.List', function () {
                 "Dijkstra", "Feynman", "Hamming", "Liskov", "Naur", "Shannon",
                 "Church", "Floyd", "Ichbiah", "Knuth", "Neumann", "Ritchie",
                 "Weizenbaum", "Thompson", "Turing", "Torvalds", "Wijngaarden",
-                "Eich", "Gödel", "Hollerith", "Hoare", "Moore", "Parnas", "Zuse",
+                "Eich", "Hollerith", "Hoare", "Moore", "Parnas", "Zuse",
                 "Amdahl", "Gosling", "Kleene", "Lamport", "Peyton Jones", "Wirth",
                 "Babbage", "Graham", "Kruskal", "Milner", "McCarthy", "Wheeler"
             ])

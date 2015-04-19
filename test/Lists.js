@@ -3,6 +3,10 @@ var assert = require('assert');
 
 describe('Lists', function () {
 
+    function isDigit(x) {
+        return x.match(/^[0-9]+$/);
+    }
+
     it('isNull', function () {
         assert.strictEqual(true, isNull([]));
         assert.strictEqual(false, isNull([ 1 ]));
@@ -115,20 +119,56 @@ describe('Lists', function () {
         assert.strictEqual(false, notElem('a', "abcd"));
     });
 
+    it('isPrefixOf', function () {
+        assert.strictEqual(true, isPrefixOf([ 0, 1 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(false, isPrefixOf([ 2, 3 ], [ 0, 1, 2, 3 ]));
+    });
+
+    it('isPrefixOf /w string', function () {
+        assert.strictEqual(true, isPrefixOf('ab', 'abcd'));
+        assert.strictEqual(false, isPrefixOf('cd', 'abcd'));
+    });
+
+    it('isSuffixOf', function () {
+        assert.strictEqual(false, isSuffixOf([ 0, 1 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(true, isSuffixOf([ 2, 3 ], [ 0, 1, 2, 3 ]));
+    });
+
+    it('isSuffixOf /w string', function () {
+        assert.strictEqual(false, isSuffixOf('ab', 'abcd'));
+        assert.strictEqual(true, isSuffixOf('cd', 'abcd'));
+    });
+
+    it('isInfixOf', function () {
+        assert.strictEqual(true, isInfixOf([ 0, 1 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(true, isInfixOf([ 1, 2 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(true, isInfixOf([ 2, 3 ], [ 0, 1, 2, 3 ]));
+        assert.strictEqual(false, isInfixOf([ 2, 4 ], [ 0, 1, 2, 3 ]));
+    });
+
+    it('isInfixOf /w string', function () {
+        assert.strictEqual(true, isInfixOf('ab', 'abcd'));
+        assert.strictEqual(true, isInfixOf('bc', 'abcd'));
+        assert.strictEqual(true, isInfixOf('cd', 'abcd'));
+        assert.strictEqual(false, isInfixOf('dcdde', 'abcdcdef'));
+        assert.strictEqual(true, isInfixOf('cde', 'abcdcdef'));
+        assert.strictEqual(false, isInfixOf('ce', 'abcd'));
+    });
+
     it('takeWhile', function () {
-        
+        assert.deepEqual([1, 4, 9], takeWhile(flip(lt)(10), [1, 4, 9, 11, 13, 18, 21]));
     });
 
     it('takeWhile /w string', function () {
-        
+        assert.strictEqual("849", takeWhile(isDigit, "849hasd03x"));
     });
 
     it('dropWhile', function () {
-        
+        assert.deepEqual([11, 13], dropWhile(flip(lt)(10), [1, 4, 9, 11, 13]));        
     });
 
     it('dropWhile /w string', function () {
-        
+        assert.strictEqual("hasd03x", dropWhile(isDigit, "849hasd03x"));
     });
 });
 

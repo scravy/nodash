@@ -16,6 +16,49 @@ function install(Prelude, Math, Array) {
 
     function listToString(x) { return x.join(''); }
 
+    function indexOf(word, string) {
+        var m = 0;
+        var i = 0;
+        var table = [];
+
+        var pos = 2;
+        var cnd = 0;
+
+        table[0] = -1;
+        table[1] = 0;
+
+        while (pos < word.length) {
+            if (word[pos - 1] == word[cnd]) {
+                cnd = cnd + 1;
+                table[pos] = cnd;
+                pos = pos + 1;
+            } else if (cnd > 0) {
+                cnd = table[cnd];
+            } else {
+                table[pos] = 0;
+                pos = pos + 1;
+            }
+        }
+        
+        while (m + i < string.length) {
+            if (word[i] == string[m + i]) {
+                if (i == word.length - 1) {
+                    return m;
+                }
+                i = i + 1;
+            } else {
+                if (table[i] > -1) {
+                    m = m + i - table[i];
+                    i = table[i];
+                } else {
+                    i = 0;
+                    m = m + 1;
+                }
+            }
+        }
+        return -1;
+    }
+
     function register() {
         var f, i, arg, aliases = [];
         for (i = 0; i < arguments.length; i++) {
@@ -616,7 +659,7 @@ function install(Prelude, Math, Array) {
 
     register('takeWhile', function _takeWhile(p, xs) {
         var i = 0;
-        while (i < xs.length && !p(xs[i])) {
+        while (i < xs.length && p(xs[i])) {
             i++;
         }
         return xs.slice(0, i);
@@ -1031,16 +1074,17 @@ function install(Prelude, Math, Array) {
         return true;
     });
 
-    register('isSuffixOf', function _isSuffixOf() {
-        for (var i = 0; i < prefix.length; i++) {
-            if (string[string.length - prefix.length] !== prefix[i]) {
+    register('isSuffixOf', function _isSuffixOf(suffix, string) {
+        for (var i = 0; i < suffix.length; i++) {
+            if (string[string.length - suffix.length + i] !== suffix[i]) {
                 return false;
             }
         }
         return true;
     });
 
-    register('isInfixOf', function _isInfixOf() {
+    register('isInfixOf', function _isInfixOf(infix, string) {
+        return indexOf(infix, string) >= 0;
     });
 
     register('find', function _find(p, xs) {

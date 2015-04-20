@@ -279,5 +279,68 @@ describe('Data.List', function () {
     it('intersect', function () {
         assert.deepEqual([3,2], intersect([1,3,2], [5,2,3,4]));
     });
+
+    it('delete', function () {
+        assert.deepEqual([1,2,4,5], P.delete(3, [1,2,3,4,5]));
+    });
+
+    it('delete /w string', function () {
+        assert.strictEqual("acdb", P.delete('b', "abcdb"));
+        assert.strictEqual("abcdb", P.delete('x', "abcdb"));
+    });
+
+    it('deleteBy', function () {
+        assert.deepEqual([1,2,4,5], deleteBy(eq, 3, [1,2,3,4,5]));
+    });
+
+    it('deleteBy /w string', function () {
+        assert.strictEqual("acdb", deleteBy(eq, 'b', "abcdb"));
+        assert.strictEqual("abcdb", deleteBy(eq, 'x', "abcdb"));
+    });
+
+    it('insertBy /w string', function () {
+        assert.strictEqual("aghkxz", insert('h', "agkxz"));
+    });
+
+    it('elemIndex', function () {
+        assert.strictEqual(3, elemIndex('d', ['a', 'b', 'c', 'd', 'e', 'f']));
+        assert.strictEqual(null, elemIndex('x', ['a', 'b', 'c', 'd', 'e', 'f']));
+    });
+
+    it('elemIndex /w string', function () {
+        assert.strictEqual(3, elemIndex('d', "abcdef"));
+        assert.strictEqual(null, elemIndex('x', "abcdef"));
+    });
+
+    it('elemIndices', function () {
+        assert.deepEqual([0, 2], elemIndices('d', ['d', 'b', 'd', 'e', 'f']));
+        assert.deepEqual([], elemIndices('x', ['a', 'b', 'c', 'd', 'e', 'f']));
+    });
+
+    it('elemIndices /w string', function () {
+        assert.deepEqual([0, 2], elemIndices('d', "dbdef"));
+        assert.deepEqual([], elemIndices('x', "abcdef"));
+    });
+
+    it('findIndex', function () {
+        assert.strictEqual(3, findIndex(eq('d'), ['a', 'b', 'c', 'd', 'e', 'f']));
+        assert.strictEqual(null, findIndex(eq('x'), ['a', 'b', 'c', 'd', 'e', 'f']));
+    });
+
+    it('findIndex /w string', function () {
+        assert.strictEqual(3, findIndex(eq('d'), "abcdef"));
+        assert.strictEqual(null, findIndex(eq('x'), "abcdef"));
+    });
+
+    it('findIndices', function () {
+        assert.deepEqual([0, 2], findIndices(eq('d'), ['d', 'b', 'd', 'e', 'f']));
+        assert.deepEqual([], findIndices(eq('x'), ['a', 'b', 'c', 'd', 'e', 'f']));
+    });
+
+    it('findIndices /w string', function () {
+        assert.deepEqual([0, 2], findIndices(eq('d'), "dbdef"));
+        assert.deepEqual([], findIndices(eq('x'), "abcdef"));
+    });
+
 });
 

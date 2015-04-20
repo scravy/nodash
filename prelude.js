@@ -666,6 +666,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('++', 'append', function _append(xs, ys) {
+        if (typeof xs === 'string') {
+            return xs + ys;
+        }
         var zs = [];
         [].push.apply(zs, xs);
         [].push.apply(zs, ys);
@@ -902,6 +905,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('concat', function _concat(xs) {
+        if (typeof xs[0] === 'string') {
+            return xs.join('');
+        }
         var zs = [];
         keys(xs).forEach(function (key) {
             [].push.apply(zs, xs[key]);
@@ -1126,17 +1132,43 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return [ as, bs ];
     });
 
-//    register('elemIndex', function _elemIndex() {
-//    });
+    register('findIndex', function _elemIndex(p, xs) {
+        for (var i = 0; i < xs.length; i++) {
+            if (p(xs[i])) {
+                return i;
+            }
+        }
+        return null;
+    });
 
-//    register('elemIndices', function _elemIndices() {
-//    });
+    register('findIndices', function _elemIndex(p, xs) {
+        var zs = [];
+        for (var i = 0; i < xs.length; i++) {
+            if (p(xs[i])) {
+                zs.push(i);
+            }
+        }
+        return zs;
+    });
+    
+    register('elemIndex', function _elemIndex(x, xs) {
+        for (var i = 0; i < xs.length; i++) {
+            if (xs[i] === x) {
+                return i;
+            }
+        }
+        return null;
+    });
 
-//    register('findIndex', function _findIndex() {
-//    });
-
-//    register('findIndices', function _findIndices() {
-//    });
+    register('elemIndices', function _elemIndex(x, xs) {
+        var zs = [];
+        for (var i = 0; i < xs.length; i++) {
+            if (xs[i] === x) {
+                zs.push(i);
+            }
+        }
+        return zs;
+    });
 
     register('nub', function _nub(xs) {
         var set = new Set();
@@ -1149,9 +1181,6 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         }
         return zs;
     });
-
-//    register('delete', function _delete() {
-//    });
 
 //    register('\\\\', function () {
 //    });
@@ -1202,13 +1231,35 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return typeof xs === 'string' ? zs.join('') : zs;
     });
 
-//    register('insert', function () {
-//    });
+    register('deleteBy', function (p, x, xs) {
+        for (var i = 0; i < xs.length; i++) {
+            if (p(x, xs[i])) {
+                return Prelude.append(xs.slice(0,i), xs.slice(i+1));
+            }
+        }
+        return xs;
+    });
+
+    register('delete', function _delete(x, xs) {
+        var i = xs.indexOf(x);
+        if (i >= 0) {
+            return Prelude.append(xs.slice(0,i), xs.slice(i+1));
+        }
+        return xs;
+    });
+
+    register('insertBy', function (f, x, xs) {
+        for (var i = 0; i < xs.length; i++) {
+            if (f(x, xs[i]) <= 0) {
+                return Prelude.concat([xs.slice(0,i), x, xs.slice(i)]);
+            }
+        }
+        return xs;
+    });
+
+    register('insert', Prelude.insertBy(Prelude.compare));
 
 //    register('nubBy', function () {
-//    });
-
-//    register('deleteBy', function () {
 //    });
 
 //    register('unionBy', function () {
@@ -1249,9 +1300,6 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         zs.sort(fn);
         return typeof xs === 'string' ? zs.join('') : zs;
     });
-
-//    register('insertBy', function () {
-//    });
 
     register('maximumBy', function (f, xs) {
         return Prelude.foldl1(function (a, b) {

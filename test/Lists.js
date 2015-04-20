@@ -114,6 +114,10 @@ describe('Lists', function () {
         assert.deepEqual([ 1, 2, 3, 4 ], concat([ [ 1, 2 ], [ 3, 4 ] ]));
     });
 
+    it('concat /w string', function () {
+        assert.deepEqual("abcdef", concat([ "abc", "def" ]));
+    });
+
     it('concatMap', function () {
         assert.deepEqual([ 4, 4, 8, 8 ], concatMap(replicate(2), [ 4, 8 ]));
     });

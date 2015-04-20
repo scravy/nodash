@@ -1156,11 +1156,36 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 //    register('\\\\', function () {
 //    });
 
-//    register('union', function () {
-//    });
+    register('union', function (xs, ys) {
+        var set = new Set();
+        var zs = [];
+        var i;
+        for (i = 0; i < xs.length; i++) {
+            zs.push(xs[i]);
+            set.add(xs[i]);
+        }
+        for (i = 0; i < ys.length; i++) {
+            if (!set.has(ys[i])) {
+                zs.push(ys[i]);
+            }
+        }
+        return zs;
+    });
 
-//    register('intersect', function () {
-//    });
+    register('intersect', function (xs, ys) {
+        var set = new Set();
+        var zs = [];
+        var i;
+        for (i = 0; i < ys.length; i++) {
+            set.add(ys[i]);
+        }
+        for (i = 0; i < xs.length; i++) {
+            if (set.has(xs[i])) {
+                zs.push(xs[i]);
+            }
+        }
+        return zs;
+    });
 
     register('sort', function (xs) {
         if (xs.length <= 1) {

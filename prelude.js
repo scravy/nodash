@@ -62,6 +62,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
                 this.__store__[value] = true;
                 this.size += 1;
             }
+            return this;
         };
 
 //        Set.prototype.delete = function _Set_delete(value) {

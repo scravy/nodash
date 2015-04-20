@@ -23,7 +23,7 @@ describe('Polyfills', function () {
     var P;
 
     before(function () {
-        P = require('../prelude').install(undefined, DumbMath, {}, {});
+        P = require('../prelude').install(undefined, DumbMath, {}, {}, true);
     });
 
     it('isArray in map', function () {
@@ -80,5 +80,17 @@ describe('Polyfills', function () {
         assert.strictEqual(1, P.signum(9.5));
         assert.strictEqual(-1, P.signum(-9.5));        
         assert.strictEqual(0, P.signum(0));
+    });
+    
+    it('nub', function () {
+        assert.deepEqual([1,2,4], nub([1,1,2,4,4,4]));
+    });
+
+    it('union', function () {
+        assert.deepEqual([1,2,4], union([1,2], [2,4]));
+    });
+
+    it('intersect', function () {
+        assert.deepEqual([3,2], intersect([1,3,2], [5,2,3,4]));
     });
 });

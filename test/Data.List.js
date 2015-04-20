@@ -65,6 +65,13 @@ describe('Data.List', function () {
         );
     });
 
+    it('transpose /w object', function () {
+        assert.deepEqual(
+            { 3: 'a', 9: 'b', 10: 'c' },
+            transpose({ a: 3, b: 9, c: 10 })
+        );
+    });
+
     it('group', function () {
         assert.deepEqual(
             [ ['H'], ['e'], ['l', 'l'], ['o'], [' '],
@@ -259,6 +266,10 @@ describe('Data.List', function () {
     it('intercalate', function () {
         assert.deepEqual([], intercalate([1,2], []));
         assert.deepEqual([3,4,1,2,5,6], intercalate([1,2], [[3,4],[5,6]]));
+    });
+
+    it('nub', function () {
+        assert.deepEqual([1,2,4], nub([1,1,2,4,4,4]));
     });
 });
 

@@ -1,10 +1,11 @@
 (function () {
 
+var NativeSet    = typeof Set !== 'undefined' && Set;
 var NativeMath   = Math;
 var NativeArray  = Array;
 var NativeObject = Object;
 
-function install(Prelude, Math, Array, Object) {
+function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     "use strict";
 
     Math    = Math    || NativeMath;
@@ -47,6 +48,40 @@ function install(Prelude, Math, Array, Object) {
             }
             return result;
         };
+    }());
+
+    var Set = (!dontUseNativeSet && NativeSet) || (function () {
+        
+        var Set = function () {
+            this.__store__ = {};
+            this.size = 0;
+        };
+
+        Set.prototype.add = function _Set_add(value) {
+            if (this.__store__[value] !== true) {
+                this.__store__[value] = true;
+                this.size += 1;
+            }
+        };
+
+//        Set.prototype.delete = function _Set_delete(value) {
+//            if (this.__store__[value] === true) {
+//                delete this.__store__[value];
+//                this.size -= 1;
+//                return true;
+//            }
+//            return false;
+//        };
+
+        Set.prototype.has = function _Set_has(value) {
+            return this.__store__[value] === true;
+        };
+
+//        Set.prototype.forEach = function _Set_forEach(fn) {
+//            keys(this.__store__).forEach(fn);
+//        };
+
+        return Set;
     }());
 
     function id(x) { return x; }
@@ -996,6 +1031,13 @@ function install(Prelude, Math, Array, Object) {
     });
 
     register('transpose', function _transpose(xss) {
+        if (!isArray(xss)) {
+            var zss = {};
+            keys(xss).forEach(function (key) {
+                zss[xss[key]] = key;
+            });
+            return zss;
+        }
         var j = 0;
         var zs = [];
         var current;
@@ -1095,8 +1137,17 @@ function install(Prelude, Math, Array, Object) {
 //    register('findIndices', function _findIndices() {
 //    });
 
-//    register('nub', function _nub() {
-//    });
+    register('nub', function _nub(xs) {
+        var set = new Set();
+        var zs = [];
+        for (var i = 0; i < xs.length; i++) {
+            if (!set.has(xs[i])) {
+                zs.push(xs[i]);
+                set.add(xs[i]);
+            }
+        }
+        return zs;
+    });
 
 //    register('delete', function _delete() {
 //    });
@@ -1294,7 +1345,7 @@ var P = install({
     install: install
 });
 
-if (typeof(module) !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
     module.exports = P;
 } else if (typeof define === 'function' && define.amd) {
     define(P.idf(P));

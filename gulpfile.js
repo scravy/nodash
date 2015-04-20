@@ -19,16 +19,17 @@ var jshint = require('gulp-jshint'),
       gzip = require('gulp-gzip'),
       gulp = require('gulp');
 
-process.on('uncaughtException', function (err) {
+function errorHandler(err) {
   console.log(chalk.red(err.message));
-  process.exit(-1);
-});
+  process.exit(1);
+}
 
 gulp.task('minify', [ 'lint' ], function (done) {
   gulp.src('prelude.js')
       .pipe(uglify({  }))
       .pipe(rename({ suffix: '.min' }))
       .pipe(gulp.dest('.'))
+      .on('error', errorHandler)
       .on('finish', done);
 });
 
@@ -41,27 +42,35 @@ gulp.task('gzip', [ 'minify' ], function (done) {
 
 gulp.task('lint', function (done) {
   gulp.src([ 'prelude.js', 'test/*.js' ])
-             .pipe(jshint())
-             .pipe(jshint.reporter('default'))
-             .pipe(jshint.reporter('fail'))
-             .on('finish', done);
+      .pipe(jshint())
+      .pipe(jshint.reporter('default'))
+      .pipe(jshint.reporter('fail'))
+      .on('error', errorHandler)
+      .on('finish', done);
 });
 
-gulp.task('test', [ 'lint' ], function (done) {
+gulp.task('coverage', [ 'lint' ], function (done) {
   gulp.src('prelude.js')
       .pipe(istanbul())
-      .pipe(istanbul.hookRequire()) 
+      .pipe(istanbul.hookRequire())
+      .on('error', errorHandler)
       .on('finish', function () {
         gulp.src('test/*.js')
             .pipe(mocha())
             .pipe(istanbul.writeReports())
-            .pipe(enforcer({
-              thresholds: thresholds,
-              coverageDirectory: 'coverage',
-              rootDirectory: ''
-            }))
-            .on('end', done);
+            .on('finish', done);
     });
+});
+
+gulp.task('test', [ 'coverage' ], function (done) {
+  gulp.src('.')
+      .pipe(enforcer({
+        thresholds: thresholds,
+        coverageDirectory: 'coverage',
+        rootDirectory: ''
+      }))
+      .on('error', errorHandler)
+      .on('finish', done);
 });
 
 gulp.task('default', [ 'test', 'gzip' ]);

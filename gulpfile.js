@@ -35,7 +35,7 @@ gulp.task('minify', [ 'lint' ], function (done) {
 
 gulp.task('gzip', [ 'minify' ], function (done) {
   gulp.src('prelude.min.js')
-      .pipe(gzip({ append: true }))
+      .pipe(gzip({ append: true, gzipOptions: { level: 9 } }))
       .pipe(gulp.dest('.'))
       .on('finish', done);
 });

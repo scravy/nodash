@@ -53,34 +53,19 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     var Set = (!dontUseNativeSet && NativeSet) || (function () {
         
         var Set = function () {
-            this.__store__ = {};
-            this.size = 0;
+            this.xs = {};
         };
 
         Set.prototype.add = function _Set_add(value) {
-            if (this.__store__[value] !== true) {
-                this.__store__[value] = true;
-                this.size += 1;
+            if (this.xs[value] !== true) {
+                this.xs[value] = true;
             }
             return this;
         };
 
-//        Set.prototype.delete = function _Set_delete(value) {
-//            if (this.__store__[value] === true) {
-//                delete this.__store__[value];
-//                this.size -= 1;
-//                return true;
-//            }
-//            return false;
-//        };
-
         Set.prototype.has = function _Set_has(value) {
-            return this.__store__[value] === true;
+            return this.xs[value] === true;
         };
-
-//        Set.prototype.forEach = function _Set_forEach(fn) {
-//            keys(this.__store__).forEach(fn);
-//        };
 
         return Set;
     }());
@@ -391,20 +376,49 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     // Eq
 
-    register('==', 'eq',  'EQ', function _eq(a, b)  { return a === b; });
+    register('==', 'eq',  'EQ', function _eq(a, b) {
+        if (a === b) {
+            return true;
+        }
+        var ta = typeof a;
+        var tb = typeof b;
+        if (ta !== tb) {
+            return false;
+        }
+        if (ta === 'object') {
+            var k = Prelude.union(keys(a), keys(b));
+            for (var i = 0; i < k.length; i++) {
+                if (!Prelude.eq(a[k[i]], b[k[i]])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    });
 
-    register( '/=', 'neq', 'NEQ',function _neq(a, b) { return a !== b; });
+    register( '/=', 'neq', 'NEQ',function _neq(a, b) {
+        return !Prelude.eq(a, b);
+    });
 
 
     // Ord
 
-    register('<', 'lt', 'LT', function _lt(a, b) { return a < b; });
+    register('<', 'lt', 'LT', function _lt(a, b) {
+        return Prelude.compare(a, b) < 0;
+    });
 
-    register('>', 'gt', 'GT', function _gt(a, b) { return a > b; });
+    register('>', 'gt', 'GT', function _gt(a, b) {
+        return Prelude.compare(a, b) > 0;
+    });
 
-    register('<=', 'lte', 'LTE', function _lte(a, b) { return a <= b; });
+    register('<=', 'lte', 'LTE', function _lte(a, b) {
+        return Prelude.compare(a, b) <= 0;
+    });
 
-    register('>=', 'gte', 'GTE', function _gte(a, b) { return a >= b; });
+    register('>=', 'gte', 'GTE', function _gte(a, b) {
+        return Prelude.compare(a, b) >= 0;
+    });
 
     register('max', function _max(a, b) {
         if (a > b) {
@@ -1152,22 +1166,11 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
     
     register('elemIndex', function _elemIndex(x, xs) {
-        for (var i = 0; i < xs.length; i++) {
-            if (xs[i] === x) {
-                return i;
-            }
-        }
-        return null;
+        return Prelude.findIndex(Prelude.eq(x), xs);
     });
 
     register('elemIndices', function _elemIndex(x, xs) {
-        var zs = [];
-        for (var i = 0; i < xs.length; i++) {
-            if (xs[i] === x) {
-                zs.push(i);
-            }
-        }
-        return zs;
+        return Prelude.findIndices(Prelude.eq(x), xs);
     });
 
     register('nub', function _nub(xs) {

@@ -83,14 +83,14 @@ describe('Polyfills', function () {
     });
     
     it('nub', function () {
-        assert.deepEqual([1,2,4], nub([1,1,2,4,4,4]));
+        assert.deepEqual([1,2,4], P.nub([1,1,2,4,4,4]));
     });
 
     it('union', function () {
-        assert.deepEqual([1,2,4], union([1,2], [2,4]));
+        assert.deepEqual([1,2,4], P.union([1,2], [2,4]));
     });
 
     it('intersect', function () {
-        assert.deepEqual([3,2], intersect([1,3,2], [5,2,3,4]));
+        assert.deepEqual([3,2], P.intersect([1,3,2], [5,2,3,4]));
     });
 });

@@ -302,23 +302,17 @@ function install(Prelude, Math, Array, Object) {
         };
     });
 
-    // TODO: constant is tricky (think this through...)
     register('const', 'constant', function _const(a, b) { return a; });
 
     register('$', 'apply', function _apply(f, x) { return f(x); });
 
-    // TODO: think this through with curried functions
     register('.', 'compose', function _compose(f, g, x) { return f(g(x)); });
 
     register('compose2', function _compose2(f, g, x, y) { return f(g(x, y)); });
 
-    // TODO: think this through with curried functions
     register('flip', function _flip(f) {
-        return funcs[2](function () {
-            var args = [].slice.call(arguments, 0);
-            args[0] = arguments[1];
-            args[1] = arguments[0];
-            return f.apply(null, args);
+        return funcs[2](function (b, a) {
+            return f(a, b);
         });
     });
 
@@ -354,7 +348,9 @@ function install(Prelude, Math, Array, Object) {
 
     register(',,,,,', function (a, b, c, d, e, f) { return [ a, b, c, d, e, f ]; });
 
-    register(',,,,,,', function (a, b, c, d, e, f, g) { return [ a, b, c, d, e, f, g ]; });
+    register(',,,,,,', function (a, b, c, d, e, f, g) {
+        return [ a, b, c, d, e, f, g ];
+    });
 
 
     // Eq
@@ -641,9 +637,18 @@ function install(Prelude, Math, Array, Object) {
     });
 
     register('map', function _map(f, xs) {
-        var ys = isArray(xs) ? [] : {};
+        var ys;
+        var isString = typeof xs === 'string';
+        if (isArray(xs) || isString) {
+            ys = [];
+            for (var i = 0; i < xs.length; i++) {
+                ys.push(f(xs[i]));
+            }
+            return isString ? listToString(ys) : ys;
+        }
+        ys = {};
         keys(xs).forEach(function (key) {
-            ys[key] = f(xs[key]);
+            ys[key] = f(xs[key], key);
         });
         return ys;
     });
@@ -658,10 +663,7 @@ function install(Prelude, Math, Array, Object) {
                     ys.push(xs[i]);
                 }
             }
-            if (isString) {
-                ys = listToString(ys);
-            }
-            return ys;
+            return isString ? listToString(ys) : ys;
         }
         ys = {};
         keys(xs).forEach(function (key) {
@@ -930,7 +932,8 @@ function install(Prelude, Math, Array, Object) {
 
     register('zipWith7', function _zipWith7(f, as, bs, cs, ds, es, fs, gs) {
         var length = Prelude.minimum([
-                as.length, bs.length, cs.length, ds.length, es.length, fs.length, gs.length]);
+                as.length, bs.length, cs.length, ds.length,
+                es.length, fs.length, gs.length]);
         var zs = [];
         for (var i = 0; i < length; i++) {
             zs[i] = f(as[i], bs[i], cs[i], ds[i], es[i], fs[i], gs[i]);

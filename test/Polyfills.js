@@ -31,6 +31,11 @@ describe('Polyfills', function () {
         assert.deepEqual([2, 3, 4], plus1([1, 2, 3]));
     });
 
+    it('isArray in map', function () {
+        var plus1 = P.map(P.plus(1));
+        assert.deepEqual({ a: 2, b: 3 }, plus1({ a: 1, b: 2 }));
+    });
+
     it('sinh', function () {
         assert.strictEqual(0, P.sinh(0));
         assert.strictEqual(-Infinity, P.sinh(-Infinity));

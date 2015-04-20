@@ -122,6 +122,18 @@ describe('Lists', function () {
         assert.deepEqual([ 9, 9, 9, 9, 9 ], replicate(5, 9));
     });
 
+    it('map', function () {
+        assert.deepEqual([ 1, 2, 3 ], map(plus(1), [ 0, 1, 2 ]));
+    });
+
+    it('map /w string', function () {
+        assert.deepEqual("234", map(compose(plus(1), Number), "123"));
+    });
+
+    it('map /w object', function () {
+        assert.deepEqual({ a: 3, b: 4 }, map(plus(1), { a: 2, b: 3 }));
+    });
+
     it('filter', function () {
         assert.deepEqual([], filter(flip(gte)(10), [ 1, 2, 3 ]));
         assert.deepEqual([ 3 ], filter(flip(gt)(2), [ 3 ]));

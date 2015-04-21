@@ -20,3 +20,14 @@ v0.4 "Babbage"
 + should play nice with AMD loaders now too
 + 3.7 KB minified + gzipped
 
+v0.5 "Curry"
+------------
+
++ has a function coverage of 100% and overall coverage of ≥96%
+  (statements, lines: ≥99%, branches: 96%)
++ `eq` supports object/array comparison
++ `compare` supports objects featuring `compareTo` and respects `toString`
++ set functions added (`intersect`, `union`, `difference`, ...)
++ 4.5 KB minified + gzipped
++ list functions work equally well with strings
++ some functions also play nice with objects (`filter`, `map`, `transpose`, ...)

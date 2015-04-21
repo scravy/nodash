@@ -793,7 +793,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('elem', function _elem(x, xs) {
         for (var i = 0; i < xs.length; i++) {
-            if (xs[i] === x) {
+            if (Prelude.eq(xs[i], x)) {
                 return true;
             }
         }
@@ -802,7 +802,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('notElem', function _notElem(x, xs) {
         for (var i = 0; i < xs.length; i++) {
-            if (xs[i] === x) {
+            if (Prelude.eq(xs[i], x)) {
                 return false;
             }
         }
@@ -812,7 +812,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     register('lookup', function _lookup(x, xs) {
         if (isArray(xs)) {
             for (var i = 0; i < xs.length; i++) {
-                if (xs[i] && xs[i][0] === x) {
+                if (xs[i] && Prelude.eq(xs[i][0], x)) {
                     return xs[i][1];
                 }
             }

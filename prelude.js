@@ -700,9 +700,10 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
             return isString ? listToString(ys) : ys;
         }
         ys = {};
-        keys(xs).forEach(function (key) {
-            ys[key] = f(xs[key], key);
-        });
+        var ks = keys(xs);
+        for (var j = 0; j < ks.length; j++) {
+            ys[ks[j]] = f(xs[ks[j]], ks[j]);
+        }
         return ys;
     });
 
@@ -719,11 +720,12 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
             return isString ? listToString(ys) : ys;
         }
         ys = {};
-        keys(xs).forEach(function (key) {
-            if (p(xs[key])) {
-                ys[key] = xs[key];
+        var ks = keys(xs);
+        for (var j = 0; j < ks.length; j++) {
+            if (p(xs[ks[j]])) {
+                ys[ks[j]] = xs[ks[j]];
             }
-        });
+        }
         return ys;
     });
 
@@ -923,9 +925,10 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
             return xs.join('');
         }
         var zs = [];
-        keys(xs).forEach(function (key) {
-            [].push.apply(zs, xs[key]);
-        });
+        var ks = keys(xs);
+        for (var i = 0; i < ks.length; i++) {
+            [].push.apply(zs, xs[ks[i]]);
+        }
         return zs;
     });
 
@@ -1054,9 +1057,10 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     register('transpose', function _transpose(xss) {
         if (!isArray(xss)) {
             var zss = {};
-            keys(xss).forEach(function (key) {
-                zss[xss[key]] = key;
-            });
+            var ks = keys(xss);
+            for (var k = 0; k < ks.length; k++) {
+                zss[xss[ks[k]]] = ks[k];
+            }
             return zss;
         }
         var j = 0;

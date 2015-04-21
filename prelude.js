@@ -17,6 +17,10 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return NativeObject.prototype.toString.call(arr) === '[object Array]';
     };
 
+    function isFunction(x) { return typeof x === 'function'; }
+    function isString(x) { return typeof x === 'string'; }
+    function isNumber(x) { return typeof x === 'number'; }
+
     var keys = Object.keys || (function() {
         var hasOwnProperty = NativeObject.prototype.hasOwnProperty,
             hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
@@ -323,7 +327,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         };
     });
 
-    register('const', 'constant', function _const(a, b) { return a; });
+    register('const', 'const_', 'constant', function _const(a, b) { return a; });
 
     register('$', 'apply', function _apply(f, x) { return f(x); });
 
@@ -439,7 +443,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         case 'string':
             return a.localeCompare(b);
         case 'object':
-            if (typeof a.compareTo === 'function') {
+            if (isFunction(a.compareTo)) {
                 return a.compareTo(b);
             } else if (isArray(a)) {
                 for (var i = 0; i < Math.min(a.length, b.length); i++) {
@@ -680,7 +684,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('++', 'append', function _append(xs, ys) {
-        if (typeof xs === 'string') {
+        if (isString(xs)) {
             return xs + ys;
         }
         var zs = [];
@@ -690,14 +694,17 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('map', function _map(f, xs) {
+        if (isFunction(xs)) {
+            
+        }
+
         var ys;
-        var isString = typeof xs === 'string';
-        if (isArray(xs) || isString) {
+        if (isArray(xs) || isString(xs)) {
             ys = [];
             for (var i = 0; i < xs.length; i++) {
                 ys.push(f(xs[i]));
             }
-            return isString ? listToString(ys) : ys;
+            return isString(xs) ? listToString(ys) : ys;
         }
         ys = {};
         var ks = keys(xs);
@@ -709,15 +716,14 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('filter', function _filter(p, xs) {
         var ys;
-        var isString = typeof xs === 'string';
-        if (isArray(xs) || isString) {
+        if (isArray(xs) || isString(xs)) {
             ys = [];
             for (var i = 0; i < xs.length; i++) {
                 if (p(xs[i])) {
                     ys.push(xs[i]);
                 }
             }
-            return isString ? listToString(ys) : ys;
+            return isString(xs) ? listToString(ys) : ys;
         }
         ys = {};
         var ks = keys(xs);
@@ -737,16 +743,16 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('init', function _init(xs) { return xs.slice(0, xs.length - 1); });
 
-    register('isNull', function _null(xs) { return xs.length === 0; });
+    register('isNull', 'null_', function _null(xs) { return xs.length === 0; });
 
     register('length', function _length(xs) { return xs.length; });
 
     register('!!', 'at', 'AT', function _at(xs, ix) { return xs[ix]; });
 
     register('reverse', function _reverse(xs) {
-        var zs = typeof xs === 'string' ? "".split.call(xs, '') : [].slice.call(xs);
+        var zs = isString(xs) ? "".split.call(xs, '') : [].slice.call(xs);
         zs.reverse();
-        return typeof xs === 'string' ? zs.join('') : zs;
+        return isString(xs) ? zs.join('') : zs;
     });
 
     register('take', function _take(n, xs) {
@@ -921,7 +927,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('concat', function _concat(xs) {
-        if (typeof xs[0] === 'string') {
+        if (isString(xs[0])) {
             return xs.join('');
         }
         var zs = [];
@@ -1075,7 +1081,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
             }
             j += 1;
         } while (current.length > 0 && zs.push(current));
-        if (typeof xss[0] === 'string') {
+        if (isString(xss[0])) {
             zs = Prelude.map(listToString, zs);
         }
         return zs;
@@ -1153,7 +1159,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         for (var i = 0; i < xs.length; i++) {
             (p(xs[i]) ? as : bs).push(xs[i]);
         }
-        if (typeof xs === 'string') {
+        if (isString(xs)) {
             return Prelude.map(listToString, [ as, bs ]);
         }
         return [ as, bs ];
@@ -1210,7 +1216,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
                 zs.push(xs[i]);
             }
         }
-        return typeof xs === 'string' ? listToString(zs) : zs;
+        return isString(xs) ? listToString(zs) : zs;
     });
 
     register('union', function (xs, ys) {
@@ -1248,15 +1254,15 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         if (xs.length <= 1) {
             return xs;
         }
-        var zs = typeof xs === 'string' ? "".split.call(xs, '') : [].slice.call(xs);
-        if (typeof zs[0] === 'number') {
+        var zs = isString(xs) ? "".split.call(xs, '') : [].slice.call(xs);
+        if (isNumber(zs[0])) {
             zs.sort(function (a, b) { return a - b; });
-        } else if (typeof zs[0] === 'string') {
+        } else if (isString(zs[0])) {
             zs.sort(function (a, b) { return a.localeCompare(b); });
         } else {
             zs.sort(Prelude.compare);
         }
-        return typeof xs === 'string' ? zs.join('') : zs;
+        return isString(xs) ? zs.join('') : zs;
     });
 
     register('deleteBy', function (p, x, xs) {
@@ -1268,7 +1274,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return xs;
     });
 
-    register('delete', function _delete(x, xs) {
+    register('delete', 'delete_', function _delete(x, xs) {
         var i = xs.indexOf(x);
         if (i >= 0) {
             return Prelude.append(xs.slice(0,i), xs.slice(i+1));
@@ -1303,10 +1309,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
             }
         }
         zs.push(current);
-        if (typeof xs === 'string') {
-            zs = Prelude.map(listToString, zs);
-        }
-        return zs;
+        return isString(xs) ? Prelude.map(listToString, zs) : zs;
     });
 
     register('group', Prelude.groupBy(Prelude['==']));
@@ -1315,9 +1318,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         if (xs.length <= 1) {
             return xs;
         }
-        var zs = typeof xs === 'string' ? "".split.call(xs, '') : [].slice.call(xs);
+        var zs = isString(xs) ? "".split.call(xs, '') : [].slice.call(xs);
         zs.sort(fn);
-        return typeof xs === 'string' ? zs.join('') : zs;
+        return isString(xs) ? zs.join('') : zs;
     });
 
     register('maximumBy', function (f, xs) {

@@ -1189,8 +1189,20 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return zs;
     });
 
-//    register('\\\\', function () {
-//    });
+    register('\\\\', 'difference', function (xs, ys) {
+        var set = new Set();
+        var i;
+        for (i = 0; i < ys.length; i++) {
+            set.add(ys[i]);
+        }
+        var zs = [];
+        for (i = 0; i < xs.length; i++) {
+            if (!set.has(xs[i])) {
+                zs.push(xs[i]);
+            }
+        }
+        return typeof xs === 'string' ? listToString(zs) : zs;
+    });
 
     register('union', function (xs, ys) {
         var set = new Set();

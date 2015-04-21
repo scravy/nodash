@@ -280,6 +280,14 @@ describe('Data.List', function () {
         assert.deepEqual([3,2], intersect([1,3,2], [5,2,3,4]));
     });
 
+    it('difference', function () {
+        assert.deepEqual([ 9 ], difference([ 9, 3, 2 ], [ 3, 2 ]));
+    });
+
+    it('difference /w string', function () {
+        assert.strictEqual("b", difference("abc", "ca"));
+    });
+
     it('delete', function () {
         assert.deepEqual([1,2,4,5], P.delete(3, [1,2,3,4,5]));
     });

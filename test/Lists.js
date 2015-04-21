@@ -23,12 +23,23 @@ describe('Lists', function () {
         assert.strictEqual(1, length("x"));
     });
 
+    it('length /w stream', function () {
+        assert.strictEqual(0, length(stream("")));
+        assert.strictEqual(7, length(stream("abcdefg")));
+    });
+
     it('head', function () {
         assert.strictEqual(10, head([ 10, 4, 21 ]));
     });
 
     it('head /w string', function () {
         assert.strictEqual('a', head("abc"));
+    });
+
+    it('head /w stream', function () {
+        assert.strictEqual(10, head(stream([ 10 ])));
+        assert.strictEqual(10, head(stream([ 10, 12 ])));
+        assert.strictEqual(undefined, head(stream([])));
     });
 
     it('tail', function () {
@@ -39,12 +50,20 @@ describe('Lists', function () {
         assert.strictEqual("bc", tail("abc"));
     });
 
+    it('tail /w stream', function () {
+        assert.deepEqual([ 4, 21 ], consume(tail(stream([ 10, 4, 21 ]))));
+    });
+
     it('init', function () {
         assert.deepEqual([ 10, 4 ], init([ 10, 4, 21 ]));
     });
 
     it('init /w string', function () {
         assert.strictEqual("ab", init("abc"));
+    });
+
+    it('init /w stream', function () {
+        assert.strictEqual("ab", consumeString(init(stream("abc"))));
     });
 
     it('last', function () {
@@ -55,8 +74,31 @@ describe('Lists', function () {
         assert.strictEqual('c', last("abc"));
     });
 
+    it('last /w stream', function () {
+        assert.strictEqual('z', last(stream("xyz")));
+    });
+
     it('append', function () {
         assert.deepEqual([ 1, 2, 3, 4, 5, 6 ], append([ 1, 2, 3 ], [ 4, 5, 6 ]));
+    });
+
+    it('append /w string', function () {
+        assert.deepEqual("abcabc", append("abc", "abc"));
+    });
+
+    it('append /w stream', function () {
+        assert.deepEqual(
+            [ 9, 2, 8, 7 ],
+            consume(append(stream([ 9, 2 ]), stream([ 8, 7 ])))
+        );
+        assert.deepEqual(
+            [ 9, 2, 8, 7 ],
+            consume(append([ 9, 2 ], stream([ 8, 7 ])))
+        );
+        assert.deepEqual(
+            [ 9, 2, 8, 7 ],
+            consume(append(stream([ 9, 2 ]), [ 8, 7 ]))
+        );
     });
 
     it('take', function () {
@@ -67,8 +109,13 @@ describe('Lists', function () {
     });
 
     it('take /w string', function () {
+        assert.deepEqual("abc", take(3, "abcdef"));
         assert.deepEqual("abc", take(3, "abc"));
         assert.deepEqual("", take(0, ""));
+    });
+
+    it('take /w stream', function () {
+        assert.deepEqual("123", consumeString(take(3, stream("12345"))));
     });
 
     it('drop', function () {
@@ -84,6 +131,10 @@ describe('Lists', function () {
         assert.deepEqual("abcde", drop(0, "abcde"));
         assert.deepEqual("de", drop(3, "abcde"));
         assert.deepEqual("", drop(0, ""));
+    });
+
+    it('drop /w stream', function () {
+        assert.deepEqual("45", consumeString(drop(3, stream("12345"))));
     });
 
     it('splitAt', function () {
@@ -126,6 +177,17 @@ describe('Lists', function () {
         assert.deepEqual([ 9, 9, 9, 9, 9 ], replicate(5, 9));
     });
 
+    it('cons /w stream', function () {
+        assert.deepEqual(
+            [ 1, 2, 3 ],
+            consume(cons(1, stream([2, 3])))
+        );
+        assert.deepEqual(
+            [ 1 ],
+            consume(cons(1, stream([])))
+        );
+    });
+
     it('map', function () {
         assert.deepEqual([ 1, 2, 3 ], map(plus(1), [ 0, 1, 2 ]));
     });
@@ -136,6 +198,10 @@ describe('Lists', function () {
 
     it('map /w object', function () {
         assert.deepEqual({ a: 3, b: 4 }, map(plus(1), { a: 2, b: 3 }));
+    });
+
+    it('map /w stream', function () {
+        assert.deepEqual([ 2, 4, 6 ], consume(map(times(2), stream([ 1, 2, 3 ]))));
     });
 
     it('filter', function () {
@@ -152,6 +218,13 @@ describe('Lists', function () {
         assert.deepEqual("bcbc", filter(function (x) {
             return x == 'b' || x == 'c';
         }, "abcdabcd"));
+    });
+
+    it('filter /w stream', function () {
+        assert.deepEqual(
+            "anc.",
+            consumeString(filter(compose(not, isDigit), stream("a73nc.")))
+        );
     });
 
     it('elem', function () {

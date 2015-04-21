@@ -1099,6 +1099,15 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 //    register('stripPrefix', function _stripPrefix() {
 //    });
 
+//    register('nubBy', function () {
+//    });
+
+//    register('unionBy', function () {
+//    });
+
+//    register('intersectBy', function () {
+//    });
+
     register('heads', Prelude.map(Prelude.head));
 
     register('lasts', Prelude.map(Prelude.lasts));
@@ -1277,15 +1286,6 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('insert', Prelude.insertBy(Prelude.compare));
-
-//    register('nubBy', function () {
-//    });
-
-//    register('unionBy', function () {
-//    });
-
-//    register('intersectBy', function () {
-//    });
 
     register('groupBy', function (p, xs) {
         if (xs.length === 0) {

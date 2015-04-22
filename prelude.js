@@ -1263,6 +1263,20 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('zipWith3', function _zipWith3(f, as, bs, cs) {
+        if (isStream(as) || isStream(bs) || isStream(cs)) {
+            as = Prelude.stream(as);
+            bs = Prelude.stream(bs);
+            cs = Prelude.stream(cs);
+            return mkStream(function () {
+                var a = as();
+                var b = bs();
+                var c = cs();
+                if (a === eos || b === eos || c === eos) {
+                    return eos;
+                }
+                return f(a, b, c);
+            });
+        }
         var length = Prelude.minimum([as.length, bs.length, cs.length]);
         var zs = [];
         for (var i = 0; i < length; i++) {

@@ -36,6 +36,25 @@ describe('Zips', function () {
         );
     });
 
+    it('zip3 \w stream', function () {
+        assert.deepEqual(
+            [ [1,4,7], [2,5,8], [3,6,9] ],
+            consume(zip3( stream([1,2,3]), [4,5,6], [7,8,9] ))
+        );
+        assert.deepEqual(
+            [ [1,4,7], [2,5,8], [3,6,9] ],
+            consume(zip3( [1,2,3], stream([4,5,6]), [7,8,9] ))
+        );
+        assert.deepEqual(
+            [ [1,4,7], [2,5,8], [3,6,9] ],
+            consume(zip3( stream([1,2,3]), stream([4,5,6]), [7,8,9] ))
+        );
+        assert.deepEqual(
+            [ [1,4,7], [2,5,8], [3,6,9] ],
+            consume(zip3( stream([1,2,3]), stream([4,5,6]), stream([7,8,9]) ))
+        );
+    });
+
     it('zip4', function () {
         assert.deepEqual(
             [ [1,4,7,10], [2,5,8,11], [3,6,9,12] ],

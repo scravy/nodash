@@ -1093,7 +1093,6 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, undefined) {
 
     register('notElem', function _notElem(x, xs) {
         if (isStream(xs)) {
-            checkFinite(xs);
             var z;
             while ((z = xs()) !== eos) {
                 if (Prelude.eq(z, x)) {
@@ -1197,7 +1196,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, undefined) {
 
     register('scanl', function _scanl(f, x, xs) {
         if (isStream(xs)) {
-            return Prelude.cons(x, mkStream(function () {
+            return Prelude.cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(function () {
                 var r = xs();
                 if (r === eos) {
                     return eos;

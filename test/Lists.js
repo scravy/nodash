@@ -13,6 +13,11 @@ describe('Lists', function () {
         assert.strictEqual(false, isNull("x"));
     });
 
+    it('isNull /w stream', function () {
+        assert.strictEqual(true, isNull(stream("")));
+        assert.strictEqual(false, isNull(stream("x")));
+    });
+
     it('length', function () {
         assert.strictEqual(0, length([]));
         assert.strictEqual(1, length([ 1 ]));
@@ -255,7 +260,6 @@ describe('Lists', function () {
     it('takeWhile /w string', function () {
         assert.strictEqual("849", takeWhile(isDigit, "849hasd03x"));
         assert.strictEqual("849", takeWhile(compose(not, isAsciiLetter), "849hasd03x"));
-
     });
 
     it('dropWhile', function () {

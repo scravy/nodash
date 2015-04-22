@@ -867,7 +867,12 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return xs.slice(0, xs.length - 1);
     });
 
-    register('isNull', 'null_', function _null(xs) { return xs.length === 0; });
+    register('isNull', 'null_', function _null(xs) {
+        if (isStream(xs)) {
+            return xs() === eos;
+        }
+        return xs.length === 0;
+    });
 
     register('length', function _length(xs) {
         if (isStream(xs)) {

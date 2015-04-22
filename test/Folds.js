@@ -92,8 +92,22 @@ describe('Folds', function () {
         );
     });
  
+    it('scanl /w stream', function () {
+        assert.deepEqual(
+            [[], [1], [2, 1], [3, 2, 1], [4, 3, 2, 1]],
+            consume(scanl(flip(cons), [], stream([1, 2, 3, 4])))
+        );
+    });
+
     it('scanl1', function () {
         assert.deepEqual([7, 7, 28, 84], scanl1(times, [7, 1, 4, 3]));
+    });
+
+    it('scanl1 /w stream', function () {
+        assert.deepEqual(
+            [7, 7, 28, 84],
+            consume(scanl1(times, stream([7, 1, 4, 3])))
+        );
     });
 
     it('scanr', function () {

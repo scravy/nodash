@@ -44,7 +44,12 @@ describe('Streams', function () {
     it('inspect on end of stream', function () {
         assert.strictEqual('string', typeof stream([])().inspect());
     });
+
     it('toString on end of stream', function () {
         assert.strictEqual('string', typeof stream([])().toString());
+    });
+
+    it('repeat', function () {
+        assert.deepEqual([ 11, 11, 11, 11, 11 ], consume(take(5, repeat(11))));
     });
 });

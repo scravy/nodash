@@ -754,6 +754,15 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         }
     });
 
+//    register('cycle', function _cycle(xs) {
+//    });
+
+    register('repeat', function _repeat(x) {
+        return mkStream(function () {
+            return x;
+        });
+    });
+
 
     // List
 
@@ -1146,6 +1155,16 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('scanl', function _scanl(f, x, xs) {
+        if (isStream(xs)) {
+            return Prelude.cons(x, mkStream(function () {
+                var r = xs();
+                if (r === eos) {
+                    return eos;
+                }
+                x = f(x, r);
+                return x;
+            }));
+        }
         var zs = [x];
         for (var i = 0; i < xs.length; i++) {
             x = f(x, xs[i]);
@@ -1155,6 +1174,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('scanl1', function _scanl1(f, xs) {
+        if (isStream(xs)) {
+            return Prelude.scanl(f, xs(), xs);
+        }
         var x = xs[0];
         var zs = [x];
         for (var i = 1; i < xs.length; i++) {

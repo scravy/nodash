@@ -14,6 +14,21 @@ describe('Zips', function () {
         );
     });
  
+    it('zip \w stream', function () {
+        assert.deepEqual(
+            [ [1,4], [2,5], [3,6] ],
+            consume(zip( stream([1,2,3]), [4,5,6] ))
+        );
+        assert.deepEqual(
+            [ [1,4], [2,5], [3,6] ],
+            consume(zip( [1,2,3], stream([4,5,6]) ))
+        );
+        assert.deepEqual(
+            [ [1,4], [2,5], [3,6] ],
+            consume(zip( stream([1,2,3]), stream([4,5,6]) ))
+        );
+    });
+
     it('zip3', function () {
         assert.deepEqual(
             [ [1,4,7], [2,5,8], [3,6,9] ],

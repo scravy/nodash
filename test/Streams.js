@@ -17,6 +17,14 @@ describe('Streams', function () {
         assert.deepEqual([ 9, 19 ], consume([ 9, 19 ]));
     });
 
+    it('stream /w function', function () {
+        var i = 7;
+        assert.deepEqual(
+            [ 7, 8, 9 ],
+            consume(take(3, stream(function () { return i++; })))
+        );
+    });
+
     it('each /w stream', function () {
         var zs = [];
         each(function (x) {
@@ -51,5 +59,9 @@ describe('Streams', function () {
 
     it('repeat', function () {
         assert.deepEqual([ 11, 11, 11, 11, 11 ], consume(take(5, repeat(11))));
+    });
+
+    it('iterate', function () {
+        assert.deepEqual([ 1, 2, 4 ], consume(take(3, iterate(times(2), 1))));
     });
 });

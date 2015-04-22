@@ -425,12 +425,35 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return false;
     });
 
-    register( '/=', 'neq', 'NEQ',function _neq(a, b) {
+    register('/=', 'neq', 'NEQ', function _neq(a, b) {
         return !Prelude.eq(a, b);
     });
 
 
     // Ord
+
+    register('compare', function _compare(a, b) {
+        switch (typeof a) {
+        case 'string':
+            return a.localeCompare(b);
+        case 'object':
+            if (isFunction(a.compareTo)) {
+                return a.compareTo(b);
+            } else if (isArray(a)) {
+                for (var i = 0; i < Math.min(a.length, b.length); i++) {
+                    var r = Prelude.compare(a[i], b[i]);
+                    if (r !== 0) {
+                        return r;
+                    }
+                }
+                return 0;
+            }
+            return a.toString().localeCompare(b.toString());
+        case 'number':
+            return Prelude.signum(a - b);
+        }
+        return undefined;
+    });
 
     register('<', 'lt', 'LT', function _lt(a, b) {
         return Prelude.compare(a, b) < 0;
@@ -460,29 +483,6 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
             return a;
         }
         return b;
-    });
-
-    register('compare', function _compare(a, b) {
-        switch (typeof a) {
-        case 'string':
-            return a.localeCompare(b);
-        case 'object':
-            if (isFunction(a.compareTo)) {
-                return a.compareTo(b);
-            } else if (isArray(a)) {
-                for (var i = 0; i < Math.min(a.length, b.length); i++) {
-                    var r = Prelude.compare(a[i], b[i]);
-                    if (r !== 0) {
-                        return r;
-                    }
-                }
-                return 0;
-            }
-            return a.toString().localeCompare(b.toString());
-        case 'number':
-            return Prelude.signum(a - b);
-        }
-        return undefined;
     });
 
     register('comparing', function _comparing(f, a, b) {
@@ -681,7 +681,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         if (a === 0 || b === 0) {
             return 0;
         }
-        return Math.abs(Prelude.quot(a, Prelude.    gcd(a, b)) * b);
+        return Math.abs(Prelude.quot(a, Prelude.gcd(a, b)) * b);
     });
 
     register('even', function _even(x) { return (x % 2) === 0; });
@@ -704,6 +704,11 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     register('stream', 'lazy', function _stream(xs) {
         if (isStream(xs)) {
             return xs;
+        }
+        if (isFunction(xs)) {
+            return mkStream(function () {
+                return xs();
+            });
         }
         var i = 0;
         return mkStream(function () {
@@ -755,11 +760,20 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
 //    register('cycle', function _cycle(xs) {
+//        
 //    });
 
     register('repeat', function _repeat(x) {
         return mkStream(function () {
             return x;
+        });
+    });
+
+    register('iterate', function _iterate(f, x) {
+        return mkStream(function () {
+            var r = x;
+            x = f(x);
+            return r;
         });
     });
 
@@ -1608,7 +1622,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return isString(xs) ? Prelude.map(listToString, zs) : zs;
     });
 
-    register('group', Prelude.groupBy(Prelude['==']));
+    register('group', Prelude.groupBy(Prelude.eq));
 
     register('sortBy', function (fn, xs) {
         if (xs.length <= 1) {

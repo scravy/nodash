@@ -232,6 +232,15 @@ describe('Data.List', function () {
         assert.strictEqual(false, isPrefixOf('cd', 'abcd'));
     });
 
+    it('isPrefixOf /w stream', function () {
+        assert.strictEqual(true, isPrefixOf('ab', stream('abcd')));
+        assert.strictEqual(true, isPrefixOf(stream('ab'), stream('abcd')));
+        assert.strictEqual(true, isPrefixOf(stream('ab'), 'abcd'));
+        assert.strictEqual(false, isPrefixOf('cd', stream('abcd')));
+        assert.strictEqual(false, isPrefixOf(stream('cd'), 'abcd'));
+        assert.strictEqual(false, isPrefixOf(stream('cd'), stream('abcd')));
+    });
+
     it('isSuffixOf', function () {
         assert.strictEqual(false, isSuffixOf([ 0, 1 ], [ 0, 1, 2, 3 ]));
         assert.strictEqual(true, isSuffixOf([ 2, 3 ], [ 0, 1, 2, 3 ]));
@@ -240,6 +249,15 @@ describe('Data.List', function () {
     it('isSuffixOf /w string', function () {
         assert.strictEqual(false, isSuffixOf('ab', 'abcd'));
         assert.strictEqual(true, isSuffixOf('cd', 'abcd'));
+    });
+
+    it('isSuffixOf /w stream', function () {
+        assert.strictEqual(false, isSuffixOf(stream('ab'), 'abcd'));
+        assert.strictEqual(false, isSuffixOf('ab', stream('abcd')));
+        assert.strictEqual(false, isSuffixOf(stream('ab'), stream('abcd')));
+        assert.strictEqual(true, isSuffixOf(stream('cd'), 'abcd'));
+        assert.strictEqual(true, isSuffixOf('cd', stream('abcd')));
+        assert.strictEqual(true, isSuffixOf(stream('cd'), stream('abcd')));
     });
 
     it('isInfixOf', function () {
@@ -308,6 +326,7 @@ describe('Data.List', function () {
 
     it('insertBy /w string', function () {
         assert.strictEqual("aghkxz", insert('h', "agkxz"));
+        assert.strictEqual("abch", insert('h', "abc"));
     });
 
     it('elemIndex', function () {

@@ -13,7 +13,14 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     Object  = Object  || NativeObject;
     Prelude = Prelude || {};
 
-    var eos = {};
+    function showEndOfStream() {
+        return "end of stream";
+    }
+
+    var eos = {
+        toString: showEndOfStream,
+        inspect: showEndOfStream
+    };
     var stream = {};
 
     Prelude.endOfStream = eos;
@@ -325,6 +332,14 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         };
         return f;
     }
+
+    // Utilities
+    
+    register('isFunction', isFunction);
+    register('isStream', isStream);
+    register('isArray', isArray);
+    register('isNumber', isNumber);
+
 
     // Function
 
@@ -918,6 +933,16 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('reverse', function _reverse(xs) {
+        if (isStream(xs)) {
+            xs = Prelude.consume(xs);
+            var i = xs.length - 1;
+            return mkStream(function () {
+                if (i < 0) {
+                    return eos;
+                }
+                return xs[i--];
+            });
+        }
         var zs = isString(xs) ? "".split.call(xs, '') : [].slice.call(xs);
         zs.reverse();
         return isString(xs) ? zs.join('') : zs;
@@ -1047,16 +1072,30 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('foldl', 'foldl\'', function _foldl(f, x, xs) {
+        var streaming = isStream(xs);
+        if (streaming) {
+            xs = Prelude.consume(xs);
+        }
         for (var i = 0; i < xs.length; i++) {
             x = f(x, xs[i]);
+        }
+        if (isArray(x) && streaming) {
+            return Prelude.stream(x);
         }
         return x;
     });
 
     register('foldl1', 'foldl1\'', function _foldl1(f, xs) {
+        var streaming = isStream(xs);
+        if (streaming) {
+            xs = Prelude.consume(xs);
+        }
         var x = xs[0];
         for (var i = 1; i < xs.length; i++) {
             x = f(x, xs[i]);
+        }
+        if (isArray(x) && streaming) {
+            return Prelude.stream(x);
         }
         return x;
     });
@@ -1341,8 +1380,19 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     register('tails', Prelude.map(Prelude.tails));
 
     register('isPrefixOf', function _isPrefixOf(prefix, string) {
-        for (var i = 0; i < prefix.length; i++) {
-            if (string[i] !== prefix[i]) {
+        if (isStream(prefix)) {
+            prefix = Prelude.consume(prefix);
+        }
+        if (isStream(string)) {
+            for (var i = 0; i < prefix.length; i++) {
+                if (prefix[i] !== string()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        for (var j = 0; j < prefix.length; j++) {
+            if (string[j] !== prefix[j]) {
                 return false;
             }
         }
@@ -1350,6 +1400,12 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('isSuffixOf', function _isSuffixOf(suffix, string) {
+        if (isStream(suffix)) {
+            suffix = Prelude.consume(suffix);
+        }
+        if (isStream(string)) {
+            string = Prelude.consume(string);
+        }
         for (var i = 0; i < suffix.length; i++) {
             if (string[string.length - suffix.length + i] !== suffix[i]) {
                 return false;
@@ -1506,7 +1562,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
                 return Prelude.concat([xs.slice(0,i), x, xs.slice(i)]);
             }
         }
-        return xs;
+        return Prelude.append(xs, x);
     });
 
     register('insert', Prelude.insertBy(Prelude.compare));

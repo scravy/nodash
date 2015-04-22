@@ -1,14 +1,36 @@
 require('../prelude').install(GLOBAL);
-var assert = require('assert');
+var assert = map(flip, require('assert'));
 
 describe('Folds', function () {
 
     it('foldl', function () {
         assert.deepEqual([4, 3, 2, 1], foldl(flip(cons), [], [1, 2, 3, 4]));
     });
- 
+
+    it('foldl /w stream', function () {
+        assert.deepEqual(
+            [4, 3, 2, 1],
+            consume(foldl(flip(cons), [], stream([1, 2, 3, 4])))
+        );
+        assert.strictEqual(
+            4*3*2*1,
+            consume(foldl(times, 1, stream([1, 2, 3, 4])))
+        );
+    });
+  
     it('foldl1', function () {
         assert.strictEqual(7*1*4*3, foldl1(times, [7, 1, 4, 3]));
+    });
+
+    it('foldl1 /w stream', function () {
+        assert.strictEqual(
+            7*1*4*3,
+            consume(foldl1(times, stream([7, 1, 4, 3])))
+        );
+        assert.deepEqual(
+            [ 7, 1, 4, 3 ],
+            consume(foldl1(append, stream([ [ 7 ], [ 1 ], [ 4 ], [ 3 ]])))
+        );
     });
 
     it('foldr', function () {

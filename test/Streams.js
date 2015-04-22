@@ -40,4 +40,11 @@ describe('Streams', function () {
         }, { a: 1, b: 2 });
         assert.deepEqual({ a: 1, b: 2 }, zs);
     });
+    
+    it('inspect on end of stream', function () {
+        assert.strictEqual('string', typeof stream([])().inspect());
+    });
+    it('toString on end of stream', function () {
+        assert.strictEqual('string', typeof stream([])().toString());
+    });
 });

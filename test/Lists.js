@@ -306,6 +306,10 @@ describe('Lists', function () {
         assert.deepEqual('dcba', reverse('abcd'));
     });
 
+    it('reverse /w stream', function () {
+        assert.deepEqual('dcba', consumeString(reverse(stream("abcd"))));
+    });
+
     it('at /w stream', function () {
         assert.strictEqual('d', flip(at)(3, stream("abcdef")));
         assert.strictEqual(undefined, flip(at)(13, stream("abcdef")));

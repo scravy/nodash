@@ -5,7 +5,7 @@ var NativeMath   = Math;
 var NativeArray  = Array;
 var NativeObject = Object;
 
-function install(Prelude, Math, Array, Object, dontUseNativeSet) {
+function install(Prelude, Math, Array, Object, dontUseNativeSet, undefined) {
     "use strict";
 
     Math    = Math    || NativeMath;
@@ -28,6 +28,22 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     function mkStream(f) {
         f.__stream__ = stream;
         return f;
+    }
+
+    function mkInfinite(f) {
+        f = mkStream(f);
+        f.__infinite__ = true;
+        return f;
+    }
+
+    function isInfinite(f) {
+        return !!f.__infinite__;
+    }
+
+    function checkFinite(xs) {
+        if (isInfinite(xs)) {
+            throw new Error('this function can not consume infinite streams');
+        }
     }
 
     var isArray = Array.isArray || function _isArray(arr) {
@@ -706,7 +722,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
             return xs;
         }
         if (isFunction(xs)) {
-            return mkStream(function () {
+            return mkInfinite(function () {
                 return xs();
             });
         }
@@ -723,6 +739,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         if (!isStream(xs)) {
             return xs;
         }
+        checkFinite(xs);
         var z, zs = [];
         while ((z = xs()) !== eos) {
             zs.push(z);
@@ -764,13 +781,13 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 //    });
 
     register('repeat', function _repeat(x) {
-        return mkStream(function () {
+        return mkInfinite(function () {
             return x;
         });
     });
 
     register('iterate', function _iterate(f, x) {
-        return mkStream(function () {
+        return mkInfinite(function () {
             var r = x;
             x = f(x);
             return r;
@@ -783,7 +800,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     register(':', 'cons', function _cons(x, xs) {
         if (isStream(xs)) {
             var consumedFirst = false;
-            return mkStream(function () {
+            return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
                 if (!consumedFirst) {
                     consumedFirst = true;
                     return x;
@@ -799,6 +816,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     register('++', 'append', function _append(xs, ys) {
         if (isStream(xs) || isStream(ys)) {
             xs = Prelude.stream(xs);
+            if (isInfinite(xs)) {
+                return xs;
+            }
             ys = Prelude.stream(ys);
             var atSecondStream = false;
             return mkStream(function () {
@@ -824,7 +844,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('map', function _map(f, xs) {
         if (isStream(xs)) {
-            return mkStream(function () {
+            return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
                 var x = xs();
                 if (x === eos) {
                     return eos;
@@ -850,7 +870,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('filter', function _filter(p, xs) {
         if (isStream(xs)) {
-            return mkStream(function () {
+            return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
                 var x;
                 while ((x = xs()) !== eos) {
                     if (p(x)) {
@@ -890,6 +910,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('last', function _last(xs) {
         if (isStream(xs)) {
+            checkFinite(xs);
             var x, z;
             while ((x = xs()) !== eos) {
                 z = x;
@@ -909,6 +930,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('init', function _init(xs) {
         if (isStream(xs)) {
+            checkFinite(xs);
             var a = xs(), b;
             return mkStream(function () {
                 b = xs();
@@ -932,6 +954,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('length', function _length(xs) {
         if (isStream(xs)) {
+            if (isInfinite(xs)) {
+                return Infinity;
+            }
             var n = 0;
             while (xs() !== eos) {
                 n += 1;
@@ -957,6 +982,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('reverse', function _reverse(xs) {
         if (isStream(xs)) {
+            checkFinite(xs);
             xs = Prelude.consume(xs);
             var i = xs.length - 1;
             return mkStream(function () {
@@ -1067,6 +1093,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
 
     register('notElem', function _notElem(x, xs) {
         if (isStream(xs)) {
+            checkFinite(xs);
             var z;
             while ((z = xs()) !== eos) {
                 if (Prelude.eq(z, x)) {

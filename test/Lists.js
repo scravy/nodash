@@ -33,6 +33,10 @@ describe('Lists', function () {
         assert.strictEqual(7, length(stream("abcdefg")));
     });
 
+    it('length /w infinite stream', function () {
+        assert.strictEqual(Infinity, length(stream(idf(3))));
+    });
+
     it('head', function () {
         assert.strictEqual(10, head([ 10, 4, 21 ]));
     });
@@ -193,6 +197,13 @@ describe('Lists', function () {
         );
     });
 
+    it('cons /w infinite stream', function () {
+        assert.deepEqual(
+            [ 1, 3, 3 ],
+            consume(take(3, cons(1, stream(idf(3)))))
+        );
+    });
+
     it('map', function () {
         assert.deepEqual([ 1, 2, 3 ], map(plus(1), [ 0, 1, 2 ]));
     });
@@ -207,6 +218,10 @@ describe('Lists', function () {
 
     it('map /w stream', function () {
         assert.deepEqual([ 2, 4, 6 ], consume(map(times(2), stream([ 1, 2, 3 ]))));
+    });
+
+    it('map /w infinite stream', function () {
+        assert.deepEqual(Infinity, length(map(times(2), repeat(3))));
     });
 
     it('filter', function () {
@@ -229,6 +244,13 @@ describe('Lists', function () {
         assert.deepEqual(
             "anc.",
             consumeString(filter(compose(not, isDigit), stream("a73nc.")))
+        );
+    });
+
+    it('filter /w infinite stream', function () {
+        assert.deepEqual(
+            "xxx",
+            consumeString(take(3, filter(compose(not, isDigit), repeat('x'))))
         );
     });
 

@@ -14,7 +14,7 @@ describe('Zips', function () {
         );
     });
  
-    it('zip \w stream', function () {
+    it('zip /w stream', function () {
         assert.deepEqual(
             [ [1,4], [2,5], [3,6] ],
             consume(zip( stream([1,2,3]), [4,5,6] ))
@@ -36,7 +36,7 @@ describe('Zips', function () {
         );
     });
 
-    it('zip3 \w stream', function () {
+    it('zip3 /w stream', function () {
         assert.deepEqual(
             [ [1,4,7], [2,5,8], [3,6,9] ],
             consume(zip3( stream([1,2,3]), [4,5,6], [7,8,9] ))
@@ -58,10 +58,58 @@ describe('Zips', function () {
     it('zip4', function () {
         assert.deepEqual(
             [ [1,4,7,10], [2,5,8,11], [3,6,9,12] ],
-            zip4( [1,2,3], [4,5,6], [7,8,9], [10,11,12] )
+            consume(zip4(
+                stream([1,2,3]),
+                stream([4,5,6]),
+                stream([7,8,9]),
+                stream([10,11,12])
+            ))
+        );
+        assert.deepEqual(
+            [ [1,4,7,10], [2,5,8,11], [3,6,9,12] ],
+            consume(zip4(
+                [1,2,3],
+                stream([4,5,6]),
+                stream([7,8,9]),
+                stream([10,11,12])
+            ))
+        );
+        assert.deepEqual(
+            [ [1,4,7,10], [2,5,8,11], [3,6,9,12] ],
+            consume(zip4(
+                [1,2,3],
+                stream([4,5,6]),
+                stream([7,8,9]),
+                [10,11,12]
+            ))
+        );
+        assert.deepEqual(
+            [ [1,4,7,10], [2,5,8,11], [3,6,9,12] ],
+            consume(zip4(
+                [1,2,3],
+                stream([4,5,6]),
+                [7,8,9],
+                stream([10,11,12])
+            ))
+        );
+        assert.deepEqual(
+            [ [1,4,7,10], [2,5,8,11], [3,6,9,12] ],
+            consume(zip4(
+                [1,2,3],
+                stream([4,5,6]),
+                [7,8,9],
+                [10,11,12]
+            ))
         );
     });
  
+    it('zip4 /w stream', function () {
+        assert.deepEqual(
+            [ [1,4,7,10], [2,5,8,11], [3,6,9,12] ],
+            zip4( [1,2,3], [4,5,6], [7,8,9], [10,11,12] )
+        );
+    });
+
     it('zip5', function () {
         assert.deepEqual(
             [ [1,4,7,10,13], [2,5,8,11,14], [3,6,9,12,15] ],

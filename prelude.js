@@ -1286,6 +1286,22 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('zipWith4', function _zipWith4(f, as, bs, cs, ds) {
+        if (isStream(as) || isStream(bs) || isStream(cs) || isStream(ds)) {
+            as = Prelude.stream(as);
+            bs = Prelude.stream(bs);
+            cs = Prelude.stream(cs);
+            ds = Prelude.stream(ds);
+            return mkStream(function () {
+                var a = as();
+                var b = bs();
+                var c = cs();
+                var d = ds();
+                if (a === eos || b === eos || c === eos || d === eos) {
+                    return eos;
+                }
+                return f(a, b, c, d);
+            });
+        }
         var length = Prelude.minimum([as.length, bs.length, cs.length, ds.length]);
         var zs = [];
         for (var i = 0; i < length; i++) {

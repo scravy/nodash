@@ -721,6 +721,24 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return zs;
     });
 
+    register('each', function _each(f, xs) {
+        if (isStream(xs)) {
+            var x;
+            while ((x = xs()) !== eos) {
+                f(x);
+            }
+        } else if (isArray(xs) || isString(xs)) {
+            for (var i = 0; i < xs.length; i++) {
+                f(xs[i]);
+            }
+        } else {
+            var ks = keys(xs);
+            for (var j = 0; j < ks.length; j++) {
+                f(xs[ks[j]], ks[j]);
+            }
+        }
+    });
+
 
     // List
 
@@ -885,7 +903,19 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return xs.length;
     });
 
-    register('!!', 'at', 'AT', function _at(xs, ix) { return xs[ix]; });
+    register('!!', 'at', 'AT', function _at(xs, ix) {
+        if (isStream(xs)) {
+            var x;
+            for (var i = 0; i < ix; i++) {
+                if (xs() === eos) {
+                    return x;
+                }
+            }
+            x = xs();
+            return x === eos ? undefined : x;
+        }
+        return xs[ix];
+    });
 
     register('reverse', function _reverse(xs) {
         var zs = isString(xs) ? "".split.call(xs, '') : [].slice.call(xs);
@@ -953,6 +983,15 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('elem', function _elem(x, xs) {
+        if (isStream(xs)) {
+            var z;
+            while ((z = xs()) !== eos) {
+                if (Prelude.eq(z, x)) {
+                    return true;
+                }
+            }
+            return false;
+        }
         for (var i = 0; i < xs.length; i++) {
             if (Prelude.eq(xs[i], x)) {
                 return true;
@@ -962,6 +1001,15 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('notElem', function _notElem(x, xs) {
+        if (isStream(xs)) {
+            var z;
+            while ((z = xs()) !== eos) {
+                if (Prelude.eq(z, x)) {
+                    return false;
+                }                    
+            }
+            return true;
+        }
         for (var i = 0; i < xs.length; i++) {
             if (Prelude.eq(xs[i], x)) {
                 return false;

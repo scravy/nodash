@@ -1,7 +1,7 @@
 require('../prelude').install(GLOBAL);
-var assert = require('assert');
+var assert = map(flip, require('assert'));
 
-describe('Function', function () {
+describe('Streams', function () {
 
     it('consumeString', function () {
         assert.strictEqual("123", consumeString(stream([ 1, 2, 3 ])));
@@ -17,4 +17,27 @@ describe('Function', function () {
         assert.deepEqual([ 9, 19 ], consume([ 9, 19 ]));
     });
 
+    it('each /w stream', function () {
+        var zs = [];
+        each(function (x) {
+            zs.push(x);
+        }, stream([1,2,3]));
+        assert.deepEqual([1,2,3], zs);
+    });
+    
+    it('each /w array', function () {
+        var zs = [];
+        each(function (x) {
+            zs.push(x);
+        }, [1,2,3]);
+        assert.deepEqual([1,2,3], zs);
+    });
+    
+    it('each /w object', function () {
+        var zs = {};
+        each(function (x, k) {
+            zs[k] = x;
+        }, { a: 1, b: 2 });
+        assert.deepEqual({ a: 1, b: 2 }, zs);
+    });
 });

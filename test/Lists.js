@@ -242,6 +242,11 @@ describe('Lists', function () {
         assert.strictEqual(false, elem('x', "abcd"));
     });
 
+    it('elem /w stream', function () {
+        assert.strictEqual(true, elem('a', stream("abcd")));
+        assert.strictEqual(false, elem('x', stream("abcd")));
+    });
+
     it('notElem', function () {
         assert.strictEqual(true, notElem(15, []));
         assert.strictEqual(true, notElem(15, [ 10, 20, 30 ]));
@@ -251,6 +256,11 @@ describe('Lists', function () {
     it('notElem /w string', function () {
         assert.strictEqual(true, notElem('x', "abcd"));
         assert.strictEqual(false, notElem('a', "abcd"));
+    });
+
+    it('notElem /w stream', function () {
+        assert.strictEqual(true, notElem('x', stream("abcd")));
+        assert.strictEqual(false, notElem('a', stream("abcd")));
     });
 
     it('takeWhile', function () {
@@ -276,6 +286,13 @@ describe('Lists', function () {
 
     it('reverse /w string', function () {
         assert.deepEqual('dcba', reverse('abcd'));
+    });
+
+    it('at /w stream', function () {
+        assert.strictEqual('d', flip(at)(3, stream("abcdef")));
+        assert.strictEqual(undefined, flip(at)(13, stream("abcdef")));
+        assert.strictEqual(undefined, flip(at)(0, stream([])));
+        assert.strictEqual(1, flip(at)(0, stream([ 1 ])));
     });
 });
 

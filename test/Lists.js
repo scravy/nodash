@@ -272,12 +272,30 @@ describe('Lists', function () {
         assert.strictEqual("849", takeWhile(compose(not, isAsciiLetter), "849hasd03x"));
     });
 
+    it('takeWhile /w stream', function () {
+        assert.deepEqual(
+            [ '8', '4', '9' ],
+            consume(takeWhile(isDigit, stream("849hasd03x")))
+        );
+        assert.deepEqual(
+            [ '8', '4', '9' ],
+            consume(takeWhile(compose(not, isAsciiLetter), stream("849hasd03x")))
+        );
+    });
+
     it('dropWhile', function () {
         assert.deepEqual([11, 13], dropWhile(flip(lt)(10), [1, 4, 9, 11, 13]));        
     });
 
     it('dropWhile /w string', function () {
         assert.strictEqual("hasd03x", dropWhile(isDigit, "849hasd03x"));
+    });
+
+    it('dropWhile /w stream', function () {
+        assert.strictEqual(
+            "hasd03x",
+            consumeString(dropWhile(isDigit, stream("849hasd03x")))
+        );
     });
 
     it('reverse', function () {

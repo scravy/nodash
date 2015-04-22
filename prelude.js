@@ -951,6 +951,17 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('takeWhile', function _takeWhile(p, xs) {
+        if (isStream(xs)) {
+            var exhausted = false;
+            return mkStream(function () {
+                var x = xs();
+                if (exhausted || x == eos || !p(x)) {
+                    exhausted = true;
+                    return eos;
+                }
+                return x;
+            });
+        }
         var i = 0;
         while (i < xs.length && p(xs[i])) {
             i++;
@@ -959,6 +970,12 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
     });
 
     register('dropWhile', function _dropWhile(p, xs) {
+        if (isStream(xs)) {
+            var x;
+            while ((x = xs()) !== eos && p(x)) {
+            }
+            return Prelude.cons(x, xs);
+        }
         var i = 0;
         while (i < xs.length && p(xs[i])) {
             i++;

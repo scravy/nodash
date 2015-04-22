@@ -1496,6 +1496,8 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet) {
         return indexOf(infix, string) >= 0;
     });
 
+    register('indexOf', indexOf);
+
     register('find', function _find(p, xs) {
         for (var i = 0; i < xs.length; i++) {
             if (p(xs[i])) {

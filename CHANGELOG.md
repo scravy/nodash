@@ -31,3 +31,15 @@ v0.5 "Curry"
 + 4.5 KB minified + gzipped
 + list functions work equally well with strings
 + some functions also play nice with objects (`filter`, `map`, `transpose`, ...)
+
+v0.6 "Disjkstra"
+----------------
+
++ Streams! (`stream` aka `lazy`, `consume`, `consumeString`)
+  + not all functions which could support it support it yet
++ Infinte Streams!
++ `repeat`, `iterate`, ...
++ ~100% code coverage
++ ~5KB minified + gzipped
+
+

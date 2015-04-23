@@ -41,5 +41,6 @@ v0.6 "Disjkstra"
 + `repeat`, `iterate`, ...
 + ~100% code coverage
 + ~5KB minified + gzipped
++ `each` for iterating over arrays, objects, and streams
 
 

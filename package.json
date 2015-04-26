@@ -1,6 +1,6 @@
 {
   "name": "nodash",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "A port of the Haskell Prelude to JavaScript/NodeJS",
   "main": "prelude.js",
   "scripts": {

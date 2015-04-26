@@ -488,14 +488,14 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, undefined) {
     });
 
     register('max', function _max(a, b) {
-        if (a > b) {
+        if (Prelude.gt(a, b)) {
             return a;
         }
         return b;
     });
 
     register('min', function _min(a, b) {
-        if (a < b) {
+        if (Prelude.lt(a, b)) {
             return a;
         }
         return b;

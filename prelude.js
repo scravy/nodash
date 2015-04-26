@@ -1631,6 +1631,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, undefined) {
     });
 
     register('sort', function (xs) {
+        checkFinite(xs);
         if (xs.length <= 1) {
             return xs;
         }
@@ -1746,7 +1747,16 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, undefined) {
         return maybe;
     });
 
-    register('listToMaybe', function _listToMaybe(xs) { return xs[0]; });
+    register('listToMaybe', function _listToMaybe(xs) {
+        if (isStream(xs)) {
+            var r = xs();
+            if (r === eos) {
+                return undefined;
+            }
+            return r;
+        }
+        return xs[0];
+    });
 
     register('maybeToList', function _maybeToList(maybe) {
         if (maybe === undefined || maybe === null) {

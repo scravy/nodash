@@ -1,11 +1,11 @@
-node-prelude
-============
+nodash
+======
 
-[![Build Status](https://travis-ci.org/scravy/node-prelude.svg?branch=master)](https://travis-ci.org/scravy/node-prelude)
+[![Build Status](https://travis-ci.org/scravy/nodash.svg?branch=master)](https://travis-ci.org/scravy/nodash)
 
 A port of the Haskell Prelude to JavaScript/NodeJS.
 
-    npm install --save node-prelude
+    npm install --save nodash
 
 Usage:
 

@@ -32,7 +32,7 @@ v0.5 "Curry"
 + list functions work equally well with strings
 + some functions also play nice with objects (`filter`, `map`, `transpose`, ...)
 
-v0.6 "Disjkstra"
+v0.6 "Dijkstra"
 ----------------
 
 + Streams! (`stream` aka `lazy`, `consume`, `consumeString`)
@@ -43,4 +43,8 @@ v0.6 "Disjkstra"
 + ~5KB minified + gzipped
 + `each` for iterating over arrays, objects, and streams
 
+v0.6.1
+------
+
++ Changed name from `node-prelude` to `nodash`
 

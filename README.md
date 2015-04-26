@@ -11,25 +11,30 @@ Usage:
 
 ```JavaScript
 // have it in a variable P
-var P = require('node-prelude');
+var P = require('nodash');
 
 var reverse = P.foldl(P.flip(P.cons), []);
 
 // have it in a variable Prelude
-var Prelude = require('node-prelude');
+var Prelude = require('nodash');
 
 var reverse = Prelude.foldl(Prelude.flip(Prelude.cons), []);
 
 // install it globally
-require('node-prelude').install(GLOBAL);
+require('nodash').install(GLOBAL);
 
 var reverse = foldl(flip(cons), []);
 
 // combined
-var P = require('node-prelude').install(GLOBAL);
+var P = require('nodash').install(GLOBAL);
 
 var reverse = foldl(flip(P[':']), []);
 ```
+
+What's in there?
+----------------
+
+
 
 License
 -------

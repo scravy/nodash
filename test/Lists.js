@@ -110,6 +110,13 @@ describe('Lists', function () {
         );
     });
 
+    it('append /w infinite stream', function () {
+        assert.deepEqual(
+            [ 9, 9, 9, 9, 9 ],
+            consume(take(5, append(repeat(9), stream([ 8, 7 ]))))
+        );
+    });
+
     it('take', function () {
         assert.deepEqual([], take(0, [ 10, 4, 18, 17 ]));
         assert.deepEqual([], take(10, []));

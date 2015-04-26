@@ -47,6 +47,10 @@ describe('Maybe', function () {
         assert.strictEqual(true, isNothing(listToMaybe([])));
     });
 
+    it("listToMaybe /w stream", function () {
+        assert.strictEqual(9, listToMaybe(repeat(9)));
+    });
+
     it("maybeToList", function () {
         assert.deepEqual([ 9 ], maybeToList(9));
         assert.deepEqual([ ], maybeToList(null));

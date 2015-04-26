@@ -5,7 +5,7 @@ var NativeMath   = Math;
 var NativeArray  = Array;
 var NativeObject = Object;
 
-function install(Prelude, Math, Array, Object, dontUseNativeSet, undefined) {
+function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefined) {
     "use strict";
 
     Math    = Math    || NativeMath;
@@ -57,7 +57,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, undefined) {
 
     var keys = Object.keys || (function() {
         var hasOwnProperty = NativeObject.prototype.hasOwnProperty,
-            hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+            hasDontEnumBug = !(refObj || { toString: null }).propertyIsEnumerable('toString'),
             dontEnums = [
               'toString',
               'toLocaleString',
@@ -1750,10 +1750,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, undefined) {
     register('listToMaybe', function _listToMaybe(xs) {
         if (isStream(xs)) {
             var r = xs();
-            if (r === eos) {
-                return undefined;
-            }
-            return r;
+            return r === eos ? null : r;
         }
         return xs[0];
     });

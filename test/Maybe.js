@@ -49,6 +49,7 @@ describe('Maybe', function () {
 
     it("listToMaybe /w stream", function () {
         assert.strictEqual(9, listToMaybe(repeat(9)));
+        assert.strictEqual(null, listToMaybe(take(0, repeat(9))));
     });
 
     it("maybeToList", function () {

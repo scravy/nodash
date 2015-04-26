@@ -16,8 +16,8 @@ describe('Folds', function () {
             4*3*2*1,
             consume(foldl(times, 1, stream([1, 2, 3, 4])))
         );
-    });
-  
+    });  
+ 
     it('foldl1', function () {
         assert.strictEqual(7*1*4*3, foldl1(times, [7, 1, 4, 3]));
     });
@@ -96,6 +96,13 @@ describe('Folds', function () {
         assert.deepEqual(
             [[], [1], [2, 1], [3, 2, 1], [4, 3, 2, 1]],
             consume(scanl(flip(cons), [], stream([1, 2, 3, 4])))
+        );
+    });
+
+    it('scanl /w infinite stream', function () {
+        assert.deepEqual(
+            [[], [7], [7, 7]],
+            consume(take(3, scanl(flip(cons), [], repeat(7))))
         );
     });
 

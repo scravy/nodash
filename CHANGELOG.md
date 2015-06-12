@@ -54,4 +54,6 @@ v0.7 "Eich"
 + `keys` for enumerating the keys of an object
 + `cycle` /w array, string, object, streams, and inifinite streams
 + Reproduces the complete Haskell 2010 Prelude
++ All occurences of `Prelude` are now `Nodash`
+
 

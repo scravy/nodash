@@ -3,11 +3,30 @@ nodash
 
 [![Build Status](https://travis-ci.org/scravy/nodash.svg?branch=master)](https://travis-ci.org/scravy/nodash)
 
+***nodash*** offers you a rich set of library functions, comparable to
+the likes of [***underscore***](http://underscorejs.org/)
+or [***lodash***](https://lodash.com/).
+The functions are actually derived
+from the [***Haskell Prelude***](https://hackage.haskell.org/package/base-4.7.0.0/docs/Prelude.html)
+and emphasize a functional programming style.
+
+A special
+trait of this library is that it discards some JavaScript concepts (like
+`this`) to allow some (in the authors opinion) more useful ones. Every function
+from this library can be thought of as *curried*, i.e. you can partially apply
+any function and get a function in return (on the other hand this means there are
+no optional arguments). Also you have a distinction between *lists* and *streams*
+and it can cope with *infinite streams*.
+
+Browse through the [tests](tree/master/tests) and the [wiki](wiki/) for examples.
+
+
+Usage
+-----
+
 A port of the Haskell Prelude to JavaScript/NodeJS.
 
     npm install --save nodash
-
-Usage:
 
 ```JavaScript
 // install it globally
@@ -27,26 +46,6 @@ var reverse = Prelude.foldl(Prelude.flip(Prelude.cons), []);
 
 // I think you get my drift.
 ```
-
-What does it do?
-----------------
-
-***nodash*** offers you a rich set of library functions, comparable to
-the likes of [***underscore***](http://underscorejs.org/)
-or [***lodash***](https://lodash.com/).
-The functions are actually derived
-from the [***Haskell Prelude***](https://hackage.haskell.org/package/base-4.7.0.0/docs/Prelude.html)
-and emphasize a functional programming style.
-
-A special
-trait of this library is that it discards some JavaScript concepts (like
-`this`) to allow some (in the authors opinion) more useful ones. Every function
-from this library can be thought of as *curried*, i.e. you can partially apply
-any function and get a function in return (on the other hand this means there are
-no optional arguments). Also you have a distinction between *lists* and *streams*
-and it can cope with *infinite streams*.
-
-Browse through the [tests](tree/master/tests) and the [wiki](wiki/) for examples.
 
 License
 -------

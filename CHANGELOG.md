@@ -43,8 +43,15 @@ v0.6 "Dijkstra"
 + ~5KB minified + gzipped
 + `each` for iterating over arrays, objects, and streams
 
-v0.6.1
-------
+### v0.6.1
 
 + Changed name from `node-prelude` to `nodash`
+
+v0.7 "Eich"
+-----------
+
++ `isInfinite` exported as utility function
++ `keys` for enumerating the keys of an object
++ `cycle` /w array, string, object, streams, and inifinite streams
++ Reproduces the complete Haskell 2010 Prelude
 

@@ -5,13 +5,13 @@ var NativeMath   = Math;
 var NativeArray  = Array;
 var NativeObject = Object;
 
-function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefined) {
+function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefined) {
     "use strict";
 
-    Math    = Math    || NativeMath;
-    Array   = Array   || NativeArray;
-    Object  = Object  || NativeObject;
-    Prelude = Prelude || {};
+    Math   = Math   || NativeMath;
+    Array  = Array  || NativeArray;
+    Object = Object || NativeObject;
+    Nodash = Nodash || {};
 
     function showEndOfStream() {
         return "end of stream";
@@ -23,7 +23,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     };
     var stream = {};
 
-    Prelude.endOfStream = eos;
+    Nodash.endOfStream = eos;
 
     function mkStream(f) {
         f.__stream__ = stream;
@@ -320,9 +320,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         }
     };
 
-    Prelude.curried = function (fn) { return funcs[fn.length](fn); };
+    Nodash.curried = function (fn) { return funcs[fn.length](fn); };
 
-    Prelude.functions = {};
+    Nodash.functions = {};
 
     function register() {
         var f, i, arg, aliases = [], name;
@@ -334,15 +334,15 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
                 aliases.push(arg);
                 break;
             case 'function':
-                f = Prelude.curried(arg);
+                f = Nodash.curried(arg);
                 break;
             }
         }
         for (i = 0; i < aliases.length; i++) {
-            Prelude[aliases[i]] = f;
+            Nodash[aliases[i]] = f;
         }
         aliases.shift();
-        Prelude.functions[name] = {
+        Nodash.functions[name] = {
             aliases: aliases,
             arity: f.length
         };
@@ -430,9 +430,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
             return false;
         }
         if (ta === 'object') {
-            var k = Prelude.union(keys(a), keys(b));
+            var k = Nodash.union(keys(a), keys(b));
             for (var i = 0; i < k.length; i++) {
-                if (!Prelude.eq(a[k[i]], b[k[i]])) {
+                if (!Nodash.eq(a[k[i]], b[k[i]])) {
                     return false;
                 }
             }
@@ -442,7 +442,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     });
 
     register('/=', 'neq', 'NEQ', function _neq(a, b) {
-        return !Prelude.eq(a, b);
+        return !Nodash.eq(a, b);
     });
 
 
@@ -457,7 +457,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
                 return a.compareTo(b);
             } else if (isArray(a)) {
                 for (var i = 0; i < Math.min(a.length, b.length); i++) {
-                    var r = Prelude.compare(a[i], b[i]);
+                    var r = Nodash.compare(a[i], b[i]);
                     if (r !== 0) {
                         return r;
                     }
@@ -466,43 +466,43 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
             }
             return a.toString().localeCompare(b.toString());
         case 'number':
-            return Prelude.signum(a - b);
+            return Nodash.signum(a - b);
         }
         return undefined;
     });
 
     register('<', 'lt', 'LT', function _lt(a, b) {
-        return Prelude.compare(a, b) < 0;
+        return Nodash.compare(a, b) < 0;
     });
 
     register('>', 'gt', 'GT', function _gt(a, b) {
-        return Prelude.compare(a, b) > 0;
+        return Nodash.compare(a, b) > 0;
     });
 
     register('<=', 'lte', 'LTE', function _lte(a, b) {
-        return Prelude.compare(a, b) <= 0;
+        return Nodash.compare(a, b) <= 0;
     });
 
     register('>=', 'gte', 'GTE', function _gte(a, b) {
-        return Prelude.compare(a, b) >= 0;
+        return Nodash.compare(a, b) >= 0;
     });
 
     register('max', function _max(a, b) {
-        if (Prelude.gt(a, b)) {
+        if (Nodash.gt(a, b)) {
             return a;
         }
         return b;
     });
 
     register('min', function _min(a, b) {
-        if (Prelude.lt(a, b)) {
+        if (Nodash.lt(a, b)) {
             return a;
         }
         return b;
     });
 
     register('comparing', function _comparing(f, a, b) {
-        return Prelude.compare(f(a), f(b));
+        return Nodash.compare(f(a), f(b));
     });
 
 
@@ -557,17 +557,17 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     register('rem', function _rem(a, b) { return a % b; });
 
     register('mod', function _mod(a, b) {
-        var q = Prelude.quot(a, b);
-        var r = Prelude.rem(a, b);
-        return Prelude.signum(r) == -Prelude.signum(b) ? r + b : r;
+        var q = Nodash.quot(a, b);
+        var r = Nodash.rem(a, b);
+        return Nodash.signum(r) == -Nodash.signum(b) ? r + b : r;
     });
 
     register('divMod',  function _divMod(a, b)  {
-        return [Prelude.div(a, b), Prelude.mod(a, b)];
+        return [Nodash.div(a, b), Nodash.mod(a, b)];
     });
 
     register('quotRem', function _quotRem(a, b) {
-        return [Prelude.quot(a, b), Prelude.rem(a, b)];
+        return [Nodash.quot(a, b), Nodash.rem(a, b)];
     });
 
 
@@ -642,12 +642,12 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     // RealFrac
 
     register('properFraction', function _properFraction(x) {
-        var num = Prelude.truncate(x);
+        var num = Nodash.truncate(x);
         return [ num, -(num - x) ];
     });
 
     register('truncate', Math.trunc || function _truncate(x) {
-        switch (Prelude.signum(x)) {
+        switch (Nodash.signum(x)) {
         case -1:
             return Math.ceil(x);
         case 1:
@@ -658,10 +658,10 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
 
     register('round', function _round(x) {
         // Haskell's round and JavaScripts Math.round are different
-        var fraction = Prelude.properFraction(x);
+        var fraction = Nodash.properFraction(x);
         var n = fraction[0];
         var m = fraction[1] < 0 ? n - 1 : n + 1;
-        switch (Prelude.signum(Math.abs(fraction[1]) - 0.5)) {
+        switch (Nodash.signum(Math.abs(fraction[1]) - 0.5)) {
             case -1:
                 return n;
             case 0:
@@ -686,7 +686,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     register('gcd', function _gcd(a, b) {
         var c;
         while (b !== 0) {
-            c = Prelude.rem(a, b);
+            c = Nodash.rem(a, b);
             a = b;
             b = c;
         }
@@ -697,7 +697,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         if (a === 0 || b === 0) {
             return 0;
         }
-        return Math.abs(Prelude.quot(a, Prelude.gcd(a, b)) * b);
+        return Math.abs(Nodash.quot(a, Nodash.gcd(a, b)) * b);
     });
 
     register('even', function _even(x) { return (x % 2) === 0; });
@@ -819,11 +819,11 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
 
     register('++', 'append', function _append(xs, ys) {
         if (isStream(xs) || isStream(ys)) {
-            xs = Prelude.stream(xs);
+            xs = Nodash.stream(xs);
             if (isInfinite(xs)) {
                 return xs;
             }
-            ys = Prelude.stream(ys);
+            ys = Nodash.stream(ys);
             var atSecondStream = false;
             return mkStream(function () {
                 if (atSecondStream) {
@@ -987,7 +987,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     register('reverse', function _reverse(xs) {
         if (isStream(xs)) {
             checkFinite(xs);
-            xs = Prelude.consume(xs);
+            xs = Nodash.consume(xs);
             var i = xs.length - 1;
             return mkStream(function () {
                 if (i < 0) {
@@ -1052,7 +1052,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
             var x;
             while ((x = xs()) !== eos && p(x)) {
             }
-            return Prelude.cons(x, xs);
+            return Nodash.cons(x, xs);
         }
         var i = 0;
         while (i < xs.length && p(xs[i])) {
@@ -1081,14 +1081,14 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         if (isStream(xs)) {
             var z;
             while ((z = xs()) !== eos) {
-                if (Prelude.eq(z, x)) {
+                if (Nodash.eq(z, x)) {
                     return true;
                 }
             }
             return false;
         }
         for (var i = 0; i < xs.length; i++) {
-            if (Prelude.eq(xs[i], x)) {
+            if (Nodash.eq(xs[i], x)) {
                 return true;
             }
         }
@@ -1099,14 +1099,14 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         if (isStream(xs)) {
             var z;
             while ((z = xs()) !== eos) {
-                if (Prelude.eq(z, x)) {
+                if (Nodash.eq(z, x)) {
                     return false;
                 }                    
             }
             return true;
         }
         for (var i = 0; i < xs.length; i++) {
-            if (Prelude.eq(xs[i], x)) {
+            if (Nodash.eq(xs[i], x)) {
                 return false;
             }
         }
@@ -1116,7 +1116,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     register('lookup', function _lookup(x, xs) {
         if (isArray(xs)) {
             for (var i = 0; i < xs.length; i++) {
-                if (xs[i] && Prelude.eq(xs[i][0], x)) {
+                if (xs[i] && Nodash.eq(xs[i][0], x)) {
                     return xs[i][1];
                 }
             }
@@ -1127,13 +1127,13 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     register('foldl', 'foldl\'', function _foldl(f, x, xs) {
         var streaming = isStream(xs);
         if (streaming) {
-            xs = Prelude.consume(xs);
+            xs = Nodash.consume(xs);
         }
         for (var i = 0; i < xs.length; i++) {
             x = f(x, xs[i]);
         }
         if (isArray(x) && streaming) {
-            return Prelude.stream(x);
+            return Nodash.stream(x);
         }
         return x;
     });
@@ -1141,14 +1141,14 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     register('foldl1', 'foldl1\'', function _foldl1(f, xs) {
         var streaming = isStream(xs);
         if (streaming) {
-            xs = Prelude.consume(xs);
+            xs = Nodash.consume(xs);
         }
         var x = xs[0];
         for (var i = 1; i < xs.length; i++) {
             x = f(x, xs[i]);
         }
         if (isArray(x) && streaming) {
-            return Prelude.stream(x);
+            return Nodash.stream(x);
         }
         return x;
     });
@@ -1168,17 +1168,17 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         return x;
     });
 
-    register('and', Prelude.foldl(Prelude['&&'], true));
+    register('and', Nodash.foldl(Nodash['&&'], true));
 
-    register('or', Prelude.foldl(Prelude['||'], false));
+    register('or', Nodash.foldl(Nodash['||'], false));
 
-    register('sum', Prelude.foldl(Prelude['+'], 0));
+    register('sum', Nodash.foldl(Nodash['+'], 0));
 
-    register('product', Prelude.foldl(Prelude['*'], 1));
+    register('product', Nodash.foldl(Nodash['*'], 1));
 
-    register('maximum', Prelude.foldl(Prelude.max, -Infinity));
+    register('maximum', Nodash.foldl(Nodash.max, -Infinity));
 
-    register('minimum', Prelude.foldl(Prelude.min, +Infinity));
+    register('minimum', Nodash.foldl(Nodash.min, +Infinity));
 
     register('any', function _any(p, xs) {
         for (var i = 0; i < xs.length; i++) {
@@ -1200,7 +1200,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
 
     register('scanl', function _scanl(f, x, xs) {
         if (isStream(xs)) {
-            return Prelude.cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(function () {
+            return Nodash.cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(function () {
                 var r = xs();
                 if (r === eos) {
                     return eos;
@@ -1219,7 +1219,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
 
     register('scanl1', function _scanl1(f, xs) {
         if (isStream(xs)) {
-            return Prelude.scanl(f, xs(), xs);
+            return Nodash.scanl(f, xs(), xs);
         }
         var x = xs[0];
         var zs = [x];
@@ -1261,7 +1261,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         return zs;
     });
 
-    register('concatMap', Prelude.compose2(Prelude.concat, Prelude.map));
+    register('concatMap', Nodash.compose2(Nodash.concat, Nodash.map));
 
     register('replicate', function _replicate(n, x) {
         var xs = [];
@@ -1273,8 +1273,8 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
 
     register('zipWith', function _zipWith(f, as, bs) {
         if (isStream(as) || isStream(bs)) {
-            as = Prelude.stream(as);
-            bs = Prelude.stream(bs);
+            as = Nodash.stream(as);
+            bs = Nodash.stream(bs);
             return mkStream(function () {
                 var a = as();
                 var b = bs();
@@ -1294,9 +1294,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
 
     register('zipWith3', function _zipWith3(f, as, bs, cs) {
         if (isStream(as) || isStream(bs) || isStream(cs)) {
-            as = Prelude.stream(as);
-            bs = Prelude.stream(bs);
-            cs = Prelude.stream(cs);
+            as = Nodash.stream(as);
+            bs = Nodash.stream(bs);
+            cs = Nodash.stream(cs);
             return mkStream(function () {
                 var a = as();
                 var b = bs();
@@ -1307,7 +1307,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
                 return f(a, b, c);
             });
         }
-        var length = Prelude.minimum([as.length, bs.length, cs.length]);
+        var length = Nodash.minimum([as.length, bs.length, cs.length]);
         var zs = [];
         for (var i = 0; i < length; i++) {
             zs[i] = f(as[i], bs[i], cs[i]);
@@ -1317,10 +1317,10 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
 
     register('zipWith4', function _zipWith4(f, as, bs, cs, ds) {
         if (isStream(as) || isStream(bs) || isStream(cs) || isStream(ds)) {
-            as = Prelude.stream(as);
-            bs = Prelude.stream(bs);
-            cs = Prelude.stream(cs);
-            ds = Prelude.stream(ds);
+            as = Nodash.stream(as);
+            bs = Nodash.stream(bs);
+            cs = Nodash.stream(cs);
+            ds = Nodash.stream(ds);
             return mkStream(function () {
                 var a = as();
                 var b = bs();
@@ -1332,7 +1332,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
                 return f(a, b, c, d);
             });
         }
-        var length = Prelude.minimum([as.length, bs.length, cs.length, ds.length]);
+        var length = Nodash.minimum([as.length, bs.length, cs.length, ds.length]);
         var zs = [];
         for (var i = 0; i < length; i++) {
             zs[i] = f(as[i], bs[i], cs[i], ds[i]);
@@ -1341,7 +1341,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     });
 
     register('zipWith5', function _zipWith5(f, as, bs, cs, ds, es) {
-        var length = Prelude.minimum([
+        var length = Nodash.minimum([
                 as.length, bs.length, cs.length, ds.length, es.length]);
         var zs = [];
         for (var i = 0; i < length; i++) {
@@ -1351,7 +1351,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     });
 
     register('zipWith6', function _zipWith6(f, as, bs, cs, ds, es, fs) {
-        var length = Prelude.minimum([
+        var length = Nodash.minimum([
                 as.length, bs.length, cs.length, ds.length, es.length, fs.length]);
         var zs = [];
         for (var i = 0; i < length; i++) {
@@ -1361,7 +1361,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     });
 
     register('zipWith7', function _zipWith7(f, as, bs, cs, ds, es, fs, gs) {
-        var length = Prelude.minimum([
+        var length = Nodash.minimum([
                 as.length, bs.length, cs.length, ds.length,
                 es.length, fs.length, gs.length]);
         var zs = [];
@@ -1371,17 +1371,17 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         return zs;
     });
 
-    register('zip',  Prelude.zipWith(Prelude[',']));
+    register('zip',  Nodash.zipWith(Nodash[',']));
 
-    register('zip3', Prelude.zipWith3(Prelude[',,']));
+    register('zip3', Nodash.zipWith3(Nodash[',,']));
 
-    register('zip4', Prelude.zipWith4(Prelude[',,,']));
+    register('zip4', Nodash.zipWith4(Nodash[',,,']));
 
-    register('zip5', Prelude.zipWith5(Prelude[',,,,']));
+    register('zip5', Nodash.zipWith5(Nodash[',,,,']));
 
-    register('zip6', Prelude.zipWith6(Prelude[',,,,,']));
+    register('zip6', Nodash.zipWith6(Nodash[',,,,,']));
 
-    register('zip7', Prelude.zipWith7(Prelude[',,,,,,']));
+    register('zip7', Nodash.zipWith7(Nodash[',,,,,,']));
 
 
     // Strings
@@ -1422,7 +1422,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     });
 
     register('intercalate', function _intercalate(x, xs) {
-        return Prelude.concat(Prelude.intersperse(x, xs));
+        return Nodash.concat(Nodash.intersperse(x, xs));
     });
 
     register('transpose', function _transpose(xss) {
@@ -1447,7 +1447,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
             j += 1;
         } while (current.length > 0 && zs.push(current));
         if (isString(xss[0])) {
-            zs = Prelude.map(listToString, zs);
+            zs = Nodash.map(listToString, zs);
         }
         return zs;
     });
@@ -1479,17 +1479,17 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
 //    register('intersectBy', function () {
 //    });
 
-    register('heads', Prelude.map(Prelude.head));
+    register('heads', Nodash.map(Nodash.head));
 
-    register('lasts', Prelude.map(Prelude.lasts));
+    register('lasts', Nodash.map(Nodash.lasts));
 
-    register('inits', Prelude.map(Prelude.inits));
+    register('inits', Nodash.map(Nodash.inits));
 
-    register('tails', Prelude.map(Prelude.tails));
+    register('tails', Nodash.map(Nodash.tails));
 
     register('isPrefixOf', function _isPrefixOf(prefix, string) {
         if (isStream(prefix)) {
-            prefix = Prelude.consume(prefix);
+            prefix = Nodash.consume(prefix);
         }
         if (isStream(string)) {
             for (var i = 0; i < prefix.length; i++) {
@@ -1509,10 +1509,10 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
 
     register('isSuffixOf', function _isSuffixOf(suffix, string) {
         if (isStream(suffix)) {
-            suffix = Prelude.consume(suffix);
+            suffix = Nodash.consume(suffix);
         }
         if (isStream(string)) {
-            string = Prelude.consume(string);
+            string = Nodash.consume(string);
         }
         for (var i = 0; i < suffix.length; i++) {
             if (string[string.length - suffix.length + i] !== suffix[i]) {
@@ -1544,7 +1544,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
             (p(xs[i]) ? as : bs).push(xs[i]);
         }
         if (isString(xs)) {
-            return Prelude.map(listToString, [ as, bs ]);
+            return Nodash.map(listToString, [ as, bs ]);
         }
         return [ as, bs ];
     });
@@ -1569,11 +1569,11 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     });
     
     register('elemIndex', function _elemIndex(x, xs) {
-        return Prelude.findIndex(Prelude.eq(x), xs);
+        return Nodash.findIndex(Nodash.eq(x), xs);
     });
 
     register('elemIndices', function _elemIndex(x, xs) {
-        return Prelude.findIndices(Prelude.eq(x), xs);
+        return Nodash.findIndices(Nodash.eq(x), xs);
     });
 
     register('nub', function _nub(xs) {
@@ -1645,7 +1645,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         } else if (isString(zs[0])) {
             zs.sort(function (a, b) { return a.localeCompare(b); });
         } else {
-            zs.sort(Prelude.compare);
+            zs.sort(Nodash.compare);
         }
         return isString(xs) ? zs.join('') : zs;
     });
@@ -1653,7 +1653,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     register('deleteBy', function (p, x, xs) {
         for (var i = 0; i < xs.length; i++) {
             if (p(x, xs[i])) {
-                return Prelude.append(xs.slice(0,i), xs.slice(i+1));
+                return Nodash.append(xs.slice(0,i), xs.slice(i+1));
             }
         }
         return xs;
@@ -1662,7 +1662,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     register('delete', 'delete_', function _delete(x, xs) {
         var i = xs.indexOf(x);
         if (i >= 0) {
-            return Prelude.append(xs.slice(0,i), xs.slice(i+1));
+            return Nodash.append(xs.slice(0,i), xs.slice(i+1));
         }
         return xs;
     });
@@ -1670,13 +1670,13 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     register('insertBy', function (f, x, xs) {
         for (var i = 0; i < xs.length; i++) {
             if (f(x, xs[i]) <= 0) {
-                return Prelude.concat([xs.slice(0,i), x, xs.slice(i)]);
+                return Nodash.concat([xs.slice(0,i), x, xs.slice(i)]);
             }
         }
-        return Prelude.append(xs, x);
+        return Nodash.append(xs, x);
     });
 
-    register('insert', Prelude.insertBy(Prelude.compare));
+    register('insert', Nodash.insertBy(Nodash.compare));
 
     register('groupBy', function (p, xs) {
         if (xs.length === 0) {
@@ -1694,10 +1694,10 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
             }
         }
         zs.push(current);
-        return isString(xs) ? Prelude.map(listToString, zs) : zs;
+        return isString(xs) ? Nodash.map(listToString, zs) : zs;
     });
 
-    register('group', Prelude.groupBy(Prelude.eq));
+    register('group', Nodash.groupBy(Nodash.eq));
 
     register('sortBy', function (fn, xs) {
         if (xs.length <= 1) {
@@ -1709,7 +1709,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     });
 
     register('maximumBy', function (f, xs) {
-        return Prelude.foldl1(function (a, b) {
+        return Nodash.foldl1(function (a, b) {
             if (f(a, b) > 0) {
                 return a;
             }
@@ -1718,7 +1718,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     });
 
     register('minimumBy', function (f, xs) {
-        return Prelude.foldl1(function (a, b) {
+        return Nodash.foldl1(function (a, b) {
             if (f(a, b) < 0) {
                 return a;
             }
@@ -1766,9 +1766,9 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         return [maybe];
     });
 
-    register('catMaybes', Prelude.filter(Prelude.isJust));
+    register('catMaybes', Nodash.filter(Nodash.isJust));
 
-    register('mapMaybe', Prelude.compose2(Prelude.filter(Prelude.isJust), Prelude.map));
+    register('mapMaybe', Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map));
 
 
     // Either
@@ -1794,7 +1794,7 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
     });
 
     register('isRight', function _isRight(val) {
-        return (val.right !== undefined || val[1] !== undefined) && !Prelude.isLeft(val);
+        return (val.right !== undefined || val[1] !== undefined) && !Nodash.isLeft(val);
     });
 
     register('fromLeft', function _fromLeft(val) {
@@ -1811,21 +1811,21 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         return val[1];
     });
 
-    register('lefts', Prelude.compose(
-                Prelude.map(Prelude.fromLeft),
-                Prelude.filter(Prelude.isLeft)
+    register('lefts', Nodash.compose(
+                Nodash.map(Nodash.fromLeft),
+                Nodash.filter(Nodash.isLeft)
     ));
 
-    register('rights', Prelude.compose(
-                Prelude.map(Prelude.fromRight),
-                Prelude.filter(Prelude.isRight)
+    register('rights', Nodash.compose(
+                Nodash.map(Nodash.fromRight),
+                Nodash.filter(Nodash.isRight)
     ));
 
     register('partitionEithers', function _partitionEithers(xs) {
-        return [ Prelude.lefts(xs), Prelude.rights(xs) ];
+        return [ Nodash.lefts(xs), Nodash.rights(xs) ];
     });
 
-    return Prelude;
+    return Nodash;
 }
 
 var P = install({
@@ -1838,6 +1838,7 @@ if (typeof module !== 'undefined' && module.exports) {
     define(P.idf(P));
 } else {
     window.Prelude = P;
+    window.Nodash = P;
 }
 
 }());

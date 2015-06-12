@@ -717,6 +717,10 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
     // Stream
 
+    register('isInfinite', isInfinite);
+    
+    register('isStream', isStream);
+
     register('stream', 'lazy', function _stream(xs) {
         if (isStream(xs)) {
             return xs;
@@ -770,7 +774,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
             }
         } else {
             var ks = keys(xs);
-            for (var j = 0; j < ks.length; j++) {
+            for (var j = 0; j < ks.length; j += 1) {
                 f(xs[ks[j]], ks[j]);
             }
         }
@@ -779,8 +783,42 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     register('cycle', function _cycle(xs) {
         if (isStream(xs)) {
             if (isInfinite(xs)) {
-                
+                return xs;
             }
+            var arr = [];
+            var consumed = false;
+            var h = 0;
+            return mkInfinite(function () {
+                var z;
+                if (!consumed) {
+                    if ((z = xs()) !== eos) {
+                        arr.push(z);
+                        return z;
+                    }
+                    consumed = true;
+                }
+                if (h >= arr.length) {
+                    h = 0;
+                }
+                return arr[h++];
+            });
+        } else if (isArray(xs) || isString(xs)) {
+            var i = 0;
+            return mkInfinite(function () {
+                if (i >= xs.length) {
+                    i = 0;
+                }
+                return xs[i++];
+            });
+        } else {
+            var ks = keys(xs);
+            var j = 0;
+            return mkInfinite(function () {
+                if (j >= ks.length) {
+                    j = 0;
+                }
+                return xs[ks[j++]];
+            });
         }
     });
 
@@ -1824,6 +1862,11 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     register('partitionEithers', function _partitionEithers(xs) {
         return [ Nodash.lefts(xs), Nodash.rights(xs) ];
     });
+
+
+    // Objects
+    
+    register('keys', keys);
 
     return Nodash;
 }

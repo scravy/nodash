@@ -5,7 +5,7 @@
 var thresholds = {
   statements: 99,
     branches: 97,
-   functions: 99,
+   functions: 100,
        lines: 99
 };
 

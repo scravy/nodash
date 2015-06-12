@@ -64,4 +64,38 @@ describe('Streams', function () {
     it('iterate', function () {
         assert.deepEqual([ 1, 2, 4 ], consume(take(3, iterate(times(2), 1))));
     });
+
+    it('cycle /w array', function () {
+        var s = cycle([ 1, 2, 3 ]);
+        assert.strictEqual(true, isInfinite(s));
+        assert.deepEqual([ 1, 2, 3, 1, 2, 3, 1, 2, 3 ], consume(take(9, s)));
+    });
+    
+    it('cycle /w string', function () {
+        var s = cycle("abc");
+        assert.strictEqual(true, isInfinite(s));
+        assert.deepEqual("abcabcabc", consumeString(take(9, s)));
+    });
+
+    it('cycle /w stream', function () {
+        var s = cycle(lazy("abc"));
+        assert.strictEqual(true, isInfinite(s));
+        assert.deepEqual("abcabcabcabc", consumeString(take(12, s)));
+    });
+    
+    it('cycle /w infinite stream', function () {
+        var random = cycle(stream(function () {
+            return 4;
+        }));
+        assert.strictEqual(true, isInfinite(random));
+        assert.deepEqual([ 4, 4, 4, 4 ], consume(take(4, random)));
+    });
+
+    it('cycle /w object', function () {
+        var xs = cycle({ a: 1, b: 2, c: 3 });
+        assert.strictEqual(true, isInfinite(xs));
+        var result = consume(take(6, xs));
+        assert.deepEqual([], difference(result, [ 1, 2, 3 ]));
+        assert.deepEqual([ 3, 2, 1 ], union([ 3, 2, 1 ], result));
+    });
 });

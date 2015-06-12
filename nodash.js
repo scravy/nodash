@@ -355,8 +355,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     register('isStream', isStream);
     register('isArray', isArray);
     register('isNumber', isNumber);
+    register('isInfinite', isInfinite);
 
-
+    
     // Function
 
     register('id', id);
@@ -716,10 +717,6 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
 
     // Stream
-
-    register('isInfinite', isInfinite);
-    
-    register('isStream', isStream);
 
     register('stream', 'lazy', function _stream(xs) {
         if (isStream(xs)) {

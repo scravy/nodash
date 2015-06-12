@@ -18,7 +18,7 @@ any function and get a function in return (on the other hand this means there ar
 no optional arguments). Also you have a distinction between *lists* and *streams*
 and it can cope with *infinite streams*.
 
-Browse through the [tests](tests/) for examples.
+Browse through the [tests](https://github.com/scravy/nodash/tree/master/test) for examples.
 
 
 Usage

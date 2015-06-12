@@ -18,7 +18,7 @@ any function and get a function in return (on the other hand this means there ar
 no optional arguments). Also you have a distinction between *lists* and *streams*
 and it can cope with *infinite streams*.
 
-Browse through the [tests](tree/master/tests) and the [wiki](wiki/) for examples.
+Browse through the [tests](tests/) for examples.
 
 
 Usage

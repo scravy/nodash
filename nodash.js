@@ -1,59 +1,118 @@
 /* vim: set et sw=2 ts=2: */
 (function () {
 
+// Save a reference to `Set` (if defined). Otherwise this variable will
+// be `undefined`. References to some native types are kept here so that
+// native objects can be distinguished from local polyfills.
 var NativeSet    = typeof Set !== 'undefined' && Set;
+
+// Save a reference to the `Math` object.
 var NativeMath   = Math;
+
+// Save a reference to the `Array` object.
 var NativeArray  = Array;
+
+// Save a reference to the `Object` object.
 var NativeObject = Object;
 
 function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefined) {
   "use strict";
 
+  // Use either the supplied `Math` object from the arguments,
+  // if none given the `NativeMath` object.
   Math   = Math   || NativeMath;
+
+  // Use either the supplied `Array` object from the arguments,
+  // if none given the `NativeArray` object.
   Array  = Array  || NativeArray;
+
+  // Use either the supplied `Object` object from the arguments,
+  // if none given the `NativeObject` object.
   Object = Object || NativeObject;
+
+  // This is the object the nodash functions will be attached to.
+  // If none is given, just use a new empty object (this is the
+  // object which will be returned eventually).
   Nodash = Nodash || {};
 
   function showEndOfStream() {
     return "end of stream";
   }
 
+  // This is a special object used to mark the end of a stream.
+  // It is used as a kind of unique symbol. The eos variable itself
+  // is not exported and can not be written to from the outside.
   var eos = {
     toString: showEndOfStream,
     inspect: showEndOfStream
   };
-  var stream = {};
 
+  // The reference on the other hand is exported as `endOfStream`.
+  // While it is technically possible to overwrite `endOfStream` from
+  // the outside this will not affect the `eos` variable within this
+  // closure.
   Nodash.endOfStream = eos;
 
+  // This is a plain object which is only available within this
+  // clojure. It is used as a kind of unique symbol to be identified
+  // by comparing references via `===`.
+  var stream = {};
+
+  // Creates a (finite) stream from a function f. This function
+  // is meant to be used internally (within this closure) only.
+  // A function is marked as stream by simply attaching the `stream`
+  // object as `__stream__`.
   function mkStream(f) {
     f.__stream__ = stream;
     return f;
   }
 
+  // Creates an infinite stream from a function f. This function
+  // is meant to be used internally only.
   function mkInfinite(f) {
+    // It creates a strean by invoking `mkStream` and then marks it
+    // as infinite by attaching `true` as `__infinite__`.
     f = mkStream(f);
     f.__infinite__ = true;
     return f;
   }
 
+  // Check whether a stream is infinite by checking for the
+  // `__infinite__` property.
   function isInfinite(f) {
     return !!f.__infinite__;
   }
 
+  // Check whether a stream is finite and raise an error if it is not.
+  // This function is meant to be used internally only to have functions
+  // accepting finite streams only check their arguments.
   function checkFinite(xs) {
     if (isInfinite(xs)) {
       throw new Error('this function can not consume infinite streams');
     }
   }
 
+  // `isArray` checks whether a thing is actually an array object.
+  // If `Array.isArray` is not available in this environment it will
+  // fall back to comparing the toString representation. The `toString`
+  // method used is the one from the `NativeObject` to make sure that
+  // client code can not temper with an object and make it look like an
+  // array. The fallback is necessary to cope with legacy browser
+  // environments.
   var isArray = Array.isArray || function _isArray(arr) {
     return NativeObject.prototype.toString.call(arr) === '[object Array]';
   };
 
+  // Check whether a thing is actually a function.
   function isFunction(x) { return typeof x === 'function'; }
+
+  // Check whether a thing is actually a string.
   function isString(x)   { return typeof x === 'string'; }
+
+  // Check whether a thing is actually a number.
   function isNumber(x)   { return typeof x === 'number'; }
+
+  // Check whether a thing is actually a stream.
   function isStream(x)   { return isFunction(x) && x.__stream__ === stream; }
 
   var keys = Object.keys || (function() {
@@ -111,6 +170,10 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
   function listToString(x) { return x.join(''); }
 
+  // `indexOf` uses an implementation of the Knuth-Morrison-Pratt
+  // Algorithm for finding the index of a given subsequence
+  // (identified as `word` here) within a sequence (identified as
+  // `string` here).
   function indexOf(word, string) {
     var m = 0;
     var i = 0;

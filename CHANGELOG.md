@@ -56,4 +56,7 @@ v0.7 "Eich"
 + Reproduces the complete Haskell 2010 Prelude
 + All occurences of `Prelude` are now `Nodash`
 
+### v0.7.1
+
++ Added a lot documentation
 

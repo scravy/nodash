@@ -776,9 +776,13 @@ function install(Prelude, Math, Array, Object, dontUseNativeSet, refObj, undefin
         }
     });
 
-//    register('cycle', function _cycle(xs) {
-//        
-//    });
+    register('cycle', function _cycle(xs) {
+        if (isStream(xs)) {
+            if (isInfinite(xs)) {
+                
+            }
+        }
+    });
 
     register('repeat', function _repeat(x) {
         return mkInfinite(function () {

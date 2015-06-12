@@ -1,4 +1,4 @@
-var P = require('../prelude');
+var P = require('../nodash');
 var assert = require('assert');
 
 describe('Num', function () {

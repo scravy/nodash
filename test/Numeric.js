@@ -1,4 +1,4 @@
-require('../prelude').install(GLOBAL);
+require('../nodash').install(GLOBAL);
 var assert = require('assert');
 
 describe('Numeric', function () {

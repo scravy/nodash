@@ -23,7 +23,7 @@ describe('Polyfills', function () {
     var P;
 
     before(function () {
-        P = require('../prelude').install(undefined, DumbMath, {}, {}, true);
+        P = require('../nodash').install(undefined, DumbMath, {}, {}, true);
     });
 
     it('isArray in map', function () {
@@ -104,7 +104,7 @@ describe('Polyfills /w enum bug', function () {
     var P;
 
     before(function () {
-        P = require('../prelude').install(undefined, DumbMath, {}, {}, true, {});
+        P = require('../nodash').install(undefined, DumbMath, {}, {}, true, {});
     });
 
     it('isArray in map', function () {

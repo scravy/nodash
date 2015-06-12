@@ -1,4 +1,4 @@
-require('../prelude').install(GLOBAL);
+require('../nodash').install(GLOBAL);
 var assert = require('assert');
 
 function maximum7(a, b, c, d, e, f, g) {

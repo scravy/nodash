@@ -1,4 +1,4 @@
-require('../prelude').install(GLOBAL);
+require('../nodash').install(GLOBAL);
 var assert = map(flip, require('assert'));
 
 describe('Either', function () {

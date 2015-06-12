@@ -1,4 +1,4 @@
-var P = require('../prelude').install(GLOBAL);
+var P = require('../nodash').install(GLOBAL);
 var assert = map(flip, require('assert'));
 
 describe('Lists', function () {

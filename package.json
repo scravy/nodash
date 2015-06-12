@@ -1,8 +1,8 @@
 {
   "name": "nodash",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "A port of the Haskell Prelude to JavaScript/NodeJS",
-  "main": "prelude.js",
+  "main": "nodash.js",
   "scripts": {
     "test": "gulp test"
   },

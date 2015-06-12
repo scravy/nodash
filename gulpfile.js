@@ -5,7 +5,7 @@
 var thresholds = {
   statements: 99,
     branches: 97,
-   functions: 100,
+   functions: 99,
        lines: 99
 };
 
@@ -25,7 +25,7 @@ function errorHandler(err) {
 }
 
 gulp.task('minify', [ 'lint' ], function (done) {
-  gulp.src('prelude.js')
+  gulp.src('nodash.js')
       .pipe(uglify({  }))
       .pipe(rename({ suffix: '.min' }))
       .pipe(gulp.dest('.'))
@@ -34,14 +34,14 @@ gulp.task('minify', [ 'lint' ], function (done) {
 });
 
 gulp.task('gzip', [ 'minify' ], function (done) {
-  gulp.src('prelude.min.js')
+  gulp.src('nodash.min.js')
       .pipe(gzip({ append: true, gzipOptions: { level: 9 } }))
       .pipe(gulp.dest('.'))
       .on('finish', done);
 });
 
 gulp.task('lint', function (done) {
-  gulp.src([ 'prelude.js', 'test/*.js' ])
+  gulp.src([ 'nodash.js', 'test/*.js' ])
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
       .pipe(jshint.reporter('fail'))
@@ -50,7 +50,7 @@ gulp.task('lint', function (done) {
 });
 
 gulp.task('coverage', [ 'lint' ], function (done) {
-  gulp.src('prelude.js')
+  gulp.src('nodash.js')
       .pipe(istanbul())
       .pipe(istanbul.hookRequire())
       .on('error', errorHandler)

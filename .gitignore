@@ -6,3 +6,5 @@ node_modules
 /.npmcache
 *.min.*
 /site/docco
+.publish
+/site/readme.html

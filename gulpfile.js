@@ -14,6 +14,7 @@ var jshint = require('gulp-jshint'),
    ghPages = require('gulp-gh-pages'),
 preprocess = require('gulp-preprocess'),
 sourcemaps = require('gulp-sourcemaps'),
+  markdown = require('gulp-markdown'),
   istanbul = require('gulp-istanbul'),
   enforcer = require('gulp-istanbul-enforcer'),
     uglify = require('gulp-uglify'),
@@ -83,12 +84,20 @@ gulp.task('test', [ 'coverage' ], function (done) {
 gulp.task('docco', [ 'lint' ], function (done) {
   gulp.src('nodash.js')
       .pipe(docco())
-      .pipe(gulp.dest('site/docco/'));
+      .pipe(gulp.dest('site/docco/'))
+      .on('finish', done);
 });
 
-gulp.task('gh-pages', [ 'lint', 'gzip', 'docco' ], function () {
+gulp.task('deploy', function () {
   return gulp.src('./site/**/*')
-      .pipe(ghPages());
+      .pipe(ghPages({ }));
+});
+
+gulp.task('docs', function (done) {
+  gulp.src('README.md')
+      .pipe(markdown())
+      .pipe(gulp.dest('site/'))
+      .on('finish', done);
 });
 
 gulp.task('default', [ 'test', 'gzip', 'docco' ]);

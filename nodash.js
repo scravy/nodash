@@ -173,7 +173,8 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   // `indexOf` uses an implementation of the Knuth-Morrison-Pratt
   // Algorithm for finding the index of a given subsequence
   // (identified as `word` here) within a sequence (identified as
-  // `string` here).
+  // `string` here). Thanks to JavaScript's dynamic nature it
+  // works equally well with strings and arrays.
   function indexOf(word, string) {
     var m = 0;
     var i = 0;
@@ -185,6 +186,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     table[0] = -1;
     table[1] = 0;
 
+    // build the table for KMP. This takes `O(word.length)` steps.
     while (pos < word.length) {
       if (word[pos - 1] == word[cnd]) {
         cnd = cnd + 1;
@@ -198,6 +200,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
       }
     }
     
+    // scan the string. This takes `O(string.length)` steps.
     while (m + i < string.length) {
       if (word[i] == string[m + i]) {
         if (i == word.length - 1) {
@@ -214,9 +217,14 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
         }
       }
     }
+    // Returns -1 if the subsequence was not found in the sequence.
     return -1;
   }
 
+  // While partial application of functions can be implemented easily
+  // using JavaScript's `bind` or `apply` functions, it is more
+  // efficient to use closures as JavaScript's native functions
+  // additionally do some heavy error checking and deal with `this`.
   var funcs = {
 
     0: id,
@@ -386,8 +394,6 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
   Nodash.curried = function (fn) { return funcs[fn.length](fn); };
 
-  Nodash.functions = {};
-
   Nodash.pipe = function () {
     var functions, intermediateResult, callback;
     var error = null;
@@ -419,6 +425,10 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return intermediateResult;
   };
 
+  /* @ifdef WITH_ONLINE_HELP */
+  Nodash.functions = {};
+  /* @endif */
+
   function register() {
     var f, i, arg, aliases = [], name;
     for (i = 0; i < arguments.length; i++) {
@@ -437,10 +447,12 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
       Nodash[aliases[i]] = f;
     }
     aliases.shift();
+    /* @ifdef WITH_ONLINE_HELP */
     Nodash.functions[name] = {
       aliases: aliases,
       arity: f.length
     };
+    /* @endif */
     return f;
   }
 

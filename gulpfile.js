@@ -11,10 +11,12 @@ var thresholds = {
 
 var jshint = require('gulp-jshint'),
      mocha = require('gulp-mocha'),
+preprocess = require('gulp-preprocess'),
   istanbul = require('gulp-istanbul'),
   enforcer = require('gulp-istanbul-enforcer'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
+     docco = require('gulp-docco'),
      chalk = require('chalk'),
       gzip = require('gulp-gzip'),
       gulp = require('gulp');
@@ -26,6 +28,7 @@ function errorHandler(err) {
 
 gulp.task('minify', [ 'lint' ], function (done) {
   gulp.src('nodash.js')
+      .pipe(preprocess())
       .pipe(uglify({  }))
       .pipe(rename({ suffix: '.min' }))
       .pipe(gulp.dest('.'))
@@ -71,6 +74,12 @@ gulp.task('test', [ 'coverage' ], function (done) {
       }))
       .on('error', errorHandler)
       .on('finish', done);
+});
+
+gulp.task('docco', [ 'lint' ], function (done) {
+  gulp.src('nodash.js')
+      .pipe(docco())
+      .pipe(gulp.dest('docs/'));
 });
 
 gulp.task('default', [ 'test', 'gzip' ]);

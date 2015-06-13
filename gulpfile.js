@@ -88,17 +88,17 @@ gulp.task('docco', [ 'lint' ], function (done) {
       .on('finish', done);
 });
 
-gulp.task('deploy', function () {
+gulp.task('deploy', [ 'site' ], function () {
   return gulp.src('./site/**/*')
       .pipe(ghPages({ }));
 });
 
-gulp.task('docs', function (done) {
+gulp.task('site', [ 'default', 'docco' ], function (done) {
   gulp.src('README.md')
       .pipe(markdown())
       .pipe(gulp.dest('site/'))
       .on('finish', done);
 });
 
-gulp.task('default', [ 'test', 'gzip', 'docco' ]);
+gulp.task('default', [ 'test', 'gzip', ]);
 

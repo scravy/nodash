@@ -388,6 +388,37 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
   Nodash.functions = {};
 
+  Nodash.pipe = function () {
+    var functions, intermediateResult, callback;
+    var error = null;
+    if (isArray(arguments[0])) {
+      functions = arguments[0];
+      callback = arguments[1];
+    } else {
+      functions = arguments;
+    }
+    if (functions.length > 0) {
+      if (isFunction(functions[0])) {
+        intermediateResult = functions[0]();
+      } else {
+        intermediateResult = functions[0];
+      }
+      for (var i = 1; i < functions.length; i += 1) {
+        try {
+          intermediateResult = functions[i](intermediateResult);
+        } catch (err) {
+          error = err;
+        }
+      }
+    }
+    if (isFunction(callback)) {
+      callback(error, intermediateResult);
+    } else if (error) {
+      throw error;
+    }
+    return intermediateResult;
+  };
+
   function register() {
     var f, i, arg, aliases = [], name;
     for (i = 0; i < arguments.length; i++) {
@@ -413,7 +444,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return f;
   }
 
-  // Utilities
+  // Exports utility functions.
   
   register('isFunction', isFunction);
   register('isStream', isStream);
@@ -422,24 +453,38 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   register('isInfinite', isInfinite);
 
   
-  // Function
+  // Exports/Defines of functions dealing with functions.
 
+  // The identify function just returns what was passed in immediately.
   register('id', id);
 
+  // Since JavaScript is a strict language `idf` is provided. It wrapes
+  // the argument given to it in a function which will always return
+  // that value. A handy application is to define infinite streams,
+  // for example `stream(idf(7))`.
   register('idf', function _idf(x) {
     return function () {
       return x;
     };
   });
 
+  // The const function accepts a first and a second argument and
+  // discards the latter one. It is mostly used as a section
+  // (partial application) to discard some input in a pipe and
+  // return a fixed value.
   register('const', 'const_', 'constant', function _const(a, b) {
     return a;
   });
 
+  // Applies the function given as first argument to the argument given
+  // as second argument. This seemingly useless function is handy
+  // to make function application explicit, e.g. when building using
+  // `fold` or `zipWith`.
   register('$', 'apply', function _apply(f, x) {
     return f(x);
   });
 
+  // 
   register('.', 'compose', function _compose(f, g, x) {
     return f(g(x));
   });

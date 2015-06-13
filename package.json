@@ -1,6 +1,6 @@
 {
   "name": "nodash",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A port of the Haskell Prelude to JavaScript/NodeJS",
   "main": "nodash.js",
   "scripts": {
@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/scravy/nodash/issues"
   },
-  "homepage": "https://github.com/scravy/nodash",
+  "homepage": "https://scravy.github.io/nodash",
   "devDependencies": {
     "chalk": "^1.0.0",
     "gulp": "^3.8.11",

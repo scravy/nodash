@@ -53,6 +53,7 @@ v0.7 "Eich"
 + `isInfinite` exported as utility function
 + `keys` for enumerating the keys of an object
 + `cycle` /w array, string, object, streams, and inifinite streams
++ `pipe` for chaining functions
 + Reproduces the complete Haskell 2010 Prelude
 + All occurences of `Prelude` are now `Nodash`
 

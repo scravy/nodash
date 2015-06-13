@@ -22,6 +22,8 @@ sourcemaps = require('gulp-sourcemaps'),
      docco = require('gulp-docco'),
      chalk = require('chalk'),
       gzip = require('gulp-gzip'),
+        fs = require('fs'),
+  filesize = require('filesize'),
       gulp = require('gulp');
 
 function errorHandler(err) {
@@ -94,15 +96,20 @@ gulp.task('deploy', [ 'index' ], function () {
 });
 
 gulp.task('index', [ 'site' ], function (done) {
+  var variables = {
+    MINIFIED_SIZE: filesize(fs.statSync('dist/nodash.min.js').size),
+    GZIPPED_SIZE: filesize(fs.statSync('dist/nodash.min.js.gz').size)
+  };
+
   gulp.src('site/index.html')
-      .pipe(preprocess())
+      .pipe(preprocess({ context: variables }))
       .pipe(gulp.dest('dist/'))
       .on('finish', done);
 });
 
 gulp.task('site', [ 'default', 'docco' ], function (done) {
   gulp.src('README.md')
-      .pipe(markdown())
+      .pipe(markdown({ pedantic: false }))
       .pipe(gulp.dest('dist/'))
       .on('finish', done);
 });

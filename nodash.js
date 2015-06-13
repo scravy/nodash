@@ -2,32 +2,21 @@
 (function () {
 
 // Save a reference to `Set` (if defined). Otherwise this variable will
-// be `undefined`. References to some native types are kept here so that
-// native objects can be distinguished from local polyfills.
+// be `undefined`. References to some native types (`Math`, `Array`,
+// `Object`) are kept here so that native objects can be distinguished
+// from local polyfills.
 var NativeSet    = typeof Set !== 'undefined' && Set;
-
-// Save a reference to the `Math` object.
 var NativeMath   = Math;
-
-// Save a reference to the `Array` object.
 var NativeArray  = Array;
-
-// Save a reference to the `Object` object.
 var NativeObject = Object;
 
 function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefined) {
   "use strict";
 
-  // Use either the supplied `Math` object from the arguments,
-  // if none given the `NativeMath` object.
+  // Use either the supplied objects from the arguments,
+  // or the references saved above.
   Math   = Math   || NativeMath;
-
-  // Use either the supplied `Array` object from the arguments,
-  // if none given the `NativeArray` object.
   Array  = Array  || NativeArray;
-
-  // Use either the supplied `Object` object from the arguments,
-  // if none given the `NativeObject` object.
   Object = Object || NativeObject;
 
   // This is the object the nodash functions will be attached to.
@@ -42,15 +31,16 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   // This is a special object used to mark the end of a stream.
   // It is used as a kind of unique symbol. The eos variable itself
   // is not exported and can not be written to from the outside.
+  // 
+  // The reference on the other hand is exported as `endOfStream`.
+  // While it is technically possible to overwrite `endOfStream` from
+  // the outside this will not affect the `eos` variable within this
+  // closure.
   var eos = {
     toString: showEndOfStream,
     inspect: showEndOfStream
   };
 
-  // The reference on the other hand is exported as `endOfStream`.
-  // While it is technically possible to overwrite `endOfStream` from
-  // the outside this will not affect the `eos` variable within this
-  // closure.
   Nodash.endOfStream = eos;
 
   // This is a plain object which is only available within this
@@ -103,18 +93,17 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return NativeObject.prototype.toString.call(arr) === '[object Array]';
   };
 
-  // Check whether a thing is actually a function.
+  // Utility functions for checking basic JavaScript types.
   function isFunction(x) { return typeof x === 'function'; }
-
-  // Check whether a thing is actually a string.
   function isString(x)   { return typeof x === 'string'; }
-
-  // Check whether a thing is actually a number.
   function isNumber(x)   { return typeof x === 'number'; }
 
   // Check whether a thing is actually a stream.
   function isStream(x)   { return isFunction(x) && x.__stream__ === stream; }
 
+  // Enumerates the keys of an object. If `Object.keys` is not availabe,
+  // fall back to a polyfill. The polyfill is so hilariously big to cope
+  // with oddities in IE 8 (the "don't enum bug").
   var keys = Object.keys || (function() {
     var hasOwnProperty = NativeObject.prototype.hasOwnProperty,
         hasDontEnumBug = !(refObj || { toString: null }).propertyIsEnumerable('toString'),
@@ -148,6 +137,10 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     };
   }());
 
+  // Either use the native set or (if `dontUseNativeSet` is `true` or
+  // there is no native set implementation) a drop-in replacement.
+  // It reproduces only the actually used functionality, which is
+  // `add` and `has`. It uses the keys of an object to simulate the Set.
   var Set = (!dontUseNativeSet && NativeSet) || (function () {
     
     var Set = function () {
@@ -166,8 +159,10 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return Set;
   }());
 
+  // The identity function that returns what was passed in unaltered.
   function id(x) { return x; }
 
+  // A handy shorthand to reduce a list to a string.
   function listToString(x) { return x.join(''); }
 
   // `indexOf` uses an implementation of the Knuth-Morrison-Pratt
@@ -225,6 +220,13 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   // using JavaScript's `bind` or `apply` functions, it is more
   // efficient to use closures as JavaScript's native functions
   // additionally do some heavy error checking and deal with `this`.
+  //
+  // Partial application of functions relies on the `length` reported
+  // by a function. A correct partial application returns a function
+  // with a length
+  // `length of function which is applied MINUS number of arguments consumed`.
+  // Unfortunately this means we need to have some biolerplate code for
+  // every arity of functions and results, thus the big blob of code below.
   var funcs = {
 
     0: id,
@@ -392,6 +394,8 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     }
   };
 
+  // Turns an ordinary function into a function which can be partially applied.
+  // The maximum arity that this can deal with is 8 (see above).
   Nodash.curried = function (fn) { return funcs[fn.length](fn); };
 
   Nodash.pipe = function () {

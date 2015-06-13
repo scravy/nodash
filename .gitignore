@@ -1,8 +1,0 @@
-.*.swp
-.DS_Store
-*.log
-/site/coverage
-node_modules
-/.npmcache
-*.min.*
-/site/docco

@@ -1,11 +1,8 @@
 .*.swp
 .DS_Store
 *.log
-/dist
-/target
-/build
-/coverage
+/site/coverage
 node_modules
 /.npmcache
 *.min.*
-/docs
+/site/docco

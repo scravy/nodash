@@ -11,7 +11,9 @@ var thresholds = {
 
 var jshint = require('gulp-jshint'),
      mocha = require('gulp-mocha'),
+   ghPages = require('gulp-gh-pages'),
 preprocess = require('gulp-preprocess'),
+sourcemaps = require('gulp-sourcemaps'),
   istanbul = require('gulp-istanbul'),
   enforcer = require('gulp-istanbul-enforcer'),
     uglify = require('gulp-uglify'),
@@ -28,18 +30,20 @@ function errorHandler(err) {
 
 gulp.task('minify', [ 'lint' ], function (done) {
   gulp.src('nodash.js')
+      .pipe(sourcemaps.init())
       .pipe(preprocess())
-      .pipe(uglify({  }))
+      .pipe(uglify({ }))
       .pipe(rename({ suffix: '.min' }))
-      .pipe(gulp.dest('.'))
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest('site/'))
       .on('error', errorHandler)
       .on('finish', done);
 });
 
 gulp.task('gzip', [ 'minify' ], function (done) {
-  gulp.src('nodash.min.js')
+  gulp.src('site/nodash.min.js')
       .pipe(gzip({ append: true, gzipOptions: { level: 9 } }))
-      .pipe(gulp.dest('.'))
+      .pipe(gulp.dest('site/'))
       .on('finish', done);
 });
 
@@ -60,7 +64,7 @@ gulp.task('coverage', [ 'lint' ], function (done) {
       .on('finish', function () {
         gulp.src('test/*.js')
             .pipe(mocha())
-            .pipe(istanbul.writeReports())
+            .pipe(istanbul.writeReports({ dir: 'site/coverage/' }))
             .on('finish', done);
     });
 });
@@ -69,7 +73,7 @@ gulp.task('test', [ 'coverage' ], function (done) {
   gulp.src('.')
       .pipe(enforcer({
         thresholds: thresholds,
-        coverageDirectory: 'coverage',
+        coverageDirectory: 'site/coverage/',
         rootDirectory: ''
       }))
       .on('error', errorHandler)
@@ -79,8 +83,13 @@ gulp.task('test', [ 'coverage' ], function (done) {
 gulp.task('docco', [ 'lint' ], function (done) {
   gulp.src('nodash.js')
       .pipe(docco())
-      .pipe(gulp.dest('docs/'));
+      .pipe(gulp.dest('site/docco/'));
 });
 
-gulp.task('default', [ 'test', 'gzip' ]);
+gulp.task('gh-pages', [ 'lint', 'gzip', 'docco' ], function () {
+  return gulp.src('./site/**/*')
+      .pipe(ghPages());
+});
+
+gulp.task('default', [ 'test', 'gzip', 'docco' ]);
 

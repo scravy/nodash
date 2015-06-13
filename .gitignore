@@ -6,6 +6,6 @@
 /build
 /coverage
 node_modules
-
 /.npmcache
 *.min.*
+/docs

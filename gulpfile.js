@@ -36,15 +36,15 @@ gulp.task('minify', [ 'lint' ], function (done) {
       .pipe(uglify({ }))
       .pipe(rename({ suffix: '.min' }))
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('site/'))
+      .pipe(gulp.dest('dist/'))
       .on('error', errorHandler)
       .on('finish', done);
 });
 
 gulp.task('gzip', [ 'minify' ], function (done) {
-  gulp.src('site/nodash.min.js')
+  gulp.src('dist/nodash.min.js')
       .pipe(gzip({ append: true, gzipOptions: { level: 9 } }))
-      .pipe(gulp.dest('site/'))
+      .pipe(gulp.dest('dist/'))
       .on('finish', done);
 });
 
@@ -65,7 +65,7 @@ gulp.task('coverage', [ 'lint' ], function (done) {
       .on('finish', function () {
         gulp.src('test/*.js')
             .pipe(mocha())
-            .pipe(istanbul.writeReports({ dir: 'site/coverage/' }))
+            .pipe(istanbul.writeReports({ dir: 'dist/coverage/' }))
             .on('finish', done);
     });
 });
@@ -74,7 +74,7 @@ gulp.task('test', [ 'coverage' ], function (done) {
   gulp.src('.')
       .pipe(enforcer({
         thresholds: thresholds,
-        coverageDirectory: 'site/coverage/',
+        coverageDirectory: 'dist/coverage/',
         rootDirectory: ''
       }))
       .on('error', errorHandler)
@@ -84,19 +84,26 @@ gulp.task('test', [ 'coverage' ], function (done) {
 gulp.task('docco', [ 'lint' ], function (done) {
   gulp.src('nodash.js')
       .pipe(docco())
-      .pipe(gulp.dest('site/docco/'))
+      .pipe(gulp.dest('dist/docco/'))
       .on('finish', done);
 });
 
-gulp.task('deploy', [ 'site' ], function () {
-  return gulp.src('./site/**/*')
+gulp.task('deploy', [ 'index' ], function () {
+  return gulp.src('./dist/**/*')
       .pipe(ghPages({ }));
+});
+
+gulp.task('index', [ 'site' ], function (done) {
+  gulp.src('site/index.html')
+      .pipe(preprocess())
+      .pipe(gulp.dest('dist/'))
+      .on('finish', done);
 });
 
 gulp.task('site', [ 'default', 'docco' ], function (done) {
   gulp.src('README.md')
       .pipe(markdown())
-      .pipe(gulp.dest('site/'))
+      .pipe(gulp.dest('dist/'))
       .on('finish', done);
 });
 

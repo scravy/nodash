@@ -1,6 +1,3 @@
-nodash
-======
-
 [![Build Status](https://travis-ci.org/scravy/nodash.svg?branch=master)](https://travis-ci.org/scravy/nodash)
 
 ***nodash*** offers you a rich set of library functions, comparable to

@@ -1,39 +1,11 @@
 /* vim: set et sw=2 ts=2: */
-html,
-body,
-ul,
-ol,
-li,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  padding: 0;
-  color: black;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-}
-html,
-body {
-  background: white;
-}
-h1 {
-  marginb-bottom: 1em;
-  font-size: 1.9em;
-  border-bottom: 1px solid silver;
-}
-h2 {
-  font-size: 1.5em;
-}
 div.sidebar {
   position: fixed;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 200px;
-  border-right: 1px solid black;
+  border-right: 1px solid maroon;
   overflow: auto;
 }
 div.sidebar h6 {
@@ -56,24 +28,132 @@ div.sidebar a:hover {
 div.sidebar span.alias {
   font-size: .83em;
   background: silver;
+  color: black;
   padding: 1px;
   border-radius: 4px;
   padding-left: 4px;
   padding-right: 4px;
   margin-left: 5px;
 }
+div.sidebar h6 {
+  font-size: 1em;
+}
 div.content {
-  margin-left: 210px;
+  padding-left: 210px;
+  max-width: 850px;
 }
-body,
-p,
-li {
-  font-size: 14px;
+div.content h1 {
+  border-bottom: 1px solid maroon;
 }
-h1:target,
-h2:target {
-  color: red;
+@media (max-width: 850px) {
+  div.sidebar {
+    display: none;
+  }
+  div.content {
+    padding-left: 10px;
+  }
 }
-h2:target + div.section {
-  background: yellow;
+pre .hljs-comment,
+pre .hljs-template_comment,
+pre .hljs-diff .hljs-header,
+pre .hljs-javadoc {
+  color: #408080;
+  font-style: italic;
+}
+pre .hljs-keyword,
+pre .hljs-assignment,
+pre .hljs-literal,
+pre .hljs-css .hljs-rule .hljs-keyword,
+pre .hljs-winutils,
+pre .hljs-javascript .hljs-title,
+pre .hljs-lisp .hljs-title,
+pre .hljs-subst {
+  color: #954121;
+  /*font-weight: bold*/
+}
+pre .hljs-number,
+pre .hljs-hexcolor {
+  color: #40a070;
+}
+pre .hljs-string,
+pre .hljs-tag .hljs-value,
+pre .hljs-phpdoc,
+pre .hljs-tex .hljs-formula {
+  color: #219161;
+}
+pre .hljs-title,
+pre .hljs-id {
+  color: #19469D;
+}
+pre .hljs-params {
+  color: #00F;
+}
+pre .hljs-javascript .hljs-title,
+pre .hljs-lisp .hljs-title,
+pre .hljs-subst {
+  font-weight: normal;
+}
+pre .hljs-class .hljs-title,
+pre .hljs-haskell .hljs-label,
+pre .hljs-tex .hljs-command {
+  color: #458;
+  font-weight: bold;
+}
+pre .hljs-tag,
+pre .hljs-tag .hljs-title,
+pre .hljs-rules .hljs-property,
+pre .hljs-django .hljs-tag .hljs-keyword {
+  color: #000080;
+  font-weight: normal;
+}
+pre .hljs-attribute,
+pre .hljs-variable,
+pre .hljs-instancevar,
+pre .hljs-lisp .hljs-body {
+  color: #008080;
+}
+pre .hljs-regexp {
+  color: #bb6688;
+}
+pre .hljs-class {
+  color: #458;
+  font-weight: bold;
+}
+pre .hljs-symbol,
+pre .hljs-ruby .hljs-symbol .hljs-string,
+pre .hljs-ruby .hljs-symbol .hljs-keyword,
+pre .hljs-ruby .hljs-symbol .hljs-keymethods,
+pre .hljs-lisp .hljs-keyword,
+pre .hljs-tex .hljs-special,
+pre .hljs-input_number {
+  color: #990073;
+}
+pre .hljs-builtin,
+pre .hljs-constructor,
+pre .hljs-built_in,
+pre .hljs-lisp .hljs-title {
+  color: #0086b3;
+}
+pre .hljs-preprocessor,
+pre .hljs-pi,
+pre .hljs-doctype,
+pre .hljs-shebang,
+pre .hljs-cdata {
+  color: #999;
+  font-weight: bold;
+}
+pre .hljs-deletion {
+  background: #ffdddd;
+}
+pre .hljs-addition {
+  background: #ddffdd;
+}
+pre .hljs-diff .hljs-change {
+  background: #0086b3;
+}
+pre .hljs-chunk {
+  color: #aaaaaa;
+}
+pre .hljs-tex .hljs-formula {
+  opacity: 0.5;
 }

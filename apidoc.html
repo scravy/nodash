@@ -5,14 +5,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>nodash apidoc</title>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+    type="text/css" />
   <link rel="stylesheet" type="text/css" href="apidoc.css">
 </head>
 <body>
 
 <div class="sidebar">
 
-<h6><a href="#g-Arrays &#x2F; Lists">Arrays &#x2F; Lists</a></h6>
-<ul>
+<h6><a href="#g-ArraysLists">Arrays &#x2F; Lists</a></h6>
+<ul class="list-unstyled">
   <li><a href="#f-all">
     <span class="name">all</span>
     
@@ -27,15 +31,15 @@
   </a></li>
   <li><a href="#f-append">
     <span class="name">append</span>
-    <span class="alias">++</span>
+    
   </a></li>
   <li><a href="#f-at">
     <span class="name">at</span>
-    <span class="alias">!!</span><span class="alias">AT</span>
+    
   </a></li>
   <li><a href="#f-break_">
     <span class="name">break_</span>
-    <span class="alias">break</span>
+    
   </a></li>
   <li><a href="#f-concat">
     <span class="name">concat</span>
@@ -47,19 +51,19 @@
   </a></li>
   <li><a href="#f-cons">
     <span class="name">cons</span>
-    <span class="alias">:</span>
-  </a></li>
-  <li><a href="#f-delete_">
-    <span class="name">delete_</span>
-    <span class="alias">delete</span>
+    
   </a></li>
   <li><a href="#f-deleteBy">
     <span class="name">deleteBy</span>
     
   </a></li>
+  <li><a href="#f-delete_">
+    <span class="name">delete_</span>
+    
+  </a></li>
   <li><a href="#f-difference">
     <span class="name">difference</span>
-    <span class="alias">\\</span>
+    
   </a></li>
   <li><a href="#f-drop">
     <span class="name">drop</span>
@@ -99,11 +103,11 @@
   </a></li>
   <li><a href="#f-foldl">
     <span class="name">foldl</span>
-    <span class="alias">foldl&#39;</span>
+    
   </a></li>
   <li><a href="#f-foldl1">
     <span class="name">foldl1</span>
-    <span class="alias">foldl1&#39;</span>
+    
   </a></li>
   <li><a href="#f-foldr">
     <span class="name">foldr</span>
@@ -167,7 +171,7 @@
   </a></li>
   <li><a href="#f-isNull">
     <span class="name">isNull</span>
-    <span class="alias">null_</span>
+    
   </a></li>
   <li><a href="#f-isPrefixOf">
     <span class="name">isPrefixOf</span>
@@ -255,6 +259,10 @@
   </a></li>
   <li><a href="#f-scanr1">
     <span class="name">scanr1</span>
+    
+  </a></li>
+  <li><a href="#f-select">
+    <span class="name">select</span>
     
   </a></li>
   <li><a href="#f-sort">
@@ -351,10 +359,14 @@
   </a></li>
 </ul>
 <h6><a href="#g-Boolean">Boolean</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-AND">
     <span class="name">AND</span>
-    <span class="alias">&amp;&amp;</span>
+    
+  </a></li>
+  <li><a href="#f-OR">
+    <span class="name">OR</span>
+    
   </a></li>
   <li><a href="#f-bool">
     <span class="name">bool</span>
@@ -364,13 +376,9 @@
     <span class="name">not</span>
     
   </a></li>
-  <li><a href="#f-OR">
-    <span class="name">OR</span>
-    <span class="alias">||</span>
-  </a></li>
 </ul>
 <h6><a href="#g-Characters">Characters</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-isAsciiLetter">
     <span class="name">isAsciiLetter</span>
     
@@ -381,7 +389,7 @@
   </a></li>
 </ul>
 <h6><a href="#g-Comparisons">Comparisons</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-compare">
     <span class="name">compare</span>
     
@@ -392,23 +400,23 @@
   </a></li>
   <li><a href="#f-eq">
     <span class="name">eq</span>
-    <span class="alias">==</span><span class="alias">EQ</span>
+    
   </a></li>
   <li><a href="#f-gt">
     <span class="name">gt</span>
-    <span class="alias">&gt;</span><span class="alias">GT</span>
+    
   </a></li>
   <li><a href="#f-gte">
     <span class="name">gte</span>
-    <span class="alias">&gt;=</span><span class="alias">GTE</span>
+    
   </a></li>
   <li><a href="#f-lt">
     <span class="name">lt</span>
-    <span class="alias">&lt;</span><span class="alias">LT</span>
+    
   </a></li>
   <li><a href="#f-lte">
     <span class="name">lte</span>
-    <span class="alias">&lt;=</span><span class="alias">LTE</span>
+    
   </a></li>
   <li><a href="#f-max">
     <span class="name">max</span>
@@ -420,11 +428,11 @@
   </a></li>
   <li><a href="#f-neq">
     <span class="name">neq</span>
-    <span class="alias">&#x2F;=</span><span class="alias">NEQ</span>
+    
   </a></li>
 </ul>
-<h6><a href="#g-Control flow">Control flow</a></h6>
-<ul>
+<h6><a href="#g-Controlflow">Control flow</a></h6>
+<ul class="list-unstyled">
   <li><a href="#f-pipe">
     <span class="name">pipe</span>
     
@@ -435,7 +443,15 @@
   </a></li>
 </ul>
 <h6><a href="#g-Either">Either</a></h6>
-<ul>
+<ul class="list-unstyled">
+  <li><a href="#f-Left">
+    <span class="name">Left</span>
+    
+  </a></li>
+  <li><a href="#f-Right">
+    <span class="name">Right</span>
+    
+  </a></li>
   <li><a href="#f-either">
     <span class="name">either</span>
     
@@ -456,10 +472,6 @@
     <span class="name">isRight</span>
     
   </a></li>
-  <li><a href="#f-Left">
-    <span class="name">Left</span>
-    
-  </a></li>
   <li><a href="#f-lefts">
     <span class="name">lefts</span>
     
@@ -468,24 +480,20 @@
     <span class="name">partitionEithers</span>
     
   </a></li>
-  <li><a href="#f-Right">
-    <span class="name">Right</span>
-    
-  </a></li>
   <li><a href="#f-rights">
     <span class="name">rights</span>
     
   </a></li>
 </ul>
 <h6><a href="#g-Functions">Functions</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-apply">
     <span class="name">apply</span>
-    <span class="alias">$</span>
+    
   </a></li>
   <li><a href="#f-compose">
     <span class="name">compose</span>
-    <span class="alias">.</span>
+    
   </a></li>
   <li><a href="#f-compose2">
     <span class="name">compose2</span>
@@ -493,7 +501,7 @@
   </a></li>
   <li><a href="#f-const">
     <span class="name">const</span>
-    <span class="alias">const_</span><span class="alias">constant</span>
+    
   </a></li>
   <li><a href="#f-flip">
     <span class="name">flip</span>
@@ -513,7 +521,7 @@
   </a></li>
 </ul>
 <h6><a href="#g-Maybe">Maybe</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-catMaybes">
     <span class="name">catMaybes</span>
     
@@ -548,7 +556,7 @@
   </a></li>
 </ul>
 <h6><a href="#g-Numbers">Numbers</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-abs">
     <span class="name">abs</span>
     
@@ -563,7 +571,7 @@
   </a></li>
   <li><a href="#f-add">
     <span class="name">add</span>
-    <span class="alias">+</span><span class="alias">ADD</span><span class="alias">plus</span><span class="alias">PLUS</span>
+    
   </a></li>
   <li><a href="#f-asin">
     <span class="name">asin</span>
@@ -615,7 +623,7 @@
   </a></li>
   <li><a href="#f-frac">
     <span class="name">frac</span>
-    <span class="alias">&#x2F;</span>
+    
   </a></li>
   <li><a href="#f-gcd">
     <span class="name">gcd</span>
@@ -639,7 +647,7 @@
   </a></li>
   <li><a href="#f-mul">
     <span class="name">mul</span>
-    <span class="alias">*</span><span class="alias">MUL</span><span class="alias">times</span><span class="alias">TIMES</span>
+    
   </a></li>
   <li><a href="#f-negate">
     <span class="name">negate</span>
@@ -651,7 +659,7 @@
   </a></li>
   <li><a href="#f-pow">
     <span class="name">pow</span>
-    <span class="alias">**</span><span class="alias">^</span><span class="alias">^^</span>
+    
   </a></li>
   <li><a href="#f-properFraction">
     <span class="name">properFraction</span>
@@ -695,7 +703,7 @@
   </a></li>
   <li><a href="#f-sub">
     <span class="name">sub</span>
-    <span class="alias">-</span><span class="alias">SUB</span><span class="alias">minus</span><span class="alias">MINUS</span><span class="alias">subtract</span>
+    
   </a></li>
   <li><a href="#f-tan">
     <span class="name">tan</span>
@@ -711,14 +719,14 @@
   </a></li>
 </ul>
 <h6><a href="#g-Objects">Objects</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-keys">
     <span class="name">keys</span>
     
   </a></li>
 </ul>
 <h6><a href="#g-Streams">Streams</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-consume">
     <span class="name">consume</span>
     
@@ -745,11 +753,11 @@
   </a></li>
   <li><a href="#f-stream">
     <span class="name">stream</span>
-    <span class="alias">lazy</span>
+    
   </a></li>
 </ul>
 <h6><a href="#g-Strings">Strings</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-lines">
     <span class="name">lines</span>
     
@@ -768,7 +776,7 @@
   </a></li>
 </ul>
 <h6><a href="#g-Tuples">Tuples</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-fst">
     <span class="name">fst</span>
     
@@ -779,31 +787,31 @@
   </a></li>
   <li><a href="#f-tuple">
     <span class="name">tuple</span>
-    <span class="alias">,</span>
+    
   </a></li>
   <li><a href="#f-tuple3">
     <span class="name">tuple3</span>
-    <span class="alias">,,</span>
+    
   </a></li>
   <li><a href="#f-tuple4">
     <span class="name">tuple4</span>
-    <span class="alias">,,,</span>
+    
   </a></li>
   <li><a href="#f-tuple5">
     <span class="name">tuple5</span>
-    <span class="alias">,,,,</span>
+    
   </a></li>
   <li><a href="#f-tuple6">
     <span class="name">tuple6</span>
-    <span class="alias">,,,,,</span>
+    
   </a></li>
   <li><a href="#f-tuple7">
     <span class="name">tuple7</span>
-    <span class="alias">,,,,,,</span>
+    
   </a></li>
 </ul>
 <h6><a href="#g-Types">Types</a></h6>
-<ul>
+<ul class="list-unstyled">
   <li><a href="#f-isArray">
     <span class="name">isArray</span>
     
@@ -830,840 +838,2757 @@
 
 <div class="content">
 
-<h1 id="g-Arrays &#x2F; Lists">Arrays &#x2F; Lists</h1>
+<h1>nodash 0.7.2 <small>api documentation</small></h1>
 
 
-<h2 id="f-all">all</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-and">and</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-any">any</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-append">append</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-at">at</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-break_">break_</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-concat">concat</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-concatMap">concatMap</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-cons">cons</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-delete_">delete_</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-deleteBy">deleteBy</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-difference">difference</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-drop">drop</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-dropWhile">dropWhile</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-elem">elem</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-elemIndex">elemIndex</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-elemIndices">elemIndices</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-filter">filter</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-find">find</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-findIndex">findIndex</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-findIndices">findIndices</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-foldl">foldl</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-foldl1">foldl1</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-foldr">foldr</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-foldr1">foldr1</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-group">group</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-groupBy">groupBy</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-head">head</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-heads">heads</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-indexOf">indexOf</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-init">init</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-inits">inits</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-insert">insert</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-insertBy">insertBy</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-intercalate">intercalate</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-intersect">intersect</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-intersperse">intersperse</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-isInfixOf">isInfixOf</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-isNull">isNull</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-isPrefixOf">isPrefixOf</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-isSuffixOf">isSuffixOf</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-last">last</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-lasts">lasts</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-length">length</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-lookup">lookup</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-map">map</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-maximum">maximum</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-maximumBy">maximumBy</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-minimum">minimum</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-minimumBy">minimumBy</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-notElem">notElem</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-nub">nub</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-or">or</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-partition">partition</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-product">product</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-replicate">replicate</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-reverse">reverse</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-scanl">scanl</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-scanl1">scanl1</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-scanr">scanr</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-scanr1">scanr1</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-sort">sort</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-sortBy">sortBy</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-span">span</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-splitAt">splitAt</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-sum">sum</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tail">tail</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tails">tails</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-take">take</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-takeWhile">takeWhile</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-transpose">transpose</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-union">union</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zip">zip</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zip3">zip3</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zip4">zip4</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zip5">zip5</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zip6">zip6</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zip7">zip7</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zipWith">zipWith</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zipWith3">zipWith3</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zipWith4">zipWith4</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zipWith5">zipWith5</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zipWith6">zipWith6</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-zipWith7">zipWith7</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-
-<h1 id="g-Boolean">Boolean</h1>
+<h2 id="g-ArraysLists">Arrays &#x2F; Lists</h1>
 
 
-<h2 id="f-AND">AND</h2>
+<h3 id="f-all">all</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-bool">bool</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-not">not</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-OR">OR</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_all</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (!p(xs[i])) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+</pre>
 </div>
 
-<h1 id="g-Characters">Characters</h1>
-
-
-<h2 id="f-isAsciiLetter">isAsciiLetter</h2>
+<h3 id="f-and">and</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-isDigit">isDigit</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+foldl(AND, <span class="hljs-literal">true</span>)
+</pre>
 </div>
 
-<h1 id="g-Comparisons">Comparisons</h1>
+<h3 id="f-any">any</h2>
+<div class="section">
 
-
-<h2 id="f-compare">compare</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-comparing">comparing</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-eq">eq</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-gt">gt</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-gte">gte</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-lt">lt</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-lte">lte</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-max">max</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-min">min</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-neq">neq</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_any</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (p(xs[i])) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+</pre>
 </div>
 
-<h1 id="g-Control flow">Control flow</h1>
+<h3 id="f-append">append</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_append</span>(<span class="hljs-params">xs, ys</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs) || isStream(ys)) {
+    xs = Nodash.stream(xs);
+    <span class="hljs-keyword">if</span> (isInfinite(xs)) {
+      <span class="hljs-keyword">return</span> xs;
+    }
+    ys = Nodash.stream(ys);
+    <span class="hljs-keyword">var</span> atSecondStream = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (atSecondStream) {
+        <span class="hljs-keyword">return</span> ys();
+      }
+      <span class="hljs-keyword">var</span> r = xs();
+      <span class="hljs-keyword">if</span> (r == eos) {
+        atSecondStream = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> ys();
+      }
+      <span class="hljs-keyword">return</span> r;
+    });
+  }
+  <span class="hljs-keyword">if</span> (isString(xs)) {
+    <span class="hljs-keyword">return</span> xs + ys;
+  }
+  <span class="hljs-keyword">var</span> zs = [];
+  [].push.apply(zs, xs);
+  [].push.apply(zs, ys);
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-at">at</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_at</span>(<span class="hljs-params">xs, ix</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> x;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; ix; i++) {
+      <span class="hljs-keyword">if</span> (xs() === eos) {
+        <span class="hljs-keyword">return</span> x;
+      }
+    }
+    x = xs();
+    <span class="hljs-keyword">return</span> x === eos ? <span class="hljs-literal">undefined</span> : x;
+  }
+  <span class="hljs-keyword">return</span> xs[ix];
+}
+</pre>
+</div>
+
+<h3 id="f-break_">break_</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_break</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; !p(xs[i])) {
+    i++;
+  }
+  <span class="hljs-keyword">return</span> [ xs.slice(<span class="hljs-number">0</span>, i), xs.slice(i) ];
+}
+</pre>
+</div>
+
+<h3 id="f-concat">concat</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_concat</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isString(xs[<span class="hljs-number">0</span>])) {
+    <span class="hljs-keyword">return</span> xs.join(<span class="hljs-string">''</span>);
+  }
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">var</span> ks = keys(xs);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; ks.length; i++) {
+    [].push.apply(zs, xs[ks[i]]);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-concatMap">concatMap</h2>
+<div class="section">
+
+<pre>
+compose2(concat, map)
+</pre>
+</div>
+
+<h3 id="f-cons">cons</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cons</span>(<span class="hljs-params">x, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> consumedFirst = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">return</span> (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (!consumedFirst) {
+        consumedFirst = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> x;
+      }
+      <span class="hljs-keyword">return</span> xs();
+    });
+  }
+  <span class="hljs-keyword">var</span> zs = [x];
+  [].push.apply(zs, xs);
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-deleteBy">deleteBy</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_deleteBy</span>(<span class="hljs-params">p, x, xs</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (p(x, xs[i])) {
+      <span class="hljs-keyword">return</span> Nodash.append(xs.slice(<span class="hljs-number">0</span>,i), xs.slice(i+<span class="hljs-number">1</span>));
+    }
+  }
+  <span class="hljs-keyword">return</span> xs;
+}
+</pre>
+</div>
+
+<h3 id="f-delete_">delete_</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_delete</span>(<span class="hljs-params">x, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> i = xs.indexOf(x);
+  <span class="hljs-keyword">if</span> (i &gt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> Nodash.append(xs.slice(<span class="hljs-number">0</span>,i), xs.slice(i+<span class="hljs-number">1</span>));
+  }
+  <span class="hljs-keyword">return</span> xs;
+}
+</pre>
+</div>
+
+<h3 id="f-difference">difference</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_difference</span>(<span class="hljs-params">xs, ys</span>) </span>{
+  <span class="hljs-keyword">var</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+  <span class="hljs-keyword">var</span> i;
+  <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; ys.length; i++) {
+    set.add(ys[i]);
+  }
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (!set.has(xs[i])) {
+      zs.push(xs[i]);
+    }
+  }
+  <span class="hljs-keyword">return</span> isString(xs) ? listToString(zs) : zs;
+}
+</pre>
+</div>
+
+<h3 id="f-drop">drop</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_drop</span>(<span class="hljs-params">n, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+      xs();
+    }
+    <span class="hljs-keyword">return</span> xs;
+  }
+  <span class="hljs-keyword">return</span> xs.slice(n);
+}
+</pre>
+</div>
+
+<h3 id="f-dropWhile">dropWhile</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_dropWhile</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> x;
+    <span class="hljs-keyword">while</span> ((x = xs()) !== eos &amp;&amp; p(x)) {
+    }
+    <span class="hljs-keyword">return</span> Nodash.cons(x, xs);
+  }
+  <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
+    i++;
+  }
+  <span class="hljs-keyword">return</span> xs.slice(i);
+}
+</pre>
+</div>
+
+<h3 id="f-elem">elem</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elem</span>(<span class="hljs-params">x, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> z;
+    <span class="hljs-keyword">while</span> ((z = xs()) !== eos) {
+      <span class="hljs-keyword">if</span> (Nodash.eq(z, x)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (Nodash.eq(xs[i], x)) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-elemIndex">elemIndex</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">x, xs</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.findIndex(Nodash.eq(x), xs);
+}
+</pre>
+</div>
+
+<h3 id="f-elemIndices">elemIndices</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">x, xs</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.findIndices(Nodash.eq(x), xs);
+}
+</pre>
+</div>
+
+<h3 id="f-filter">filter</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_filter</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">return</span> (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> x;
+      <span class="hljs-keyword">while</span> ((x = xs()) !== eos) {
+        <span class="hljs-keyword">if</span> (p(x)) {
+          <span class="hljs-keyword">return</span> x;
+        }
+      }
+      <span class="hljs-keyword">return</span> eos;
+    });
+  }
+  <span class="hljs-keyword">var</span> ys;
+  <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
+    ys = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      <span class="hljs-keyword">if</span> (p(xs[i])) {
+        ys.push(xs[i]);
+      }
+    }
+    <span class="hljs-keyword">return</span> isString(xs) ? listToString(ys) : ys;
+  }
+  ys = {};
+  <span class="hljs-keyword">var</span> ks = keys(xs);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; ks.length; j++) {
+    <span class="hljs-keyword">if</span> (p(xs[ks[j]])) {
+      ys[ks[j]] = xs[ks[j]];
+    }
+  }
+  <span class="hljs-keyword">return</span> ys;
+}
+</pre>
+</div>
+
+<h3 id="f-find">find</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_find</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (p(xs[i])) {
+      <span class="hljs-keyword">return</span> xs[i];
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-findIndex">findIndex</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (p(xs[i])) {
+      <span class="hljs-keyword">return</span> i;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-findIndices">findIndices</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (p(xs[i])) {
+      zs.push(i);
+    }
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-foldl">foldl</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldl</span>(<span class="hljs-params">f, x, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> streaming = isStream(xs);
+  <span class="hljs-keyword">if</span> (streaming) {
+    xs = Nodash.consume(xs);
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    x = f(x, xs[i]);
+  }
+  <span class="hljs-keyword">if</span> (isArray(x) &amp;&amp; streaming) {
+    <span class="hljs-keyword">return</span> Nodash.stream(x);
+  }
+  <span class="hljs-keyword">return</span> x;
+}
+</pre>
+</div>
+
+<h3 id="f-foldl1">foldl1</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldl1</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> streaming = isStream(xs);
+  <span class="hljs-keyword">if</span> (streaming) {
+    xs = Nodash.consume(xs);
+  }
+  <span class="hljs-keyword">var</span> x = xs[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; xs.length; i++) {
+    x = f(x, xs[i]);
+  }
+  <span class="hljs-keyword">if</span> (isArray(x) &amp;&amp; streaming) {
+    <span class="hljs-keyword">return</span> Nodash.stream(x);
+  }
+  <span class="hljs-keyword">return</span> x;
+}
+</pre>
+</div>
+
+<h3 id="f-foldr">foldr</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldr</span>(<span class="hljs-params">f, x, xs</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+    x = f(xs[i], x);
+  }
+  <span class="hljs-keyword">return</span> x;
+}
+</pre>
+</div>
+
+<h3 id="f-foldr1">foldr1</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldr1</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> x = xs[xs.length - <span class="hljs-number">1</span>];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+    x = f(xs[i], x);
+  }
+  <span class="hljs-keyword">return</span> x;
+}
+</pre>
+</div>
+
+<h3 id="f-group">group</h2>
+<div class="section">
+
+<pre>
+groupBy(eq)
+</pre>
+</div>
+
+<h3 id="f-groupBy">groupBy</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_groupBy</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (xs.length === <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> [];
+  }
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">var</span> current = [xs[<span class="hljs-number">0</span>]];
+  <span class="hljs-keyword">var</span> last = xs[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (p(xs[i], last)) {
+      current.push(xs[i]);
+    } <span class="hljs-keyword">else</span> {
+      zs.push(current);
+      current = [xs[i]];
+    }
+    last = xs[i];
+  }
+  zs.push(current);
+  <span class="hljs-keyword">return</span> isString(xs) ? Nodash.map(listToString, zs) : zs;
+}
+</pre>
+</div>
+
+<h3 id="f-head">head</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_head</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> x = xs();
+    <span class="hljs-keyword">return</span> x === eos ? <span class="hljs-literal">undefined</span> : x;
+  }
+  <span class="hljs-keyword">return</span> xs[<span class="hljs-number">0</span>];
+}
+</pre>
+</div>
+
+<h3 id="f-heads">heads</h2>
+<div class="section">
+
+<pre>
+map(head)
+</pre>
+</div>
+
+<h3 id="f-indexOf">indexOf</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">indexOf</span>(<span class="hljs-params">word, string</span>) </span>{
+  <span class="hljs-keyword">var</span> m = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">var</span> table = [];
+
+  <span class="hljs-keyword">var</span> pos = <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">var</span> cnd = <span class="hljs-number">0</span>;
+
+  table[<span class="hljs-number">0</span>] = -<span class="hljs-number">1</span>;
+  table[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
+
+  <span class="hljs-comment">// build the table for KMP. This takes `O(word.length)` steps.</span>
+  <span class="hljs-keyword">while</span> (pos &lt; word.length) {
+    <span class="hljs-keyword">if</span> (word[pos - <span class="hljs-number">1</span>] == word[cnd]) {
+      cnd = cnd + <span class="hljs-number">1</span>;
+      table[pos] = cnd;
+      pos = pos + <span class="hljs-number">1</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cnd &gt; <span class="hljs-number">0</span>) {
+      cnd = table[cnd];
+    } <span class="hljs-keyword">else</span> {
+      table[pos] = <span class="hljs-number">0</span>;
+      pos = pos + <span class="hljs-number">1</span>;
+    }
+  }
+  
+  <span class="hljs-comment">// scan the string. This takes `O(string.length)` steps.</span>
+  <span class="hljs-keyword">while</span> (m + i &lt; string.length) {
+    <span class="hljs-keyword">if</span> (word[i] == string[m + i]) {
+      <span class="hljs-keyword">if</span> (i == word.length - <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">return</span> m;
+      }
+      i = i + <span class="hljs-number">1</span>;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">if</span> (table[i] &gt; -<span class="hljs-number">1</span>) {
+        m = m + i - table[i];
+        i = table[i];
+      } <span class="hljs-keyword">else</span> {
+        i = <span class="hljs-number">0</span>;
+        m = m + <span class="hljs-number">1</span>;
+      }
+    }
+  }
+  <span class="hljs-comment">// Returns -1 if the subsequence was not found in the sequence.</span>
+  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-init">init</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_init</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    checkFinite(xs);
+    <span class="hljs-keyword">var</span> a = xs(), b;
+    <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      b = xs();
+      <span class="hljs-keyword">if</span> (b === eos) {
+        <span class="hljs-keyword">return</span> eos;
+      }
+      <span class="hljs-keyword">var</span> r = a;
+      a = b;
+      <span class="hljs-keyword">return</span> r;
+    });
+  }
+  <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">0</span>, xs.length - <span class="hljs-number">1</span>);
+}
+</pre>
+</div>
+
+<h3 id="f-inits">inits</h2>
+<div class="section">
+
+<pre>
+map(inits)
+</pre>
+</div>
+
+<h3 id="f-insert">insert</h2>
+<div class="section">
+
+<pre>
+insertBy(compare)
+</pre>
+</div>
+
+<h3 id="f-insertBy">insertBy</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_insertBy</span>(<span class="hljs-params">f, x, xs</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (f(x, xs[i]) &lt;= <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">return</span> Nodash.concat([xs.slice(<span class="hljs-number">0</span>,i), x, xs.slice(i)]);
+    }
+  }
+  <span class="hljs-keyword">return</span> Nodash.append(xs, x);
+}
+</pre>
+</div>
+
+<h3 id="f-intercalate">intercalate</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_intercalate</span>(<span class="hljs-params">x, xs</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.concat(Nodash.intersperse(x, xs));
+}
+</pre>
+</div>
+
+<h3 id="f-intersect">intersect</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_intersect</span>(<span class="hljs-params">xs, ys</span>) </span>{
+  <span class="hljs-keyword">var</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">var</span> i;
+  <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; ys.length; i++) {
+    set.add(ys[i]);
+  }
+  <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (set.has(xs[i])) {
+      zs.push(xs[i]);
+    }
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-intersperse">intersperse</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_intersperse</span>(<span class="hljs-params">x, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (xs.length === <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> [];
+  }
+  <span class="hljs-keyword">var</span> z = [xs[<span class="hljs-number">0</span>]];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; xs.length; i++) {
+    z.push(x);
+    z.push(xs[i]);
+  }
+  <span class="hljs-keyword">return</span> z;
+}
+</pre>
+</div>
+
+<h3 id="f-isInfixOf">isInfixOf</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isInfixOf</span>(<span class="hljs-params">infix, string</span>) </span>{
+    <span class="hljs-keyword">return</span> indexOf(infix, string) &gt;= <span class="hljs-number">0</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-isNull">isNull</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_null</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">return</span> xs() === eos;
+  }
+  <span class="hljs-keyword">return</span> xs.length === <span class="hljs-number">0</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-isPrefixOf">isPrefixOf</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isPrefixOf</span>(<span class="hljs-params">prefix, string</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(prefix)) {
+    prefix = Nodash.consume(prefix);
+  }
+  <span class="hljs-keyword">if</span> (isStream(string)) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; prefix.length; i++) {
+      <span class="hljs-keyword">if</span> (prefix[i] !== string()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; prefix.length; j++) {
+    <span class="hljs-keyword">if</span> (string[j] !== prefix[j]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-isSuffixOf">isSuffixOf</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSuffixOf</span>(<span class="hljs-params">suffix, string</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(suffix)) {
+    suffix = Nodash.consume(suffix);
+  }
+  <span class="hljs-keyword">if</span> (isStream(string)) {
+    string = Nodash.consume(string);
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; suffix.length; i++) {
+    <span class="hljs-keyword">if</span> (string[string.length - suffix.length + i] !== suffix[i]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-last">last</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_last</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    checkFinite(xs);
+    <span class="hljs-keyword">var</span> x, z;
+    <span class="hljs-keyword">while</span> ((x = xs()) !== eos) {
+      z = x;
+    }
+    <span class="hljs-keyword">return</span> z;
+  }
+  <span class="hljs-keyword">return</span> xs[xs.length - <span class="hljs-number">1</span>];
+}
+</pre>
+</div>
+
+<h3 id="f-lasts">lasts</h2>
+<div class="section">
+
+<pre>
+map(lasts)
+</pre>
+</div>
+
+<h3 id="f-length">length</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_length</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">if</span> (isInfinite(xs)) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">Infinity</span>;
+    }
+    <span class="hljs-keyword">var</span> n = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (xs() !== eos) {
+      n += <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> n;
+  }
+  <span class="hljs-keyword">return</span> xs.length;
+}
+</pre>
+</div>
+
+<h3 id="f-lookup">lookup</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lookup</span>(<span class="hljs-params">x, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isArray(xs)) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      <span class="hljs-keyword">if</span> (xs[i] &amp;&amp; Nodash.eq(xs[i][<span class="hljs-number">0</span>], x)) {
+        <span class="hljs-keyword">return</span> xs[i][<span class="hljs-number">1</span>];
+      }
+    }
+  }
+  <span class="hljs-keyword">return</span> xs[x];
+}
+</pre>
+</div>
+
+<h3 id="f-map">map</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_map</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">return</span> (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> x = xs();
+      <span class="hljs-keyword">if</span> (x === eos) {
+        <span class="hljs-keyword">return</span> eos;
+      }
+      <span class="hljs-keyword">return</span> f(x);
+    });
+  }
+  <span class="hljs-keyword">var</span> ys;
+  <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
+    ys = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      ys.push(f(xs[i]));
+    }
+    <span class="hljs-keyword">return</span> isString(xs) ? listToString(ys) : ys;
+  }
+  ys = {};
+  <span class="hljs-keyword">var</span> ks = keys(xs);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; ks.length; j++) {
+    ys[ks[j]] = f(xs[ks[j]], ks[j]);
+  }
+  <span class="hljs-keyword">return</span> ys;
+}
+</pre>
+</div>
+
+<h3 id="f-maximum">maximum</h2>
+<div class="section">
+
+<pre>
+foldl(max, -<span class="hljs-literal">Infinity</span>)
+</pre>
+</div>
+
+<h3 id="f-maximumBy">maximumBy</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_maximumBy</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.foldl1(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">if</span> (f(a, b) &gt; <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">return</span> a;
+    }
+    <span class="hljs-keyword">return</span> b;
+  }, xs);
+}
+</pre>
+</div>
+
+<h3 id="f-minimum">minimum</h2>
+<div class="section">
+
+<pre>
+foldl(min, +<span class="hljs-literal">Infinity</span>)
+</pre>
+</div>
+
+<h3 id="f-minimumBy">minimumBy</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_minimumBy</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.foldl1(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">if</span> (f(a, b) &lt; <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">return</span> a;
+    }
+    <span class="hljs-keyword">return</span> b;
+  }, xs);
+}
+</pre>
+</div>
+
+<h3 id="f-notElem">notElem</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_notElem</span>(<span class="hljs-params">x, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> z;
+    <span class="hljs-keyword">while</span> ((z = xs()) !== eos) {
+      <span class="hljs-keyword">if</span> (Nodash.eq(z, x)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (Nodash.eq(xs[i], x)) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-nub">nub</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_nub</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">var</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    <span class="hljs-keyword">if</span> (!set.has(xs[i])) {
+      zs.push(xs[i]);
+      set.add(xs[i]);
+    }
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-or">or</h2>
+<div class="section">
+
+<pre>
+foldl(OR, <span class="hljs-literal">false</span>)
+</pre>
+</div>
+
+<h3 id="f-partition">partition</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_partition</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> <span class="hljs-keyword">as</span> = [];
+  <span class="hljs-keyword">var</span> bs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    (p(xs[i]) ? <span class="hljs-keyword">as</span> : bs).push(xs[i]);
+  }
+  <span class="hljs-keyword">if</span> (isString(xs)) {
+    <span class="hljs-keyword">return</span> Nodash.map(listToString, [ <span class="hljs-keyword">as</span>, bs ]);
+  }
+  <span class="hljs-keyword">return</span> [ <span class="hljs-keyword">as</span>, bs ];
+}
+</pre>
+</div>
+
+<h3 id="f-product">product</h2>
+<div class="section">
+
+<pre>
+foldl(MUL, <span class="hljs-number">1</span>)
+</pre>
+</div>
+
+<h3 id="f-replicate">replicate</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_replicate</span>(<span class="hljs-params">n, x</span>) </span>{
+  <span class="hljs-keyword">var</span> xs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+    xs.push(x);
+  }
+  <span class="hljs-keyword">return</span> xs;
+}
+</pre>
+</div>
+
+<h3 id="f-reverse">reverse</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_reverse</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    checkFinite(xs);
+    xs = Nodash.consume(xs);
+    <span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> eos;
+      }
+      <span class="hljs-keyword">return</span> xs[i--];
+    });
+  }
+  <span class="hljs-keyword">var</span> zs = isString(xs) ? <span class="hljs-string">""</span>.split.call(xs, <span class="hljs-string">''</span>) : [].slice.call(xs);
+  zs.reverse();
+  <span class="hljs-keyword">return</span> isString(xs) ? zs.join(<span class="hljs-string">''</span>) : zs;
+}
+</pre>
+</div>
+
+<h3 id="f-scanl">scanl</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanl</span>(<span class="hljs-params">f, x, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">return</span> Nodash.cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> r = xs();
+      <span class="hljs-keyword">if</span> (r === eos) {
+        <span class="hljs-keyword">return</span> eos;
+      }
+      x = f(x, r);
+      <span class="hljs-keyword">return</span> x;
+    }));
+  }
+  <span class="hljs-keyword">var</span> zs = [x];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    x = f(x, xs[i]);
+    zs.push(x);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-scanl1">scanl1</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanl1</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">return</span> Nodash.scanl(f, xs(), xs);
+  }
+  <span class="hljs-keyword">var</span> x = xs[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">var</span> zs = [x];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; xs.length; i++) {
+    x = f(x, xs[i]);
+    zs.push(x);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-scanr">scanr</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanr</span>(<span class="hljs-params">f, x, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> zs = [x];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+    x = f(xs[i], x);
+    zs.unshift(x);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-scanr1">scanr1</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanr1</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> x = xs[xs.length - <span class="hljs-number">1</span>];
+  <span class="hljs-keyword">var</span> zs = [x];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+    x = f(xs[i], x);
+    zs.unshift(x);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-select">select</h2>
+<div class="section">
+<p>select = flip (!!)</p>
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_select</span>(<span class="hljs-params">path, object</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.foldl(Nodash.at, object, path.split(<span class="hljs-regexp">/\./</span>));
+}
+</pre>
+</div>
+
+<h3 id="f-sort">sort</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sort</span>(<span class="hljs-params">xs</span>) </span>{
+  checkFinite(xs);
+  <span class="hljs-keyword">if</span> (xs.length &lt;= <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">return</span> xs;
+  }
+  <span class="hljs-keyword">var</span> zs = isString(xs) ? <span class="hljs-string">""</span>.split.call(xs, <span class="hljs-string">''</span>) : [].slice.call(xs);
+  <span class="hljs-keyword">if</span> (isNumber(zs[<span class="hljs-number">0</span>])) {
+    zs.sort(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a - b; });
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isString(zs[<span class="hljs-number">0</span>])) {
+    zs.sort(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a.localeCompare(b); });
+  } <span class="hljs-keyword">else</span> {
+    zs.sort(Nodash.compare);
+  }
+  <span class="hljs-keyword">return</span> isString(xs) ? zs.join(<span class="hljs-string">''</span>) : zs;
+}
+</pre>
+</div>
+
+<h3 id="f-sortBy">sortBy</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sortBy</span>(<span class="hljs-params">fn, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    checkFinite(xs);
+    xs = Nodash.consume(xs);
+  }
+  <span class="hljs-keyword">if</span> (xs.length &lt;= <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">return</span> xs;
+  }
+  <span class="hljs-keyword">var</span> yesItsAString = isString(xs);
+  <span class="hljs-keyword">var</span> zs = yesItsAString ? <span class="hljs-string">""</span>.split.call(xs, <span class="hljs-string">''</span>) : [].slice.call(xs);
+  zs.sort(fn);
+  <span class="hljs-keyword">return</span> yesItsAString ? zs.join(<span class="hljs-string">''</span>) : zs;
+}
+</pre>
+</div>
+
+<h3 id="f-span">span</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_span</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
+      i++;
+  }
+  <span class="hljs-keyword">return</span> [ xs.slice(<span class="hljs-number">0</span>, i), xs.slice(i) ];
+}
+</pre>
+</div>
+
+<h3 id="f-splitAt">splitAt</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_splitAt</span>(<span class="hljs-params">n, xs</span>) </span>{
+  <span class="hljs-keyword">return</span> [ xs.slice(<span class="hljs-number">0</span>, n), xs.slice(n) ];
+}
+</pre>
+</div>
+
+<h3 id="f-sum">sum</h2>
+<div class="section">
+
+<pre>
+foldl(ADD, <span class="hljs-number">0</span>)
+</pre>
+</div>
+
+<h3 id="f-tail">tail</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tail</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    xs();
+    <span class="hljs-keyword">return</span> xs;
+  }
+  <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">1</span>);
+}
+</pre>
+</div>
+
+<h3 id="f-tails">tails</h2>
+<div class="section">
+
+<pre>
+map(tails)
+</pre>
+</div>
+
+<h3 id="f-take">take</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_take</span>(<span class="hljs-params">n, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (i++ <span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attribute">n</span>) {
+        <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs</span>();
+      }
+      <span class="hljs-attribute">return</span> <span class="hljs-attribute">eos</span>;
+    });
+  }
+  <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">0</span>, <span class="hljs-attribute">n</span>);
+}</span></span>
+</pre>
+</div>
+
+<h3 id="f-takeWhile">takeWhile</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_takeWhile</span>(<span class="hljs-params">p, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> exhausted = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> x = xs();
+      <span class="hljs-keyword">if</span> (exhausted || x == eos || !p(x)) {
+        exhausted = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> eos;
+      }
+      <span class="hljs-keyword">return</span> x;
+    });
+  }
+  <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
+    i++;
+  }
+  <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">0</span>, i);
+}
+</pre>
+</div>
+
+<h3 id="f-transpose">transpose</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_transpose</span>(<span class="hljs-params">xss</span>) </span>{
+  <span class="hljs-keyword">if</span> (!isArray(xss)) {
+    <span class="hljs-keyword">var</span> zss = {};
+    <span class="hljs-keyword">var</span> ks = keys(xss);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> k = <span class="hljs-number">0</span>; k &lt; ks.length; k++) {
+      zss[xss[ks[k]]] = ks[k];
+    }
+    <span class="hljs-keyword">return</span> zss;
+  }
+  <span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">var</span> current;
+  <span class="hljs-keyword">do</span> {
+    current = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xss.length; i++) {
+      <span class="hljs-keyword">if</span> (xss[i][j] !== <span class="hljs-literal">undefined</span>) {
+        current.push(xss[i][j]);
+      }
+    }
+    j += <span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">while</span> (current.length &gt; <span class="hljs-number">0</span> &amp;&amp; zs.push(current));
+  <span class="hljs-keyword">if</span> (isString(xss[<span class="hljs-number">0</span>])) {
+    zs = Nodash.map(listToString, zs);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-union">union</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_union</span>(<span class="hljs-params">xs, ys</span>) </span>{
+  <span class="hljs-keyword">var</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">var</span> i;
+  <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+    zs.push(xs[i]);
+    set.add(xs[i]);
+  }
+  <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; ys.length; i++) {
+    <span class="hljs-keyword">if</span> (!set.has(ys[i])) {
+      zs.push(ys[i]);
+    }
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-zip">zip</h2>
+<div class="section">
+
+<pre>
+zipWith(tuple)
+</pre>
+</div>
+
+<h3 id="f-zip3">zip3</h2>
+<div class="section">
+
+<pre>
+zipWith3(tuple3)
+</pre>
+</div>
+
+<h3 id="f-zip4">zip4</h2>
+<div class="section">
+
+<pre>
+zipWith4(tuple4)
+</pre>
+</div>
+
+<h3 id="f-zip5">zip5</h2>
+<div class="section">
+
+<pre>
+zipWith5(tuple5)
+</pre>
+</div>
+
+<h3 id="f-zip6">zip6</h2>
+<div class="section">
+
+<pre>
+zipWith6(tuple6)
+</pre>
+</div>
+
+<h3 id="f-zip7">zip7</h2>
+<div class="section">
+
+<pre>
+zipWith7(tuple7)
+</pre>
+</div>
+
+<h3 id="f-zipWith">zipWith</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith</span>(<span class="hljs-params">f, as, bs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs)) {
+    <span class="hljs-keyword">as</span> = Nodash.stream(<span class="hljs-keyword">as</span>);
+    bs = Nodash.stream(bs);
+    <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">as</span>();
+      <span class="hljs-keyword">var</span> b = bs();
+      <span class="hljs-keyword">if</span> (a === eos || b === eos) {
+        <span class="hljs-keyword">return</span> eos;
+      }
+      <span class="hljs-keyword">return</span> f(a, b);
+    });
+  }
+  <span class="hljs-keyword">var</span> length = <span class="hljs-built_in">Math</span>.min(<span class="hljs-keyword">as</span>.length, bs.length);
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+    zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i]);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-zipWith3">zipWith3</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith3</span>(<span class="hljs-params">f, as, bs, cs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs) || isStream(cs)) {
+    <span class="hljs-keyword">as</span> = Nodash.stream(<span class="hljs-keyword">as</span>);
+    bs = Nodash.stream(bs);
+    cs = Nodash.stream(cs);
+    <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">as</span>();
+      <span class="hljs-keyword">var</span> b = bs();
+      <span class="hljs-keyword">var</span> c = cs();
+      <span class="hljs-keyword">if</span> (a === eos || b === eos || c === eos) {
+        <span class="hljs-keyword">return</span> eos;
+      }
+      <span class="hljs-keyword">return</span> f(a, b, c);
+    });
+  }
+  <span class="hljs-keyword">var</span> length = Nodash.minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length]);
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+    zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i]);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-zipWith4">zipWith4</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith4</span>(<span class="hljs-params">f, as, bs, cs, ds</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs) || isStream(cs) || isStream(ds)) {
+    <span class="hljs-keyword">as</span> = Nodash.stream(<span class="hljs-keyword">as</span>);
+    bs = Nodash.stream(bs);
+    cs = Nodash.stream(cs);
+    ds = Nodash.stream(ds);
+    <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">as</span>();
+      <span class="hljs-keyword">var</span> b = bs();
+      <span class="hljs-keyword">var</span> c = cs();
+      <span class="hljs-keyword">var</span> d = ds();
+      <span class="hljs-keyword">if</span> (a === eos || b === eos || c === eos || d === eos) {
+        <span class="hljs-keyword">return</span> eos;
+      }
+      <span class="hljs-keyword">return</span> f(a, b, c, d);
+    });
+  }
+  <span class="hljs-keyword">var</span> length = Nodash.minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length]);
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+    zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i]);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-zipWith5">zipWith5</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith5</span>(<span class="hljs-params">f, as, bs, cs, ds, es</span>) </span>{
+  <span class="hljs-keyword">var</span> length = Nodash.minimum([
+          <span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length, es.length]);
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+    zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i], es[i]);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-zipWith6">zipWith6</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith6</span>(<span class="hljs-params">f, as, bs, cs, ds, es, fs</span>) </span>{
+  <span class="hljs-keyword">var</span> length = Nodash.minimum([
+          <span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length, es.length, fs.length]);
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+    zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i], es[i], fs[i]);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-zipWith7">zipWith7</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith7</span>(<span class="hljs-params">f, as, bs, cs, ds, es, fs, gs</span>) </span>{
+  <span class="hljs-keyword">var</span> length = Nodash.minimum([
+          <span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length,
+          es.length, fs.length, gs.length]);
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+    zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i], es[i], fs[i], gs[i]);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
 
 
-<h2 id="f-pipe">pipe</h2>
+
+<h2 id="g-Boolean">Boolean</h1>
+
+
+<h3 id="f-AND">AND</h2>
+<div class="section">
+<h3 id="boolean-and-">Boolean &quot;and&quot;</h3>
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_AND</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a &amp;&amp; b; }
+</pre>
+</div>
+
+<h3 id="f-OR">OR</h2>
+<div class="section">
+<h3 id="boolean-or-">Boolean &quot;or&quot;</h3>
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_OR</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a || b; }
+</pre>
+</div>
+
+<h3 id="f-bool">bool</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_bool</span>(<span class="hljs-params">yes, no, bool</span>) </span>{
+  <span class="hljs-keyword">return</span> bool ? yes : no;
+}
+</pre>
+</div>
+
+<h3 id="f-not">not</h2>
+<div class="section">
+<h3 id="boolean-not-">Boolean &quot;not&quot;</h3>
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_not</span>(<span class="hljs-params">value</span>) </span>{ <span class="hljs-keyword">return</span> !value; }
+</pre>
+</div>
+
+
+
+<h2 id="g-Characters">Characters</h1>
+
+
+<h3 id="f-isAsciiLetter">isAsciiLetter</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[a-zA-Z]/</span>);
+}
+</pre>
+</div>
+
+<h3 id="f-isDigit">isDigit</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[0-9]/</span>);
+}
+</pre>
+</div>
+
+
+
+<h2 id="g-Comparisons">Comparisons</h1>
+
+
+<h3 id="f-compare">compare</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compare</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">typeof</span> a) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'string'</span>:
+    <span class="hljs-keyword">return</span> a.localeCompare(b);
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'object'</span>:
+    <span class="hljs-keyword">if</span> (isFunction(a.compareTo)) {
+      <span class="hljs-keyword">return</span> a.compareTo(b);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(a)) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">Math</span>.min(a.length, b.length); i++) {
+        <span class="hljs-keyword">var</span> r = Nodash.compare(a[i], b[i]);
+        <span class="hljs-keyword">if</span> (r !== <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> r;
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-keyword">return</span> a.toString().localeCompare(b.toString());
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'number'</span>:
+    <span class="hljs-keyword">return</span> Nodash.signum(a - b);
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-comparing">comparing</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_comparing</span>(<span class="hljs-params">f, a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.compare(f(a), f(b));
+}
+</pre>
+</div>
+
+<h3 id="f-eq">eq</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_eq</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">if</span> (a === b) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+  <span class="hljs-keyword">var</span> ta = <span class="hljs-keyword">typeof</span> a;
+  <span class="hljs-keyword">var</span> tb = <span class="hljs-keyword">typeof</span> b;
+  <span class="hljs-keyword">if</span> (ta !== tb) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+  <span class="hljs-keyword">if</span> (ta === <span class="hljs-string">'object'</span>) {
+    <span class="hljs-keyword">var</span> k = Nodash.union(keys(a), keys(b));
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; k.length; i++) {
+      <span class="hljs-keyword">if</span> (!Nodash.eq(a[k[i]], b[k[i]])) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-gt">gt</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gt</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.compare(a, b) &gt; <span class="hljs-number">0</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-gte">gte</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gte</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.compare(a, b) &gt;= <span class="hljs-number">0</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-lt">lt</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lt</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.compare(a, b) &lt; <span class="hljs-number">0</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-lte">lte</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lte</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> Nodash.compare(a, b) &lt;= <span class="hljs-number">0</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-max">max</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_max</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">if</span> (Nodash.gt(a, b)) {
+    <span class="hljs-keyword">return</span> a;
+  }
+  <span class="hljs-keyword">return</span> b;
+}
+</pre>
+</div>
+
+<h3 id="f-min">min</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_min</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">if</span> (Nodash.lt(a, b)) {
+    <span class="hljs-keyword">return</span> a;
+  }
+  <span class="hljs-keyword">return</span> b;
+}
+</pre>
+</div>
+
+<h3 id="f-neq">neq</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_neq</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> !Nodash.eq(a, b);
+}
+</pre>
+</div>
+
+
+
+<h2 id="g-Controlflow">Control flow</h1>
+
+
+<h3 id="f-pipe">pipe</h2>
 <div class="section">
 <p>pipe.</p>
 
-</div>
-<h2 id="f-until">until</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-
-<h1 id="g-Either">Either</h1>
-
-
-<h2 id="f-either">either</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-fromLeft">fromLeft</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-fromRight">fromRight</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-isLeft">isLeft</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-isRight">isRight</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-Left">Left</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-lefts">lefts</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-partitionEithers">partitionEithers</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-Right">Right</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-rights">rights</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_pipe</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> functions, intermediateResult, callback;
+  <span class="hljs-keyword">var</span> error = <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">if</span> (isArray(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>])) {
+    functions = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];
+    callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
+  } <span class="hljs-keyword">else</span> {
+    functions = <span class="hljs-built_in">arguments</span>;
+  }
+  <span class="hljs-keyword">if</span> (functions.length &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">if</span> (isFunction(functions[<span class="hljs-number">0</span>])) {
+      intermediateResult = functions[<span class="hljs-number">0</span>]();
+    } <span class="hljs-keyword">else</span> {
+      intermediateResult = functions[<span class="hljs-number">0</span>];
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; functions.length; i += <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">try</span> {
+        intermediateResult = functions[i](intermediateResult);
+      } <span class="hljs-keyword">catch</span> (err) {
+        error = err;
+      }
+    }
+  }
+  <span class="hljs-keyword">if</span> (isFunction(callback)) {
+    callback(error, intermediateResult);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error) {
+    <span class="hljs-keyword">throw</span> error;
+  }
+  <span class="hljs-keyword">return</span> intermediateResult;
+}
+</pre>
 </div>
 
-<h1 id="g-Functions">Functions</h1>
+<h3 id="f-until">until</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_until</span>(<span class="hljs-params">p, f, v</span>) </span>{
+  <span class="hljs-keyword">while</span> (!p(v)) {
+    v = f(v);
+  }
+  <span class="hljs-keyword">return</span> v;
+}
+</pre>
+</div>
 
 
-<h2 id="f-apply">apply</h2>
+
+<h2 id="g-Either">Either</h1>
+
+
+<h3 id="f-Left">Left</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_Left</span>(<span class="hljs-params">value</span>) </span>{
+  <span class="hljs-keyword">return</span> { left: value };
+}
+</pre>
 </div>
-<h2 id="f-compose">compose</h2>
+
+<h3 id="f-Right">Right</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_Right</span>(<span class="hljs-params">value</span>) </span>{
+  <span class="hljs-keyword">return</span> { right: value };
+}
+</pre>
 </div>
-<h2 id="f-compose2">compose2</h2>
+
+<h3 id="f-either">either</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_either</span>(<span class="hljs-params">afun, bfun, either</span>) </span>{
+  <span class="hljs-keyword">var</span> left = either.left || either[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">if</span> (left) {
+    <span class="hljs-keyword">return</span> afun(left);
+  }
+  <span class="hljs-keyword">var</span> right = either.right || either[<span class="hljs-number">1</span>];
+  <span class="hljs-keyword">if</span> (right) {
+    <span class="hljs-keyword">return</span> bfun(right);
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+}
+</pre>
 </div>
-<h2 id="f-const">const</h2>
+
+<h3 id="f-fromLeft">fromLeft</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fromLeft</span>(<span class="hljs-params">val</span>) </span>{
+  <span class="hljs-keyword">if</span> (val.left !== <span class="hljs-literal">undefined</span>) {
+    <span class="hljs-keyword">return</span> val.left;
+  }
+  <span class="hljs-keyword">return</span> val[<span class="hljs-number">0</span>];
+}
+</pre>
+</div>
+
+<h3 id="f-fromRight">fromRight</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fromRight</span>(<span class="hljs-params">val</span>) </span>{
+  <span class="hljs-keyword">if</span> (val.right !== <span class="hljs-literal">undefined</span>) {
+    <span class="hljs-keyword">return</span> val.right;
+  }
+  <span class="hljs-keyword">return</span> val[<span class="hljs-number">1</span>];
+}
+</pre>
+</div>
+
+<h3 id="f-isLeft">isLeft</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLeft</span>(<span class="hljs-params">val</span>) </span>{
+  <span class="hljs-keyword">return</span> val.left !== <span class="hljs-literal">undefined</span> ||
+    (val[<span class="hljs-number">0</span>] !== <span class="hljs-literal">undefined</span> &amp;&amp; val[<span class="hljs-number">0</span>] !== <span class="hljs-literal">null</span>);
+}
+</pre>
+</div>
+
+<h3 id="f-isRight">isRight</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isRight</span>(<span class="hljs-params">val</span>) </span>{
+  <span class="hljs-keyword">return</span> (val.right !== <span class="hljs-literal">undefined</span> || val[<span class="hljs-number">1</span>] !== <span class="hljs-literal">undefined</span>) &amp;&amp;
+    !Nodash.isLeft(val);
+}
+</pre>
+</div>
+
+<h3 id="f-lefts">lefts</h2>
+<div class="section">
+
+</div>
+
+<h3 id="f-partitionEithers">partitionEithers</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_partitionEithers</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">return</span> [ Nodash.lefts(xs), Nodash.rights(xs) ];
+}
+</pre>
+</div>
+
+<h3 id="f-rights">rights</h2>
+<div class="section">
+
+</div>
+
+
+
+<h2 id="g-Functions">Functions</h1>
+
+
+<h3 id="f-apply">apply</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_apply</span>(<span class="hljs-params">f, x</span>) </span>{
+  <span class="hljs-keyword">return</span> f(x);
+}
+</pre>
+</div>
+
+<h3 id="f-compose">compose</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose</span>(<span class="hljs-params">f, g, x</span>) </span>{
+  <span class="hljs-keyword">return</span> f(g(x));
+}
+</pre>
+</div>
+
+<h3 id="f-compose2">compose2</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose2</span>(<span class="hljs-params">f, g, x, y</span>) </span>{
+  <span class="hljs-keyword">return</span> f(g(x, y));
+}
+</pre>
+</div>
+
+<h3 id="f-const">const</h2>
 <div class="section">
 <p>Accepts two arguments and returns the first one, thereby discarding
 the second one. This function is primarily useful for composing other
 functions.</p>
 
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_const</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a;
+}
+</pre>
 </div>
-<h2 id="f-flip">flip</h2>
+
+<h3 id="f-flip">flip</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_flip</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">return</span> funcs[<span class="hljs-number">2</span>](<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">b, a</span>) </span>{
+    <span class="hljs-keyword">return</span> f(a, b);
+  });
+}
+</pre>
 </div>
-<h2 id="f-id">id</h2>
+
+<h3 id="f-id">id</h2>
 <div class="section">
 <p>The <strong>identity</strong> function.</p>
 
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">id</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> x; }
+</pre>
 </div>
-<h2 id="f-idf">idf</h2>
+
+<h3 id="f-idf">idf</h2>
 <div class="section">
 <p><strong>idf</strong> returns its argument wrapped in a function.</p>
 
-</div>
-<h2 id="f-on">on</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-
-<h1 id="g-Maybe">Maybe</h1>
-
-
-<h2 id="f-catMaybes">catMaybes</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-fromMaybe">fromMaybe</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-isJust">isJust</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-isNothing">isNothing</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-listToMaybe">listToMaybe</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-mapMaybe">mapMaybe</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-maybe">maybe</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-maybeToList">maybeToList</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_idf</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> x;
+  };
+}
+</pre>
 </div>
 
-<h1 id="g-Numbers">Numbers</h1>
+<h3 id="f-on">on</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_on</span>(<span class="hljs-params">g, f, a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> g(f(a), f(b));
+}
+</pre>
+</div>
 
 
-<h2 id="f-abs">abs</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-acos">acos</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-acosh">acosh</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-add">add</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-asin">asin</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-asinh">asinh</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-atan">atan</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-atanh">atanh</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-ceiling">ceiling</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-cos">cos</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-cosh">cosh</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-div">div</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-divMod">divMod</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-even">even</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-exp">exp</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-floor">floor</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-frac">frac</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-gcd">gcd</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-lcm">lcm</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-log">log</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-logBase">logBase</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-mod">mod</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-mul">mul</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-negate">negate</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-odd">odd</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-pow">pow</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-properFraction">properFraction</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-quot">quot</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-quotRem">quotRem</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-recip">recip</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-rem">rem</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-round">round</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-signum">signum</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-sin">sin</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-sinh">sinh</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-sqrt">sqrt</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-sub">sub</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tan">tan</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tanh">tanh</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-truncate">truncate</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
 
-<h1 id="g-Objects">Objects</h1>
+<h2 id="g-Maybe">Maybe</h1>
 
 
-<h2 id="f-keys">keys</h2>
+<h3 id="f-catMaybes">catMaybes</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+filter(isJust)
+</pre>
 </div>
 
-<h1 id="g-Streams">Streams</h1>
+<h3 id="f-fromMaybe">fromMaybe</h2>
+<div class="section">
 
-
-<h2 id="f-consume">consume</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-consumeString">consumeString</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-cycle">cycle</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-each">each</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-iterate">iterate</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-repeat">repeat</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-stream">stream</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fromMaybe</span>(<span class="hljs-params">def, maybe</span>) </span>{
+  <span class="hljs-keyword">if</span> (maybe === <span class="hljs-literal">undefined</span> || maybe === <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> def;
+  }
+  <span class="hljs-keyword">return</span> maybe;
+}
+</pre>
 </div>
 
-<h1 id="g-Strings">Strings</h1>
+<h3 id="f-isJust">isJust</h2>
+<div class="section">
 
-
-<h2 id="f-lines">lines</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-unlines">unlines</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-unwords">unwords</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-words">words</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isJust</span>(<span class="hljs-params">value</span>) </span>{
+  <span class="hljs-keyword">return</span> value !== <span class="hljs-literal">undefined</span> &amp;&amp; value !== <span class="hljs-literal">null</span>;
+}
+</pre>
 </div>
 
-<h1 id="g-Tuples">Tuples</h1>
+<h3 id="f-isNothing">isNothing</h2>
+<div class="section">
 
-
-<h2 id="f-fst">fst</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-snd">snd</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tuple">tuple</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tuple3">tuple3</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tuple4">tuple4</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tuple5">tuple5</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tuple6">tuple6</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
-</div>
-<h2 id="f-tuple7">tuple7</h2>
-<div class="section">
-Lorem ipsum dolor sit amet.
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isNothing</span>(<span class="hljs-params">value</span>) </span>{
+  <span class="hljs-keyword">return</span> value === <span class="hljs-literal">undefined</span> || value === <span class="hljs-literal">null</span>;
+}
+</pre>
 </div>
 
-<h1 id="g-Types">Types</h1>
+<h3 id="f-listToMaybe">listToMaybe</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_listToMaybe</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> r = xs();
+    <span class="hljs-keyword">return</span> r === eos ? <span class="hljs-literal">null</span> : r;
+  }
+  <span class="hljs-keyword">return</span> xs[<span class="hljs-number">0</span>];
+}
+</pre>
+</div>
+
+<h3 id="f-mapMaybe">mapMaybe</h2>
+<div class="section">
+
+<pre>
+compose2(filter(isJust), map)
+</pre>
+</div>
+
+<h3 id="f-maybe">maybe</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_maybe</span>(<span class="hljs-params">def, fun, maybe</span>) </span>{
+  <span class="hljs-keyword">if</span> (maybe === <span class="hljs-literal">undefined</span> || maybe === <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> def;
+  }
+  <span class="hljs-keyword">return</span> fun(maybe);
+}
+</pre>
+</div>
+
+<h3 id="f-maybeToList">maybeToList</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_maybeToList</span>(<span class="hljs-params">maybe</span>) </span>{
+  <span class="hljs-keyword">if</span> (maybe === <span class="hljs-literal">undefined</span> || maybe === <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> [];
+  }
+  <span class="hljs-keyword">return</span> [maybe];
+}
+</pre>
+</div>
+
+
+
+<h2 id="g-Numbers">Numbers</h1>
+
+
+<h3 id="f-abs">abs</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abs</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-acos">acos</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">acos</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-acosh">acosh</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_acosh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(x + <span class="hljs-built_in">Math</span>.sqrt(x * x - <span class="hljs-number">1</span>));
+}
+</pre>
+</div>
+
+<h3 id="f-add">add</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_add</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}
+</pre>
+</div>
+
+<h3 id="f-asin">asin</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asin</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-asinh">asinh</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_asinh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
+    <span class="hljs-keyword">return</span> x;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(x + <span class="hljs-built_in">Math</span>.sqrt(x * x + <span class="hljs-number">1</span>));
+  }
+}
+</pre>
+</div>
+
+<h3 id="f-atan">atan</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">atan</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-atanh">atanh</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_atanh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log((<span class="hljs-number">1</span> + x) / (<span class="hljs-number">1</span> - x)) / <span class="hljs-number">2</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-ceiling">ceiling</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ceil</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-cos">cos</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cos</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-cosh">cosh</h2>
+<div class="section">
+
+</div>
+
+<h3 id="f-div">div</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_div</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(a / b); }
+</pre>
+</div>
+
+<h3 id="f-divMod">divMod</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_divMod</span>(<span class="hljs-params">a, b</span>)  </span>{
+  <span class="hljs-keyword">return</span> [Nodash.div(a, b), Nodash.mod(a, b)];
+}
+</pre>
+</div>
+
+<h3 id="f-even">even</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_even</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) === <span class="hljs-number">0</span>; }
+</pre>
+</div>
+
+<h3 id="f-exp">exp</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exp</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-floor">floor</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">floor</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-frac">frac</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_frac</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a / b; }
+</pre>
+</div>
+
+<h3 id="f-gcd">gcd</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gcd</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">var</span> c;
+  <span class="hljs-keyword">while</span> (b !== <span class="hljs-number">0</span>) {
+    c = Nodash.rem(a, b);
+    a = b;
+    b = c;
+  }
+  <span class="hljs-keyword">return</span> a;
+}
+</pre>
+</div>
+
+<h3 id="f-lcm">lcm</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lcm</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">if</span> (a === <span class="hljs-number">0</span> || b === <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(Nodash.quot(a, Nodash.gcd(a, b)) * b);
+}
+</pre>
+</div>
+
+<h3 id="f-log">log</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-logBase">logBase</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_logBase</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(a) / <span class="hljs-built_in">Math</span>.log(b);
+}
+</pre>
+</div>
+
+<h3 id="f-mod">mod</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mod</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">var</span> q = Nodash.quot(a, b);
+  <span class="hljs-keyword">var</span> r = Nodash.rem(a, b);
+  <span class="hljs-keyword">return</span> Nodash.signum(r) == -Nodash.signum(b) ? r + b : r;
+}
+</pre>
+</div>
+
+<h3 id="f-mul">mul</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mul</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a * b;
+}
+</pre>
+</div>
+
+<h3 id="f-negate">negate</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_negate</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> -a; }
+</pre>
+</div>
+
+<h3 id="f-odd">odd</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_odd</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) !== <span class="hljs-number">0</span>; }
+</pre>
+</div>
+
+<h3 id="f-pow">pow</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pow</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-properFraction">properFraction</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_properFraction</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> num = Nodash.truncate(x);
+  <span class="hljs-keyword">return</span> [ num, -(num - x) ];
+}
+</pre>
+</div>
+
+<h3 id="f-quot">quot</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quot</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">var</span> r = a / b;
+  <span class="hljs-keyword">return</span> r &gt;= <span class="hljs-number">0</span> ? <span class="hljs-built_in">Math</span>.floor(r) : <span class="hljs-built_in">Math</span>.ceil(r);
+}
+</pre>
+</div>
+
+<h3 id="f-quotRem">quotRem</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quotRem</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> [Nodash.quot(a, b), Nodash.rem(a, b)];
+}
+</pre>
+</div>
+
+<h3 id="f-recip">recip</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_recip</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / a; }
+</pre>
+</div>
+
+<h3 id="f-rem">rem</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_rem</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a % b; }
+</pre>
+</div>
+
+<h3 id="f-round">round</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_round</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-comment">// Haskell's round and JavaScripts Math.round are different</span>
+  <span class="hljs-keyword">var</span> fraction = Nodash.properFraction(x);
+  <span class="hljs-keyword">var</span> n = fraction[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">var</span> m = fraction[<span class="hljs-number">1</span>] &lt; <span class="hljs-number">0</span> ? n - <span class="hljs-number">1</span> : n + <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">switch</span> (Nodash.signum(<span class="hljs-built_in">Math</span>.abs(fraction[<span class="hljs-number">1</span>]) - <span class="hljs-number">0.5</span>)) {
+    <span class="hljs-keyword">case</span> -<span class="hljs-number">1</span>:
+      <span class="hljs-keyword">return</span> n;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+      <span class="hljs-keyword">return</span> n % <span class="hljs-number">2</span> === <span class="hljs-number">0</span> ? n : m;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+      <span class="hljs-keyword">return</span> m;
+  }
+}
+</pre>
+</div>
+
+<h3 id="f-signum">signum</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_signum</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-sin">sin</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sin</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-sinh">sinh</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sinh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
+}
+</pre>
+</div>
+
+<h3 id="f-sqrt">sqrt</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sqrt</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-sub">sub</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sub</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a - b;
+}
+</pre>
+</div>
+
+<h3 id="f-tan">tan</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tan</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+<h3 id="f-tanh">tanh</h2>
+<div class="section">
+
+</div>
+
+<h3 id="f-truncate">truncate</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_truncate</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">switch</span> (Nodash.signum(x)) {
+  <span class="hljs-keyword">case</span> -<span class="hljs-number">1</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.ceil(x);
+  <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(x);
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</pre>
+</div>
+
+
+
+<h2 id="g-Objects">Objects</h1>
+
+
+<h3 id="f-keys">keys</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keys</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
+</div>
+
+
+
+<h2 id="g-Streams">Streams</h1>
+
+
+<h3 id="f-consume">consume</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consume</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (!isStream(xs)) {
+    <span class="hljs-keyword">return</span> xs;
+  }
+  checkFinite(xs);
+  <span class="hljs-keyword">var</span> z, zs = [];
+  <span class="hljs-keyword">while</span> ((z = xs()) !== eos) {
+    zs.push(z);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-consumeString">consumeString</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consumeString</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (!isStream(xs)) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">""</span> + xs;
+  }
+  <span class="hljs-keyword">var</span> z, zs = <span class="hljs-string">""</span>;
+  <span class="hljs-keyword">while</span> ((z = xs()) !== eos) {
+    zs += z;
+  }
+  <span class="hljs-keyword">return</span> zs;
+}
+</pre>
+</div>
+
+<h3 id="f-cycle">cycle</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cycle</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">if</span> (isInfinite(xs)) {
+      <span class="hljs-keyword">return</span> xs;
+    }
+    <span class="hljs-keyword">var</span> arr = [];
+    <span class="hljs-keyword">var</span> consumed = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">var</span> h = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> z;
+      <span class="hljs-keyword">if</span> (!consumed) {
+        <span class="hljs-keyword">if</span> ((z = xs()) !== eos) {
+          arr.push(z);
+          <span class="hljs-keyword">return</span> z;
+        }
+        consumed = <span class="hljs-literal">true</span>;
+      }
+      <span class="hljs-keyword">if</span> (h &gt;= arr.length) {
+        h = <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> arr[h++];
+    });
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
+    <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (i &gt;= xs.length) {
+        i = <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> xs[i++];
+    });
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">var</span> ks = keys(xs);
+    <span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (j &gt;= ks.length) {
+        j = <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> xs[ks[j++]];
+    });
+  }
+}
+</pre>
+</div>
+
+<h3 id="f-each">each</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_each</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">var</span> x;
+    <span class="hljs-keyword">while</span> ((x = xs()) !== eos) {
+      f(x);
+    }
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      f(xs[i]);
+    }
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">var</span> ks = keys(xs);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; ks.length; j += <span class="hljs-number">1</span>) {
+      f(xs[ks[j]], ks[j]);
+    }
+  }
+}
+</pre>
+</div>
+
+<h3 id="f-iterate">iterate</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_iterate</span>(<span class="hljs-params">f, x</span>) </span>{
+  <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> r = x;
+    x = f(x);
+    <span class="hljs-keyword">return</span> r;
+  });
+}
+</pre>
+</div>
+
+<h3 id="f-repeat">repeat</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_repeat</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> x;
+  });
+}
+</pre>
+</div>
+
+<h3 id="f-stream">stream</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_stream</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (isStream(xs)) {
+    <span class="hljs-keyword">return</span> xs;
+  }
+  <span class="hljs-keyword">if</span> (isFunction(xs)) {
+    <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> xs();
+    });
+  }
+  <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (i &lt; xs.length) {
+      <span class="hljs-keyword">return</span> xs[i++];
+    }
+    <span class="hljs-keyword">return</span> eos;
+  });
+}
+</pre>
+</div>
+
+
+
+<h2 id="g-Strings">Strings</h1>
+
+
+<h3 id="f-lines">lines</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lines</span>(<span class="hljs-params">string</span>) </span>{
+  <span class="hljs-keyword">var</span> result = string.split(<span class="hljs-regexp">/\n/</span>);
+  <span class="hljs-keyword">if</span> (result[result.length - <span class="hljs-number">1</span>].length === <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">delete</span> result[result.length - <span class="hljs-number">1</span>];
+  }
+  <span class="hljs-keyword">return</span> result;
+}
+</pre>
+</div>
+
+<h3 id="f-unlines">unlines</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unlines</span>(<span class="hljs-params">lines</span>) </span>{
+  <span class="hljs-keyword">return</span> lines.join(<span class="hljs-string">'\n'</span>);
+}
+</pre>
+</div>
+
+<h3 id="f-unwords">unwords</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unwords</span>(<span class="hljs-params">words</span>) </span>{
+  <span class="hljs-keyword">return</span> words.join(<span class="hljs-string">' '</span>);
+}
+</pre>
+</div>
+
+<h3 id="f-words">words</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_words</span>(<span class="hljs-params">string</span>) </span>{
+  <span class="hljs-keyword">return</span> string.split(<span class="hljs-regexp">/[\n\r\v\t ]/</span>);
+}
+</pre>
+</div>
+
+
+
+<h2 id="g-Tuples">Tuples</h1>
+
+
+<h3 id="f-fst">fst</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fst</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">0</span>]; }
+</pre>
+</div>
+
+<h3 id="f-snd">snd</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_snd</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">1</span>]; }
+</pre>
+</div>
+
+<h3 id="f-tuple">tuple</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b ]; }
+</pre>
+</div>
+
+<h3 id="f-tuple3">tuple3</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple3</span>(<span class="hljs-params">a, b, c</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c ]; }
+</pre>
+</div>
+
+<h3 id="f-tuple4">tuple4</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple4</span>(<span class="hljs-params">a, b, c, d</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c, d ]; }
+</pre>
+</div>
+
+<h3 id="f-tuple5">tuple5</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple5</span>(<span class="hljs-params">a, b, c, d, e</span>) </span>{
+  <span class="hljs-keyword">return</span> [ a, b, c, d, e ];
+}
+</pre>
+</div>
+
+<h3 id="f-tuple6">tuple6</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple6</span>(<span class="hljs-params">a, b, c, d, e, f</span>) </span>{
+  <span class="hljs-keyword">return</span> [ a, b, c, d, e, f ];
+}
+</pre>
+</div>
+
+<h3 id="f-tuple7">tuple7</h2>
+<div class="section">
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple7</span>(<span class="hljs-params">a, b, c, d, e, f, g</span>) </span>{
+  <span class="hljs-keyword">return</span> [ a, b, c, d, e, f, g ];
+}
+</pre>
+</div>
+
+
+
+<h2 id="g-Types">Types</h1>
 <h2 id="functions-dealing-with-types-">Functions dealing with types.</h2>
 
 
-<h2 id="f-isArray">isArray</h2>
+<h3 id="f-isArray">isArray</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isArray</span>(<span class="hljs-params"></span>) </span>{ [native code] }
+</pre>
 </div>
-<h2 id="f-isFunction">isFunction</h2>
+
+<h3 id="f-isFunction">isFunction</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isFunction</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'function'</span>; }
+</pre>
 </div>
-<h2 id="f-isInfinite">isInfinite</h2>
+
+<h3 id="f-isInfinite">isInfinite</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInfinite</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">return</span> !!f.__infinite__;
+}
+</pre>
 </div>
-<h2 id="f-isNumber">isNumber</h2>
+
+<h3 id="f-isNumber">isNumber</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span>; }
+</pre>
 </div>
-<h2 id="f-isStream">isStream</h2>
+
+<h3 id="f-isStream">isStream</h2>
 <div class="section">
-Lorem ipsum dolor sit amet.
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isStream</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> isFunction(x) &amp;&amp; x.__stream__ === stream; }
+</pre>
 </div>
+
 
 
 </div>

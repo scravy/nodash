@@ -1745,7 +1745,7 @@ functions.</p>
     <span class="hljs-attribute">return</span> [ <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">0</span>, <span class="hljs-attribute">i</span>), <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">i</span>) ];
   });
 
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">break</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_break</span>(<span class="hljs-attribute">p</span>, <span class="hljs-attribute">xs</span>) {
+  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">break_</span>', '<span class="hljs-attribute">break</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_break</span>(<span class="hljs-attribute">p</span>, <span class="hljs-attribute">xs</span>) {
     <span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>;
     <span class="hljs-attribute">while</span> (<span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span> &amp;&amp; !<span class="hljs-attribute">p</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>])) {
       <span class="hljs-attribute">i</span>++;
@@ -2426,7 +2426,7 @@ functions.</p>
     <span class="hljs-keyword">return</span> xs;
   });
 
-  register(<span class="hljs-string">'delete'</span>, <span class="hljs-string">'delete_'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_delete</span>(<span class="hljs-params">x, xs</span>) </span>{
+  register(<span class="hljs-string">'delete_'</span>, <span class="hljs-string">'delete'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_delete</span>(<span class="hljs-params">x, xs</span>) </span>{
     <span class="hljs-keyword">var</span> i = xs.indexOf(x);
     <span class="hljs-keyword">if</span> (i &gt;= <span class="hljs-number">0</span>) {
       <span class="hljs-keyword">return</span> Nodash.append(xs.slice(<span class="hljs-number">0</span>,i), xs.slice(i+<span class="hljs-number">1</span>));

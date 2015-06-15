@@ -1,0 +1,79 @@
+/* vim: set et sw=2 ts=2: */
+html,
+body,
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  color: black;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+html,
+body {
+  background: white;
+}
+h1 {
+  marginb-bottom: 1em;
+  font-size: 1.9em;
+  border-bottom: 1px solid silver;
+}
+h2 {
+  font-size: 1.5em;
+}
+div.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 200px;
+  border-right: 1px solid black;
+  overflow: auto;
+}
+div.sidebar h6 {
+  margin-top: 1em;
+  margin-bottom: .3em;
+  font-weight: bold;
+}
+div.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  padding-left: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+div.sidebar a:hover {
+  background-color: gray !important;
+  color: white;
+}
+div.sidebar span.alias {
+  font-size: .83em;
+  background: silver;
+  padding: 1px;
+  border-radius: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-left: 5px;
+}
+div.content {
+  margin-left: 210px;
+}
+body,
+p,
+li {
+  font-size: 14px;
+}
+h1:target,
+h2:target {
+  color: red;
+}
+h2:target + div.section {
+  background: yellow;
+}

@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nodash apidoc</title>
+  <link rel="stylesheet" type="text/css" href="apidoc.css">
+</head>
+<body>
+
+<div class="sidebar">
+
+<h6><a href="#g-Arrays &#x2F; Lists">Arrays &#x2F; Lists</a></h6>
+<ul>
+  <li><a href="#f-all">
+    <span class="name">all</span>
+    
+  </a></li>
+  <li><a href="#f-and">
+    <span class="name">and</span>
+    
+  </a></li>
+  <li><a href="#f-any">
+    <span class="name">any</span>
+    
+  </a></li>
+  <li><a href="#f-append">
+    <span class="name">append</span>
+    <span class="alias">++</span>
+  </a></li>
+  <li><a href="#f-at">
+    <span class="name">at</span>
+    <span class="alias">!!</span><span class="alias">AT</span>
+  </a></li>
+  <li><a href="#f-break">
+    <span class="name">break</span>
+    
+  </a></li>
+  <li><a href="#f-concat">
+    <span class="name">concat</span>
+    
+  </a></li>
+  <li><a href="#f-concatMap">
+    <span class="name">concatMap</span>
+    
+  </a></li>
+  <li><a href="#f-cons">
+    <span class="name">cons</span>
+    <span class="alias">:</span>
+  </a></li>
+  <li><a href="#f-delete">
+    <span class="name">delete</span>
+    <span class="alias">delete_</span>
+  </a></li>
+  <li><a href="#f-deleteBy">
+    <span class="name">deleteBy</span>
+    
+  </a></li>
+  <li><a href="#f-difference">
+    <span class="name">difference</span>
+    <span class="alias">\\</span>
+  </a></li>
+  <li><a href="#f-drop">
+    <span class="name">drop</span>
+    
+  </a></li>
+  <li><a href="#f-dropWhile">
+    <span class="name">dropWhile</span>
+    
+  </a></li>
+  <li><a href="#f-elem">
+    <span class="name">elem</span>
+    
+  </a></li>
+  <li><a href="#f-elemIndex">
+    <span class="name">elemIndex</span>
+    
+  </a></li>
+  <li><a href="#f-elemIndices">
+    <span class="name">elemIndices</span>
+    
+  </a></li>
+  <li><a href="#f-filter">
+    <span class="name">filter</span>
+    
+  </a></li>
+  <li><a href="#f-find">
+    <span class="name">find</span>
+    
+  </a></li>
+  <li><a href="#f-findIndex">
+    <span class="name">findIndex</span>
+    
+  </a></li>
+  <li><a href="#f-findIndices">
+    <span class="name">findIndices</span>
+    
+  </a></li>
+  <li><a href="#f-foldl">
+    <span class="name">foldl</span>
+    <span class="alias">foldl&#39;</span>
+  </a></li>
+  <li><a href="#f-foldl1">
+    <span class="name">foldl1</span>
+    <span class="alias">foldl1&#39;</span>
+  </a></li>
+  <li><a href="#f-foldr">
+    <span class="name">foldr</span>
+    
+  </a></li>
+  <li><a href="#f-foldr1">
+    <span class="name">foldr1</span>
+    
+  </a></li>
+  <li><a href="#f-group">
+    <span class="name">group</span>
+    
+  </a></li>
+  <li><a href="#f-groupBy">
+    <span class="name">groupBy</span>
+    
+  </a></li>
+  <li><a href="#f-head">
+    <span class="name">head</span>
+    
+  </a></li>
+  <li><a href="#f-heads">
+    <span class="name">heads</span>
+    
+  </a></li>
+  <li><a href="#f-indexOf">
+    <span class="name">indexOf</span>
+    
+  </a></li>
+  <li><a href="#f-init">
+    <span class="name">init</span>
+    
+  </a></li>
+  <li><a href="#f-inits">
+    <span class="name">inits</span>
+    
+  </a></li>
+  <li><a href="#f-insert">
+    <span class="name">insert</span>
+    
+  </a></li>
+  <li><a href="#f-insertBy">
+    <span class="name">insertBy</span>
+    
+  </a></li>
+  <li><a href="#f-intercalate">
+    <span class="name">intercalate</span>
+    
+  </a></li>
+  <li><a href="#f-intersect">
+    <span class="name">intersect</span>
+    
+  </a></li>
+  <li><a href="#f-intersperse">
+    <span class="name">intersperse</span>
+    
+  </a></li>
+  <li><a href="#f-isInfixOf">
+    <span class="name">isInfixOf</span>
+    
+  </a></li>
+  <li><a href="#f-isNull">
+    <span class="name">isNull</span>
+    <span class="alias">null_</span>
+  </a></li>
+  <li><a href="#f-isPrefixOf">
+    <span class="name">isPrefixOf</span>
+    
+  </a></li>
+  <li><a href="#f-isSuffixOf">
+    <span class="name">isSuffixOf</span>
+    
+  </a></li>
+  <li><a href="#f-last">
+    <span class="name">last</span>
+    
+  </a></li>
+  <li><a href="#f-lasts">
+    <span class="name">lasts</span>
+    
+  </a></li>
+  <li><a href="#f-length">
+    <span class="name">length</span>
+    
+  </a></li>
+  <li><a href="#f-lookup">
+    <span class="name">lookup</span>
+    
+  </a></li>
+  <li><a href="#f-map">
+    <span class="name">map</span>
+    
+  </a></li>
+  <li><a href="#f-maximum">
+    <span class="name">maximum</span>
+    
+  </a></li>
+  <li><a href="#f-maximumBy">
+    <span class="name">maximumBy</span>
+    
+  </a></li>
+  <li><a href="#f-minimum">
+    <span class="name">minimum</span>
+    
+  </a></li>
+  <li><a href="#f-minimumBy">
+    <span class="name">minimumBy</span>
+    
+  </a></li>
+  <li><a href="#f-notElem">
+    <span class="name">notElem</span>
+    
+  </a></li>
+  <li><a href="#f-nub">
+    <span class="name">nub</span>
+    
+  </a></li>
+  <li><a href="#f-or">
+    <span class="name">or</span>
+    
+  </a></li>
+  <li><a href="#f-partition">
+    <span class="name">partition</span>
+    
+  </a></li>
+  <li><a href="#f-product">
+    <span class="name">product</span>
+    
+  </a></li>
+  <li><a href="#f-replicate">
+    <span class="name">replicate</span>
+    
+  </a></li>
+  <li><a href="#f-reverse">
+    <span class="name">reverse</span>
+    
+  </a></li>
+  <li><a href="#f-scanl">
+    <span class="name">scanl</span>
+    
+  </a></li>
+  <li><a href="#f-scanl1">
+    <span class="name">scanl1</span>
+    
+  </a></li>
+  <li><a href="#f-scanr">
+    <span class="name">scanr</span>
+    
+  </a></li>
+  <li><a href="#f-scanr1">
+    <span class="name">scanr1</span>
+    
+  </a></li>
+  <li><a href="#f-sort">
+    <span class="name">sort</span>
+    
+  </a></li>
+  <li><a href="#f-sortBy">
+    <span class="name">sortBy</span>
+    
+  </a></li>
+  <li><a href="#f-span">
+    <span class="name">span</span>
+    
+  </a></li>
+  <li><a href="#f-splitAt">
+    <span class="name">splitAt</span>
+    
+  </a></li>
+  <li><a href="#f-sum">
+    <span class="name">sum</span>
+    
+  </a></li>
+  <li><a href="#f-tail">
+    <span class="name">tail</span>
+    
+  </a></li>
+  <li><a href="#f-tails">
+    <span class="name">tails</span>
+    
+  </a></li>
+  <li><a href="#f-take">
+    <span class="name">take</span>
+    
+  </a></li>
+  <li><a href="#f-takeWhile">
+    <span class="name">takeWhile</span>
+    
+  </a></li>
+  <li><a href="#f-transpose">
+    <span class="name">transpose</span>
+    
+  </a></li>
+  <li><a href="#f-union">
+    <span class="name">union</span>
+    
+  </a></li>
+  <li><a href="#f-zip">
+    <span class="name">zip</span>
+    
+  </a></li>
+  <li><a href="#f-zip3">
+    <span class="name">zip3</span>
+    
+  </a></li>
+  <li><a href="#f-zip4">
+    <span class="name">zip4</span>
+    
+  </a></li>
+  <li><a href="#f-zip5">
+    <span class="name">zip5</span>
+    
+  </a></li>
+  <li><a href="#f-zip6">
+    <span class="name">zip6</span>
+    
+  </a></li>
+  <li><a href="#f-zip7">
+    <span class="name">zip7</span>
+    
+  </a></li>
+  <li><a href="#f-zipWith">
+    <span class="name">zipWith</span>
+    
+  </a></li>
+  <li><a href="#f-zipWith3">
+    <span class="name">zipWith3</span>
+    
+  </a></li>
+  <li><a href="#f-zipWith4">
+    <span class="name">zipWith4</span>
+    
+  </a></li>
+  <li><a href="#f-zipWith5">
+    <span class="name">zipWith5</span>
+    
+  </a></li>
+  <li><a href="#f-zipWith6">
+    <span class="name">zipWith6</span>
+    
+  </a></li>
+  <li><a href="#f-zipWith7">
+    <span class="name">zipWith7</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Boolean">Boolean</a></h6>
+<ul>
+  <li><a href="#f-AND">
+    <span class="name">AND</span>
+    <span class="alias">&amp;&amp;</span>
+  </a></li>
+  <li><a href="#f-bool">
+    <span class="name">bool</span>
+    
+  </a></li>
+  <li><a href="#f-not">
+    <span class="name">not</span>
+    
+  </a></li>
+  <li><a href="#f-OR">
+    <span class="name">OR</span>
+    <span class="alias">||</span>
+  </a></li>
+</ul>
+<h6><a href="#g-Characters">Characters</a></h6>
+<ul>
+  <li><a href="#f-isAsciiLetter">
+    <span class="name">isAsciiLetter</span>
+    
+  </a></li>
+  <li><a href="#f-isDigit">
+    <span class="name">isDigit</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Comparisons">Comparisons</a></h6>
+<ul>
+  <li><a href="#f-compare">
+    <span class="name">compare</span>
+    
+  </a></li>
+  <li><a href="#f-comparing">
+    <span class="name">comparing</span>
+    
+  </a></li>
+  <li><a href="#f-eq">
+    <span class="name">eq</span>
+    <span class="alias">==</span><span class="alias">EQ</span>
+  </a></li>
+  <li><a href="#f-gt">
+    <span class="name">gt</span>
+    <span class="alias">&gt;</span><span class="alias">GT</span>
+  </a></li>
+  <li><a href="#f-gte">
+    <span class="name">gte</span>
+    <span class="alias">&gt;=</span><span class="alias">GTE</span>
+  </a></li>
+  <li><a href="#f-lt">
+    <span class="name">lt</span>
+    <span class="alias">&lt;</span><span class="alias">LT</span>
+  </a></li>
+  <li><a href="#f-lte">
+    <span class="name">lte</span>
+    <span class="alias">&lt;=</span><span class="alias">LTE</span>
+  </a></li>
+  <li><a href="#f-max">
+    <span class="name">max</span>
+    
+  </a></li>
+  <li><a href="#f-min">
+    <span class="name">min</span>
+    
+  </a></li>
+  <li><a href="#f-neq">
+    <span class="name">neq</span>
+    <span class="alias">&#x2F;=</span><span class="alias">NEQ</span>
+  </a></li>
+</ul>
+<h6><a href="#g-Control flow">Control flow</a></h6>
+<ul>
+  <li><a href="#f-until">
+    <span class="name">until</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Either">Either</a></h6>
+<ul>
+  <li><a href="#f-either">
+    <span class="name">either</span>
+    
+  </a></li>
+  <li><a href="#f-fromLeft">
+    <span class="name">fromLeft</span>
+    
+  </a></li>
+  <li><a href="#f-fromRight">
+    <span class="name">fromRight</span>
+    
+  </a></li>
+  <li><a href="#f-isLeft">
+    <span class="name">isLeft</span>
+    
+  </a></li>
+  <li><a href="#f-isRight">
+    <span class="name">isRight</span>
+    
+  </a></li>
+  <li><a href="#f-Left">
+    <span class="name">Left</span>
+    
+  </a></li>
+  <li><a href="#f-lefts">
+    <span class="name">lefts</span>
+    
+  </a></li>
+  <li><a href="#f-partitionEithers">
+    <span class="name">partitionEithers</span>
+    
+  </a></li>
+  <li><a href="#f-Right">
+    <span class="name">Right</span>
+    
+  </a></li>
+  <li><a href="#f-rights">
+    <span class="name">rights</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Functions">Functions</a></h6>
+<ul>
+  <li><a href="#f-apply">
+    <span class="name">apply</span>
+    <span class="alias">$</span>
+  </a></li>
+  <li><a href="#f-compose">
+    <span class="name">compose</span>
+    <span class="alias">.</span>
+  </a></li>
+  <li><a href="#f-compose2">
+    <span class="name">compose2</span>
+    
+  </a></li>
+  <li><a href="#f-const">
+    <span class="name">const</span>
+    <span class="alias">const_</span><span class="alias">constant</span>
+  </a></li>
+  <li><a href="#f-flip">
+    <span class="name">flip</span>
+    
+  </a></li>
+  <li><a href="#f-id">
+    <span class="name">id</span>
+    
+  </a></li>
+  <li><a href="#f-idf">
+    <span class="name">idf</span>
+    
+  </a></li>
+  <li><a href="#f-on">
+    <span class="name">on</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Maybe">Maybe</a></h6>
+<ul>
+  <li><a href="#f-catMaybes">
+    <span class="name">catMaybes</span>
+    
+  </a></li>
+  <li><a href="#f-fromMaybe">
+    <span class="name">fromMaybe</span>
+    
+  </a></li>
+  <li><a href="#f-isJust">
+    <span class="name">isJust</span>
+    
+  </a></li>
+  <li><a href="#f-isNothing">
+    <span class="name">isNothing</span>
+    
+  </a></li>
+  <li><a href="#f-listToMaybe">
+    <span class="name">listToMaybe</span>
+    
+  </a></li>
+  <li><a href="#f-mapMaybe">
+    <span class="name">mapMaybe</span>
+    
+  </a></li>
+  <li><a href="#f-maybe">
+    <span class="name">maybe</span>
+    
+  </a></li>
+  <li><a href="#f-maybeToList">
+    <span class="name">maybeToList</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Numbers">Numbers</a></h6>
+<ul>
+  <li><a href="#f-abs">
+    <span class="name">abs</span>
+    
+  </a></li>
+  <li><a href="#f-acos">
+    <span class="name">acos</span>
+    
+  </a></li>
+  <li><a href="#f-acosh">
+    <span class="name">acosh</span>
+    
+  </a></li>
+  <li><a href="#f-add">
+    <span class="name">add</span>
+    <span class="alias">+</span><span class="alias">ADD</span><span class="alias">plus</span><span class="alias">PLUS</span>
+  </a></li>
+  <li><a href="#f-asin">
+    <span class="name">asin</span>
+    
+  </a></li>
+  <li><a href="#f-asinh">
+    <span class="name">asinh</span>
+    
+  </a></li>
+  <li><a href="#f-atan">
+    <span class="name">atan</span>
+    
+  </a></li>
+  <li><a href="#f-atanh">
+    <span class="name">atanh</span>
+    
+  </a></li>
+  <li><a href="#f-ceiling">
+    <span class="name">ceiling</span>
+    
+  </a></li>
+  <li><a href="#f-cos">
+    <span class="name">cos</span>
+    
+  </a></li>
+  <li><a href="#f-cosh">
+    <span class="name">cosh</span>
+    
+  </a></li>
+  <li><a href="#f-div">
+    <span class="name">div</span>
+    
+  </a></li>
+  <li><a href="#f-divMod">
+    <span class="name">divMod</span>
+    
+  </a></li>
+  <li><a href="#f-even">
+    <span class="name">even</span>
+    
+  </a></li>
+  <li><a href="#f-exp">
+    <span class="name">exp</span>
+    
+  </a></li>
+  <li><a href="#f-floor">
+    <span class="name">floor</span>
+    
+  </a></li>
+  <li><a href="#f-frac">
+    <span class="name">frac</span>
+    <span class="alias">&#x2F;</span>
+  </a></li>
+  <li><a href="#f-gcd">
+    <span class="name">gcd</span>
+    
+  </a></li>
+  <li><a href="#f-lcm">
+    <span class="name">lcm</span>
+    
+  </a></li>
+  <li><a href="#f-log">
+    <span class="name">log</span>
+    
+  </a></li>
+  <li><a href="#f-logBase">
+    <span class="name">logBase</span>
+    
+  </a></li>
+  <li><a href="#f-mod">
+    <span class="name">mod</span>
+    
+  </a></li>
+  <li><a href="#f-mul">
+    <span class="name">mul</span>
+    <span class="alias">*</span><span class="alias">MUL</span><span class="alias">times</span><span class="alias">TIMES</span>
+  </a></li>
+  <li><a href="#f-negate">
+    <span class="name">negate</span>
+    
+  </a></li>
+  <li><a href="#f-odd">
+    <span class="name">odd</span>
+    
+  </a></li>
+  <li><a href="#f-pow">
+    <span class="name">pow</span>
+    <span class="alias">**</span><span class="alias">^</span><span class="alias">^^</span>
+  </a></li>
+  <li><a href="#f-properFraction">
+    <span class="name">properFraction</span>
+    
+  </a></li>
+  <li><a href="#f-quot">
+    <span class="name">quot</span>
+    
+  </a></li>
+  <li><a href="#f-quotRem">
+    <span class="name">quotRem</span>
+    
+  </a></li>
+  <li><a href="#f-recip">
+    <span class="name">recip</span>
+    
+  </a></li>
+  <li><a href="#f-rem">
+    <span class="name">rem</span>
+    
+  </a></li>
+  <li><a href="#f-round">
+    <span class="name">round</span>
+    
+  </a></li>
+  <li><a href="#f-signum">
+    <span class="name">signum</span>
+    
+  </a></li>
+  <li><a href="#f-sin">
+    <span class="name">sin</span>
+    
+  </a></li>
+  <li><a href="#f-sinh">
+    <span class="name">sinh</span>
+    
+  </a></li>
+  <li><a href="#f-sqrt">
+    <span class="name">sqrt</span>
+    
+  </a></li>
+  <li><a href="#f-sub">
+    <span class="name">sub</span>
+    <span class="alias">-</span><span class="alias">SUB</span><span class="alias">minus</span><span class="alias">MINUS</span><span class="alias">subtract</span>
+  </a></li>
+  <li><a href="#f-tan">
+    <span class="name">tan</span>
+    
+  </a></li>
+  <li><a href="#f-tanh">
+    <span class="name">tanh</span>
+    
+  </a></li>
+  <li><a href="#f-truncate">
+    <span class="name">truncate</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Objects">Objects</a></h6>
+<ul>
+  <li><a href="#f-keys">
+    <span class="name">keys</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Streams">Streams</a></h6>
+<ul>
+  <li><a href="#f-consume">
+    <span class="name">consume</span>
+    
+  </a></li>
+  <li><a href="#f-consumeString">
+    <span class="name">consumeString</span>
+    
+  </a></li>
+  <li><a href="#f-cycle">
+    <span class="name">cycle</span>
+    
+  </a></li>
+  <li><a href="#f-each">
+    <span class="name">each</span>
+    
+  </a></li>
+  <li><a href="#f-iterate">
+    <span class="name">iterate</span>
+    
+  </a></li>
+  <li><a href="#f-repeat">
+    <span class="name">repeat</span>
+    
+  </a></li>
+  <li><a href="#f-stream">
+    <span class="name">stream</span>
+    <span class="alias">lazy</span>
+  </a></li>
+</ul>
+<h6><a href="#g-Strings">Strings</a></h6>
+<ul>
+  <li><a href="#f-lines">
+    <span class="name">lines</span>
+    
+  </a></li>
+  <li><a href="#f-unlines">
+    <span class="name">unlines</span>
+    
+  </a></li>
+  <li><a href="#f-unwords">
+    <span class="name">unwords</span>
+    
+  </a></li>
+  <li><a href="#f-words">
+    <span class="name">words</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Tuples">Tuples</a></h6>
+<ul>
+  <li><a href="#f-fst">
+    <span class="name">fst</span>
+    
+  </a></li>
+  <li><a href="#f-snd">
+    <span class="name">snd</span>
+    
+  </a></li>
+  <li><a href="#f-tuple">
+    <span class="name">tuple</span>
+    <span class="alias">,</span>
+  </a></li>
+  <li><a href="#f-tuple3">
+    <span class="name">tuple3</span>
+    <span class="alias">,,</span>
+  </a></li>
+  <li><a href="#f-tuple4">
+    <span class="name">tuple4</span>
+    <span class="alias">,,,</span>
+  </a></li>
+  <li><a href="#f-tuple5">
+    <span class="name">tuple5</span>
+    <span class="alias">,,,,</span>
+  </a></li>
+  <li><a href="#f-tuple6">
+    <span class="name">tuple6</span>
+    <span class="alias">,,,,,</span>
+  </a></li>
+  <li><a href="#f-tuple7">
+    <span class="name">tuple7</span>
+    <span class="alias">,,,,,,</span>
+  </a></li>
+</ul>
+<h6><a href="#g-Types">Types</a></h6>
+<ul>
+  <li><a href="#f-isArray">
+    <span class="name">isArray</span>
+    
+  </a></li>
+  <li><a href="#f-isFunction">
+    <span class="name">isFunction</span>
+    
+  </a></li>
+  <li><a href="#f-isInfinite">
+    <span class="name">isInfinite</span>
+    
+  </a></li>
+  <li><a href="#f-isNumber">
+    <span class="name">isNumber</span>
+    
+  </a></li>
+  <li><a href="#f-isStream">
+    <span class="name">isStream</span>
+    
+  </a></li>
+</ul>
+
+</div>
+
+<div class="content">
+
+<h1 id="g-Arrays &#x2F; Lists">Arrays &#x2F; Lists</h1>
+
+
+<h2 id="f-all">all</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-and">and</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-any">any</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-append">append</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-at">at</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-break">break</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-concat">concat</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-concatMap">concatMap</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-cons">cons</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-delete">delete</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-deleteBy">deleteBy</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-difference">difference</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-drop">drop</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-dropWhile">dropWhile</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-elem">elem</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-elemIndex">elemIndex</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-elemIndices">elemIndices</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-filter">filter</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-find">find</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-findIndex">findIndex</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-findIndices">findIndices</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-foldl">foldl</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-foldl1">foldl1</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-foldr">foldr</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-foldr1">foldr1</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-group">group</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-groupBy">groupBy</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-head">head</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-heads">heads</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-indexOf">indexOf</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-init">init</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-inits">inits</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-insert">insert</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-insertBy">insertBy</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-intercalate">intercalate</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-intersect">intersect</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-intersperse">intersperse</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isInfixOf">isInfixOf</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isNull">isNull</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isPrefixOf">isPrefixOf</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isSuffixOf">isSuffixOf</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-last">last</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-lasts">lasts</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-length">length</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-lookup">lookup</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-map">map</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-maximum">maximum</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-maximumBy">maximumBy</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-minimum">minimum</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-minimumBy">minimumBy</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-notElem">notElem</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-nub">nub</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-or">or</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-partition">partition</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-product">product</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-replicate">replicate</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-reverse">reverse</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-scanl">scanl</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-scanl1">scanl1</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-scanr">scanr</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-scanr1">scanr1</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-sort">sort</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-sortBy">sortBy</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-span">span</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-splitAt">splitAt</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-sum">sum</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tail">tail</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tails">tails</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-take">take</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-takeWhile">takeWhile</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-transpose">transpose</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-union">union</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zip">zip</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zip3">zip3</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zip4">zip4</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zip5">zip5</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zip6">zip6</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zip7">zip7</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zipWith">zipWith</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zipWith3">zipWith3</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zipWith4">zipWith4</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zipWith5">zipWith5</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zipWith6">zipWith6</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-zipWith7">zipWith7</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Boolean">Boolean</h1>
+
+
+<h2 id="f-AND">AND</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-bool">bool</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-not">not</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-OR">OR</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Characters">Characters</h1>
+
+
+<h2 id="f-isAsciiLetter">isAsciiLetter</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isDigit">isDigit</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Comparisons">Comparisons</h1>
+
+
+<h2 id="f-compare">compare</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-comparing">comparing</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-eq">eq</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-gt">gt</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-gte">gte</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-lt">lt</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-lte">lte</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-max">max</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-min">min</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-neq">neq</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Control flow">Control flow</h1>
+
+
+<h2 id="f-until">until</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Either">Either</h1>
+
+
+<h2 id="f-either">either</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-fromLeft">fromLeft</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-fromRight">fromRight</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isLeft">isLeft</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isRight">isRight</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-Left">Left</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-lefts">lefts</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-partitionEithers">partitionEithers</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-Right">Right</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-rights">rights</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Functions">Functions</h1>
+
+
+<h2 id="f-apply">apply</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-compose">compose</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-compose2">compose2</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-const">const</h2>
+<div class="section">
+<p>Accepts two arguments and returns the first one, thereby discarding
+the second one. This function is primarily useful for composing other
+functions.</p>
+
+</div>
+<h2 id="f-flip">flip</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-id">id</h2>
+<div class="section">
+<p>The <strong>identity</strong> function.</p>
+
+</div>
+<h2 id="f-idf">idf</h2>
+<div class="section">
+<p><strong>idf</strong> returns its argument wrapped in a function.</p>
+
+</div>
+<h2 id="f-on">on</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Maybe">Maybe</h1>
+
+
+<h2 id="f-catMaybes">catMaybes</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-fromMaybe">fromMaybe</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isJust">isJust</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isNothing">isNothing</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-listToMaybe">listToMaybe</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-mapMaybe">mapMaybe</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-maybe">maybe</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-maybeToList">maybeToList</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Numbers">Numbers</h1>
+
+
+<h2 id="f-abs">abs</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-acos">acos</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-acosh">acosh</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-add">add</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-asin">asin</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-asinh">asinh</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-atan">atan</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-atanh">atanh</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-ceiling">ceiling</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-cos">cos</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-cosh">cosh</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-div">div</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-divMod">divMod</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-even">even</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-exp">exp</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-floor">floor</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-frac">frac</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-gcd">gcd</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-lcm">lcm</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-log">log</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-logBase">logBase</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-mod">mod</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-mul">mul</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-negate">negate</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-odd">odd</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-pow">pow</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-properFraction">properFraction</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-quot">quot</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-quotRem">quotRem</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-recip">recip</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-rem">rem</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-round">round</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-signum">signum</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-sin">sin</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-sinh">sinh</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-sqrt">sqrt</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-sub">sub</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tan">tan</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tanh">tanh</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-truncate">truncate</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Objects">Objects</h1>
+
+
+<h2 id="f-keys">keys</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Streams">Streams</h1>
+
+
+<h2 id="f-consume">consume</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-consumeString">consumeString</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-cycle">cycle</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-each">each</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-iterate">iterate</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-repeat">repeat</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-stream">stream</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Strings">Strings</h1>
+
+
+<h2 id="f-lines">lines</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-unlines">unlines</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-unwords">unwords</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-words">words</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Tuples">Tuples</h1>
+
+
+<h2 id="f-fst">fst</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-snd">snd</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tuple">tuple</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tuple3">tuple3</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tuple4">tuple4</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tuple5">tuple5</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tuple6">tuple6</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-tuple7">tuple7</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+<h1 id="g-Types">Types</h1>
+<h2 id="functions-dealing-with-types-">Functions dealing with types.</h2>
+
+
+<h2 id="f-isArray">isArray</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isFunction">isFunction</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isInfinite">isInfinite</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isNumber">isNumber</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+<h2 id="f-isStream">isStream</h2>
+<div class="section">
+Lorem ipsum dolor sit amet.
+</div>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{{! vim: set et sw=2 ts=2: }}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nodash apidoc</title>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+    type="text/css" />
+  <link rel="stylesheet" type="text/css" href="apidoc.css">
+</head>
+<body>
+
+<div class="sidebar">
+
+{{#groups}}
+<h6><a href="#g-{{id}}">{{name}}</a></h6>
+<ul class="list-unstyled">
+{{#functions}}
+  <li><a href="#f-{{name}}">
+    <span class="name">{{name}}</span>
+    {{#aliases}}{{^isName}}<span class="alias">{{name}}</span>{{/isName}}{{/aliases}}
+  </a></li>
+{{/functions}}
+</ul>
+{{/groups}}
+
+</div>
+
+<div class="content">
+
+{{#groups}}
+
+<h1 id="g-{{id}}">{{name}}</h1>
+{{& primer}}
+
+{{#functions}}
+<h2 id="f-{{name}}">{{name}}</h2>
+<div class="section">
+{{#description}}
+{{& .}}
+{{/description}}
+{{^description}}
+Lorem ipsum dolor sit amet.
+{{/description}}
+</div>
+{{/functions}}
+
+{{/groups}}
+
+</div>
+
+</body>
+</html>

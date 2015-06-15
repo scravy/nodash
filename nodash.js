@@ -28,14 +28,6 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return "end of stream";
   }
 
-  // This is a special object used to mark the end of a stream.
-  // It is used as a kind of unique symbol. The eos variable itself
-  // is not exported and can not be written to from the outside.
-  // 
-  // The reference on the other hand is exported as `endOfStream`.
-  // While it is technically possible to overwrite `endOfStream` from
-  // the outside this will not affect the `eos` variable within this
-  // closure.
   var eos = {
     toString: showEndOfStream,
     inspect: showEndOfStream
@@ -43,39 +35,25 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
   Nodash.endOfStream = eos;
 
-  // This is a plain object which is only available within this
-  // clojure. It is used as a kind of unique symbol to be identified
-  // by comparing references via `===`.
   var stream = {};
 
-  // Creates a (finite) stream from a function f. This function
-  // is meant to be used internally (within this closure) only.
-  // A function is marked as stream by simply attaching the `stream`
-  // object as `__stream__`.
   function mkStream(f) {
     f.__stream__ = stream;
     return f;
   }
 
-  // Creates an infinite stream from a function f. This function
-  // is meant to be used internally only.
+  function isStream(x)   { return isFunction(x) && x.__stream__ === stream; }
+
+
   function mkInfinite(f) {
-    // It creates a strean by invoking `mkStream` and then marks it
-    // as infinite by attaching `true` as `__infinite__`.
     f = mkStream(f);
     f.__infinite__ = true;
     return f;
   }
-
-  // Check whether a stream is infinite by checking for the
-  // `__infinite__` property.
   function isInfinite(f) {
     return !!f.__infinite__;
   }
 
-  // Check whether a stream is finite and raise an error if it is not.
-  // This function is meant to be used internally only to have functions
-  // accepting finite streams only check their arguments.
   function checkFinite(xs) {
     if (isInfinite(xs)) {
       throw new Error('this function can not consume infinite streams');
@@ -97,9 +75,6 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   function isFunction(x) { return typeof x === 'function'; }
   function isString(x)   { return typeof x === 'string'; }
   function isNumber(x)   { return typeof x === 'number'; }
-
-  // Check whether a thing is actually a stream.
-  function isStream(x)   { return isFunction(x) && x.__stream__ === stream; }
 
   // Enumerates the keys of an object. If `Object.keys` is not availabe,
   // fall back to a polyfill. The polyfill is so hilariously big to cope
@@ -216,6 +191,8 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return -1;
   }
 
+  // ## Partial application
+  //
   // While partial application of functions can be implemented easily
   // using JavaScript's `bind` or `apply` functions, it is more
   // efficient to use closures as JavaScript's native functions
@@ -226,7 +203,8 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   // with a length
   // `length of function which is applied MINUS number of arguments consumed`.
   // Unfortunately this means we need to have some biolerplate code for
-  // every arity of functions and results, thus the big blob of code below.
+  // every arity of functions and results, thus the big blob of code
+  // below.
   var funcs = {
 
     0: id,
@@ -398,109 +376,117 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   // The maximum arity that this can deal with is 8 (see above).
   Nodash.curried = function (fn) { return funcs[fn.length](fn); };
 
-  Nodash.pipe = function () {
-    var functions, intermediateResult, callback;
-    var error = null;
-    if (isArray(arguments[0])) {
-      functions = arguments[0];
-      callback = arguments[1];
-    } else {
-      functions = arguments;
-    }
-    if (functions.length > 0) {
-      if (isFunction(functions[0])) {
-        intermediateResult = functions[0]();
-      } else {
-        intermediateResult = functions[0];
-      }
-      for (var i = 1; i < functions.length; i += 1) {
-        try {
-          intermediateResult = functions[i](intermediateResult);
-        } catch (err) {
-          error = err;
-        }
-      }
-    }
-    if (isFunction(callback)) {
-      callback(error, intermediateResult);
-    } else if (error) {
-      throw error;
-    }
-    return intermediateResult;
-  };
-
   /* @ifdef WITH_ONLINE_HELP */
-  Nodash.functions = {};
+  Nodash.metadata = [];
+  function description(f) {
+    var text = "";
+    if (isFunction(f)) {
+      f();
+      text = f.toString()
+              .replace(/^ *function *\(\) *\{/, '')
+              .replace(/\} *$/, '')
+              .replace(/^ *\/\/ ?/gm, '');
+    }
+    return { description: text };
+  }
   /* @endif */
 
+  var currentGroup = "";
+
+  /* @ifdef WITH_ONLINE_HELP */
+  function group(name, desc) {
+    currentGroup = { name: name, description: description(desc).description };
+  }
+  /* @endif */
+
+  // I would love to name this function `export` but that is a reserved keyword
+  // since ECMA Script 5.
   function register() {
-    var f, i, arg, aliases = [], name;
+    var f, i, arg, aliases = [];
+    /* @ifdef WITH_ONLINE_HELP */
+    var metadata = {};
+    /* @endif */
     for (i = 0; i < arguments.length; i++) {
       arg = arguments[i];
       switch (typeof arg) {
       case 'string':
-        name = name || arg;
         aliases.push(arg);
         break;
       case 'function':
         f = Nodash.curried(arg);
         break;
+      /* @ifdef WITH_ONLINE_HELP */
+      case 'object':
+        if (arg.description) {
+          metadata.description = arg.description;
+        }
+        break;
+      /* @endif */
       }
     }
     for (i = 0; i < aliases.length; i++) {
       Nodash[aliases[i]] = f;
     }
-    aliases.shift();
     /* @ifdef WITH_ONLINE_HELP */
-    Nodash.functions[name] = {
-      aliases: aliases,
-      arity: f.length
-    };
+    metadata.group = currentGroup;
+    metadata.aliases = aliases;
+    metadata.arity = f.length;
+    Nodash.metadata.push(metadata);
     /* @endif */
     return f;
   }
 
-  // Exports utility functions.
+  // # The actual functions
+  //
+  // Every function is exported by attaching it to the `Nodash` object
+  // via `register`. If the function is defined immediately it is given
+  // a name prefixed with an underscore, i.e.
+  //
+  //     register('<function-name>', function _functionName() { ... }
+  //
+  // to make stack traces more readable.
+
   
+  group('Types', function () {
+  // ## Functions dealing with types.
+  });
+
   register('isFunction', isFunction);
   register('isStream', isStream);
   register('isArray', isArray);
   register('isNumber', isNumber);
   register('isInfinite', isInfinite);
 
-  
-  // Exports/Defines of functions dealing with functions.
+  // ## Functions dealing with functions
 
-  // The identify function just returns what was passed in immediately.
-  register('id', id);
+  group('Functions');
 
-  // Since JavaScript is a strict language `idf` is provided. It wrapes
-  // the argument given to it in a function which will always return
-  // that value. A handy application is to define infinite streams,
-  // for example `stream(idf(7))`.
-  register('idf', function _idf(x) {
+  register('id', description(function () {
+  // The **identity** function.
+  }), id);
+
+  register('idf', description(function () {
+  // **idf** returns its argument wrapped in a function.
+  }), function _idf(x) {
     return function () {
       return x;
     };
   });
 
-  // The const function accepts a first and a second argument and
-  // discards the latter one. It is mostly used as a section
-  // (partial application) to discard some input in a pipe and
-  // return a fixed value.
-  register('const', 'const_', 'constant', function _const(a, b) {
+  register('const', 'const_', 'constant', description(function () {
+  // Accepts two arguments and returns the first one, thereby discarding
+  // the second one. This function is primarily useful for composing other
+  // functions.
+  }), function _const(a, b) {
     return a;
   });
 
-  // Applies the function given as first argument to the argument given
-  // as second argument. This seemingly useless function is handy
-  // to make function application explicit, e.g. when building using
-  // `fold` or `zipWith`.
-  register('$', 'apply', function _apply(f, x) {
+  register('$', 'apply', description(function () {
+  // 
+  }), function _apply(f, x) {
     return f(x);
   });
 
-  // 
   register('.', 'compose', function _compose(f, g, x) {
     return f(g(x));
   });
@@ -515,50 +501,63 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     });
   });
 
+  // **on**
   register('on', function _on(g, f, a, b) {
     return g(f(a), f(b));
   });
 
 
-  // Bool
+  // ## Functions for working with boolean functions
 
-  register('&&', 'AND', function _AND(a, b) { return a && b; });
+  group('Boolean');
 
-  register('||', 'OR', function _OR(a, b) { return a || b; });
+  register('&&', 'AND', description(function () {
+  // ### Boolean "and"
+  }),function _AND(a, b) { return a && b; });
 
-  register('not', function _not(value) { return !value; });
+  register('||', 'OR', description(function () {
+  // ### Boolean "or"
+  }), function _OR(a, b) { return a || b; });
+
+  register('not', description(function () {
+  // ### Boolean "not"
+  }), function _not(value) { return !value; });
 
   register('bool', function _bool(yes, no, bool) {
     return bool ? yes : no;
   });
 
 
-  // Tuple
+  // ## Tuple
+  
+  group('Tuples');
 
   register('fst', function _fst(arr) { return arr[0]; });
 
   register('snd', function _snd(arr) { return arr[1]; });
 
-  register(',', function (a, b) { return [ a, b ]; });
+  register(',', 'tuple', function (a, b) { return [ a, b ]; });
 
-  register(',,', function (a, b, c) { return [ a, b, c ]; });
+  register(',,', 'tuple3', function (a, b, c) { return [ a, b, c ]; });
 
-  register(',,,', function (a, b, c, d) { return [ a, b, c, d ]; });
+  register(',,,', 'tuple4', function (a, b, c, d) { return [ a, b, c, d ]; });
 
-  register(',,,,', function (a, b, c, d, e) {
+  register(',,,,', 'tuple5', function (a, b, c, d, e) {
     return [ a, b, c, d, e ];
   });
 
-  register(',,,,,', function (a, b, c, d, e, f) {
+  register(',,,,,', 'tuple6', function (a, b, c, d, e, f) {
     return [ a, b, c, d, e, f ];
   });
 
-  register(',,,,,,', function (a, b, c, d, e, f, g) {
+  register(',,,,,,', 'tuple7', function (a, b, c, d, e, f, g) {
     return [ a, b, c, d, e, f, g ];
   });
 
 
   // Eq
+  
+  group("Comparisons");
 
   register('==', 'eq',  'EQ', function _eq(a, b) {
     if (a === b) {
@@ -647,6 +646,8 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
 
   // Data.Char
+
+  group('Characters');
   
   register('isDigit', function (x) {
     return !!x.match(/[0-9]/);
@@ -658,6 +659,8 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
 
   // Num
+
+  group('Numbers');
 
   register('+', 'add', 'ADD', 'plus', 'PLUS', function _add(a, b) {
     return a + b;
@@ -845,7 +848,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   register('odd', function _odd(x) { return (x % 2) !== 0; });
 
 
-  // Control
+  group('Control flow');
 
   register('until', function _until(p, f, v) {
     while (!p(v)) {
@@ -854,8 +857,41 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return v;
   });
 
+  register('pipe', description(function () {
+  // pipe.
+  }), function _pipe() {
+    var functions, intermediateResult, callback;
+    var error = null;
+    if (isArray(arguments[0])) {
+      functions = arguments[0];
+      callback = arguments[1];
+    } else {
+      functions = arguments;
+    }
+    if (functions.length > 0) {
+      if (isFunction(functions[0])) {
+        intermediateResult = functions[0]();
+      } else {
+        intermediateResult = functions[0];
+      }
+      for (var i = 1; i < functions.length; i += 1) {
+        try {
+          intermediateResult = functions[i](intermediateResult);
+        } catch (err) {
+          error = err;
+        }
+      }
+    }
+    if (isFunction(callback)) {
+      callback(error, intermediateResult);
+    } else if (error) {
+      throw error;
+    }
+    return intermediateResult;
+  });
 
-  // Stream
+
+  group('Streams');
 
   register('stream', 'lazy', function _stream(xs) {
     if (isStream(xs)) {
@@ -973,7 +1009,30 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   });
 
 
-  // List
+  group('Strings');
+
+  register('lines', function _lines(string) {
+    var result = string.split(/\n/);
+    if (result[result.length - 1].length === 0) {
+      delete result[result.length - 1];
+    }
+    return result;
+  });
+
+  register('unlines', function _unlines(lines) {
+    return lines.join('\n');
+  });
+
+  register('words', function _words(string) {
+    return string.split(/[\n\r\v\t ]/);
+  });
+
+  register('unwords', function _unwords(words) {
+    return words.join(' ');
+  });
+
+
+  group('Arrays / Lists');
 
   register(':', 'cons', function _cons(x, xs) {
     if (isStream(xs)) {
@@ -1243,7 +1302,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return [ xs.slice(0, i), xs.slice(i) ];
   });
 
-  register('break', function _break(p, xs) {
+  register('break_', 'break', function _break(p, xs) {
     var i = 0;
     while (i < xs.length && !p(xs[i])) {
       i++;
@@ -1558,30 +1617,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   register('zip7', Nodash.zipWith7(Nodash[',,,,,,']));
 
 
-  // Strings
-
-  register('lines', function _lines(string) {
-    var result = string.split(/\n/);
-    if (result[result.length - 1].length === 0) {
-      delete result[result.length - 1];
-    }
-    return result;
-  });
-
-  register('unlines', function _unlines(lines) {
-    return lines.join('\n');
-  });
-
-  register('words', function _words(string) {
-    return string.split(/[\n\r\v\t ]/);
-  });
-
-  register('unwords', function _unwords(words) {
-    return words.join(' ');
-  });
-
-
-  // Data.List
+  // further from Data.List
 
   register('intersperse', function _intersperse(x, xs) {
     if (xs.length === 0) {
@@ -1833,7 +1869,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs;
   });
 
-  register('delete', 'delete_', function _delete(x, xs) {
+  register('delete_', 'delete', function _delete(x, xs) {
     var i = xs.indexOf(x);
     if (i >= 0) {
       return Nodash.append(xs.slice(0,i), xs.slice(i+1));
@@ -1874,12 +1910,17 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   register('group', Nodash.groupBy(Nodash.eq));
 
   register('sortBy', function (fn, xs) {
+    if (isStream(xs)) {
+      checkFinite(xs);
+      xs = Nodash.consume(xs);
+    }
     if (xs.length <= 1) {
       return xs;
     }
-    var zs = isString(xs) ? "".split.call(xs, '') : [].slice.call(xs);
+    var yesItsAString = isString(xs);
+    var zs = yesItsAString ? "".split.call(xs, '') : [].slice.call(xs);
     zs.sort(fn);
-    return isString(xs) ? zs.join('') : zs;
+    return yesItsAString ? zs.join('') : zs;
   });
 
   register('maximumBy', function (f, xs) {
@@ -1901,7 +1942,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   });
 
 
-  // Maybe
+  // ## Maybe
+
+  group('Maybe');
 
   register('maybe', function _maybe(def, fun, maybe) {
     if (maybe === undefined || maybe === null) {
@@ -1945,7 +1988,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   register('mapMaybe', Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map));
 
 
-  // Either
+  // ## Either
+
+  group('Either');
 
   register('either', function _either(afun, bfun, either) {
     var left = either.left || either[0];
@@ -1959,16 +2004,22 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return null;
   });
 
-  register('Left', function _Left(value) { return { left: value }; });
+  register('Left', function _Left(value) {
+    return { left: value };
+  });
 
-  register('Right', function _Right(value) { return { right: value }; });
+  register('Right', function _Right(value) {
+    return { right: value };
+  });
 
   register('isLeft', function _isLeft(val) {
-    return val.left !== undefined || (val[0] !== undefined && val[0] !== null);
+    return val.left !== undefined ||
+      (val[0] !== undefined && val[0] !== null);
   });
 
   register('isRight', function _isRight(val) {
-    return (val.right !== undefined || val[1] !== undefined) && !Nodash.isLeft(val);
+    return (val.right !== undefined || val[1] !== undefined) &&
+      !Nodash.isLeft(val);
   });
 
   register('fromLeft', function _fromLeft(val) {
@@ -2000,8 +2051,10 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   });
 
 
-  // Objects
+  // ## Objects
   
+  group('Objects');
+
   register('keys', keys);
 
   return Nodash;

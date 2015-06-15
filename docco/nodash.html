@@ -587,37 +587,6 @@ The maximum arity that this can deal with is 8 (see above).</p>
             
             <div class="content"><div class='highlight'><pre>  Nodash.curried = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">fn</span>) </span>{ <span class="hljs-keyword">return</span> funcs[fn.length](fn); };
 
-  Nodash.pipe = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">var</span> functions, intermediateResult, callback;
-    <span class="hljs-keyword">var</span> error = <span class="hljs-literal">null</span>;
-    <span class="hljs-keyword">if</span> (isArray(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>])) {
-      functions = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];
-      callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
-    } <span class="hljs-keyword">else</span> {
-      functions = <span class="hljs-built_in">arguments</span>;
-    }
-    <span class="hljs-keyword">if</span> (functions.length &gt; <span class="hljs-number">0</span>) {
-      <span class="hljs-keyword">if</span> (isFunction(functions[<span class="hljs-number">0</span>])) {
-        intermediateResult = functions[<span class="hljs-number">0</span>]();
-      } <span class="hljs-keyword">else</span> {
-        intermediateResult = functions[<span class="hljs-number">0</span>];
-      }
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; functions.length; i += <span class="hljs-number">1</span>) {
-        <span class="hljs-keyword">try</span> {
-          intermediateResult = functions[i](intermediateResult);
-        } <span class="hljs-keyword">catch</span> (err) {
-          error = err;
-        }
-      }
-    }
-    <span class="hljs-keyword">if</span> (isFunction(callback)) {
-      callback(error, intermediateResult);
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error) {
-      <span class="hljs-keyword">throw</span> error;
-    }
-    <span class="hljs-keyword">return</span> intermediateResult;
-  };
-
   <span class="hljs-comment">/* @ifdef WITH_ONLINE_HELP */</span>
   Nodash.metadata = [];
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">description</span>(<span class="hljs-params">f</span>) </span>{
@@ -635,13 +604,27 @@ The maximum arity that this can deal with is 8 (see above).</p>
 
   <span class="hljs-keyword">var</span> currentGroup = <span class="hljs-string">""</span>;
 
+  <span class="hljs-comment">/* @ifdef WITH_ONLINE_HELP */</span>
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">group</span>(<span class="hljs-params">name, desc</span>) </span>{
-    <span class="hljs-comment">/* @ifdef WITH_ONLINE_HELP */</span>
     currentGroup = { name: name, description: description(desc).description };
-    <span class="hljs-comment">/* @endif */</span>
   }
+  <span class="hljs-comment">/* @endif */</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>I would love to name this function <code>export</code> but that is a reserved keyword
+since ECMA Script 5.</p>
 
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span>(<span class="hljs-params"></span>) </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> f, i, arg, aliases = [];
     <span class="hljs-comment">/* @ifdef WITH_ONLINE_HELP */</span>
     <span class="hljs-keyword">var</span> metadata = {};
@@ -679,11 +662,11 @@ The maximum arity that this can deal with is 8 (see above).</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <h1 id="the-actual-functions">The actual functions</h1>
 <p>Every function is exported by attaching it to the <code>Nodash</code> object
@@ -701,11 +684,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <h2 id="functions-dealing-with-types-">Functions dealing with types.</h2>
 
@@ -722,11 +705,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <h2 id="functions-dealing-with-functions">Functions dealing with functions</h2>
 
@@ -740,11 +723,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>The <strong>identity</strong> function.</p>
 
@@ -757,11 +740,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p><strong>idf</strong> returns its argument wrapped in a function.</p>
 
@@ -778,11 +761,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Accepts two arguments and returns the first one, thereby discarding
 the second one. This function is primarily useful for composing other
@@ -799,11 +782,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               
             </div>
@@ -829,11 +812,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p><strong>on</strong></p>
 
@@ -846,11 +829,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <h2 id="functions-for-working-with-boolean-functions">Functions for working with boolean functions</h2>
 
@@ -872,11 +855,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <h2 id="tuple">Tuple</h2>
 
@@ -910,11 +893,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Eq</p>
 
@@ -951,11 +934,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>Ord</p>
 
@@ -1022,11 +1005,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Data.Char</p>
 
@@ -1046,11 +1029,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Num</p>
 
@@ -1087,11 +1070,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Integral</p>
 
@@ -1124,11 +1107,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Fractional</p>
 
@@ -1142,11 +1125,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Floating</p>
 
@@ -1214,11 +1197,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>RealFrac</p>
 
@@ -1245,11 +1228,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>Haskell’s round and JavaScripts Math.round are different</p>
 
@@ -1275,11 +1258,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>RealFloat</p>
 
@@ -1291,11 +1274,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <p>Numeric</p>
 
@@ -1331,6 +1314,52 @@ functions.</p>
       v = f(v);
     }
     <span class="hljs-keyword">return</span> v;
+  });
+
+  register(<span class="hljs-string">'pipe'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>pipe.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_pipe</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> functions, intermediateResult, callback;
+    <span class="hljs-keyword">var</span> error = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (isArray(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>])) {
+      functions = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];
+      callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
+    } <span class="hljs-keyword">else</span> {
+      functions = <span class="hljs-built_in">arguments</span>;
+    }
+    <span class="hljs-keyword">if</span> (functions.length &gt; <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">if</span> (isFunction(functions[<span class="hljs-number">0</span>])) {
+        intermediateResult = functions[<span class="hljs-number">0</span>]();
+      } <span class="hljs-keyword">else</span> {
+        intermediateResult = functions[<span class="hljs-number">0</span>];
+      }
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; functions.length; i += <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">try</span> {
+          intermediateResult = functions[i](intermediateResult);
+        } <span class="hljs-keyword">catch</span> (err) {
+          error = err;
+        }
+      }
+    }
+    <span class="hljs-keyword">if</span> (isFunction(callback)) {
+      callback(error, intermediateResult);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error) {
+      <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-keyword">return</span> intermediateResult;
   });
 
 
@@ -2065,11 +2094,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-38">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>further from Data.List</p>
 
@@ -2122,41 +2151,13 @@ functions.</p>
         </li>
         
         
-        <li id="section-39">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
-              </div>
-              <p>   register(‘subsequences’, function _subsequences() {
-   });</p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-40">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
-              </div>
-              <p>   register(‘permutations’, function _permutations() {
-   });</p>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
-              <p>   register(‘mapAccumL’, function _mapAccumL() {
+              <p>   register(‘subsequences’, function _subsequences() {
    });</p>
 
             </div>
@@ -2170,7 +2171,7 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
-              <p>   register(‘mapAccumR’, function _mapAccumR() {
+              <p>   register(‘permutations’, function _permutations() {
    });</p>
 
             </div>
@@ -2184,7 +2185,7 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
-              <p>   register(‘unfoldr’, function _unfoldr() {
+              <p>   register(‘mapAccumL’, function _mapAccumL() {
    });</p>
 
             </div>
@@ -2198,7 +2199,7 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
-              <p>   register(‘stripPrefix’, function _stripPrefix() {
+              <p>   register(‘mapAccumR’, function _mapAccumR() {
    });</p>
 
             </div>
@@ -2212,7 +2213,7 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
-              <p>   register(‘nubBy’, function () {
+              <p>   register(‘unfoldr’, function _unfoldr() {
    });</p>
 
             </div>
@@ -2226,7 +2227,7 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-46">&#182;</a>
               </div>
-              <p>   register(‘unionBy’, function () {
+              <p>   register(‘stripPrefix’, function _stripPrefix() {
    });</p>
 
             </div>
@@ -2239,6 +2240,34 @@ functions.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>   register(‘nubBy’, function () {
+   });</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p>   register(‘unionBy’, function () {
+   });</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
               <p>   register(‘intersectBy’, function () {
    });</p>
@@ -2501,11 +2530,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-48">
+        <li id="section-50">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-50">&#182;</a>
               </div>
               <h2 id="maybe">Maybe</h2>
 
@@ -2558,11 +2587,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-49">
+        <li id="section-51">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
               <h2 id="either">Either</h2>
 
@@ -2632,11 +2661,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-50">
+        <li id="section-52">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-52">&#182;</a>
               </div>
               <h2 id="objects">Objects</h2>
 

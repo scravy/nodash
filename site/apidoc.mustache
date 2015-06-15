@@ -32,21 +32,24 @@
 
 <div class="content">
 
+<h1>nodash {{version}} <small>api documentation</small></h1>
+
 {{#groups}}
 
-<h1 id="g-{{id}}">{{name}}</h1>
+<h2 id="g-{{id}}">{{name}}</h1>
 {{& primer}}
 
 {{#functions}}
-<h2 id="f-{{name}}">{{name}}</h2>
+<h3 id="f-{{name}}">{{name}}</h2>
 <div class="section">
-{{#description}}
-{{& .}}
-{{/description}}
-{{^description}}
-Lorem ipsum dolor sit amet.
-{{/description}}
+{{&description}}
+{{#source}}
+<pre>
+{{& source}}
+</pre>
+{{/source}}
 </div>
+
 {{/functions}}
 
 {{/groups}}

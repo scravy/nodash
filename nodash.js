@@ -397,12 +397,25 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   function group(name, desc) {
     currentGroup = { name: name, description: description(desc).description };
   }
+
+  function callsites() {
+    var _ = Error.prepareStackTrace;
+    Error.prepareStackTrace = function (_, stack) { return stack; };
+    var stack = new Error().stack.slice(1);
+    Error.prepareStackTrace = _;
+    return stack;
+  }
+  
+  function composed(f) {
+    f.composed = f;
+    return f;
+  }
   /* @endif */
 
   // I would love to name this function `export` but that is a reserved keyword
   // since ECMA Script 5.
   function register() {
-    var f, i, arg, aliases = [];
+    var f, fCurried, i, arg, aliases = [];
     /* @ifdef WITH_ONLINE_HELP */
     var metadata = {};
     /* @endif */
@@ -413,7 +426,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
         aliases.push(arg);
         break;
       case 'function':
-        f = Nodash.curried(arg);
+        f = arg;
         break;
       /* @ifdef WITH_ONLINE_HELP */
       case 'object':
@@ -424,16 +437,18 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
       /* @endif */
       }
     }
+    fCurried = Nodash.curried(f.composed ? f() : f);
     for (i = 0; i < aliases.length; i++) {
-      Nodash[aliases[i]] = f;
+      Nodash[aliases[i]] = fCurried;
     }
     /* @ifdef WITH_ONLINE_HELP */
+    metadata.function = f;
     metadata.group = currentGroup;
     metadata.aliases = aliases;
-    metadata.arity = f.length;
+    metadata.definedAt = callsites()[1].getPosition();
     Nodash.metadata.push(metadata);
     /* @endif */
-    return f;
+    return fCurried;
   }
 
   // # The actual functions
@@ -513,7 +528,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
   register('&&', 'AND', description(function () {
   // ### Boolean "and"
-  }),function _AND(a, b) { return a && b; });
+  }), function _AND(a, b) { return a && b; });
 
   register('||', 'OR', description(function () {
   // ### Boolean "or"
@@ -536,21 +551,21 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
   register('snd', function _snd(arr) { return arr[1]; });
 
-  register(',', 'tuple', function (a, b) { return [ a, b ]; });
+  register(',', 'tuple', function _tuple(a, b) { return [ a, b ]; });
 
-  register(',,', 'tuple3', function (a, b, c) { return [ a, b, c ]; });
+  register(',,', 'tuple3', function _tuple3(a, b, c) { return [ a, b, c ]; });
 
-  register(',,,', 'tuple4', function (a, b, c, d) { return [ a, b, c, d ]; });
+  register(',,,', 'tuple4', function _tuple4(a, b, c, d) { return [ a, b, c, d ]; });
 
-  register(',,,,', 'tuple5', function (a, b, c, d, e) {
+  register(',,,,', 'tuple5', function _tuple5(a, b, c, d, e) {
     return [ a, b, c, d, e ];
   });
 
-  register(',,,,,', 'tuple6', function (a, b, c, d, e, f) {
+  register(',,,,,', 'tuple6', function _tuple6(a, b, c, d, e, f) {
     return [ a, b, c, d, e, f ];
   });
 
-  register(',,,,,,', 'tuple7', function (a, b, c, d, e, f, g) {
+  register(',,,,,,', 'tuple7', function _tuple7(a, b, c, d, e, f, g) {
     return [ a, b, c, d, e, f, g ];
   });
 
@@ -649,11 +664,11 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
   group('Characters');
   
-  register('isDigit', function (x) {
+  register('isDigit', function _isDigit(x) {
     return !!x.match(/[0-9]/);
   });
 
-  register('isAsciiLetter', function (x) {
+  register('isAsciiLetter', function _isAsciiLetter(x) {
     return !!x.match(/[a-zA-Z]/);
   });
 
@@ -1203,6 +1218,12 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs.length;
   });
 
+  register('select', description(function () {
+  // select = flip (!!)
+  }), function _select(path, object) {
+    return Nodash.foldl(Nodash.at, object, path.split(/\./));
+  });
+
   register('!!', 'at', 'AT', function _at(xs, ix) {
     if (isStream(xs)) {
       var x;
@@ -1401,17 +1422,23 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return x;
   });
 
-  register('and', Nodash.foldl(Nodash['&&'], true));
+  register('and',
+    composed(function (){return Nodash.foldl(Nodash.AND, true);}));
 
-  register('or', Nodash.foldl(Nodash['||'], false));
+  register('or',
+    composed(function (){return Nodash.foldl(Nodash.OR, false);}));
 
-  register('sum', Nodash.foldl(Nodash['+'], 0));
+  register('sum',
+    composed(function (){return Nodash.foldl(Nodash.ADD, 0);}));
 
-  register('product', Nodash.foldl(Nodash['*'], 1));
+  register('product',
+    composed(function (){return Nodash.foldl(Nodash.MUL, 1);}));
 
-  register('maximum', Nodash.foldl(Nodash.max, -Infinity));
+  register('maximum',
+    composed(function (){return Nodash.foldl(Nodash.max, -Infinity);}));
 
-  register('minimum', Nodash.foldl(Nodash.min, +Infinity));
+  register('minimum',
+    composed(function (){return Nodash.foldl(Nodash.min, +Infinity);}));
 
   register('any', function _any(p, xs) {
     for (var i = 0; i < xs.length; i++) {
@@ -1494,7 +1521,8 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('concatMap', Nodash.compose2(Nodash.concat, Nodash.map));
+  register('concatMap',
+    composed(function (){return Nodash.compose2(Nodash.concat, Nodash.map);}));
 
   register('replicate', function _replicate(n, x) {
     var xs = [];
@@ -1604,17 +1632,23 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('zip',  Nodash.zipWith(Nodash[',']));
+  register('zip', 
+    composed(function (){return Nodash.zipWith(Nodash.tuple);}));
 
-  register('zip3', Nodash.zipWith3(Nodash[',,']));
+  register('zip3',
+    composed(function (){return Nodash.zipWith3(Nodash.tuple3);}));
 
-  register('zip4', Nodash.zipWith4(Nodash[',,,']));
+  register('zip4',
+    composed(function (){return Nodash.zipWith4(Nodash.tuple4);}));
 
-  register('zip5', Nodash.zipWith5(Nodash[',,,,']));
+  register('zip5',
+    composed(function (){return Nodash.zipWith5(Nodash.tuple5);}));
 
-  register('zip6', Nodash.zipWith6(Nodash[',,,,,']));
+  register('zip6',
+    composed(function (){return Nodash.zipWith6(Nodash.tuple6);}));
 
-  register('zip7', Nodash.zipWith7(Nodash[',,,,,,']));
+  register('zip7',
+    composed(function (){return Nodash.zipWith7(Nodash.tuple7);}));
 
 
   // further from Data.List
@@ -1689,13 +1723,17 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 //    register('intersectBy', function () {
 //    });
 
-  register('heads', Nodash.map(Nodash.head));
+  register('heads',
+    composed(function (){return Nodash.map(Nodash.head);}));
 
-  register('lasts', Nodash.map(Nodash.lasts));
+  register('lasts',
+    composed(function (){return Nodash.map(Nodash.lasts);}));
 
-  register('inits', Nodash.map(Nodash.inits));
+  register('inits',
+    composed(function (){return Nodash.map(Nodash.inits);}));
 
-  register('tails', Nodash.map(Nodash.tails));
+  register('tails',
+    composed(function (){return Nodash.map(Nodash.tails);}));
 
   register('isPrefixOf', function _isPrefixOf(prefix, string) {
     if (isStream(prefix)) {
@@ -1798,7 +1836,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('\\\\', 'difference', function (xs, ys) {
+  register('\\\\', 'difference', function _difference(xs, ys) {
     var set = new Set();
     var i;
     for (i = 0; i < ys.length; i++) {
@@ -1813,7 +1851,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return isString(xs) ? listToString(zs) : zs;
   });
 
-  register('union', function (xs, ys) {
+  register('union', function _union(xs, ys) {
     var set = new Set();
     var zs = [];
     var i;
@@ -1829,7 +1867,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('intersect', function (xs, ys) {
+  register('intersect', function _intersect(xs, ys) {
     var set = new Set();
     var zs = [];
     var i;
@@ -1844,7 +1882,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('sort', function (xs) {
+  register('sort', function _sort(xs) {
     checkFinite(xs);
     if (xs.length <= 1) {
       return xs;
@@ -1860,7 +1898,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return isString(xs) ? zs.join('') : zs;
   });
 
-  register('deleteBy', function (p, x, xs) {
+  register('deleteBy', function _deleteBy(p, x, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (p(x, xs[i])) {
         return Nodash.append(xs.slice(0,i), xs.slice(i+1));
@@ -1877,7 +1915,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs;
   });
 
-  register('insertBy', function (f, x, xs) {
+  register('insertBy', function _insertBy(f, x, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (f(x, xs[i]) <= 0) {
         return Nodash.concat([xs.slice(0,i), x, xs.slice(i)]);
@@ -1886,9 +1924,10 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return Nodash.append(xs, x);
   });
 
-  register('insert', Nodash.insertBy(Nodash.compare));
+  register('insert',
+    composed(function (){return Nodash.insertBy(Nodash.compare);}));
 
-  register('groupBy', function (p, xs) {
+  register('groupBy', function _groupBy(p, xs) {
     if (xs.length === 0) {
       return [];
     }
@@ -1897,19 +1936,21 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     var last = xs[0];
     for (var i = 1; i < xs.length; i++) {
       if (p(xs[i], last)) {
-        current.push(last);
+        current.push(xs[i]);
       } else {
         zs.push(current);
-        current = [last = xs[i]];
+        current = [xs[i]];
       }
+      last = xs[i];
     }
     zs.push(current);
     return isString(xs) ? Nodash.map(listToString, zs) : zs;
   });
 
-  register('group', Nodash.groupBy(Nodash.eq));
+  register('group',
+    composed(function (){return Nodash.groupBy(Nodash.eq);}));
 
-  register('sortBy', function (fn, xs) {
+  register('sortBy', function _sortBy(fn, xs) {
     if (isStream(xs)) {
       checkFinite(xs);
       xs = Nodash.consume(xs);
@@ -1923,7 +1964,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return yesItsAString ? zs.join('') : zs;
   });
 
-  register('maximumBy', function (f, xs) {
+  register('maximumBy', function _maximumBy(f, xs) {
     return Nodash.foldl1(function (a, b) {
       if (f(a, b) > 0) {
         return a;
@@ -1932,7 +1973,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     }, xs);
   });
 
-  register('minimumBy', function (f, xs) {
+  register('minimumBy', function _minimumBy(f, xs) {
     return Nodash.foldl1(function (a, b) {
       if (f(a, b) < 0) {
         return a;
@@ -1983,9 +2024,11 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return [maybe];
   });
 
-  register('catMaybes', Nodash.filter(Nodash.isJust));
+  register('catMaybes',
+    composed(function (){return Nodash.filter(Nodash.isJust);}));
 
-  register('mapMaybe', Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map));
+  register('mapMaybe',
+    composed(function (){return Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map);}));
 
 
   // ## Either

@@ -89,6 +89,13 @@ describe('Data.List', function () {
         assert.deepEqual([], groupBy(neq, []));
     });
 
+    it('groupBy', function () {
+        assert.deepEqual(
+            [ [{ a: 1, b: 2 }, { a: 1, b: 3 }], [{a: 7}] ],
+            groupBy(on(eq, select('a')), [{ a: 1, b: 2 }, { a: 1, b: 3 }, { a: 7 }])
+        );
+    });
+
     it('maximumBy', function () {
         var list = [2, 10, 5, 8, 21, 1, 9, 8, 3];
         assert.strictEqual(minimum(list), maximumBy(compose2(negate, compare), list));

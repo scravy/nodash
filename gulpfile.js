@@ -26,7 +26,7 @@ sourcemaps = require('gulp-sourcemaps'),
      chalk = require('chalk'),
       gzip = require('gulp-gzip'),
         fs = require('fs'),
-    gendoc = require('./gendoc.js'),
+    apidoc = require('./documentation.js'),
   filesize = require('filesize'),
       gulp = require('gulp');
 
@@ -51,6 +51,7 @@ gulp.task('minify', [ 'lint' ], function (done) {
       .pipe(uglify({ compressor: { global_defs: { group: true } } }))
       .pipe(replace(",description(function(){})", ""))
       .pipe(replace(/(group\(('[^']*'|"[^"]*")(,function\(\)\{\})?\),?)/g, ""))
+      .pipe(replace(/composed\(function\(\)\{return ([^}]+)\}\)/g, "$1"))
       .pipe(rename({ suffix: '.min' }))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('dist/'))
@@ -130,7 +131,7 @@ gulp.task('apidoc', [ 'styles', 'lint' ], function (done) {
   var library = require('./nodash.js');
 
   gulp.src('site/apidoc.mustache')
-      .pipe(mustache(gendoc(library)))
+      .pipe(mustache(apidoc(library.metadata)))
       .pipe(rename({ extname: ".html" }))
       .pipe(gulp.dest('dist/'))
       .on('finish', done);

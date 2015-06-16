@@ -45,6 +45,16 @@ div.content {
 div.content h1 {
   border-bottom: 1px solid maroon;
 }
+div.content .alias {
+  background: silver;
+  color: black;
+  border: 3px solid white;
+  border-radius: 1em;
+  padding-left: .5em;
+  padding-right: .5em;
+  vertical-align: middle;
+  line-height: 1em;
+}
 @media (max-width: 850px) {
   div.sidebar {
     display: none;

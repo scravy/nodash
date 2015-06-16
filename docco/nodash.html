@@ -705,17 +705,12 @@ a name prefixed with an underscore, i.e.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
-              <h2 id="functions-dealing-with-types-">Functions dealing with types.</h2>
-
+              
             </div>
             
             <div class="content"><div class='highlight'><pre>  });
 
-  register(<span class="hljs-string">'isFunction'</span>, isFunction);
-  register(<span class="hljs-string">'isStream'</span>, isStream);
-  register(<span class="hljs-string">'isArray'</span>, isArray);
-  register(<span class="hljs-string">'isNumber'</span>, isNumber);
-  register(<span class="hljs-string">'isInfinite'</span>, isInfinite);</pre></div></div>
+  register(<span class="hljs-string">'isFunction'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -725,6 +720,85 @@ a name prefixed with an underscore, i.e.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p><code>Any → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), isFunction);
+  register(<span class="hljs-string">'isStream'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p><code>Any → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), isStream);
+  register(<span class="hljs-string">'isArray'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p><code>Any → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), isArray);
+  register(<span class="hljs-string">'isNumber'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p><code>Any → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), isNumber);
+  register(<span class="hljs-string">'isInfinite'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p><code>Any → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), isInfinite);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <h2 id="functions-dealing-with-functions">Functions dealing with functions</h2>
 
@@ -738,13 +812,13 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
-              <p>The <strong>identity</strong> function.</p>
+              <p><code>a → a</code></p>
 
             </div>
             
@@ -755,13 +829,13 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
-              <p><strong>idf</strong> returns its argument wrapped in a function.</p>
+              <p><code>a → () → a</code></p>
 
             </div>
             
@@ -776,13 +850,14 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
-              <p>Accepts two arguments and returns the first one, thereby discarding
+              <p><code>a → b → a</code>
+Accepts two arguments and returns the first one, thereby discarding
 the second one. This function is primarily useful for composing other
 functions.</p>
 
@@ -797,28 +872,74 @@ functions.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
-              
+              <p><code>(a → b) → a → b</code></p>
+
             </div>
             
             <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_apply</span>(<span class="hljs-params">f, x</span>) </span>{
     <span class="hljs-keyword">return</span> f(x);
   });
 
-  register(<span class="hljs-string">'.'</span>, <span class="hljs-string">'compose'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose</span>(<span class="hljs-params">f, g, x</span>) </span>{
+  register(<span class="hljs-string">'.'</span>, <span class="hljs-string">'compose'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p><code>(b → c) → (a → b) → (a → c)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose</span>(<span class="hljs-params">f, g, x</span>) </span>{
     <span class="hljs-keyword">return</span> f(g(x));
   });
 
-  register(<span class="hljs-string">'compose2'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose2</span>(<span class="hljs-params">f, g, x, y</span>) </span>{
+  register(<span class="hljs-string">'compose2'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p><code>(c → d) → (a → b → c) → (a → b → d)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose2</span>(<span class="hljs-params">f, g, x, y</span>) </span>{
     <span class="hljs-keyword">return</span> f(g(x, y));
   });
 
-  register(<span class="hljs-string">'flip'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_flip</span>(<span class="hljs-params">f</span>) </span>{
+  register(<span class="hljs-string">'flip'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p><code>Any → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_flip</span>(<span class="hljs-params">f</span>) </span>{
     <span class="hljs-keyword">return</span> funcs[<span class="hljs-number">2</span>](<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">b, a</span>) </span>{
       <span class="hljs-keyword">return</span> f(a, b);
     });
@@ -827,28 +948,43 @@ functions.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p><strong>on</strong></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  register(<span class="hljs-string">'on'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_on</span>(<span class="hljs-params">g, f, a, b</span>) </span>{
+            <div class="content"><div class='highlight'><pre>  register(<span class="hljs-string">'on'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p><code>(b → b → c) → (a → b) → (a → a → c)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_on</span>(<span class="hljs-params">g, f, a, b</span>) </span>{
     <span class="hljs-keyword">return</span> g(f(a), f(b));
   });</pre></div></div>
             
         </li>
         
         
-        <li id="section-26">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <h2 id="functions-for-working-with-boolean-functions">Functions for working with boolean functions</h2>
 
@@ -862,13 +998,13 @@ functions.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
-              <h3 id="boolean-and-">Boolean “and”</h3>
+              <p><code>Bool → Bool → Bool</code></p>
 
             </div>
             
@@ -879,13 +1015,13 @@ functions.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
-              <h3 id="boolean-or-">Boolean “or”</h3>
+              <p><code>Bool → Bool → Bool</code></p>
 
             </div>
             
@@ -896,30 +1032,45 @@ functions.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
-              <h3 id="boolean-not-">Boolean “not”</h3>
+              <p><code>Bool → Bool</code></p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_not</span>(<span class="hljs-params">value</span>) </span>{ <span class="hljs-keyword">return</span> !value; });
 
-  register(<span class="hljs-string">'bool'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_bool</span>(<span class="hljs-params">yes, no, bool</span>) </span>{
+  register(<span class="hljs-string">'bool'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p><code>a → a → Bool → a</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_bool</span>(<span class="hljs-params">yes, no, bool</span>) </span>{
     <span class="hljs-keyword">return</span> bool ? yes : no;
   });</pre></div></div>
             
         </li>
         
         
-        <li id="section-30">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <h2 id="tuple">Tuple</h2>
 
@@ -928,36 +1079,156 @@ functions.</p>
             <div class="content"><div class='highlight'><pre>  
   group(<span class="hljs-string">'Tuples'</span>);
 
-  register(<span class="hljs-string">'fst'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fst</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">0</span>]; });
+  register(<span class="hljs-string">'fst'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <p><code>(a, b) → a</code></p>
 
-  register(<span class="hljs-string">'snd'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_snd</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">1</span>]; });
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fst</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">0</span>]; });
 
-  register(<span class="hljs-string">','</span>, <span class="hljs-string">'tuple'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b ]; });
+  register(<span class="hljs-string">'snd'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p><code>(a, b) → b</code></p>
 
-  register(<span class="hljs-string">',,'</span>, <span class="hljs-string">'tuple3'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple3</span>(<span class="hljs-params">a, b, c</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c ]; });
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_snd</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">1</span>]; });
 
-  register(<span class="hljs-string">',,,'</span>, <span class="hljs-string">'tuple4'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple4</span>(<span class="hljs-params">a, b, c, d</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c, d ]; });
+  register(<span class="hljs-string">','</span>, <span class="hljs-string">'tuple'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p><code>a → b → (a, b)</code></p>
 
-  register(<span class="hljs-string">',,,,'</span>, <span class="hljs-string">'tuple5'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple5</span>(<span class="hljs-params">a, b, c, d, e</span>) </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b ]; });
+
+  register(<span class="hljs-string">',,'</span>, <span class="hljs-string">'tuple3'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <p><code>a → b → c → (a, b, c)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple3</span>(<span class="hljs-params">a, b, c</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c ]; });
+
+  register(<span class="hljs-string">',,,'</span>, <span class="hljs-string">'tuple4'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p><code>a → b → c → d → (a, b, c, d)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple4</span>(<span class="hljs-params">a, b, c, d</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c, d ]; });
+
+  register(<span class="hljs-string">',,,,'</span>, <span class="hljs-string">'tuple5'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p><code>a → b → c → d → e → (a, b, c, d, e)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple5</span>(<span class="hljs-params">a, b, c, d, e</span>) </span>{
     <span class="hljs-keyword">return</span> [ a, b, c, d, e ];
   });
 
-  register(<span class="hljs-string">',,,,,'</span>, <span class="hljs-string">'tuple6'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple6</span>(<span class="hljs-params">a, b, c, d, e, f</span>) </span>{
+  register(<span class="hljs-string">',,,,,'</span>, <span class="hljs-string">'tuple6'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p><code>a → b → c → d → e → f → (a, b, c, d, e, f)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple6</span>(<span class="hljs-params">a, b, c, d, e, f</span>) </span>{
     <span class="hljs-keyword">return</span> [ a, b, c, d, e, f ];
   });
 
-  register(<span class="hljs-string">',,,,,,'</span>, <span class="hljs-string">'tuple7'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple7</span>(<span class="hljs-params">a, b, c, d, e, f, g</span>) </span>{
+  register(<span class="hljs-string">',,,,,,'</span>, <span class="hljs-string">'tuple7'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p><code>a → b → c → d → e → f → g → (a, b, c, d, e, f, g)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple7</span>(<span class="hljs-params">a, b, c, d, e, f, g</span>) </span>{
     <span class="hljs-keyword">return</span> [ a, b, c, d, e, f, g ];
   });</pre></div></div>
             
         </li>
         
         
-        <li id="section-31">
+        <li id="section-49">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
               <p>Eq</p>
 
@@ -966,7 +1237,22 @@ functions.</p>
             <div class="content"><div class='highlight'><pre>  
   group(<span class="hljs-string">"Comparisons"</span>);
 
-  register(<span class="hljs-string">'=='</span>, <span class="hljs-string">'eq'</span>,  <span class="hljs-string">'EQ'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_eq</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'=='</span>, <span class="hljs-string">'eq'</span>, <span class="hljs-string">'EQ'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p><code>Any → Any → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_eq</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">if</span> (a === b) {
       <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
     }
@@ -987,25 +1273,55 @@ functions.</p>
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   });
 
-  register(<span class="hljs-string">'/='</span>, <span class="hljs-string">'neq'</span>, <span class="hljs-string">'NEQ'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_neq</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'/='</span>, <span class="hljs-string">'neq'</span>, <span class="hljs-string">'NEQ'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p><code>Any → Any → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_neq</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> !Nodash.eq(a, b);
   });</pre></div></div>
             
         </li>
         
         
-        <li id="section-32">
+        <li id="section-52">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-52">&#182;</a>
               </div>
               <p>Ord</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-  register(<span class="hljs-string">'compare'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compare</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'compare'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <p><code>a → a → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compare</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">typeof</span> a) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">'string'</span>:
       <span class="hljs-keyword">return</span> a.localeCompare(b);
@@ -1028,48 +1344,153 @@ functions.</p>
     <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
   });
 
-  register(<span class="hljs-string">'&lt;'</span>, <span class="hljs-string">'lt'</span>, <span class="hljs-string">'LT'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lt</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'&lt;'</span>, <span class="hljs-string">'lt'</span>, <span class="hljs-string">'LT'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <p><code>a → a → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lt</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> Nodash.compare(a, b) &lt; <span class="hljs-number">0</span>;
   });
 
-  register(<span class="hljs-string">'&gt;'</span>, <span class="hljs-string">'gt'</span>, <span class="hljs-string">'GT'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gt</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'&gt;'</span>, <span class="hljs-string">'gt'</span>, <span class="hljs-string">'GT'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p><code>a → a → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gt</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> Nodash.compare(a, b) &gt; <span class="hljs-number">0</span>;
   });
 
-  register(<span class="hljs-string">'&lt;='</span>, <span class="hljs-string">'lte'</span>, <span class="hljs-string">'LTE'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lte</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'&lt;='</span>, <span class="hljs-string">'lte'</span>, <span class="hljs-string">'LTE'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <p><code>a → a → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lte</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> Nodash.compare(a, b) &lt;= <span class="hljs-number">0</span>;
   });
 
-  register(<span class="hljs-string">'&gt;='</span>, <span class="hljs-string">'gte'</span>, <span class="hljs-string">'GTE'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gte</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'&gt;='</span>, <span class="hljs-string">'gte'</span>, <span class="hljs-string">'GTE'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <p><code>a → a → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gte</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> Nodash.compare(a, b) &gt;= <span class="hljs-number">0</span>;
   });
 
-  register(<span class="hljs-string">'max'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_max</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'max'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_max</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">if</span> (Nodash.gt(a, b)) {
       <span class="hljs-keyword">return</span> a;
     }
     <span class="hljs-keyword">return</span> b;
   });
 
-  register(<span class="hljs-string">'min'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_min</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'min'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_min</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">if</span> (Nodash.lt(a, b)) {
       <span class="hljs-keyword">return</span> a;
     }
     <span class="hljs-keyword">return</span> b;
   });
 
-  register(<span class="hljs-string">'comparing'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_comparing</span>(<span class="hljs-params">f, a, b</span>) </span>{
+  register(<span class="hljs-string">'comparing'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <p><code>(a → b) → a → a → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_comparing</span>(<span class="hljs-params">f, a, b</span>) </span>{
     <span class="hljs-keyword">return</span> Nodash.compare(f(a), f(b));
   });</pre></div></div>
             
         </li>
         
         
-        <li id="section-33">
+        <li id="section-61">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-61">&#182;</a>
               </div>
               <p>Data.Char</p>
 
@@ -1078,22 +1499,52 @@ functions.</p>
             <div class="content"><div class='highlight'><pre>
   group(<span class="hljs-string">'Characters'</span>);
   
-  register(<span class="hljs-string">'isDigit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'isDigit'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-62">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
+              </div>
+              <p><code>Char → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[0-9]/</span>);
   });
 
-  register(<span class="hljs-string">'isAsciiLetter'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'isAsciiLetter'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-63">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-63">&#182;</a>
+              </div>
+              <p><code>Char → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[a-zA-Z]/</span>);
   });</pre></div></div>
             
         </li>
         
         
-        <li id="section-34">
+        <li id="section-64">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-64">&#182;</a>
               </div>
               <p>Num</p>
 
@@ -1102,23 +1553,113 @@ functions.</p>
             <div class="content"><div class='highlight'><pre>
   group(<span class="hljs-string">'Numbers'</span>);
 
-  register(<span class="hljs-string">'+'</span>, <span class="hljs-string">'add'</span>, <span class="hljs-string">'ADD'</span>, <span class="hljs-string">'plus'</span>, <span class="hljs-string">'PLUS'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_add</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'+'</span>, <span class="hljs-string">'add'</span>, <span class="hljs-string">'ADD'</span>, <span class="hljs-string">'plus'</span>, <span class="hljs-string">'PLUS'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-65">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_add</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> a + b;
   });
 
-  register(<span class="hljs-string">'-'</span>, <span class="hljs-string">'sub'</span>, <span class="hljs-string">'SUB'</span>, <span class="hljs-string">'minus'</span>, <span class="hljs-string">'MINUS'</span>, <span class="hljs-string">'subtract'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sub</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'-'</span>, <span class="hljs-string">'sub'</span>, <span class="hljs-string">'SUB'</span>, <span class="hljs-string">'minus'</span>, <span class="hljs-string">'MINUS'</span>, <span class="hljs-string">'subtract'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-66">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-66">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sub</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> a - b;
   });
 
-  register(<span class="hljs-string">'*'</span>, <span class="hljs-string">'mul'</span>, <span class="hljs-string">'MUL'</span>, <span class="hljs-string">'times'</span>, <span class="hljs-string">'TIMES'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mul</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'*'</span>, <span class="hljs-string">'mul'</span>, <span class="hljs-string">'MUL'</span>, <span class="hljs-string">'times'</span>, <span class="hljs-string">'TIMES'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-67">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-67">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mul</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> a * b;
   });
 
-  register(<span class="hljs-string">'abs'</span>, <span class="hljs-built_in">Math</span>.abs);
+  register(<span class="hljs-string">'abs'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-68">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-68">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
 
-  register(<span class="hljs-string">'negate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_negate</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> -a; });
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.abs);
 
-  register(<span class="hljs-string">'signum'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_signum</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'negate'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-69">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-69">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_negate</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> -a; });
+
+  register(<span class="hljs-string">'signum'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-70">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-70">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_signum</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>) {
       <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === <span class="hljs-number">0</span>) {
@@ -1130,101 +1671,416 @@ functions.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-71">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-71">&#182;</a>
               </div>
               <p>Integral</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-  register(<span class="hljs-string">'div'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_div</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(a / b); });
+  register(<span class="hljs-string">'div'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-72">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-72">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
 
-  register(<span class="hljs-string">'quot'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quot</span>(<span class="hljs-params">a, b</span>) </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_div</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(a / b); });
+
+  register(<span class="hljs-string">'quot'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-73">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-73">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quot</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">var</span> r = a / b;
     <span class="hljs-keyword">return</span> r &gt;= <span class="hljs-number">0</span> ? <span class="hljs-built_in">Math</span>.floor(r) : <span class="hljs-built_in">Math</span>.ceil(r);
   });
 
-  register(<span class="hljs-string">'rem'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_rem</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a % b; });
+  register(<span class="hljs-string">'rem'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-74">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-74">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
 
-  register(<span class="hljs-string">'mod'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mod</span>(<span class="hljs-params">a, b</span>) </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_rem</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a % b; });
+
+  register(<span class="hljs-string">'mod'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-75">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-75">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mod</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">var</span> q = Nodash.quot(a, b);
     <span class="hljs-keyword">var</span> r = Nodash.rem(a, b);
     <span class="hljs-keyword">return</span> Nodash.signum(r) == -Nodash.signum(b) ? r + b : r;
   });
 
-  register(<span class="hljs-string">'divMod'</span>,  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_divMod</span>(<span class="hljs-params">a, b</span>)  </span>{
+  register(<span class="hljs-string">'divMod'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-76">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-76">&#182;</a>
+              </div>
+              <p><code>Number → Number → (Number, Number)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_divMod</span>(<span class="hljs-params">a, b</span>)  </span>{
     <span class="hljs-keyword">return</span> [Nodash.div(a, b), Nodash.mod(a, b)];
   });
 
-  register(<span class="hljs-string">'quotRem'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quotRem</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'quotRem'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-77">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-77">&#182;</a>
+              </div>
+              <p><code>Number → Number → (Number, Number)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quotRem</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> [Nodash.quot(a, b), Nodash.rem(a, b)];
   });</pre></div></div>
             
         </li>
         
         
-        <li id="section-36">
+        <li id="section-78">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-78">&#182;</a>
               </div>
               <p>Fractional</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-  register(<span class="hljs-string">'/'</span>, <span class="hljs-string">'frac'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_frac</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a / b; });
-
-  register(<span class="hljs-string">'recip'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_recip</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / a; });</pre></div></div>
+  register(<span class="hljs-string">'/'</span>, <span class="hljs-string">'frac'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-37">
+        <li id="section-79">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_frac</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a / b; });
+
+  register(<span class="hljs-string">'recip'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-80">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-80">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_recip</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / a; });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
               </div>
               <p>Floating</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-  register(<span class="hljs-string">'exp'</span>,  <span class="hljs-built_in">Math</span>.exp);
+  register(<span class="hljs-string">'exp'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-82">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-82">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
 
-  register(<span class="hljs-string">'sqrt'</span>, <span class="hljs-built_in">Math</span>.sqrt);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.exp);
 
-  register(<span class="hljs-string">'log'</span>,  <span class="hljs-built_in">Math</span>.log);
+  register(<span class="hljs-string">'sqrt'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-83">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-83">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
 
-  register(<span class="hljs-string">'logBase'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_logBase</span>(<span class="hljs-params">a, b</span>) </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.sqrt);
+
+  register(<span class="hljs-string">'log'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-84">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-84">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.log);
+
+  register(<span class="hljs-string">'logBase'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-85">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-85">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_logBase</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(a) / <span class="hljs-built_in">Math</span>.log(b);
   });
 
-  register(<span class="hljs-string">'**'</span>, <span class="hljs-string">'pow'</span>, <span class="hljs-string">'^'</span>, <span class="hljs-string">'^^'</span>, <span class="hljs-built_in">Math</span>.pow);
+  register(<span class="hljs-string">'**'</span>, <span class="hljs-string">'pow'</span>, <span class="hljs-string">'^'</span>, <span class="hljs-string">'^^'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-86">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code></p>
 
-  register(<span class="hljs-string">'sin'</span>, <span class="hljs-built_in">Math</span>.sin);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.pow);
 
-  register(<span class="hljs-string">'tan'</span>, <span class="hljs-built_in">Math</span>.tan);
+  register(<span class="hljs-string">'sin'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
 
-  register(<span class="hljs-string">'cos'</span>, <span class="hljs-built_in">Math</span>.cos);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.sin);
 
-  register(<span class="hljs-string">'asin'</span>, <span class="hljs-built_in">Math</span>.asin);
+  register(<span class="hljs-string">'tan'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-88">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-88">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
 
-  register(<span class="hljs-string">'atan'</span>, <span class="hljs-built_in">Math</span>.atan);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.tan);
 
-  register(<span class="hljs-string">'acos'</span>, <span class="hljs-built_in">Math</span>.acos);
+  register(<span class="hljs-string">'cos'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-89">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-89">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
 
-  register(<span class="hljs-string">'sinh'</span>, <span class="hljs-built_in">Math</span>.sinh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sinh</span>(<span class="hljs-params">x</span>) </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.cos);
+
+  register(<span class="hljs-string">'asin'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-90">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-90">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.asin);
+
+  register(<span class="hljs-string">'atan'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-91">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-91">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.atan);
+
+  register(<span class="hljs-string">'acos'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-92">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-92">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.acos);
+
+  register(<span class="hljs-string">'sinh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-93">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-93">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.sinh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sinh</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
   });
 
-  register(<span class="hljs-string">'tanh'</span>, <span class="hljs-built_in">Math</span>.tanh || <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'tanh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-94">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-94">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.tanh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tanh</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">Infinity</span>) {
       <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
@@ -1234,11 +2090,41 @@ functions.</p>
     }
   });
 
-  register(<span class="hljs-string">'cosh'</span>, <span class="hljs-built_in">Math</span>.cosh || <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'cosh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-95">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-95">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.cosh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cosh</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
   });
 
-  register(<span class="hljs-string">'asinh'</span>, <span class="hljs-built_in">Math</span>.asinh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_asinh</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'asinh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-96">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-96">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.asinh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_asinh</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
       <span class="hljs-keyword">return</span> x;
     } <span class="hljs-keyword">else</span> {
@@ -1246,34 +2132,94 @@ functions.</p>
     }
   });
 
-  register(<span class="hljs-string">'atanh'</span>, <span class="hljs-built_in">Math</span>.atanh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_atanh</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'atanh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-97">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-97">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.atanh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_atanh</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log((<span class="hljs-number">1</span> + x) / (<span class="hljs-number">1</span> - x)) / <span class="hljs-number">2</span>;
   });
 
-  register(<span class="hljs-string">'acosh'</span>, <span class="hljs-built_in">Math</span>.acosh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_acosh</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'acosh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-98">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-98">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.acosh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_acosh</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(x + <span class="hljs-built_in">Math</span>.sqrt(x * x - <span class="hljs-number">1</span>));
   });</pre></div></div>
             
         </li>
         
         
-        <li id="section-38">
+        <li id="section-99">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-99">&#182;</a>
               </div>
               <p>RealFrac</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-  register(<span class="hljs-string">'properFraction'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_properFraction</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'properFraction'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-100">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-100">&#182;</a>
+              </div>
+              <p><code>Number → (Number, Number)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_properFraction</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">var</span> num = Nodash.truncate(x);
     <span class="hljs-keyword">return</span> [ num, -(num - x) ];
   });
 
-  register(<span class="hljs-string">'truncate'</span>, <span class="hljs-built_in">Math</span>.trunc || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_truncate</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'truncate'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-101">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-101">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.trunc || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_truncate</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">switch</span> (Nodash.signum(x)) {
     <span class="hljs-keyword">case</span> -<span class="hljs-number">1</span>:
       <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.ceil(x);
@@ -1283,22 +2229,24 @@ functions.</p>
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
   });
 
-  register(<span class="hljs-string">'round'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_round</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'round'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-39">
+        <li id="section-102">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-102">&#182;</a>
               </div>
-              <p>Haskell’s round and JavaScripts Math.round are different</p>
+              <p><code>Number → Number → Number</code>
+Haskell’s round and JavaScripts Math.round are different</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> fraction = Nodash.properFraction(x);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_round</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">var</span> fraction = Nodash.properFraction(x);
     <span class="hljs-keyword">var</span> n = fraction[<span class="hljs-number">0</span>];
     <span class="hljs-keyword">var</span> m = fraction[<span class="hljs-number">1</span>] &lt; <span class="hljs-number">0</span> ? n - <span class="hljs-number">1</span> : n + <span class="hljs-number">1</span>;
     <span class="hljs-keyword">switch</span> (Nodash.signum(<span class="hljs-built_in">Math</span>.abs(fraction[<span class="hljs-number">1</span>]) - <span class="hljs-number">0.5</span>)) {
@@ -1311,18 +2259,48 @@ functions.</p>
     }
   });
 
-  register(<span class="hljs-string">'ceiling'</span>, <span class="hljs-built_in">Math</span>.ceil);
-
-  register(<span class="hljs-string">'floor'</span>, <span class="hljs-built_in">Math</span>.floor);</pre></div></div>
+  register(<span class="hljs-string">'ceiling'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-40">
+        <li id="section-103">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-103">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.ceil);
+
+  register(<span class="hljs-string">'floor'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-104">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-104">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.floor);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-105">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
               <p>RealFloat</p>
 
@@ -1334,18 +2312,34 @@ functions.</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-106">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-106">&#182;</a>
               </div>
               <p>Numeric</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-  register(<span class="hljs-string">'gcd'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gcd</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'gcd'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-107">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-107">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code>
+Greatest common divisor.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gcd</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">var</span> c;
     <span class="hljs-keyword">while</span> (b !== <span class="hljs-number">0</span>) {
       c = Nodash.rem(a, b);
@@ -1355,21 +2349,82 @@ functions.</p>
     <span class="hljs-keyword">return</span> a;
   });
 
-  register(<span class="hljs-string">'lcm'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lcm</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'lcm'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-108">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-108">&#182;</a>
+              </div>
+              <p><code>Number → Number → Number</code>
+Lowest common denominator.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lcm</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">if</span> (a === <span class="hljs-number">0</span> || b === <span class="hljs-number">0</span>) {
       <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
     }
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(Nodash.quot(a, Nodash.gcd(a, b)) * b);
   });
 
-  register(<span class="hljs-string">'even'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_even</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) === <span class="hljs-number">0</span>; });
+  register(<span class="hljs-string">'even'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-109">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-109">&#182;</a>
+              </div>
+              <p><code>Number → Bool</code></p>
 
-  register(<span class="hljs-string">'odd'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_odd</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) !== <span class="hljs-number">0</span>; });
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_even</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) === <span class="hljs-number">0</span>; });
+
+  register(<span class="hljs-string">'odd'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-110">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-110">&#182;</a>
+              </div>
+              <p><code>Number → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_odd</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) !== <span class="hljs-number">0</span>; });
 
 
   group(<span class="hljs-string">'Control flow'</span>);
 
-  register(<span class="hljs-string">'until'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_until</span>(<span class="hljs-params">p, f, v</span>) </span>{
+  register(<span class="hljs-string">'until'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-111">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-111">&#182;</a>
+              </div>
+              <p><code>(a → Bool) → (a → a) → a → a</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_until</span>(<span class="hljs-params">p, f, v</span>) </span>{
     <span class="hljs-keyword">while</span> (!p(v)) {
       v = f(v);
     }
@@ -1381,13 +2436,13 @@ functions.</p>
         </li>
         
         
-        <li id="section-42">
+        <li id="section-112">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+                <a class="pilcrow" href="#section-112">&#182;</a>
               </div>
-              <p>pipe.</p>
+              <p>Pipes.</p>
 
             </div>
             
@@ -1425,7 +2480,22 @@ functions.</p>
 
   group(<span class="hljs-string">'Streams'</span>);
 
-  register(<span class="hljs-string">'stream'</span>, <span class="hljs-string">'lazy'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_stream</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'stream'</span>, <span class="hljs-string">'lazy'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-113">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-113">&#182;</a>
+              </div>
+              <p><code>[a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_stream</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">return</span> xs;
     }
@@ -1443,7 +2513,22 @@ functions.</p>
     });
   });
 
-  register(<span class="hljs-string">'consume'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consume</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'consume'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-114">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-114">&#182;</a>
+              </div>
+              <p><code>[a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consume</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (!isStream(xs)) {
       <span class="hljs-keyword">return</span> xs;
     }
@@ -1455,7 +2540,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> zs;
   });
 
-  register(<span class="hljs-string">'consumeString'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consumeString</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'consumeString'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-115">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-115">&#182;</a>
+              </div>
+              <p><code>[a] → String</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consumeString</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (!isStream(xs)) {
       <span class="hljs-keyword">return</span> <span class="hljs-string">""</span> + xs;
     }
@@ -1466,7 +2566,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> zs;
   });
 
-  register(<span class="hljs-string">'each'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_each</span>(<span class="hljs-params">f, xs</span>) </span>{
+  register(<span class="hljs-string">'each'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-116">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-116">&#182;</a>
+              </div>
+              <p><code>(a → ()) → [a] → ()</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_each</span>(<span class="hljs-params">f, xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">var</span> x;
       <span class="hljs-keyword">while</span> ((x = xs()) !== eos) {
@@ -1484,7 +2599,22 @@ functions.</p>
     }
   });
 
-  register(<span class="hljs-string">'cycle'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cycle</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'cycle'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-117">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-117">&#182;</a>
+              </div>
+              <p><code>[a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cycle</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">if</span> (isInfinite(xs)) {
         <span class="hljs-keyword">return</span> xs;
@@ -1526,13 +2656,43 @@ functions.</p>
     }
   });
 
-  register(<span class="hljs-string">'repeat'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_repeat</span>(<span class="hljs-params">x</span>) </span>{
+  register(<span class="hljs-string">'repeat'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-118">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-118">&#182;</a>
+              </div>
+              <p><code>a → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_repeat</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">return</span> x;
     });
   });
 
-  register(<span class="hljs-string">'iterate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_iterate</span>(<span class="hljs-params">f, x</span>) </span>{
+  register(<span class="hljs-string">'iterate'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-119">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-119">&#182;</a>
+              </div>
+              <p><code>(a → a) → a → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_iterate</span>(<span class="hljs-params">f, x</span>) </span>{
     <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">var</span> r = x;
       x = f(x);
@@ -1543,7 +2703,22 @@ functions.</p>
 
   group(<span class="hljs-string">'Strings'</span>);
 
-  register(<span class="hljs-string">'lines'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lines</span>(<span class="hljs-params">string</span>) </span>{
+  register(<span class="hljs-string">'lines'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-120">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-120">&#182;</a>
+              </div>
+              <p><code>String → [String]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lines</span>(<span class="hljs-params">string</span>) </span>{
     <span class="hljs-keyword">var</span> result = string.split(<span class="hljs-regexp">/\n/</span>);
     <span class="hljs-keyword">if</span> (result[result.length - <span class="hljs-number">1</span>].length === <span class="hljs-number">0</span>) {
       <span class="hljs-keyword">delete</span> result[result.length - <span class="hljs-number">1</span>];
@@ -1551,22 +2726,82 @@ functions.</p>
     <span class="hljs-keyword">return</span> result;
   });
 
-  register(<span class="hljs-string">'unlines'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unlines</span>(<span class="hljs-params">lines</span>) </span>{
+  register(<span class="hljs-string">'unlines'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-121">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-121">&#182;</a>
+              </div>
+              <p><code>[String] → String</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unlines</span>(<span class="hljs-params">lines</span>) </span>{
     <span class="hljs-keyword">return</span> lines.join(<span class="hljs-string">'\n'</span>);
   });
 
-  register(<span class="hljs-string">'words'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_words</span>(<span class="hljs-params">string</span>) </span>{
+  register(<span class="hljs-string">'words'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-122">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-122">&#182;</a>
+              </div>
+              <p><code>String → [String]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_words</span>(<span class="hljs-params">string</span>) </span>{
     <span class="hljs-keyword">return</span> string.split(<span class="hljs-regexp">/[\n\r\v\t ]/</span>);
   });
 
-  register(<span class="hljs-string">'unwords'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unwords</span>(<span class="hljs-params">words</span>) </span>{
+  register(<span class="hljs-string">'unwords'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-123">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-123">&#182;</a>
+              </div>
+              <p><code>[String] → String</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unwords</span>(<span class="hljs-params">words</span>) </span>{
     <span class="hljs-keyword">return</span> words.join(<span class="hljs-string">' '</span>);
   });
 
 
   group(<span class="hljs-string">'Arrays / Lists'</span>);
 
-  register(<span class="hljs-string">':'</span>, <span class="hljs-string">'cons'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cons</span>(<span class="hljs-params">x, xs</span>) </span>{
+  register(<span class="hljs-string">':'</span>, <span class="hljs-string">'cons'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-124">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-124">&#182;</a>
+              </div>
+              <p>a → [a] → [a]</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cons</span>(<span class="hljs-params">x, xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">var</span> consumedFirst = <span class="hljs-literal">false</span>;
       <span class="hljs-keyword">return</span> (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
@@ -1582,7 +2817,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> zs;
   });
 
-  register(<span class="hljs-string">'++'</span>, <span class="hljs-string">'append'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_append</span>(<span class="hljs-params">xs, ys</span>) </span>{
+  register(<span class="hljs-string">'++'</span>, <span class="hljs-string">'append'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-125">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-125">&#182;</a>
+              </div>
+              <p><code>[a] → [a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_append</span>(<span class="hljs-params">xs, ys</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs) || isStream(ys)) {
       xs = Nodash.stream(xs);
       <span class="hljs-keyword">if</span> (isInfinite(xs)) {
@@ -1611,7 +2861,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> zs;
   });
 
-  register(<span class="hljs-string">'map'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_map</span>(<span class="hljs-params">f, xs</span>) </span>{
+  register(<span class="hljs-string">'map'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-126">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-126">&#182;</a>
+              </div>
+              <p><code>(a → b) → [a] → [b]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_map</span>(<span class="hljs-params">f, xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">return</span> (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">var</span> x = xs();
@@ -1637,7 +2902,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> ys;
   });
 
-  register(<span class="hljs-string">'filter'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_filter</span>(<span class="hljs-params">p, xs</span>) </span>{
+  register(<span class="hljs-string">'filter'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-127">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-127">&#182;</a>
+              </div>
+              <p><code>(a → Bool) → [a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_filter</span>(<span class="hljs-params">p, xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">return</span> (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">var</span> x;
@@ -1669,7 +2949,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> ys;
   });
 
-  register(<span class="hljs-string">'head'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_head</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'head'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-128">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-128">&#182;</a>
+              </div>
+              <p><code>[a] → a</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_head</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">var</span> x = xs();
       <span class="hljs-keyword">return</span> x === eos ? <span class="hljs-literal">undefined</span> : x;
@@ -1677,7 +2972,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> xs[<span class="hljs-number">0</span>];
   });
 
-  register(<span class="hljs-string">'last'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_last</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'last'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-129">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-129">&#182;</a>
+              </div>
+              <p><code>a → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_last</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       checkFinite(xs);
       <span class="hljs-keyword">var</span> x, z;
@@ -1689,7 +2999,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> xs[xs.length - <span class="hljs-number">1</span>];
   });
 
-  register(<span class="hljs-string">'tail'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tail</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'tail'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-130">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-130">&#182;</a>
+              </div>
+              <p><code>[a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tail</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       xs();
       <span class="hljs-keyword">return</span> xs;
@@ -1697,7 +3022,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">1</span>);
   });
 
-  register(<span class="hljs-string">'init'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_init</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'init'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-131">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-131">&#182;</a>
+              </div>
+              <p><code>[a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_init</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       checkFinite(xs);
       <span class="hljs-keyword">var</span> a = xs(), b;
@@ -1714,14 +3054,44 @@ functions.</p>
     <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">0</span>, xs.length - <span class="hljs-number">1</span>);
   });
 
-  register(<span class="hljs-string">'isNull'</span>, <span class="hljs-string">'null_'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_null</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'isNull'</span>, <span class="hljs-string">'null_'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-132">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-132">&#182;</a>
+              </div>
+              <p><code>[a] → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_null</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">return</span> xs() === eos;
     }
     <span class="hljs-keyword">return</span> xs.length === <span class="hljs-number">0</span>;
   });
 
-  register(<span class="hljs-string">'length'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_length</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'length'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-133">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-133">&#182;</a>
+              </div>
+              <p><code>[a] → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_length</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">if</span> (isInfinite(xs)) {
         <span class="hljs-keyword">return</span> <span class="hljs-literal">Infinity</span>;
@@ -1740,13 +3110,13 @@ functions.</p>
         </li>
         
         
-        <li id="section-43">
+        <li id="section-134">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-134">&#182;</a>
               </div>
-              <p>select = flip (!!)</p>
+              <p><code>String → Object → Unknown</code></p>
 
             </div>
             
@@ -1754,7 +3124,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> Nodash.foldl(Nodash.at, object, path.split(<span class="hljs-regexp">/\./</span>));
   });
 
-  register(<span class="hljs-string">'!!'</span>, <span class="hljs-string">'at'</span>, <span class="hljs-string">'AT'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_at</span>(<span class="hljs-params">xs, ix</span>) </span>{
+  register(<span class="hljs-string">'!!'</span>, <span class="hljs-string">'at'</span>, <span class="hljs-string">'AT'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-135">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-135">&#182;</a>
+              </div>
+              <p><code>[a] → Number → a</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_at</span>(<span class="hljs-params">xs, ix</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">var</span> x;
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; ix; i++) {
@@ -1768,7 +3153,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> xs[ix];
   });
 
-  register(<span class="hljs-string">'reverse'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_reverse</span>(<span class="hljs-params">xs</span>) </span>{
+  register(<span class="hljs-string">'reverse'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-136">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-136">&#182;</a>
+              </div>
+              <p><code>[a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_reverse</span>(<span class="hljs-params">xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       checkFinite(xs);
       xs = Nodash.consume(xs);
@@ -1785,7 +3185,22 @@ functions.</p>
     <span class="hljs-keyword">return</span> isString(xs) ? zs.join(<span class="hljs-string">''</span>) : zs;
   });
 
-  register(<span class="hljs-string">'take'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_take</span>(<span class="hljs-params">n, xs</span>) </span>{
+  register(<span class="hljs-string">'take'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-137">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-137">&#182;</a>
+              </div>
+              <p><code>Number → [a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_take</span>(<span class="hljs-params">n, xs</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
       <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
@@ -1798,399 +3213,412 @@ functions.</p>
     <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">0</span>, <span class="hljs-attribute">n</span>);
   });
 
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">drop</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_drop</span>(<span class="hljs-attribute">n</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">xs</span>)) {
-      <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">n</span>; <span class="hljs-attribute">i</span>++) {
-        <span class="hljs-attribute">xs</span>();
-      }
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs</span>;
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">n</span>);
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">splitAt</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_splitAt</span>(<span class="hljs-attribute">n</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">return</span> [ <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">0</span>, <span class="hljs-attribute">n</span>), <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">n</span>) ];
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">takeWhile</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_takeWhile</span>(<span class="hljs-attribute">p</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">xs</span>)) {
-      <span class="hljs-attribute">var</span> <span class="hljs-attribute">exhausted</span> = <span class="hljs-attribute">false</span>;
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">mkStream</span>(<span class="hljs-attribute">function</span> () {
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">x</span> = <span class="hljs-attribute">xs</span>();
-        <span class="hljs-attribute">if</span> (<span class="hljs-attribute">exhausted</span> || <span class="hljs-attribute">x</span> =<span class="hljs-value">=</span> <span class="hljs-attribute">eos</span> || !<span class="hljs-attribute">p</span>(<span class="hljs-attribute">x</span>)) {
-          <span class="hljs-attribute">exhausted</span> = <span class="hljs-attribute">true</span>;
-          <span class="hljs-attribute">return</span> <span class="hljs-attribute">eos</span>;
-        }
-        <span class="hljs-attribute">return</span> <span class="hljs-attribute">x</span>;
-      });
-    }
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>;
-    <span class="hljs-attribute">while</span> (<span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span> &amp;&amp; <span class="hljs-attribute">p</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>])) {
-      <span class="hljs-attribute">i</span>++;
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">0</span>, <span class="hljs-attribute">i</span>);
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">dropWhile</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_dropWhile</span>(<span class="hljs-attribute">p</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">xs</span>)) {
-      <span class="hljs-attribute">var</span> <span class="hljs-attribute">x</span>;
-      <span class="hljs-attribute">while</span> ((<span class="hljs-attribute">x</span> = <span class="hljs-attribute">xs</span>()) !=<span class="hljs-value">=</span> <span class="hljs-attribute">eos</span> &amp;&amp; <span class="hljs-attribute">p</span>(<span class="hljs-attribute">x</span>)) {
-      }
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.cons</span>(<span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>);
-    }
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>;
-    <span class="hljs-attribute">while</span> (<span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span> &amp;&amp; <span class="hljs-attribute">p</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>])) {
-      <span class="hljs-attribute">i</span>++;
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">i</span>);
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">span</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_span</span>(<span class="hljs-attribute">p</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>;
-    <span class="hljs-attribute">while</span> (<span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span> &amp;&amp; <span class="hljs-attribute">p</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>])) {
-        <span class="hljs-attribute">i</span>++;
-    }
-    <span class="hljs-attribute">return</span> [ <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">0</span>, <span class="hljs-attribute">i</span>), <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">i</span>) ];
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">break_</span>', '<span class="hljs-attribute">break</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_break</span>(<span class="hljs-attribute">p</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>;
-    <span class="hljs-attribute">while</span> (<span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span> &amp;&amp; !<span class="hljs-attribute">p</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>])) {
-      <span class="hljs-attribute">i</span>++;
-    }
-    <span class="hljs-attribute">return</span> [ <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">0</span>, <span class="hljs-attribute">i</span>), <span class="hljs-attribute">xs.slice</span>(<span class="hljs-attribute">i</span>) ];
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">elem</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_elem</span>(<span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">xs</span>)) {
-      <span class="hljs-attribute">var</span> <span class="hljs-attribute">z</span>;
-      <span class="hljs-attribute">while</span> ((<span class="hljs-attribute">z</span> = <span class="hljs-attribute">xs</span>()) !=<span class="hljs-value">=</span> <span class="hljs-attribute">eos</span>) {
-        <span class="hljs-attribute">if</span> (<span class="hljs-attribute">Nodash.eq</span>(<span class="hljs-attribute">z</span>, <span class="hljs-attribute">x</span>)) {
-          <span class="hljs-attribute">return</span> <span class="hljs-attribute">true</span>;
-        }
-      }
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">false</span>;
-    }
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">if</span> (<span class="hljs-attribute">Nodash.eq</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">x</span>)) {
-        <span class="hljs-attribute">return</span> <span class="hljs-attribute">true</span>;
-      }
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">false</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">notElem</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_notElem</span>(<span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">xs</span>)) {
-      <span class="hljs-attribute">var</span> <span class="hljs-attribute">z</span>;
-      <span class="hljs-attribute">while</span> ((<span class="hljs-attribute">z</span> = <span class="hljs-attribute">xs</span>()) !=<span class="hljs-value">=</span> <span class="hljs-attribute">eos</span>) {
-        <span class="hljs-attribute">if</span> (<span class="hljs-attribute">Nodash.eq</span>(<span class="hljs-attribute">z</span>, <span class="hljs-attribute">x</span>)) {
-          <span class="hljs-attribute">return</span> <span class="hljs-attribute">false</span>;
-        }
-      }
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">true</span>;
-    }
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">if</span> (<span class="hljs-attribute">Nodash.eq</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">x</span>)) {
-        <span class="hljs-attribute">return</span> <span class="hljs-attribute">false</span>;
-      }
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">true</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">lookup</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_lookup</span>(<span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isArray</span>(<span class="hljs-attribute">xs</span>)) {
-      <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span>; <span class="hljs-attribute">i</span>++) {
-        <span class="hljs-attribute">if</span> (<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>] &amp;&amp; <span class="hljs-attribute">Nodash.eq</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>][<span class="hljs-attribute">0</span>], <span class="hljs-attribute">x</span>)) {
-          <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>][<span class="hljs-attribute">1</span>];
-        }
-      }
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs</span>[<span class="hljs-attribute">x</span>];
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">foldl</span>', '<span class="hljs-attribute">foldl</span>\'', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_foldl</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">streaming</span> = <span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">xs</span>);
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">streaming</span>) {
-      <span class="hljs-attribute">xs</span> = <span class="hljs-attribute">Nodash.consume</span>(<span class="hljs-attribute">xs</span>);
-    }
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">x</span> = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>]);
-    }
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isArray</span>(<span class="hljs-attribute">x</span>) &amp;&amp; <span class="hljs-attribute">streaming</span>) {
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">x</span>);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">x</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">foldl1</span>', '<span class="hljs-attribute">foldl1</span>\'', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_foldl1</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">streaming</span> = <span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">xs</span>);
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">streaming</span>) {
-      <span class="hljs-attribute">xs</span> = <span class="hljs-attribute">Nodash.consume</span>(<span class="hljs-attribute">xs</span>);
-    }
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">x</span> = <span class="hljs-attribute">xs</span>[<span class="hljs-attribute">0</span>];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">1</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">x</span> = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>]);
-    }
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isArray</span>(<span class="hljs-attribute">x</span>) &amp;&amp; <span class="hljs-attribute">streaming</span>) {
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">x</span>);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">x</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">foldr</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_foldr</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">xs.length</span> <span class="hljs-attribute">-</span> <span class="hljs-attribute">1</span>; <span class="hljs-attribute">i</span> &gt;</span>= 0; i--) {
-      x = f(xs[i], x);
-    }
-    return x;
-  });
-
-  register('foldr1', function _foldr1(f, xs) {
-    var x = xs[xs.length - 1];
-    for (var i = xs.length - 2; i &gt;= 0; i--) {
-      x = f(xs[i], x);
-    }
-    return x;
-  });
-
-  register('and',
-    composed(function (){return Nodash.foldl(Nodash.AND, true);}));
-
-  register('or',
-    composed(function (){return Nodash.foldl(Nodash.OR, false);}));
-
-  register('sum',
-    composed(function (){return Nodash.foldl(Nodash.ADD, 0);}));
-
-  register('product',
-    composed(function (){return Nodash.foldl(Nodash.MUL, 1);}));
-
-  register('maximum',
-    composed(function (){return Nodash.foldl(Nodash.max, -Infinity);}));
-
-  register('minimum',
-    composed(function (){return Nodash.foldl(Nodash.min, +Infinity);}));
-
-  register('any', function _any(p, xs) {
-    for (var i = 0; i <span class="hljs-tag">&lt; <span class="hljs-attribute">xs.length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">if</span> (<span class="hljs-attribute">p</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>])) {
-        <span class="hljs-attribute">return</span> <span class="hljs-attribute">true</span>;
-      }
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">false</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">all</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_all</span>(<span class="hljs-attribute">p</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">if</span> (!<span class="hljs-attribute">p</span>(<span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>])) {
-        <span class="hljs-attribute">return</span> <span class="hljs-attribute">false</span>;
-      }
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">true</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">scanl</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_scanl</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">xs</span>)) {
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.cons</span>(<span class="hljs-attribute">x</span>, (<span class="hljs-attribute">isInfinite</span>(<span class="hljs-attribute">xs</span>) ? <span class="hljs-attribute">mkInfinite</span> <span class="hljs-attribute">:</span> <span class="hljs-attribute">mkStream</span>)(<span class="hljs-attribute">function</span> () {
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">r</span> = <span class="hljs-attribute">xs</span>();
-        <span class="hljs-attribute">if</span> (<span class="hljs-attribute">r</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span>) {
-          <span class="hljs-attribute">return</span> <span class="hljs-attribute">eos</span>;
-        }
-        <span class="hljs-attribute">x</span> = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">x</span>, <span class="hljs-attribute">r</span>);
-        <span class="hljs-attribute">return</span> <span class="hljs-attribute">x</span>;
-      }));
-    }
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">zs</span> = [<span class="hljs-attribute">x</span>];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">x</span> = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>]);
-      <span class="hljs-attribute">zs.push</span>(<span class="hljs-attribute">x</span>);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">zs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">scanl1</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_scanl1</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">xs</span>)) {
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.scanl</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">xs</span>(), <span class="hljs-attribute">xs</span>);
-    }
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">x</span> = <span class="hljs-attribute">xs</span>[<span class="hljs-attribute">0</span>];
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">zs</span> = [<span class="hljs-attribute">x</span>];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">1</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">xs.length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">x</span> = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>[<span class="hljs-attribute">i</span>]);
-      <span class="hljs-attribute">zs.push</span>(<span class="hljs-attribute">x</span>);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">zs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">scanr</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_scanr</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">x</span>, <span class="hljs-attribute">xs</span>) {
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">zs</span> = [<span class="hljs-attribute">x</span>];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">xs.length</span> <span class="hljs-attribute">-</span> <span class="hljs-attribute">1</span>; <span class="hljs-attribute">i</span> &gt;</span>= 0; i--) {
-      x = f(xs[i], x);
-      zs.unshift(x);
-    }
-    return zs;
-  });
-
-  register('scanr1', function _scanr1(f, xs) {
-    var x = xs[xs.length - 1];
-    var zs = [x];
-    for (var i = xs.length - 2; i &gt;= 0; i--) {
-      x = f(xs[i], x);
-      zs.unshift(x);
-    }
-    return zs;
-  });
-
-  register('concat', function _concat(xs) {
-    if (isString(xs[0])) {
-      return xs.join('');
-    }
-    var zs = [];
-    var ks = keys(xs);
-    for (var i = 0; i <span class="hljs-tag">&lt; <span class="hljs-attribute">ks.length</span>; <span class="hljs-attribute">i</span>++) {
-      []<span class="hljs-attribute">.push.apply</span>(<span class="hljs-attribute">zs</span>, <span class="hljs-attribute">xs</span>[<span class="hljs-attribute">ks</span>[<span class="hljs-attribute">i</span>]]);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">zs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">concatMap</span>',
-    <span class="hljs-attribute">composed</span>(<span class="hljs-attribute">function</span> (){<span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.compose2</span>(<span class="hljs-attribute">Nodash.concat</span>, <span class="hljs-attribute">Nodash.map</span>);}));
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">replicate</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_replicate</span>(<span class="hljs-attribute">n</span>, <span class="hljs-attribute">x</span>) {
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">xs</span> = [];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">n</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">xs.push</span>(<span class="hljs-attribute">x</span>);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">xs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zipWith</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_zipWith</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">as</span>, <span class="hljs-attribute">bs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">as</span>) || <span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">bs</span>)) {
-      <span class="hljs-attribute">as</span> = <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">as</span>);
-      <span class="hljs-attribute">bs</span> = <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">bs</span>);
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">mkStream</span>(<span class="hljs-attribute">function</span> () {
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">a</span> = <span class="hljs-attribute">as</span>();
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">b</span> = <span class="hljs-attribute">bs</span>();
-        <span class="hljs-attribute">if</span> (<span class="hljs-attribute">a</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span> || <span class="hljs-attribute">b</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span>) {
-          <span class="hljs-attribute">return</span> <span class="hljs-attribute">eos</span>;
-        }
-        <span class="hljs-attribute">return</span> <span class="hljs-attribute">f</span>(<span class="hljs-attribute">a</span>, <span class="hljs-attribute">b</span>);
-      });
-    }
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">length</span> = <span class="hljs-attribute">Math.min</span>(<span class="hljs-attribute">as.length</span>, <span class="hljs-attribute">bs.length</span>);
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">zs</span> = [];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">zs</span>[<span class="hljs-attribute">i</span>] = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">as</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">bs</span>[<span class="hljs-attribute">i</span>]);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">zs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zipWith3</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_zipWith3</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">as</span>, <span class="hljs-attribute">bs</span>, <span class="hljs-attribute">cs</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">as</span>) || <span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">bs</span>) || <span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">cs</span>)) {
-      <span class="hljs-attribute">as</span> = <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">as</span>);
-      <span class="hljs-attribute">bs</span> = <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">bs</span>);
-      <span class="hljs-attribute">cs</span> = <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">cs</span>);
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">mkStream</span>(<span class="hljs-attribute">function</span> () {
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">a</span> = <span class="hljs-attribute">as</span>();
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">b</span> = <span class="hljs-attribute">bs</span>();
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">c</span> = <span class="hljs-attribute">cs</span>();
-        <span class="hljs-attribute">if</span> (<span class="hljs-attribute">a</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span> || <span class="hljs-attribute">b</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span> || <span class="hljs-attribute">c</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span>) {
-          <span class="hljs-attribute">return</span> <span class="hljs-attribute">eos</span>;
-        }
-        <span class="hljs-attribute">return</span> <span class="hljs-attribute">f</span>(<span class="hljs-attribute">a</span>, <span class="hljs-attribute">b</span>, <span class="hljs-attribute">c</span>);
-      });
-    }
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">length</span> = <span class="hljs-attribute">Nodash.minimum</span>([<span class="hljs-attribute">as.length</span>, <span class="hljs-attribute">bs.length</span>, <span class="hljs-attribute">cs.length</span>]);
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">zs</span> = [];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">zs</span>[<span class="hljs-attribute">i</span>] = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">as</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">bs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">cs</span>[<span class="hljs-attribute">i</span>]);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">zs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zipWith4</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_zipWith4</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">as</span>, <span class="hljs-attribute">bs</span>, <span class="hljs-attribute">cs</span>, <span class="hljs-attribute">ds</span>) {
-    <span class="hljs-attribute">if</span> (<span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">as</span>) || <span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">bs</span>) || <span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">cs</span>) || <span class="hljs-attribute">isStream</span>(<span class="hljs-attribute">ds</span>)) {
-      <span class="hljs-attribute">as</span> = <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">as</span>);
-      <span class="hljs-attribute">bs</span> = <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">bs</span>);
-      <span class="hljs-attribute">cs</span> = <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">cs</span>);
-      <span class="hljs-attribute">ds</span> = <span class="hljs-attribute">Nodash.stream</span>(<span class="hljs-attribute">ds</span>);
-      <span class="hljs-attribute">return</span> <span class="hljs-attribute">mkStream</span>(<span class="hljs-attribute">function</span> () {
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">a</span> = <span class="hljs-attribute">as</span>();
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">b</span> = <span class="hljs-attribute">bs</span>();
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">c</span> = <span class="hljs-attribute">cs</span>();
-        <span class="hljs-attribute">var</span> <span class="hljs-attribute">d</span> = <span class="hljs-attribute">ds</span>();
-        <span class="hljs-attribute">if</span> (<span class="hljs-attribute">a</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span> || <span class="hljs-attribute">b</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span> || <span class="hljs-attribute">c</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span> || <span class="hljs-attribute">d</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">eos</span>) {
-          <span class="hljs-attribute">return</span> <span class="hljs-attribute">eos</span>;
-        }
-        <span class="hljs-attribute">return</span> <span class="hljs-attribute">f</span>(<span class="hljs-attribute">a</span>, <span class="hljs-attribute">b</span>, <span class="hljs-attribute">c</span>, <span class="hljs-attribute">d</span>);
-      });
-    }
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">length</span> = <span class="hljs-attribute">Nodash.minimum</span>([<span class="hljs-attribute">as.length</span>, <span class="hljs-attribute">bs.length</span>, <span class="hljs-attribute">cs.length</span>, <span class="hljs-attribute">ds.length</span>]);
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">zs</span> = [];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">zs</span>[<span class="hljs-attribute">i</span>] = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">as</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">bs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">cs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">ds</span>[<span class="hljs-attribute">i</span>]);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">zs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zipWith5</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_zipWith5</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">as</span>, <span class="hljs-attribute">bs</span>, <span class="hljs-attribute">cs</span>, <span class="hljs-attribute">ds</span>, <span class="hljs-attribute">es</span>) {
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">length</span> = <span class="hljs-attribute">Nodash.minimum</span>([
-            <span class="hljs-attribute">as.length</span>, <span class="hljs-attribute">bs.length</span>, <span class="hljs-attribute">cs.length</span>, <span class="hljs-attribute">ds.length</span>, <span class="hljs-attribute">es.length</span>]);
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">zs</span> = [];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">zs</span>[<span class="hljs-attribute">i</span>] = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">as</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">bs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">cs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">ds</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">es</span>[<span class="hljs-attribute">i</span>]);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">zs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zipWith6</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_zipWith6</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">as</span>, <span class="hljs-attribute">bs</span>, <span class="hljs-attribute">cs</span>, <span class="hljs-attribute">ds</span>, <span class="hljs-attribute">es</span>, <span class="hljs-attribute">fs</span>) {
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">length</span> = <span class="hljs-attribute">Nodash.minimum</span>([
-            <span class="hljs-attribute">as.length</span>, <span class="hljs-attribute">bs.length</span>, <span class="hljs-attribute">cs.length</span>, <span class="hljs-attribute">ds.length</span>, <span class="hljs-attribute">es.length</span>, <span class="hljs-attribute">fs.length</span>]);
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">zs</span> = [];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">zs</span>[<span class="hljs-attribute">i</span>] = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">as</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">bs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">cs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">ds</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">es</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">fs</span>[<span class="hljs-attribute">i</span>]);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">zs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zipWith7</span>', <span class="hljs-attribute">function</span> <span class="hljs-attribute">_zipWith7</span>(<span class="hljs-attribute">f</span>, <span class="hljs-attribute">as</span>, <span class="hljs-attribute">bs</span>, <span class="hljs-attribute">cs</span>, <span class="hljs-attribute">ds</span>, <span class="hljs-attribute">es</span>, <span class="hljs-attribute">fs</span>, <span class="hljs-attribute">gs</span>) {
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">length</span> = <span class="hljs-attribute">Nodash.minimum</span>([
-            <span class="hljs-attribute">as.length</span>, <span class="hljs-attribute">bs.length</span>, <span class="hljs-attribute">cs.length</span>, <span class="hljs-attribute">ds.length</span>,
-            <span class="hljs-attribute">es.length</span>, <span class="hljs-attribute">fs.length</span>, <span class="hljs-attribute">gs.length</span>]);
-    <span class="hljs-attribute">var</span> <span class="hljs-attribute">zs</span> = [];
-    <span class="hljs-attribute">for</span> (<span class="hljs-attribute">var</span> <span class="hljs-attribute">i</span> = <span class="hljs-attribute">0</span>; <span class="hljs-attribute">i</span> &lt; <span class="hljs-attribute">length</span>; <span class="hljs-attribute">i</span>++) {
-      <span class="hljs-attribute">zs</span>[<span class="hljs-attribute">i</span>] = <span class="hljs-attribute">f</span>(<span class="hljs-attribute">as</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">bs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">cs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">ds</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">es</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">fs</span>[<span class="hljs-attribute">i</span>], <span class="hljs-attribute">gs</span>[<span class="hljs-attribute">i</span>]);
-    }
-    <span class="hljs-attribute">return</span> <span class="hljs-attribute">zs</span>;
-  });
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zip</span>', 
-    <span class="hljs-attribute">composed</span>(<span class="hljs-attribute">function</span> (){<span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.zipWith</span>(<span class="hljs-attribute">Nodash.tuple</span>);}));
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zip3</span>',
-    <span class="hljs-attribute">composed</span>(<span class="hljs-attribute">function</span> (){<span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.zipWith3</span>(<span class="hljs-attribute">Nodash.tuple3</span>);}));
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zip4</span>',
-    <span class="hljs-attribute">composed</span>(<span class="hljs-attribute">function</span> (){<span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.zipWith4</span>(<span class="hljs-attribute">Nodash.tuple4</span>);}));
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zip5</span>',
-    <span class="hljs-attribute">composed</span>(<span class="hljs-attribute">function</span> (){<span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.zipWith5</span>(<span class="hljs-attribute">Nodash.tuple5</span>);}));
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zip6</span>',
-    <span class="hljs-attribute">composed</span>(<span class="hljs-attribute">function</span> (){<span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.zipWith6</span>(<span class="hljs-attribute">Nodash.tuple6</span>);}));
-
-  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">zip7</span>',
-    <span class="hljs-attribute">composed</span>(<span class="hljs-attribute">function</span> (){<span class="hljs-attribute">return</span> <span class="hljs-attribute">Nodash.zipWith7</span>(<span class="hljs-attribute">Nodash.tuple7</span>);}));
-
-
+  <span class="hljs-attribute">register</span>('<span class="hljs-attribute">drop</span>', <span class="hljs-attribute">description</span>(<span class="hljs-attribute">function</span> () {
 </span></span></pre></div></div>
             
         </li>
         
         
-        <li id="section-44">
+        <li id="section-138">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+                <a class="pilcrow" href="#section-138">&#182;</a>
+              </div>
+              <p><code>Number → [a] → [a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_drop</span>(<span class="hljs-params">n, xs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(xs)) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        xs();
+      }
+      <span class="hljs-keyword">return</span> xs;
+    }
+    <span class="hljs-keyword">return</span> xs.slice(n);
+  });
+
+  register(<span class="hljs-string">'splitAt'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_splitAt</span>(<span class="hljs-params">n, xs</span>) </span>{
+    <span class="hljs-keyword">return</span> [ xs.slice(<span class="hljs-number">0</span>, n), xs.slice(n) ];
+  });
+
+  register(<span class="hljs-string">'takeWhile'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_takeWhile</span>(<span class="hljs-params">p, xs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(xs)) {
+      <span class="hljs-keyword">var</span> exhausted = <span class="hljs-literal">false</span>;
+      <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> x = xs();
+        <span class="hljs-keyword">if</span> (exhausted || x == eos || !p(x)) {
+          exhausted = <span class="hljs-literal">true</span>;
+          <span class="hljs-keyword">return</span> eos;
+        }
+        <span class="hljs-keyword">return</span> x;
+      });
+    }
+    <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
+      i++;
+    }
+    <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">0</span>, i);
+  });
+
+  register(<span class="hljs-string">'dropWhile'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_dropWhile</span>(<span class="hljs-params">p, xs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(xs)) {
+      <span class="hljs-keyword">var</span> x;
+      <span class="hljs-keyword">while</span> ((x = xs()) !== eos &amp;&amp; p(x)) {
+      }
+      <span class="hljs-keyword">return</span> Nodash.cons(x, xs);
+    }
+    <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
+      i++;
+    }
+    <span class="hljs-keyword">return</span> xs.slice(i);
+  });
+
+  register(<span class="hljs-string">'span'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_span</span>(<span class="hljs-params">p, xs</span>) </span>{
+    <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
+        i++;
+    }
+    <span class="hljs-keyword">return</span> [ xs.slice(<span class="hljs-number">0</span>, i), xs.slice(i) ];
+  });
+
+  register(<span class="hljs-string">'break_'</span>, <span class="hljs-string">'break'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_break</span>(<span class="hljs-params">p, xs</span>) </span>{
+    <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; !p(xs[i])) {
+      i++;
+    }
+    <span class="hljs-keyword">return</span> [ xs.slice(<span class="hljs-number">0</span>, i), xs.slice(i) ];
+  });
+
+  register(<span class="hljs-string">'elem'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elem</span>(<span class="hljs-params">x, xs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(xs)) {
+      <span class="hljs-keyword">var</span> z;
+      <span class="hljs-keyword">while</span> ((z = xs()) !== eos) {
+        <span class="hljs-keyword">if</span> (Nodash.eq(z, x)) {
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      <span class="hljs-keyword">if</span> (Nodash.eq(xs[i], x)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  });
+
+  register(<span class="hljs-string">'notElem'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_notElem</span>(<span class="hljs-params">x, xs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(xs)) {
+      <span class="hljs-keyword">var</span> z;
+      <span class="hljs-keyword">while</span> ((z = xs()) !== eos) {
+        <span class="hljs-keyword">if</span> (Nodash.eq(z, x)) {
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      <span class="hljs-keyword">if</span> (Nodash.eq(xs[i], x)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  });
+
+  register(<span class="hljs-string">'lookup'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lookup</span>(<span class="hljs-params">x, xs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isArray(xs)) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+        <span class="hljs-keyword">if</span> (xs[i] &amp;&amp; Nodash.eq(xs[i][<span class="hljs-number">0</span>], x)) {
+          <span class="hljs-keyword">return</span> xs[i][<span class="hljs-number">1</span>];
+        }
+      }
+    }
+    <span class="hljs-keyword">return</span> xs[x];
+  });
+
+  register(<span class="hljs-string">'foldl'</span>, <span class="hljs-string">'foldl\''</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldl</span>(<span class="hljs-params">f, x, xs</span>) </span>{
+    <span class="hljs-keyword">var</span> streaming = isStream(xs);
+    <span class="hljs-keyword">if</span> (streaming) {
+      xs = Nodash.consume(xs);
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      x = f(x, xs[i]);
+    }
+    <span class="hljs-keyword">if</span> (isArray(x) &amp;&amp; streaming) {
+      <span class="hljs-keyword">return</span> Nodash.stream(x);
+    }
+    <span class="hljs-keyword">return</span> x;
+  });
+
+  register(<span class="hljs-string">'foldl1'</span>, <span class="hljs-string">'foldl1\''</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldl1</span>(<span class="hljs-params">f, xs</span>) </span>{
+    <span class="hljs-keyword">var</span> streaming = isStream(xs);
+    <span class="hljs-keyword">if</span> (streaming) {
+      xs = Nodash.consume(xs);
+    }
+    <span class="hljs-keyword">var</span> x = xs[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; xs.length; i++) {
+      x = f(x, xs[i]);
+    }
+    <span class="hljs-keyword">if</span> (isArray(x) &amp;&amp; streaming) {
+      <span class="hljs-keyword">return</span> Nodash.stream(x);
+    }
+    <span class="hljs-keyword">return</span> x;
+  });
+
+  register(<span class="hljs-string">'foldr'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldr</span>(<span class="hljs-params">f, x, xs</span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+      x = f(xs[i], x);
+    }
+    <span class="hljs-keyword">return</span> x;
+  });
+
+  register(<span class="hljs-string">'foldr1'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldr1</span>(<span class="hljs-params">f, xs</span>) </span>{
+    <span class="hljs-keyword">var</span> x = xs[xs.length - <span class="hljs-number">1</span>];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+      x = f(xs[i], x);
+    }
+    <span class="hljs-keyword">return</span> x;
+  });
+
+  register(<span class="hljs-string">'and'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.AND, <span class="hljs-literal">true</span>);}));
+
+  register(<span class="hljs-string">'or'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.OR, <span class="hljs-literal">false</span>);}));
+
+  register(<span class="hljs-string">'sum'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.ADD, <span class="hljs-number">0</span>);}));
+
+  register(<span class="hljs-string">'product'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.MUL, <span class="hljs-number">1</span>);}));
+
+  register(<span class="hljs-string">'maximum'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.max, -<span class="hljs-literal">Infinity</span>);}));
+
+  register(<span class="hljs-string">'minimum'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.min, +<span class="hljs-literal">Infinity</span>);}));
+
+  register(<span class="hljs-string">'any'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_any</span>(<span class="hljs-params">p, xs</span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      <span class="hljs-keyword">if</span> (p(xs[i])) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  });
+
+  register(<span class="hljs-string">'all'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_all</span>(<span class="hljs-params">p, xs</span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      <span class="hljs-keyword">if</span> (!p(xs[i])) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  });
+
+  register(<span class="hljs-string">'scanl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanl</span>(<span class="hljs-params">f, x, xs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(xs)) {
+      <span class="hljs-keyword">return</span> Nodash.cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> r = xs();
+        <span class="hljs-keyword">if</span> (r === eos) {
+          <span class="hljs-keyword">return</span> eos;
+        }
+        x = f(x, r);
+        <span class="hljs-keyword">return</span> x;
+      }));
+    }
+    <span class="hljs-keyword">var</span> zs = [x];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      x = f(x, xs[i]);
+      zs.push(x);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'scanl1'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanl1</span>(<span class="hljs-params">f, xs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(xs)) {
+      <span class="hljs-keyword">return</span> Nodash.scanl(f, xs(), xs);
+    }
+    <span class="hljs-keyword">var</span> x = xs[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">var</span> zs = [x];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; xs.length; i++) {
+      x = f(x, xs[i]);
+      zs.push(x);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'scanr'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanr</span>(<span class="hljs-params">f, x, xs</span>) </span>{
+    <span class="hljs-keyword">var</span> zs = [x];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+      x = f(xs[i], x);
+      zs.unshift(x);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'scanr1'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanr1</span>(<span class="hljs-params">f, xs</span>) </span>{
+    <span class="hljs-keyword">var</span> x = xs[xs.length - <span class="hljs-number">1</span>];
+    <span class="hljs-keyword">var</span> zs = [x];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+      x = f(xs[i], x);
+      zs.unshift(x);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'concat'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_concat</span>(<span class="hljs-params">xs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isString(xs[<span class="hljs-number">0</span>])) {
+      <span class="hljs-keyword">return</span> xs.join(<span class="hljs-string">''</span>);
+    }
+    <span class="hljs-keyword">var</span> zs = [];
+    <span class="hljs-keyword">var</span> ks = keys(xs);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; ks.length; i++) {
+      [].push.apply(zs, xs[ks[i]]);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'concatMap'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.compose2(Nodash.concat, Nodash.map);}));
+
+  register(<span class="hljs-string">'replicate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_replicate</span>(<span class="hljs-params">n, x</span>) </span>{
+    <span class="hljs-keyword">var</span> xs = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+      xs.push(x);
+    }
+    <span class="hljs-keyword">return</span> xs;
+  });
+
+  register(<span class="hljs-string">'zipWith'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith</span>(<span class="hljs-params">f, as, bs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs)) {
+      <span class="hljs-keyword">as</span> = Nodash.stream(<span class="hljs-keyword">as</span>);
+      bs = Nodash.stream(bs);
+      <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">as</span>();
+        <span class="hljs-keyword">var</span> b = bs();
+        <span class="hljs-keyword">if</span> (a === eos || b === eos) {
+          <span class="hljs-keyword">return</span> eos;
+        }
+        <span class="hljs-keyword">return</span> f(a, b);
+      });
+    }
+    <span class="hljs-keyword">var</span> length = <span class="hljs-built_in">Math</span>.min(<span class="hljs-keyword">as</span>.length, bs.length);
+    <span class="hljs-keyword">var</span> zs = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+      zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i]);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'zipWith3'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith3</span>(<span class="hljs-params">f, as, bs, cs</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs) || isStream(cs)) {
+      <span class="hljs-keyword">as</span> = Nodash.stream(<span class="hljs-keyword">as</span>);
+      bs = Nodash.stream(bs);
+      cs = Nodash.stream(cs);
+      <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">as</span>();
+        <span class="hljs-keyword">var</span> b = bs();
+        <span class="hljs-keyword">var</span> c = cs();
+        <span class="hljs-keyword">if</span> (a === eos || b === eos || c === eos) {
+          <span class="hljs-keyword">return</span> eos;
+        }
+        <span class="hljs-keyword">return</span> f(a, b, c);
+      });
+    }
+    <span class="hljs-keyword">var</span> length = Nodash.minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length]);
+    <span class="hljs-keyword">var</span> zs = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+      zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i]);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'zipWith4'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith4</span>(<span class="hljs-params">f, as, bs, cs, ds</span>) </span>{
+    <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs) || isStream(cs) || isStream(ds)) {
+      <span class="hljs-keyword">as</span> = Nodash.stream(<span class="hljs-keyword">as</span>);
+      bs = Nodash.stream(bs);
+      cs = Nodash.stream(cs);
+      ds = Nodash.stream(ds);
+      <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">as</span>();
+        <span class="hljs-keyword">var</span> b = bs();
+        <span class="hljs-keyword">var</span> c = cs();
+        <span class="hljs-keyword">var</span> d = ds();
+        <span class="hljs-keyword">if</span> (a === eos || b === eos || c === eos || d === eos) {
+          <span class="hljs-keyword">return</span> eos;
+        }
+        <span class="hljs-keyword">return</span> f(a, b, c, d);
+      });
+    }
+    <span class="hljs-keyword">var</span> length = Nodash.minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length]);
+    <span class="hljs-keyword">var</span> zs = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+      zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i]);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'zipWith5'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith5</span>(<span class="hljs-params">f, as, bs, cs, ds, es</span>) </span>{
+    <span class="hljs-keyword">var</span> length = Nodash.minimum([
+            <span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length, es.length]);
+    <span class="hljs-keyword">var</span> zs = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+      zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i], es[i]);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'zipWith6'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith6</span>(<span class="hljs-params">f, as, bs, cs, ds, es, fs</span>) </span>{
+    <span class="hljs-keyword">var</span> length = Nodash.minimum([
+            <span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length, es.length, fs.length]);
+    <span class="hljs-keyword">var</span> zs = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+      zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i], es[i], fs[i]);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'zipWith7'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith7</span>(<span class="hljs-params">f, as, bs, cs, ds, es, fs, gs</span>) </span>{
+    <span class="hljs-keyword">var</span> length = Nodash.minimum([
+            <span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length,
+            es.length, fs.length, gs.length]);
+    <span class="hljs-keyword">var</span> zs = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+      zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i], es[i], fs[i], gs[i]);
+    }
+    <span class="hljs-keyword">return</span> zs;
+  });
+
+  register(<span class="hljs-string">'zip'</span>, 
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.zipWith(Nodash.tuple);}));
+
+  register(<span class="hljs-string">'zip3'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.zipWith3(Nodash.tuple3);}));
+
+  register(<span class="hljs-string">'zip4'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.zipWith4(Nodash.tuple4);}));
+
+  register(<span class="hljs-string">'zip5'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.zipWith5(Nodash.tuple5);}));
+
+  register(<span class="hljs-string">'zip6'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.zipWith6(Nodash.tuple6);}));
+
+  register(<span class="hljs-string">'zip7'</span>,
+    composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.zipWith7(Nodash.tuple7);}));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-139">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-139">&#182;</a>
               </div>
               <p>further from Data.List</p>
 
@@ -2243,11 +3671,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-45">
+        <li id="section-140">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+                <a class="pilcrow" href="#section-140">&#182;</a>
               </div>
               <p>   register(‘subsequences’, function _subsequences() {
    });</p>
@@ -2257,11 +3685,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-46">
+        <li id="section-141">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+                <a class="pilcrow" href="#section-141">&#182;</a>
               </div>
               <p>   register(‘permutations’, function _permutations() {
    });</p>
@@ -2271,11 +3699,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-47">
+        <li id="section-142">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-142">&#182;</a>
               </div>
               <p>   register(‘mapAccumL’, function _mapAccumL() {
    });</p>
@@ -2285,11 +3713,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-48">
+        <li id="section-143">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-143">&#182;</a>
               </div>
               <p>   register(‘mapAccumR’, function _mapAccumR() {
    });</p>
@@ -2299,11 +3727,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-49">
+        <li id="section-144">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-144">&#182;</a>
               </div>
               <p>   register(‘unfoldr’, function _unfoldr() {
    });</p>
@@ -2313,11 +3741,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-50">
+        <li id="section-145">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-145">&#182;</a>
               </div>
               <p>   register(‘stripPrefix’, function _stripPrefix() {
    });</p>
@@ -2327,11 +3755,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-51">
+        <li id="section-146">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+                <a class="pilcrow" href="#section-146">&#182;</a>
               </div>
               <p>   register(‘nubBy’, function () {
    });</p>
@@ -2341,11 +3769,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-52">
+        <li id="section-147">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
+                <a class="pilcrow" href="#section-147">&#182;</a>
               </div>
               <p>   register(‘unionBy’, function () {
    });</p>
@@ -2355,11 +3783,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-53">
+        <li id="section-148">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+                <a class="pilcrow" href="#section-148">&#182;</a>
               </div>
               <p>   register(‘intersectBy’, function () {
    });</p>
@@ -2629,11 +4057,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-54">
+        <li id="section-149">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
+                <a class="pilcrow" href="#section-149">&#182;</a>
               </div>
               <h2 id="maybe">Maybe</h2>
 
@@ -2688,11 +4116,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-55">
+        <li id="section-150">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-55">&#182;</a>
+                <a class="pilcrow" href="#section-150">&#182;</a>
               </div>
               <h2 id="either">Either</h2>
 
@@ -2762,11 +4190,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-56">
+        <li id="section-151">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-56">&#182;</a>
+                <a class="pilcrow" href="#section-151">&#182;</a>
               </div>
               <h2 id="objects">Objects</h2>
 

@@ -31,15 +31,15 @@
   </a></li>
   <li><a href="#f-append">
     <span class="name">append</span>
-    
+    <span class="alias">++</span>
   </a></li>
   <li><a href="#f-at">
     <span class="name">at</span>
-    
+    <span class="alias">!!</span><span class="alias">AT</span>
   </a></li>
   <li><a href="#f-break_">
     <span class="name">break_</span>
-    
+    <span class="alias">break</span>
   </a></li>
   <li><a href="#f-concat">
     <span class="name">concat</span>
@@ -51,7 +51,7 @@
   </a></li>
   <li><a href="#f-cons">
     <span class="name">cons</span>
-    
+    <span class="alias">:</span>
   </a></li>
   <li><a href="#f-deleteBy">
     <span class="name">deleteBy</span>
@@ -59,11 +59,11 @@
   </a></li>
   <li><a href="#f-delete_">
     <span class="name">delete_</span>
-    
+    <span class="alias">delete</span>
   </a></li>
   <li><a href="#f-difference">
     <span class="name">difference</span>
-    
+    <span class="alias">\\</span>
   </a></li>
   <li><a href="#f-drop">
     <span class="name">drop</span>
@@ -103,11 +103,11 @@
   </a></li>
   <li><a href="#f-foldl">
     <span class="name">foldl</span>
-    
+    <span class="alias">foldl&#39;</span>
   </a></li>
   <li><a href="#f-foldl1">
     <span class="name">foldl1</span>
-    
+    <span class="alias">foldl1&#39;</span>
   </a></li>
   <li><a href="#f-foldr">
     <span class="name">foldr</span>
@@ -171,7 +171,7 @@
   </a></li>
   <li><a href="#f-isNull">
     <span class="name">isNull</span>
-    
+    <span class="alias">null_</span>
   </a></li>
   <li><a href="#f-isPrefixOf">
     <span class="name">isPrefixOf</span>
@@ -362,11 +362,11 @@
 <ul class="list-unstyled">
   <li><a href="#f-AND">
     <span class="name">AND</span>
-    
+    <span class="alias">&amp;&amp;</span>
   </a></li>
   <li><a href="#f-OR">
     <span class="name">OR</span>
-    
+    <span class="alias">||</span>
   </a></li>
   <li><a href="#f-bool">
     <span class="name">bool</span>
@@ -400,23 +400,23 @@
   </a></li>
   <li><a href="#f-eq">
     <span class="name">eq</span>
-    
+    <span class="alias">==</span><span class="alias">EQ</span>
   </a></li>
   <li><a href="#f-gt">
     <span class="name">gt</span>
-    
+    <span class="alias">&gt;</span><span class="alias">GT</span>
   </a></li>
   <li><a href="#f-gte">
     <span class="name">gte</span>
-    
+    <span class="alias">&gt;=</span><span class="alias">GTE</span>
   </a></li>
   <li><a href="#f-lt">
     <span class="name">lt</span>
-    
+    <span class="alias">&lt;</span><span class="alias">LT</span>
   </a></li>
   <li><a href="#f-lte">
     <span class="name">lte</span>
-    
+    <span class="alias">&lt;=</span><span class="alias">LTE</span>
   </a></li>
   <li><a href="#f-max">
     <span class="name">max</span>
@@ -428,7 +428,7 @@
   </a></li>
   <li><a href="#f-neq">
     <span class="name">neq</span>
-    
+    <span class="alias">&#x2F;=</span><span class="alias">NEQ</span>
   </a></li>
 </ul>
 <h6><a href="#g-Controlflow">Control flow</a></h6>
@@ -489,11 +489,11 @@
 <ul class="list-unstyled">
   <li><a href="#f-apply">
     <span class="name">apply</span>
-    
+    <span class="alias">$</span>
   </a></li>
   <li><a href="#f-compose">
     <span class="name">compose</span>
-    
+    <span class="alias">.</span>
   </a></li>
   <li><a href="#f-compose2">
     <span class="name">compose2</span>
@@ -501,7 +501,7 @@
   </a></li>
   <li><a href="#f-const">
     <span class="name">const</span>
-    
+    <span class="alias">const_</span><span class="alias">constant</span>
   </a></li>
   <li><a href="#f-flip">
     <span class="name">flip</span>
@@ -571,7 +571,7 @@
   </a></li>
   <li><a href="#f-add">
     <span class="name">add</span>
-    
+    <span class="alias">+</span><span class="alias">ADD</span><span class="alias">plus</span><span class="alias">PLUS</span>
   </a></li>
   <li><a href="#f-asin">
     <span class="name">asin</span>
@@ -623,7 +623,7 @@
   </a></li>
   <li><a href="#f-frac">
     <span class="name">frac</span>
-    
+    <span class="alias">&#x2F;</span>
   </a></li>
   <li><a href="#f-gcd">
     <span class="name">gcd</span>
@@ -647,7 +647,7 @@
   </a></li>
   <li><a href="#f-mul">
     <span class="name">mul</span>
-    
+    <span class="alias">*</span><span class="alias">MUL</span><span class="alias">times</span><span class="alias">TIMES</span>
   </a></li>
   <li><a href="#f-negate">
     <span class="name">negate</span>
@@ -659,7 +659,7 @@
   </a></li>
   <li><a href="#f-pow">
     <span class="name">pow</span>
-    
+    <span class="alias">**</span><span class="alias">^</span><span class="alias">^^</span>
   </a></li>
   <li><a href="#f-properFraction">
     <span class="name">properFraction</span>
@@ -703,7 +703,7 @@
   </a></li>
   <li><a href="#f-sub">
     <span class="name">sub</span>
-    
+    <span class="alias">-</span><span class="alias">SUB</span><span class="alias">minus</span><span class="alias">MINUS</span><span class="alias">subtract</span>
   </a></li>
   <li><a href="#f-tan">
     <span class="name">tan</span>
@@ -753,7 +753,7 @@
   </a></li>
   <li><a href="#f-stream">
     <span class="name">stream</span>
-    
+    <span class="alias">lazy</span>
   </a></li>
 </ul>
 <h6><a href="#g-Strings">Strings</a></h6>
@@ -787,27 +787,27 @@
   </a></li>
   <li><a href="#f-tuple">
     <span class="name">tuple</span>
-    
+    <span class="alias">,</span>
   </a></li>
   <li><a href="#f-tuple3">
     <span class="name">tuple3</span>
-    
+    <span class="alias">,,</span>
   </a></li>
   <li><a href="#f-tuple4">
     <span class="name">tuple4</span>
-    
+    <span class="alias">,,,</span>
   </a></li>
   <li><a href="#f-tuple5">
     <span class="name">tuple5</span>
-    
+    <span class="alias">,,,,</span>
   </a></li>
   <li><a href="#f-tuple6">
     <span class="name">tuple6</span>
-    
+    <span class="alias">,,,,,</span>
   </a></li>
   <li><a href="#f-tuple7">
     <span class="name">tuple7</span>
-    
+    <span class="alias">,,,,,,</span>
   </a></li>
 </ul>
 <h6><a href="#g-Types">Types</a></h6>
@@ -844,7 +844,7 @@
 <h2 id="g-ArraysLists">Arrays &#x2F; Lists</h1>
 
 
-<h3 id="f-all">all</h2>
+<h3 id="f-all">all <small></small></h2>
 <div class="section">
 
 <pre>
@@ -859,7 +859,7 @@
 </pre>
 </div>
 
-<h3 id="f-and">and</h2>
+<h3 id="f-and">and <small></small></h2>
 <div class="section">
 
 <pre>
@@ -867,7 +867,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 </pre>
 </div>
 
-<h3 id="f-any">any</h2>
+<h3 id="f-any">any <small></small></h2>
 <div class="section">
 
 <pre>
@@ -882,8 +882,9 @@ foldl(AND, <span class="hljs-literal">true</span>)
 </pre>
 </div>
 
-<h3 id="f-append">append</h2>
+<h3 id="f-append">append <small><span class="alias">++</span></small></h2>
 <div class="section">
+<p><code>[a] → [a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_append</span>(<span class="hljs-params">xs, ys</span>) </span>{
@@ -917,8 +918,9 @@ foldl(AND, <span class="hljs-literal">true</span>)
 </pre>
 </div>
 
-<h3 id="f-at">at</h2>
+<h3 id="f-at">at <small><span class="alias">!!</span><span class="alias">AT</span></small></h2>
 <div class="section">
+<p><code>[a] → Number → a</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_at</span>(<span class="hljs-params">xs, ix</span>) </span>{
@@ -937,7 +939,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 </pre>
 </div>
 
-<h3 id="f-break_">break_</h2>
+<h3 id="f-break_">break_ <small><span class="alias">break</span></small></h2>
 <div class="section">
 
 <pre>
@@ -951,7 +953,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 </pre>
 </div>
 
-<h3 id="f-concat">concat</h2>
+<h3 id="f-concat">concat <small></small></h2>
 <div class="section">
 
 <pre>
@@ -969,7 +971,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 </pre>
 </div>
 
-<h3 id="f-concatMap">concatMap</h2>
+<h3 id="f-concatMap">concatMap <small></small></h2>
 <div class="section">
 
 <pre>
@@ -977,8 +979,9 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-cons">cons</h2>
+<h3 id="f-cons">cons <small><span class="alias">:</span></small></h2>
 <div class="section">
+<p>a → [a] → [a]</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cons</span>(<span class="hljs-params">x, xs</span>) </span>{
@@ -999,7 +1002,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-deleteBy">deleteBy</h2>
+<h3 id="f-deleteBy">deleteBy <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1014,7 +1017,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-delete_">delete_</h2>
+<h3 id="f-delete_">delete_ <small><span class="alias">delete</span></small></h2>
 <div class="section">
 
 <pre>
@@ -1028,7 +1031,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-difference">difference</h2>
+<h3 id="f-difference">difference <small><span class="alias">\\</span></small></h2>
 <div class="section">
 
 <pre>
@@ -1049,8 +1052,9 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-drop">drop</h2>
+<h3 id="f-drop">drop <small></small></h2>
 <div class="section">
+<p><code>Number → [a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_drop</span>(<span class="hljs-params">n, xs</span>) </span>{
@@ -1065,7 +1069,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-dropWhile">dropWhile</h2>
+<h3 id="f-dropWhile">dropWhile <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1085,7 +1089,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-elem">elem</h2>
+<h3 id="f-elem">elem <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1109,7 +1113,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-elemIndex">elemIndex</h2>
+<h3 id="f-elemIndex">elemIndex <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1119,7 +1123,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-elemIndices">elemIndices</h2>
+<h3 id="f-elemIndices">elemIndices <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1129,8 +1133,9 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-filter">filter</h2>
+<h3 id="f-filter">filter <small></small></h2>
 <div class="section">
+<p><code>(a → Bool) → [a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_filter</span>(<span class="hljs-params">p, xs</span>) </span>{
@@ -1167,7 +1172,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-find">find</h2>
+<h3 id="f-find">find <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1182,7 +1187,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-findIndex">findIndex</h2>
+<h3 id="f-findIndex">findIndex <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1197,7 +1202,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-findIndices">findIndices</h2>
+<h3 id="f-findIndices">findIndices <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1213,7 +1218,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-foldl">foldl</h2>
+<h3 id="f-foldl">foldl <small><span class="alias">foldl&#39;</span></small></h2>
 <div class="section">
 
 <pre>
@@ -1233,7 +1238,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-foldl1">foldl1</h2>
+<h3 id="f-foldl1">foldl1 <small><span class="alias">foldl1&#39;</span></small></h2>
 <div class="section">
 
 <pre>
@@ -1254,7 +1259,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-foldr">foldr</h2>
+<h3 id="f-foldr">foldr <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1267,7 +1272,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-foldr1">foldr1</h2>
+<h3 id="f-foldr1">foldr1 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1281,7 +1286,7 @@ compose2(concat, map)
 </pre>
 </div>
 
-<h3 id="f-group">group</h2>
+<h3 id="f-group">group <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1289,7 +1294,7 @@ groupBy(eq)
 </pre>
 </div>
 
-<h3 id="f-groupBy">groupBy</h2>
+<h3 id="f-groupBy">groupBy <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1315,8 +1320,9 @@ groupBy(eq)
 </pre>
 </div>
 
-<h3 id="f-head">head</h2>
+<h3 id="f-head">head <small></small></h2>
 <div class="section">
+<p><code>[a] → a</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_head</span>(<span class="hljs-params">xs</span>) </span>{
@@ -1329,7 +1335,7 @@ groupBy(eq)
 </pre>
 </div>
 
-<h3 id="f-heads">heads</h2>
+<h3 id="f-heads">heads <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1337,7 +1343,7 @@ map(head)
 </pre>
 </div>
 
-<h3 id="f-indexOf">indexOf</h2>
+<h3 id="f-indexOf">indexOf <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1389,8 +1395,9 @@ map(head)
 </pre>
 </div>
 
-<h3 id="f-init">init</h2>
+<h3 id="f-init">init <small></small></h2>
 <div class="section">
+<p><code>[a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_init</span>(<span class="hljs-params">xs</span>) </span>{
@@ -1412,7 +1419,7 @@ map(head)
 </pre>
 </div>
 
-<h3 id="f-inits">inits</h2>
+<h3 id="f-inits">inits <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1420,7 +1427,7 @@ map(inits)
 </pre>
 </div>
 
-<h3 id="f-insert">insert</h2>
+<h3 id="f-insert">insert <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1428,7 +1435,7 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-insertBy">insertBy</h2>
+<h3 id="f-insertBy">insertBy <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1443,7 +1450,7 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-intercalate">intercalate</h2>
+<h3 id="f-intercalate">intercalate <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1453,7 +1460,7 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-intersect">intersect</h2>
+<h3 id="f-intersect">intersect <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1474,7 +1481,7 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-intersperse">intersperse</h2>
+<h3 id="f-intersperse">intersperse <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1492,7 +1499,7 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-isInfixOf">isInfixOf</h2>
+<h3 id="f-isInfixOf">isInfixOf <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1502,8 +1509,9 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-isNull">isNull</h2>
+<h3 id="f-isNull">isNull <small><span class="alias">null_</span></small></h2>
 <div class="section">
+<p><code>[a] → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_null</span>(<span class="hljs-params">xs</span>) </span>{
@@ -1515,7 +1523,7 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-isPrefixOf">isPrefixOf</h2>
+<h3 id="f-isPrefixOf">isPrefixOf <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1541,7 +1549,7 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-isSuffixOf">isSuffixOf</h2>
+<h3 id="f-isSuffixOf">isSuffixOf <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1562,8 +1570,9 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-last">last</h2>
+<h3 id="f-last">last <small></small></h2>
 <div class="section">
+<p><code>a → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_last</span>(<span class="hljs-params">xs</span>) </span>{
@@ -1580,7 +1589,7 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-lasts">lasts</h2>
+<h3 id="f-lasts">lasts <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1588,8 +1597,9 @@ map(lasts)
 </pre>
 </div>
 
-<h3 id="f-length">length</h2>
+<h3 id="f-length">length <small></small></h2>
 <div class="section">
+<p><code>[a] → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_length</span>(<span class="hljs-params">xs</span>) </span>{
@@ -1608,7 +1618,7 @@ map(lasts)
 </pre>
 </div>
 
-<h3 id="f-lookup">lookup</h2>
+<h3 id="f-lookup">lookup <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1625,8 +1635,9 @@ map(lasts)
 </pre>
 </div>
 
-<h3 id="f-map">map</h2>
+<h3 id="f-map">map <small></small></h2>
 <div class="section">
+<p><code>(a → b) → [a] → [b]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_map</span>(<span class="hljs-params">f, xs</span>) </span>{
@@ -1657,7 +1668,7 @@ map(lasts)
 </pre>
 </div>
 
-<h3 id="f-maximum">maximum</h2>
+<h3 id="f-maximum">maximum <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1665,7 +1676,7 @@ foldl(max, -<span class="hljs-literal">Infinity</span>)
 </pre>
 </div>
 
-<h3 id="f-maximumBy">maximumBy</h2>
+<h3 id="f-maximumBy">maximumBy <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1680,7 +1691,7 @@ foldl(max, -<span class="hljs-literal">Infinity</span>)
 </pre>
 </div>
 
-<h3 id="f-minimum">minimum</h2>
+<h3 id="f-minimum">minimum <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1688,7 +1699,7 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 </pre>
 </div>
 
-<h3 id="f-minimumBy">minimumBy</h2>
+<h3 id="f-minimumBy">minimumBy <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1703,7 +1714,7 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 </pre>
 </div>
 
-<h3 id="f-notElem">notElem</h2>
+<h3 id="f-notElem">notElem <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1727,7 +1738,7 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 </pre>
 </div>
 
-<h3 id="f-nub">nub</h2>
+<h3 id="f-nub">nub <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1745,7 +1756,7 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 </pre>
 </div>
 
-<h3 id="f-or">or</h2>
+<h3 id="f-or">or <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1753,7 +1764,7 @@ foldl(OR, <span class="hljs-literal">false</span>)
 </pre>
 </div>
 
-<h3 id="f-partition">partition</h2>
+<h3 id="f-partition">partition <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1771,7 +1782,7 @@ foldl(OR, <span class="hljs-literal">false</span>)
 </pre>
 </div>
 
-<h3 id="f-product">product</h2>
+<h3 id="f-product">product <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1779,7 +1790,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-replicate">replicate</h2>
+<h3 id="f-replicate">replicate <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1793,8 +1804,9 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-reverse">reverse</h2>
+<h3 id="f-reverse">reverse <small></small></h2>
 <div class="section">
+<p><code>[a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_reverse</span>(<span class="hljs-params">xs</span>) </span>{
@@ -1816,7 +1828,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-scanl">scanl</h2>
+<h3 id="f-scanl">scanl <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1841,7 +1853,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-scanl1">scanl1</h2>
+<h3 id="f-scanl1">scanl1 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1860,7 +1872,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-scanr">scanr</h2>
+<h3 id="f-scanr">scanr <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1875,7 +1887,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-scanr1">scanr1</h2>
+<h3 id="f-scanr1">scanr1 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1891,9 +1903,9 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-select">select</h2>
+<h3 id="f-select">select <small></small></h2>
 <div class="section">
-<p>select = flip (!!)</p>
+<p><code>String → Object → Unknown</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_select</span>(<span class="hljs-params">path, object</span>) </span>{
@@ -1902,7 +1914,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-sort">sort</h2>
+<h3 id="f-sort">sort <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1924,7 +1936,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-sortBy">sortBy</h2>
+<h3 id="f-sortBy">sortBy <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1944,7 +1956,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-span">span</h2>
+<h3 id="f-span">span <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1958,7 +1970,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-splitAt">splitAt</h2>
+<h3 id="f-splitAt">splitAt <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1968,7 +1980,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
 </div>
 
-<h3 id="f-sum">sum</h2>
+<h3 id="f-sum">sum <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1976,8 +1988,9 @@ foldl(ADD, <span class="hljs-number">0</span>)
 </pre>
 </div>
 
-<h3 id="f-tail">tail</h2>
+<h3 id="f-tail">tail <small></small></h2>
 <div class="section">
+<p><code>[a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tail</span>(<span class="hljs-params">xs</span>) </span>{
@@ -1990,7 +2003,7 @@ foldl(ADD, <span class="hljs-number">0</span>)
 </pre>
 </div>
 
-<h3 id="f-tails">tails</h2>
+<h3 id="f-tails">tails <small></small></h2>
 <div class="section">
 
 <pre>
@@ -1998,8 +2011,9 @@ map(tails)
 </pre>
 </div>
 
-<h3 id="f-take">take</h2>
+<h3 id="f-take">take <small></small></h2>
 <div class="section">
+<p><code>Number → [a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_take</span>(<span class="hljs-params">n, xs</span>) </span>{
@@ -2017,7 +2031,7 @@ map(tails)
 </pre>
 </div>
 
-<h3 id="f-takeWhile">takeWhile</h2>
+<h3 id="f-takeWhile">takeWhile <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2042,7 +2056,7 @@ map(tails)
 </pre>
 </div>
 
-<h3 id="f-transpose">transpose</h2>
+<h3 id="f-transpose">transpose <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2075,7 +2089,7 @@ map(tails)
 </pre>
 </div>
 
-<h3 id="f-union">union</h2>
+<h3 id="f-union">union <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2097,7 +2111,7 @@ map(tails)
 </pre>
 </div>
 
-<h3 id="f-zip">zip</h2>
+<h3 id="f-zip">zip <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2105,7 +2119,7 @@ zipWith(tuple)
 </pre>
 </div>
 
-<h3 id="f-zip3">zip3</h2>
+<h3 id="f-zip3">zip3 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2113,7 +2127,7 @@ zipWith3(tuple3)
 </pre>
 </div>
 
-<h3 id="f-zip4">zip4</h2>
+<h3 id="f-zip4">zip4 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2121,7 +2135,7 @@ zipWith4(tuple4)
 </pre>
 </div>
 
-<h3 id="f-zip5">zip5</h2>
+<h3 id="f-zip5">zip5 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2129,7 +2143,7 @@ zipWith5(tuple5)
 </pre>
 </div>
 
-<h3 id="f-zip6">zip6</h2>
+<h3 id="f-zip6">zip6 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2137,7 +2151,7 @@ zipWith6(tuple6)
 </pre>
 </div>
 
-<h3 id="f-zip7">zip7</h2>
+<h3 id="f-zip7">zip7 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2145,7 +2159,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-zipWith">zipWith</h2>
+<h3 id="f-zipWith">zipWith <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2172,7 +2186,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-zipWith3">zipWith3</h2>
+<h3 id="f-zipWith3">zipWith3 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2201,7 +2215,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-zipWith4">zipWith4</h2>
+<h3 id="f-zipWith4">zipWith4 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2232,7 +2246,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-zipWith5">zipWith5</h2>
+<h3 id="f-zipWith5">zipWith5 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2248,7 +2262,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-zipWith6">zipWith6</h2>
+<h3 id="f-zipWith6">zipWith6 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2264,7 +2278,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-zipWith7">zipWith7</h2>
+<h3 id="f-zipWith7">zipWith7 <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2286,26 +2300,27 @@ zipWith7(tuple7)
 <h2 id="g-Boolean">Boolean</h1>
 
 
-<h3 id="f-AND">AND</h2>
+<h3 id="f-AND">AND <small><span class="alias">&amp;&amp;</span></small></h2>
 <div class="section">
-<h3 id="boolean-and-">Boolean &quot;and&quot;</h3>
+<p><code>Bool → Bool → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_AND</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a &amp;&amp; b; }
 </pre>
 </div>
 
-<h3 id="f-OR">OR</h2>
+<h3 id="f-OR">OR <small><span class="alias">||</span></small></h2>
 <div class="section">
-<h3 id="boolean-or-">Boolean &quot;or&quot;</h3>
+<p><code>Bool → Bool → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_OR</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a || b; }
 </pre>
 </div>
 
-<h3 id="f-bool">bool</h2>
+<h3 id="f-bool">bool <small></small></h2>
 <div class="section">
+<p><code>a → a → Bool → a</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_bool</span>(<span class="hljs-params">yes, no, bool</span>) </span>{
@@ -2314,9 +2329,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-not">not</h2>
+<h3 id="f-not">not <small></small></h2>
 <div class="section">
-<h3 id="boolean-not-">Boolean &quot;not&quot;</h3>
+<p><code>Bool → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_not</span>(<span class="hljs-params">value</span>) </span>{ <span class="hljs-keyword">return</span> !value; }
@@ -2328,8 +2343,9 @@ zipWith7(tuple7)
 <h2 id="g-Characters">Characters</h1>
 
 
-<h3 id="f-isAsciiLetter">isAsciiLetter</h2>
+<h3 id="f-isAsciiLetter">isAsciiLetter <small></small></h2>
 <div class="section">
+<p><code>Char → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
@@ -2338,8 +2354,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-isDigit">isDigit</h2>
+<h3 id="f-isDigit">isDigit <small></small></h2>
 <div class="section">
+<p><code>Char → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
@@ -2353,8 +2370,9 @@ zipWith7(tuple7)
 <h2 id="g-Comparisons">Comparisons</h1>
 
 
-<h3 id="f-compare">compare</h2>
+<h3 id="f-compare">compare <small></small></h2>
 <div class="section">
+<p><code>a → a → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compare</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2382,8 +2400,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-comparing">comparing</h2>
+<h3 id="f-comparing">comparing <small></small></h2>
 <div class="section">
+<p><code>(a → b) → a → a → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_comparing</span>(<span class="hljs-params">f, a, b</span>) </span>{
@@ -2392,8 +2411,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-eq">eq</h2>
+<h3 id="f-eq">eq <small><span class="alias">==</span><span class="alias">EQ</span></small></h2>
 <div class="section">
+<p><code>Any → Any → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_eq</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2419,8 +2439,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-gt">gt</h2>
+<h3 id="f-gt">gt <small><span class="alias">&gt;</span><span class="alias">GT</span></small></h2>
 <div class="section">
+<p><code>a → a → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gt</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2429,8 +2450,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-gte">gte</h2>
+<h3 id="f-gte">gte <small><span class="alias">&gt;=</span><span class="alias">GTE</span></small></h2>
 <div class="section">
+<p><code>a → a → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gte</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2439,8 +2461,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-lt">lt</h2>
+<h3 id="f-lt">lt <small><span class="alias">&lt;</span><span class="alias">LT</span></small></h2>
 <div class="section">
+<p><code>a → a → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lt</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2449,8 +2472,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-lte">lte</h2>
+<h3 id="f-lte">lte <small><span class="alias">&lt;=</span><span class="alias">LTE</span></small></h2>
 <div class="section">
+<p><code>a → a → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lte</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2459,8 +2483,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-max">max</h2>
+<h3 id="f-max">max <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_max</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2472,8 +2497,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-min">min</h2>
+<h3 id="f-min">min <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_min</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2485,8 +2511,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-neq">neq</h2>
+<h3 id="f-neq">neq <small><span class="alias">&#x2F;=</span><span class="alias">NEQ</span></small></h2>
 <div class="section">
+<p><code>Any → Any → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_neq</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2500,9 +2527,9 @@ zipWith7(tuple7)
 <h2 id="g-Controlflow">Control flow</h1>
 
 
-<h3 id="f-pipe">pipe</h2>
+<h3 id="f-pipe">pipe <small></small></h2>
 <div class="section">
-<p>pipe.</p>
+<p>Pipes.</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_pipe</span>(<span class="hljs-params"></span>) </span>{
@@ -2538,8 +2565,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-until">until</h2>
+<h3 id="f-until">until <small></small></h2>
 <div class="section">
+<p><code>(a → Bool) → (a → a) → a → a</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_until</span>(<span class="hljs-params">p, f, v</span>) </span>{
@@ -2556,7 +2584,7 @@ zipWith7(tuple7)
 <h2 id="g-Either">Either</h1>
 
 
-<h3 id="f-Left">Left</h2>
+<h3 id="f-Left">Left <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2566,7 +2594,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-Right">Right</h2>
+<h3 id="f-Right">Right <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2576,7 +2604,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-either">either</h2>
+<h3 id="f-either">either <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2594,7 +2622,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-fromLeft">fromLeft</h2>
+<h3 id="f-fromLeft">fromLeft <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2607,7 +2635,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-fromRight">fromRight</h2>
+<h3 id="f-fromRight">fromRight <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2620,7 +2648,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-isLeft">isLeft</h2>
+<h3 id="f-isLeft">isLeft <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2631,7 +2659,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-isRight">isRight</h2>
+<h3 id="f-isRight">isRight <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2642,12 +2670,12 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-lefts">lefts</h2>
+<h3 id="f-lefts">lefts <small></small></h2>
 <div class="section">
 
 </div>
 
-<h3 id="f-partitionEithers">partitionEithers</h2>
+<h3 id="f-partitionEithers">partitionEithers <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2657,7 +2685,7 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-rights">rights</h2>
+<h3 id="f-rights">rights <small></small></h2>
 <div class="section">
 
 </div>
@@ -2667,8 +2695,9 @@ zipWith7(tuple7)
 <h2 id="g-Functions">Functions</h1>
 
 
-<h3 id="f-apply">apply</h2>
+<h3 id="f-apply">apply <small><span class="alias">$</span></small></h2>
 <div class="section">
+<p><code>(a → b) → a → b</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_apply</span>(<span class="hljs-params">f, x</span>) </span>{
@@ -2677,8 +2706,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-compose">compose</h2>
+<h3 id="f-compose">compose <small><span class="alias">.</span></small></h2>
 <div class="section">
+<p><code>(b → c) → (a → b) → (a → c)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose</span>(<span class="hljs-params">f, g, x</span>) </span>{
@@ -2687,8 +2717,9 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-compose2">compose2</h2>
+<h3 id="f-compose2">compose2 <small></small></h2>
 <div class="section">
+<p><code>(c → d) → (a → b → c) → (a → b → d)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose2</span>(<span class="hljs-params">f, g, x, y</span>) </span>{
@@ -2697,9 +2728,10 @@ zipWith7(tuple7)
 </pre>
 </div>
 
-<h3 id="f-const">const</h2>
+<h3 id="f-const">const <small><span class="alias">const_</span><span class="alias">constant</span></small></h2>
 <div class="section">
-<p>Accepts two arguments and returns the first one, thereby discarding
+<p><code>a → b → a</code>
+Accepts two arguments and returns the first one, thereby discarding
 the second one. This function is primarily useful for composing other
 functions.</p>
 
@@ -2710,8 +2742,9 @@ functions.</p>
 </pre>
 </div>
 
-<h3 id="f-flip">flip</h2>
+<h3 id="f-flip">flip <small></small></h2>
 <div class="section">
+<p><code>Any → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_flip</span>(<span class="hljs-params">f</span>) </span>{
@@ -2722,18 +2755,18 @@ functions.</p>
 </pre>
 </div>
 
-<h3 id="f-id">id</h2>
+<h3 id="f-id">id <small></small></h2>
 <div class="section">
-<p>The <strong>identity</strong> function.</p>
+<p><code>a → a</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">id</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> x; }
 </pre>
 </div>
 
-<h3 id="f-idf">idf</h2>
+<h3 id="f-idf">idf <small></small></h2>
 <div class="section">
-<p><strong>idf</strong> returns its argument wrapped in a function.</p>
+<p><code>a → () → a</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_idf</span>(<span class="hljs-params">x</span>) </span>{
@@ -2744,8 +2777,9 @@ functions.</p>
 </pre>
 </div>
 
-<h3 id="f-on">on</h2>
+<h3 id="f-on">on <small></small></h2>
 <div class="section">
+<p><code>(b → b → c) → (a → b) → (a → a → c)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_on</span>(<span class="hljs-params">g, f, a, b</span>) </span>{
@@ -2759,7 +2793,7 @@ functions.</p>
 <h2 id="g-Maybe">Maybe</h1>
 
 
-<h3 id="f-catMaybes">catMaybes</h2>
+<h3 id="f-catMaybes">catMaybes <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2767,7 +2801,7 @@ filter(isJust)
 </pre>
 </div>
 
-<h3 id="f-fromMaybe">fromMaybe</h2>
+<h3 id="f-fromMaybe">fromMaybe <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2780,7 +2814,7 @@ filter(isJust)
 </pre>
 </div>
 
-<h3 id="f-isJust">isJust</h2>
+<h3 id="f-isJust">isJust <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2790,7 +2824,7 @@ filter(isJust)
 </pre>
 </div>
 
-<h3 id="f-isNothing">isNothing</h2>
+<h3 id="f-isNothing">isNothing <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2800,7 +2834,7 @@ filter(isJust)
 </pre>
 </div>
 
-<h3 id="f-listToMaybe">listToMaybe</h2>
+<h3 id="f-listToMaybe">listToMaybe <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2814,7 +2848,7 @@ filter(isJust)
 </pre>
 </div>
 
-<h3 id="f-mapMaybe">mapMaybe</h2>
+<h3 id="f-mapMaybe">mapMaybe <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2822,7 +2856,7 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-maybe">maybe</h2>
+<h3 id="f-maybe">maybe <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2835,7 +2869,7 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-maybeToList">maybeToList</h2>
+<h3 id="f-maybeToList">maybeToList <small></small></h2>
 <div class="section">
 
 <pre>
@@ -2853,24 +2887,27 @@ compose2(filter(isJust), map)
 <h2 id="g-Numbers">Numbers</h1>
 
 
-<h3 id="f-abs">abs</h2>
+<h3 id="f-abs">abs <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abs</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-acos">acos</h2>
+<h3 id="f-acos">acos <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">acos</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-acosh">acosh</h2>
+<h3 id="f-acosh">acosh <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_acosh</span>(<span class="hljs-params">x</span>) </span>{
@@ -2879,8 +2916,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-add">add</h2>
+<h3 id="f-add">add <small><span class="alias">+</span><span class="alias">ADD</span><span class="alias">plus</span><span class="alias">PLUS</span></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_add</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -2889,16 +2927,18 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-asin">asin</h2>
+<h3 id="f-asin">asin <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asin</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-asinh">asinh</h2>
+<h3 id="f-asinh">asinh <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_asinh</span>(<span class="hljs-params">x</span>) </span>{
@@ -2911,16 +2951,18 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-atan">atan</h2>
+<h3 id="f-atan">atan <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">atan</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-atanh">atanh</h2>
+<h3 id="f-atanh">atanh <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_atanh</span>(<span class="hljs-params">x</span>) </span>{
@@ -2929,37 +2971,47 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-ceiling">ceiling</h2>
+<h3 id="f-ceiling">ceiling <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ceil</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-cos">cos</h2>
+<h3 id="f-cos">cos <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cos</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-cosh">cosh</h2>
+<h3 id="f-cosh">cosh <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cosh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
+}
+</pre>
 </div>
 
-<h3 id="f-div">div</h2>
+<h3 id="f-div">div <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_div</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(a / b); }
 </pre>
 </div>
 
-<h3 id="f-divMod">divMod</h2>
+<h3 id="f-divMod">divMod <small></small></h2>
 <div class="section">
+<p><code>Number → Number → (Number, Number)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_divMod</span>(<span class="hljs-params">a, b</span>)  </span>{
@@ -2968,40 +3020,46 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-even">even</h2>
+<h3 id="f-even">even <small></small></h2>
 <div class="section">
+<p><code>Number → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_even</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) === <span class="hljs-number">0</span>; }
 </pre>
 </div>
 
-<h3 id="f-exp">exp</h2>
+<h3 id="f-exp">exp <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exp</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-floor">floor</h2>
+<h3 id="f-floor">floor <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">floor</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-frac">frac</h2>
+<h3 id="f-frac">frac <small><span class="alias">&#x2F;</span></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_frac</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a / b; }
 </pre>
 </div>
 
-<h3 id="f-gcd">gcd</h2>
+<h3 id="f-gcd">gcd <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code>
+Greatest common divisor.</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gcd</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -3016,8 +3074,10 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-lcm">lcm</h2>
+<h3 id="f-lcm">lcm <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code>
+Lowest common denominator.</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lcm</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -3029,16 +3089,18 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-log">log</h2>
+<h3 id="f-log">log <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-logBase">logBase</h2>
+<h3 id="f-logBase">logBase <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_logBase</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -3047,8 +3109,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-mod">mod</h2>
+<h3 id="f-mod">mod <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mod</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -3059,8 +3122,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-mul">mul</h2>
+<h3 id="f-mul">mul <small><span class="alias">*</span><span class="alias">MUL</span><span class="alias">times</span><span class="alias">TIMES</span></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mul</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -3069,32 +3133,36 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-negate">negate</h2>
+<h3 id="f-negate">negate <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_negate</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> -a; }
 </pre>
 </div>
 
-<h3 id="f-odd">odd</h2>
+<h3 id="f-odd">odd <small></small></h2>
 <div class="section">
+<p><code>Number → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_odd</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) !== <span class="hljs-number">0</span>; }
 </pre>
 </div>
 
-<h3 id="f-pow">pow</h2>
+<h3 id="f-pow">pow <small><span class="alias">**</span><span class="alias">^</span><span class="alias">^^</span></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pow</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-properFraction">properFraction</h2>
+<h3 id="f-properFraction">properFraction <small></small></h2>
 <div class="section">
+<p><code>Number → (Number, Number)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_properFraction</span>(<span class="hljs-params">x</span>) </span>{
@@ -3104,8 +3172,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-quot">quot</h2>
+<h3 id="f-quot">quot <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quot</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -3115,8 +3184,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-quotRem">quotRem</h2>
+<h3 id="f-quotRem">quotRem <small></small></h2>
 <div class="section">
+<p><code>Number → Number → (Number, Number)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quotRem</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -3125,28 +3195,31 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-recip">recip</h2>
+<h3 id="f-recip">recip <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_recip</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / a; }
 </pre>
 </div>
 
-<h3 id="f-rem">rem</h2>
+<h3 id="f-rem">rem <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_rem</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a % b; }
 </pre>
 </div>
 
-<h3 id="f-round">round</h2>
+<h3 id="f-round">round <small></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code>
+Haskell&#39;s round and JavaScripts Math.round are different</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_round</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-comment">// Haskell's round and JavaScripts Math.round are different</span>
   <span class="hljs-keyword">var</span> fraction = Nodash.properFraction(x);
   <span class="hljs-keyword">var</span> n = fraction[<span class="hljs-number">0</span>];
   <span class="hljs-keyword">var</span> m = fraction[<span class="hljs-number">1</span>] &lt; <span class="hljs-number">0</span> ? n - <span class="hljs-number">1</span> : n + <span class="hljs-number">1</span>;
@@ -3162,8 +3235,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-signum">signum</h2>
+<h3 id="f-signum">signum <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_signum</span>(<span class="hljs-params">x</span>) </span>{
@@ -3177,16 +3251,18 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-sin">sin</h2>
+<h3 id="f-sin">sin <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sin</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-sinh">sinh</h2>
+<h3 id="f-sinh">sinh <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sinh</span>(<span class="hljs-params">x</span>) </span>{
@@ -3195,16 +3271,18 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-sqrt">sqrt</h2>
+<h3 id="f-sqrt">sqrt <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sqrt</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-sub">sub</h2>
+<h3 id="f-sub">sub <small><span class="alias">-</span><span class="alias">SUB</span><span class="alias">minus</span><span class="alias">MINUS</span><span class="alias">subtract</span></small></h2>
 <div class="section">
+<p><code>Number → Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sub</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -3213,21 +3291,35 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-tan">tan</h2>
+<h3 id="f-tan">tan <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tan</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-tanh">tanh</h2>
+<h3 id="f-tanh">tanh <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tanh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">Infinity</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x));
+  }
+}
+</pre>
 </div>
 
-<h3 id="f-truncate">truncate</h2>
+<h3 id="f-truncate">truncate <small></small></h2>
 <div class="section">
+<p><code>Number → Number</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_truncate</span>(<span class="hljs-params">x</span>) </span>{
@@ -3247,7 +3339,7 @@ compose2(filter(isJust), map)
 <h2 id="g-Objects">Objects</h1>
 
 
-<h3 id="f-keys">keys</h2>
+<h3 id="f-keys">keys <small></small></h2>
 <div class="section">
 
 <pre>
@@ -3260,8 +3352,9 @@ compose2(filter(isJust), map)
 <h2 id="g-Streams">Streams</h1>
 
 
-<h3 id="f-consume">consume</h2>
+<h3 id="f-consume">consume <small></small></h2>
 <div class="section">
+<p><code>[a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consume</span>(<span class="hljs-params">xs</span>) </span>{
@@ -3278,8 +3371,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-consumeString">consumeString</h2>
+<h3 id="f-consumeString">consumeString <small></small></h2>
 <div class="section">
+<p><code>[a] → String</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consumeString</span>(<span class="hljs-params">xs</span>) </span>{
@@ -3295,8 +3389,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-cycle">cycle</h2>
+<h3 id="f-cycle">cycle <small></small></h2>
 <div class="section">
+<p><code>[a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cycle</span>(<span class="hljs-params">xs</span>) </span>{
@@ -3343,8 +3438,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-each">each</h2>
+<h3 id="f-each">each <small></small></h2>
 <div class="section">
+<p><code>(a → ()) → [a] → ()</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_each</span>(<span class="hljs-params">f, xs</span>) </span>{
@@ -3367,8 +3463,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-iterate">iterate</h2>
+<h3 id="f-iterate">iterate <small></small></h2>
 <div class="section">
+<p><code>(a → a) → a → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_iterate</span>(<span class="hljs-params">f, x</span>) </span>{
@@ -3381,8 +3478,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-repeat">repeat</h2>
+<h3 id="f-repeat">repeat <small></small></h2>
 <div class="section">
+<p><code>a → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_repeat</span>(<span class="hljs-params">x</span>) </span>{
@@ -3393,8 +3491,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-stream">stream</h2>
+<h3 id="f-stream">stream <small><span class="alias">lazy</span></small></h2>
 <div class="section">
+<p><code>[a] → [a]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_stream</span>(<span class="hljs-params">xs</span>) </span>{
@@ -3422,8 +3521,9 @@ compose2(filter(isJust), map)
 <h2 id="g-Strings">Strings</h1>
 
 
-<h3 id="f-lines">lines</h2>
+<h3 id="f-lines">lines <small></small></h2>
 <div class="section">
+<p><code>String → [String]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lines</span>(<span class="hljs-params">string</span>) </span>{
@@ -3436,8 +3536,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-unlines">unlines</h2>
+<h3 id="f-unlines">unlines <small></small></h2>
 <div class="section">
+<p><code>[String] → String</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unlines</span>(<span class="hljs-params">lines</span>) </span>{
@@ -3446,8 +3547,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-unwords">unwords</h2>
+<h3 id="f-unwords">unwords <small></small></h2>
 <div class="section">
+<p><code>[String] → String</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unwords</span>(<span class="hljs-params">words</span>) </span>{
@@ -3456,8 +3558,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-words">words</h2>
+<h3 id="f-words">words <small></small></h2>
 <div class="section">
+<p><code>String → [String]</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_words</span>(<span class="hljs-params">string</span>) </span>{
@@ -3471,48 +3574,54 @@ compose2(filter(isJust), map)
 <h2 id="g-Tuples">Tuples</h1>
 
 
-<h3 id="f-fst">fst</h2>
+<h3 id="f-fst">fst <small></small></h2>
 <div class="section">
+<p><code>(a, b) → a</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fst</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">0</span>]; }
 </pre>
 </div>
 
-<h3 id="f-snd">snd</h2>
+<h3 id="f-snd">snd <small></small></h2>
 <div class="section">
+<p><code>(a, b) → b</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_snd</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">1</span>]; }
 </pre>
 </div>
 
-<h3 id="f-tuple">tuple</h2>
+<h3 id="f-tuple">tuple <small><span class="alias">,</span></small></h2>
 <div class="section">
+<p><code>a → b → (a, b)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b ]; }
 </pre>
 </div>
 
-<h3 id="f-tuple3">tuple3</h2>
+<h3 id="f-tuple3">tuple3 <small><span class="alias">,,</span></small></h2>
 <div class="section">
+<p><code>a → b → c → (a, b, c)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple3</span>(<span class="hljs-params">a, b, c</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c ]; }
 </pre>
 </div>
 
-<h3 id="f-tuple4">tuple4</h2>
+<h3 id="f-tuple4">tuple4 <small><span class="alias">,,,</span></small></h2>
 <div class="section">
+<p><code>a → b → c → d → (a, b, c, d)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple4</span>(<span class="hljs-params">a, b, c, d</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c, d ]; }
 </pre>
 </div>
 
-<h3 id="f-tuple5">tuple5</h2>
+<h3 id="f-tuple5">tuple5 <small><span class="alias">,,,,</span></small></h2>
 <div class="section">
+<p><code>a → b → c → d → e → (a, b, c, d, e)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple5</span>(<span class="hljs-params">a, b, c, d, e</span>) </span>{
@@ -3521,8 +3630,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-tuple6">tuple6</h2>
+<h3 id="f-tuple6">tuple6 <small><span class="alias">,,,,,</span></small></h2>
 <div class="section">
+<p><code>a → b → c → d → e → f → (a, b, c, d, e, f)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple6</span>(<span class="hljs-params">a, b, c, d, e, f</span>) </span>{
@@ -3531,8 +3641,9 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-tuple7">tuple7</h2>
+<h3 id="f-tuple7">tuple7 <small><span class="alias">,,,,,,</span></small></h2>
 <div class="section">
+<p><code>a → b → c → d → e → f → g → (a, b, c, d, e, f, g)</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple7</span>(<span class="hljs-params">a, b, c, d, e, f, g</span>) </span>{
@@ -3544,27 +3655,29 @@ compose2(filter(isJust), map)
 
 
 <h2 id="g-Types">Types</h1>
-<h2 id="functions-dealing-with-types-">Functions dealing with types.</h2>
 
 
-<h3 id="f-isArray">isArray</h2>
+<h3 id="f-isArray">isArray <small></small></h2>
 <div class="section">
+<p><code>Any → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isArray</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
 </div>
 
-<h3 id="f-isFunction">isFunction</h2>
+<h3 id="f-isFunction">isFunction <small></small></h2>
 <div class="section">
+<p><code>Any → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isFunction</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'function'</span>; }
 </pre>
 </div>
 
-<h3 id="f-isInfinite">isInfinite</h2>
+<h3 id="f-isInfinite">isInfinite <small></small></h2>
 <div class="section">
+<p><code>Any → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInfinite</span>(<span class="hljs-params">f</span>) </span>{
@@ -3573,16 +3686,18 @@ compose2(filter(isJust), map)
 </pre>
 </div>
 
-<h3 id="f-isNumber">isNumber</h2>
+<h3 id="f-isNumber">isNumber <small></small></h2>
 <div class="section">
+<p><code>Any → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span>; }
 </pre>
 </div>
 
-<h3 id="f-isStream">isStream</h2>
+<h3 id="f-isStream">isStream <small></small></h2>
 <div class="section">
+<p><code>Any → Bool</code></p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isStream</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> isFunction(x) &amp;&amp; x.__stream__ === stream; }

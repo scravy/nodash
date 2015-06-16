@@ -1,5 +1,6 @@
 var P = require('../nodash').install(GLOBAL);
 var assert = map(flip, require('assert'));
+var expect = require('chai').expect;
 
 describe('Pipe', function () {
 
@@ -41,6 +42,19 @@ describe('Pipe', function () {
 
     it('empty pipe', function () {
         assert.strictEqual(undefined, pipe());
+    });
+
+    it('pipe /w callback does not throw', function () {
+        var error = null;
+        pipe([
+            7,
+            function (x) {
+                throw "damn it";
+            }
+        ], function (err) {
+            error = err;
+        });
+        assert.strictEqual(false, error === null);
     });
 });
 

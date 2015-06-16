@@ -303,72 +303,6 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
         }
         return fn(a, b, c, d, e, f);
       };
-    },
-    7: function (fn) {
-      return function (a, b, c, d, e, f, g) {
-        switch (arguments.length) {
-        case 1:
-          return funcs[6](function (b, c, d, e, f, g) {
-            return fn(a, b, c, d, e, f, g);
-          });
-        case 2:
-          return funcs[5](function (c, d, e, f, g) {
-            return fn(a, b, c, d, e, f, g);
-          });
-        case 3:
-          return funcs[4](function (d, e, f, g) {
-            return fn(a, b, c, d, e, f, g);
-          });
-        case 4:
-          return funcs[3](function (e, f, g) {
-            return fn(a, b, c, d, e, f, g);
-          });
-        case 5:
-          return funcs[2](function (f, g) {
-            return fn(a, b, c, d, e, f, g);
-          });
-        case 6:
-          return function (g) {
-            return fn(a, b, c, d, e, f, g);
-          };
-        }
-        return fn(a, b, c, d, e, f, g);
-      };
-    },
-    8: function (fn) {
-      return function (a, b, c, d, e, f, g, h) {
-        switch (arguments.length) {
-        case 1:
-          return funcs[7](function (b, c, d, e, f, g, h) {
-            return fn(a, b, c, d, e, f, g, h);
-          });
-        case 2:
-          return funcs[6](function (c, d, e, f, g, h) {
-            return fn(a, b, c, d, e, f, g, h);
-          });
-        case 3:
-          return funcs[5](function (d, e, f, g, h) {
-            return fn(a, b, c, d, e, f, g, h);
-          });
-        case 4:
-          return funcs[4](function (e, f, g, h) {
-            return fn(a, b, c, d, e, f, g, h);
-          });
-        case 5:
-          return funcs[3](function (f, g, h) {
-            return fn(a, b, c, d, e, f, g, h);
-          });
-        case 6:
-          return funcs[2](function (g, h) {
-            return fn(a, b, c, d, e, f, g, h);
-          });
-        case 7:
-          return function (h) {
-            return fn(a, b, c, d, e, f, g, h);
-          };
-        }
-        return fn(a, b, c, d, e, f, g, h);
-      };
     }
   };
 
@@ -430,9 +364,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
         break;
       /* @ifdef WITH_ONLINE_HELP */
       case 'object':
-        if (arg.description) {
-          metadata.description = arg.description;
-        }
+        metadata.description = arg.description;
         break;
       /* @endif */
       }
@@ -588,25 +520,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   // `a → b → c → d → (a, b, c, d)`
   }), function _tuple4(a, b, c, d) { return [ a, b, c, d ]; });
 
-  register(',,,,', 'tuple5', description(function () {
-  // `a → b → c → d → e → (a, b, c, d, e)`
-  }), function _tuple5(a, b, c, d, e) {
-    return [ a, b, c, d, e ];
-  });
-
-  register(',,,,,', 'tuple6', description(function () {
-  // `a → b → c → d → e → f → (a, b, c, d, e, f)`
-  }), function _tuple6(a, b, c, d, e, f) {
-    return [ a, b, c, d, e, f ];
-  });
-
-  register(',,,,,,', 'tuple7', description(function () {
-  // `a → b → c → d → e → f → g → (a, b, c, d, e, f, g)`
-  }), function _tuple7(a, b, c, d, e, f, g) {
-    return [ a, b, c, d, e, f, g ];
-  });
-
-
+  
   // Eq
   
   group("Comparisons");
@@ -1217,7 +1131,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   group('Arrays / Lists');
 
   register(':', 'cons', description(function () {
-  // a → [a] → [a]
+  // `a → [a] → [a]`
   }), function _cons(x, xs) {
     if (isStream(xs)) {
       var consumedFirst = false;
@@ -1473,11 +1387,15 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs.slice(n);
   });
 
-  register('splitAt', function _splitAt(n, xs) {
+  register('splitAt', description(function () {
+  // `→`
+  }), function _splitAt(n, xs) {
     return [ xs.slice(0, n), xs.slice(n) ];
   });
 
-  register('takeWhile', function _takeWhile(p, xs) {
+  register('takeWhile', description(function () {
+  // `→`
+  }), function _takeWhile(p, xs) {
     if (isStream(xs)) {
       var exhausted = false;
       return mkStream(function () {
@@ -1496,7 +1414,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs.slice(0, i);
   });
 
-  register('dropWhile', function _dropWhile(p, xs) {
+  register('dropWhile', description(function () {
+  // `→`
+  }), function _dropWhile(p, xs) {
     if (isStream(xs)) {
       var x;
       while ((x = xs()) !== eos && p(x)) {
@@ -1510,7 +1430,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs.slice(i);
   });
 
-  register('span', function _span(p, xs) {
+  register('span', description(function () {
+  // `→`
+  }), function _span(p, xs) {
     var i = 0;
     while (i < xs.length && p(xs[i])) {
         i++;
@@ -1518,7 +1440,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return [ xs.slice(0, i), xs.slice(i) ];
   });
 
-  register('break_', 'break', function _break(p, xs) {
+  register('break_', 'break', description(function () {
+  // `→`
+  }), function _break(p, xs) {
     var i = 0;
     while (i < xs.length && !p(xs[i])) {
       i++;
@@ -1526,7 +1450,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return [ xs.slice(0, i), xs.slice(i) ];
   });
 
-  register('elem', function _elem(x, xs) {
+  register('elem', description(function () {
+  // `→`
+  }), function _elem(x, xs) {
     if (isStream(xs)) {
       var z;
       while ((z = xs()) !== eos) {
@@ -1544,7 +1470,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return false;
   });
 
-  register('notElem', function _notElem(x, xs) {
+  register('notElem', description(function () {
+  // `→`
+  }), function _notElem(x, xs) {
     if (isStream(xs)) {
       var z;
       while ((z = xs()) !== eos) {
@@ -1562,7 +1490,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return true;
   });
 
-  register('lookup', function _lookup(x, xs) {
+  register('lookup', description(function () {
+  // `→`
+  }), function _lookup(x, xs) {
     if (isArray(xs)) {
       for (var i = 0; i < xs.length; i++) {
         if (xs[i] && Nodash.eq(xs[i][0], x)) {
@@ -1573,7 +1503,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs[x];
   });
 
-  register('foldl', 'foldl\'', function _foldl(f, x, xs) {
+  register('foldl', 'foldl\'', description(function () {
+  // `→`
+  }), function _foldl(f, x, xs) {
     var streaming = isStream(xs);
     if (streaming) {
       xs = Nodash.consume(xs);
@@ -1587,7 +1519,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return x;
   });
 
-  register('foldl1', 'foldl1\'', function _foldl1(f, xs) {
+  register('foldl1', 'foldl1\'', description(function () {
+  // `→`
+  }), function _foldl1(f, xs) {
     var streaming = isStream(xs);
     if (streaming) {
       xs = Nodash.consume(xs);
@@ -1602,14 +1536,18 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return x;
   });
 
-  register('foldr', function _foldr(f, x, xs) {
+  register('foldr', description(function () {
+  // `→`
+  }), function _foldr(f, x, xs) {
     for (var i = xs.length - 1; i >= 0; i--) {
       x = f(xs[i], x);
     }
     return x;
   });
 
-  register('foldr1', function _foldr1(f, xs) {
+  register('foldr1', description(function () {
+  // `→`
+  }), function _foldr1(f, xs) {
     var x = xs[xs.length - 1];
     for (var i = xs.length - 2; i >= 0; i--) {
       x = f(xs[i], x);
@@ -1617,25 +1555,33 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return x;
   });
 
-  register('and',
-    composed(function (){return Nodash.foldl(Nodash.AND, true);}));
+  register('and', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.foldl(Nodash.AND, true);}));
 
-  register('or',
-    composed(function (){return Nodash.foldl(Nodash.OR, false);}));
+  register('or', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.foldl(Nodash.OR, false);}));
 
-  register('sum',
-    composed(function (){return Nodash.foldl(Nodash.ADD, 0);}));
+  register('sum', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.foldl(Nodash.ADD, 0);}));
 
-  register('product',
-    composed(function (){return Nodash.foldl(Nodash.MUL, 1);}));
+  register('product', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.foldl(Nodash.MUL, 1);}));
 
-  register('maximum',
-    composed(function (){return Nodash.foldl(Nodash.max, -Infinity);}));
+  register('maximum', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.foldl(Nodash.max, -Infinity);}));
 
-  register('minimum',
-    composed(function (){return Nodash.foldl(Nodash.min, +Infinity);}));
+  register('minimum', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.foldl(Nodash.min, +Infinity);}));
 
-  register('any', function _any(p, xs) {
+  register('any', description(function () {
+  // `→`
+  }), function _any(p, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (p(xs[i])) {
         return true;
@@ -1644,7 +1590,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return false;
   });
 
-  register('all', function _all(p, xs) {
+  register('all', description(function () {
+  // `→`
+  }), function _all(p, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (!p(xs[i])) {
         return false;
@@ -1653,7 +1601,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return true;
   });
 
-  register('scanl', function _scanl(f, x, xs) {
+  register('scanl', description(function () {
+  // `→`
+  }), function _scanl(f, x, xs) {
     if (isStream(xs)) {
       return Nodash.cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(function () {
         var r = xs();
@@ -1672,7 +1622,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('scanl1', function _scanl1(f, xs) {
+  register('scanl1', description(function () {
+  // `→`
+  }), function _scanl1(f, xs) {
     if (isStream(xs)) {
       return Nodash.scanl(f, xs(), xs);
     }
@@ -1685,7 +1637,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('scanr', function _scanr(f, x, xs) {
+  register('scanr', description(function () {
+  // `→`
+  }), function _scanr(f, x, xs) {
     var zs = [x];
     for (var i = xs.length - 1; i >= 0; i--) {
       x = f(xs[i], x);
@@ -1694,7 +1648,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('scanr1', function _scanr1(f, xs) {
+  register('scanr1', description(function () {
+  // `→`
+  }), function _scanr1(f, xs) {
     var x = xs[xs.length - 1];
     var zs = [x];
     for (var i = xs.length - 2; i >= 0; i--) {
@@ -1704,7 +1660,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('concat', function _concat(xs) {
+  register('concat', description(function () {
+  // `→`
+  }), function _concat(xs) {
     if (isString(xs[0])) {
       return xs.join('');
     }
@@ -1716,10 +1674,13 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('concatMap',
-    composed(function (){return Nodash.compose2(Nodash.concat, Nodash.map);}));
+  register('concatMap', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.compose2(Nodash.concat, Nodash.map);}));
 
-  register('replicate', function _replicate(n, x) {
+  register('replicate', description(function () {
+  // `→`
+  }), function _replicate(n, x) {
     var xs = [];
     for (var i = 0; i < n; i++) {
       xs.push(x);
@@ -1727,7 +1688,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs;
   });
 
-  register('zipWith', function _zipWith(f, as, bs) {
+  register('zipWith', description(function () {
+  // `→`
+  }), function _zipWith(f, as, bs) {
     if (isStream(as) || isStream(bs)) {
       as = Nodash.stream(as);
       bs = Nodash.stream(bs);
@@ -1748,7 +1711,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('zipWith3', function _zipWith3(f, as, bs, cs) {
+  register('zipWith3', description(function () {
+  // `→`
+  }), function _zipWith3(f, as, bs, cs) {
     if (isStream(as) || isStream(bs) || isStream(cs)) {
       as = Nodash.stream(as);
       bs = Nodash.stream(bs);
@@ -1771,7 +1736,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('zipWith4', function _zipWith4(f, as, bs, cs, ds) {
+  register('zipWith4', description(function () {
+  // `→`
+  }), function _zipWith4(f, as, bs, cs, ds) {
     if (isStream(as) || isStream(bs) || isStream(cs) || isStream(ds)) {
       as = Nodash.stream(as);
       bs = Nodash.stream(bs);
@@ -1796,59 +1763,24 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('zipWith5', function _zipWith5(f, as, bs, cs, ds, es) {
-    var length = Nodash.minimum([
-            as.length, bs.length, cs.length, ds.length, es.length]);
-    var zs = [];
-    for (var i = 0; i < length; i++) {
-      zs[i] = f(as[i], bs[i], cs[i], ds[i], es[i]);
-    }
-    return zs;
-  });
+  register('zip', description(function () {
+  // `[a] → [b] → ([a], [b])`
+  }), composed(function (){return Nodash.zipWith(Nodash.tuple);}));
 
-  register('zipWith6', function _zipWith6(f, as, bs, cs, ds, es, fs) {
-    var length = Nodash.minimum([
-            as.length, bs.length, cs.length, ds.length, es.length, fs.length]);
-    var zs = [];
-    for (var i = 0; i < length; i++) {
-      zs[i] = f(as[i], bs[i], cs[i], ds[i], es[i], fs[i]);
-    }
-    return zs;
-  });
+  register('zip3', description(function () {
+  // `[a] → [b] → [c] → ([a], [b], [c])`
+  }), composed(function (){return Nodash.zipWith3(Nodash.tuple3);}));
 
-  register('zipWith7', function _zipWith7(f, as, bs, cs, ds, es, fs, gs) {
-    var length = Nodash.minimum([
-            as.length, bs.length, cs.length, ds.length,
-            es.length, fs.length, gs.length]);
-    var zs = [];
-    for (var i = 0; i < length; i++) {
-      zs[i] = f(as[i], bs[i], cs[i], ds[i], es[i], fs[i], gs[i]);
-    }
-    return zs;
-  });
+  register('zip4', description(function () {
+  // `[a] → [b] → [c] → [d] → ([a], [b], [c], [d])`
+  }), composed(function (){return Nodash.zipWith4(Nodash.tuple4);}));
 
-  register('zip', 
-    composed(function (){return Nodash.zipWith(Nodash.tuple);}));
-
-  register('zip3',
-    composed(function (){return Nodash.zipWith3(Nodash.tuple3);}));
-
-  register('zip4',
-    composed(function (){return Nodash.zipWith4(Nodash.tuple4);}));
-
-  register('zip5',
-    composed(function (){return Nodash.zipWith5(Nodash.tuple5);}));
-
-  register('zip6',
-    composed(function (){return Nodash.zipWith6(Nodash.tuple6);}));
-
-  register('zip7',
-    composed(function (){return Nodash.zipWith7(Nodash.tuple7);}));
-
-
+  
   // further from Data.List
 
-  register('intersperse', function _intersperse(x, xs) {
+  register('intersperse', description(function () {
+  // `a → [a] → [a]`
+  }), function _intersperse(x, xs) {
     if (xs.length === 0) {
       return [];
     }
@@ -1860,11 +1792,15 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return z;
   });
 
-  register('intercalate', function _intercalate(x, xs) {
+  register('intercalate', description(function () {
+  // `[a] → [a] → [a]`
+  }), function _intercalate(x, xs) {
     return Nodash.concat(Nodash.intersperse(x, xs));
   });
 
-  register('transpose', function _transpose(xss) {
+  register('transpose', description(function () {
+  // `[[a]] → [[a]]`
+  }), function _transpose(xss) {
     if (!isArray(xss)) {
       var zss = {};
       var ks = keys(xss);
@@ -1918,19 +1854,25 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 //    register('intersectBy', function () {
 //    });
 
-  register('heads',
-    composed(function (){return Nodash.map(Nodash.head);}));
+  register('heads', description(function () {
+  // `[[a]] → [a]`
+  }), composed(function (){return Nodash.map(Nodash.head);}));
 
-  register('lasts',
-    composed(function (){return Nodash.map(Nodash.lasts);}));
+  register('lasts', description(function () {
+  // `[[a]] → [a]`
+  }), composed(function (){return Nodash.map(Nodash.lasts);}));
 
-  register('inits',
-    composed(function (){return Nodash.map(Nodash.inits);}));
+  register('inits', description(function () {
+  // `[[a]] → [[a]]`
+  }), composed(function (){return Nodash.map(Nodash.inits);}));
 
-  register('tails',
-    composed(function (){return Nodash.map(Nodash.tails);}));
+  register('tails', description(function () {
+  // `[[a]] → [[a]]`
+  }), composed(function (){return Nodash.map(Nodash.tails);}));
 
-  register('isPrefixOf', function _isPrefixOf(prefix, string) {
+  register('isPrefixOf', description(function () {
+  // `[a] → [a] → Bool`
+  }), function _isPrefixOf(prefix, string) {
     if (isStream(prefix)) {
       prefix = Nodash.consume(prefix);
     }
@@ -1950,7 +1892,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return true;
   });
 
-  register('isSuffixOf', function _isSuffixOf(suffix, string) {
+  register('isSuffixOf', description(function () {
+  // `[a] → [a] → Bool`
+  }), function _isSuffixOf(suffix, string) {
     if (isStream(suffix)) {
       suffix = Nodash.consume(suffix);
     }
@@ -1965,13 +1909,17 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return true;
   });
 
-  register('isInfixOf', function _isInfixOf(infix, string) {
+  register('isInfixOf', description(function () {
+  // `[a] → [a] → Bool`
+  }), function _isInfixOf(infix, string) {
       return indexOf(infix, string) >= 0;
   });
 
   register('indexOf', indexOf);
 
-  register('find', function _find(p, xs) {
+  register('find', description(function () {
+  // `→`
+  }), function _find(p, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (p(xs[i])) {
         return xs[i];
@@ -1980,7 +1928,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return null;
   });
 
-  register('partition', function _partition(p, xs) {
+  register('partition', description(function () {
+  // `→`
+  }), function _partition(p, xs) {
     var as = [];
     var bs = [];
     for (var i = 0; i < xs.length; i++) {
@@ -1992,7 +1942,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return [ as, bs ];
   });
 
-  register('findIndex', function _elemIndex(p, xs) {
+  register('findIndex', description(function () {
+  // `→`
+  }), function _elemIndex(p, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (p(xs[i])) {
         return i;
@@ -2001,7 +1953,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return null;
   });
 
-  register('findIndices', function _elemIndex(p, xs) {
+  register('findIndices', description(function () {
+  // `→`
+  }), function _elemIndex(p, xs) {
     var zs = [];
     for (var i = 0; i < xs.length; i++) {
       if (p(xs[i])) {
@@ -2011,15 +1965,21 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
   
-  register('elemIndex', function _elemIndex(x, xs) {
+  register('elemIndex', description(function () {
+  // `→`
+  }), function _elemIndex(x, xs) {
     return Nodash.findIndex(Nodash.eq(x), xs);
   });
 
-  register('elemIndices', function _elemIndex(x, xs) {
+  register('elemIndices', description(function () {
+  // `→`
+  }), function _elemIndex(x, xs) {
     return Nodash.findIndices(Nodash.eq(x), xs);
   });
 
-  register('nub', function _nub(xs) {
+  register('nub', description(function () {
+  // `[a] → [a]`
+  }), function _nub(xs) {
     var set = new Set();
     var zs = [];
     for (var i = 0; i < xs.length; i++) {
@@ -2031,7 +1991,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('\\\\', 'difference', function _difference(xs, ys) {
+  register('\\\\', 'difference', description(function () {
+  // `[a] → [a] → [a]`
+  }), function _difference(xs, ys) {
     var set = new Set();
     var i;
     for (i = 0; i < ys.length; i++) {
@@ -2046,7 +2008,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return isString(xs) ? listToString(zs) : zs;
   });
 
-  register('union', function _union(xs, ys) {
+  register('union', description(function () {
+  // `[a] → [a] → [a]`
+  }), function _union(xs, ys) {
     var set = new Set();
     var zs = [];
     var i;
@@ -2062,7 +2026,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('intersect', function _intersect(xs, ys) {
+  register('intersect', description(function () {
+  // `[a] → [a] → [a]`
+  }), function _intersect(xs, ys) {
     var set = new Set();
     var zs = [];
     var i;
@@ -2077,7 +2043,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return zs;
   });
 
-  register('sort', function _sort(xs) {
+  register('sort', description(function () {
+  // `[a] → [a]`
+  }), function _sort(xs) {
     checkFinite(xs);
     if (xs.length <= 1) {
       return xs;
@@ -2093,7 +2061,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return isString(xs) ? zs.join('') : zs;
   });
 
-  register('deleteBy', function _deleteBy(p, x, xs) {
+  register('deleteBy', description(function () {
+  // `→`
+  }), function _deleteBy(p, x, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (p(x, xs[i])) {
         return Nodash.append(xs.slice(0,i), xs.slice(i+1));
@@ -2102,7 +2072,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs;
   });
 
-  register('delete_', 'delete', function _delete(x, xs) {
+  register('delete_', 'delete', description(function () {
+  // `→`
+  }), function _delete(x, xs) {
     var i = xs.indexOf(x);
     if (i >= 0) {
       return Nodash.append(xs.slice(0,i), xs.slice(i+1));
@@ -2110,7 +2082,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs;
   });
 
-  register('insertBy', function _insertBy(f, x, xs) {
+  register('insertBy', description(function () {
+  // `→`
+  }), function _insertBy(f, x, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (f(x, xs[i]) <= 0) {
         return Nodash.concat([xs.slice(0,i), x, xs.slice(i)]);
@@ -2119,10 +2093,13 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return Nodash.append(xs, x);
   });
 
-  register('insert',
-    composed(function (){return Nodash.insertBy(Nodash.compare);}));
+  register('insert', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.insertBy(Nodash.compare);}));
 
-  register('groupBy', function _groupBy(p, xs) {
+  register('groupBy', description(function () {
+  // `→`
+  }), function _groupBy(p, xs) {
     if (xs.length === 0) {
       return [];
     }
@@ -2142,10 +2119,13 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return isString(xs) ? Nodash.map(listToString, zs) : zs;
   });
 
-  register('group',
-    composed(function (){return Nodash.groupBy(Nodash.eq);}));
+  register('group', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.groupBy(Nodash.eq);}));
 
-  register('sortBy', function _sortBy(fn, xs) {
+  register('sortBy', description(function () {
+  // `→`
+  }), function _sortBy(fn, xs) {
     if (isStream(xs)) {
       checkFinite(xs);
       xs = Nodash.consume(xs);
@@ -2159,7 +2139,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return yesItsAString ? zs.join('') : zs;
   });
 
-  register('maximumBy', function _maximumBy(f, xs) {
+  register('maximumBy', description(function () {
+  // `→`
+  }), function _maximumBy(f, xs) {
     return Nodash.foldl1(function (a, b) {
       if (f(a, b) > 0) {
         return a;
@@ -2168,7 +2150,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     }, xs);
   });
 
-  register('minimumBy', function _minimumBy(f, xs) {
+  register('minimumBy', description(function () {
+  // `→`
+  }), function _minimumBy(f, xs) {
     return Nodash.foldl1(function (a, b) {
       if (f(a, b) < 0) {
         return a;
@@ -2182,29 +2166,39 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
   group('Maybe');
 
-  register('maybe', function _maybe(def, fun, maybe) {
+  register('maybe', description(function () {
+  // `b → (a → b) Maybe a → b`
+  }), function _maybe(def, fun, maybe) {
     if (maybe === undefined || maybe === null) {
       return def;
     }
     return fun(maybe);
   });
 
-  register('isJust', function _isJust(value) {
+  register('isJust', description(function () {
+  // `Maybe a → Bool`
+  }), function _isJust(value) {
     return value !== undefined && value !== null;
   });
 
-  register('isNothing', function _isNothing(value) {
+  register('isNothing', description(function () {
+  // `Maybe a → Bool`
+  }), function _isNothing(value) {
     return value === undefined || value === null;
   });
 
-  register('fromMaybe', function _fromMaybe(def, maybe) {
+  register('fromMaybe', description(function () {
+  // `a → Maybe a → a`
+  }), function _fromMaybe(def, maybe) {
     if (maybe === undefined || maybe === null) {
       return def;
     }
     return maybe;
   });
 
-  register('listToMaybe', function _listToMaybe(xs) {
+  register('listToMaybe', description(function () {
+  // `→`
+  }), function _listToMaybe(xs) {
     if (isStream(xs)) {
       var r = xs();
       return r === eos ? null : r;
@@ -2212,25 +2206,31 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs[0];
   });
 
-  register('maybeToList', function _maybeToList(maybe) {
+  register('maybeToList', description(function () {
+  // `→`
+  }), function _maybeToList(maybe) {
     if (maybe === undefined || maybe === null) {
       return [];
     }
     return [maybe];
   });
 
-  register('catMaybes',
-    composed(function (){return Nodash.filter(Nodash.isJust);}));
+  register('catMaybes', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.filter(Nodash.isJust);}));
 
-  register('mapMaybe',
-    composed(function (){return Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map);}));
+  register('mapMaybe', description(function () {
+  // `→`
+  }), composed(function (){return Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map);}));
 
 
   // ## Either
 
   group('Either');
 
-  register('either', function _either(afun, bfun, either) {
+  register('either', description(function () {
+  // `(a → c) → (b → c) → Either a b → c`
+  }), function _either(afun, bfun, either) {
     var left = either.left || either[0];
     if (left) {
       return afun(left);
@@ -2242,49 +2242,67 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return null;
   });
 
-  register('Left', function _Left(value) {
+  register('Left', description(function () {
+  // `a → Either a b`
+  }), function _Left(value) {
     return { left: value };
   });
 
-  register('Right', function _Right(value) {
+  register('Right', description(function () {
+  // `b → Either a b`
+  }), function _Right(value) {
     return { right: value };
   });
 
-  register('isLeft', function _isLeft(val) {
+  register('isLeft', description(function () {
+  // `Either a b → Bool`
+  }), function _isLeft(val) {
     return val.left !== undefined ||
       (val[0] !== undefined && val[0] !== null);
   });
 
-  register('isRight', function _isRight(val) {
+  register('isRight', description(function () {
+  // `Either a b → Bool`
+  }), function _isRight(val) {
     return (val.right !== undefined || val[1] !== undefined) &&
       !Nodash.isLeft(val);
   });
 
-  register('fromLeft', function _fromLeft(val) {
+  register('fromLeft', description(function () {
+  // `Either a b → a`
+  }), function _fromLeft(val) {
     if (val.left !== undefined) {
       return val.left;
     }
     return val[0];
   });
 
-  register('fromRight', function _fromRight(val) {
+  register('fromRight', description(function () {
+  // `Either a b → b`
+  }), function _fromRight(val) {
     if (val.right !== undefined) {
       return val.right;
     }
     return val[1];
   });
 
-  register('lefts', Nodash.compose(
+  register('lefts', description(function () {
+  // `[Either a b] → [a]`
+  }), Nodash.compose(
               Nodash.map(Nodash.fromLeft),
               Nodash.filter(Nodash.isLeft)
   ));
 
-  register('rights', Nodash.compose(
+  register('rights', description(function () {
+  // `[Either a b] → [b]`
+  }), Nodash.compose(
               Nodash.map(Nodash.fromRight),
               Nodash.filter(Nodash.isRight)
   ));
 
-  register('partitionEithers', function _partitionEithers(xs) {
+  register('partitionEithers', description(function () {
+  // `[Either a b] → ([a], [b])`
+  }), function _partitionEithers(xs) {
     return [ Nodash.lefts(xs), Nodash.rights(xs) ];
   });
 
@@ -2293,7 +2311,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   
   group('Objects');
 
-  register('keys', keys);
+  register('keys', description(function () {
+  // `Object → [String]`
+  }), keys);
 
   return Nodash;
 }

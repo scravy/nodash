@@ -1,5 +1,6 @@
 var P = require('../nodash').install(GLOBAL);
 var assert = map(flip, require('assert'));
+var expect = require('chai').expect;
 
 describe('Data.List', function () {
 
@@ -196,6 +197,17 @@ describe('Data.List', function () {
         assert.deepEqual([], sortBy(compose2(negate, compare), []));
         assert.deepEqual([{}], sortBy(compose2(negate, compare), [{}]));
         assert.deepEqual([4, 3, 2, 1], sortBy(compose2(negate, compare), [1, 2, 3, 4]));
+    });
+
+    it('sortBy /w stream', function () {
+        assert.deepEqual([], sortBy(compose2(negate, compare), stream([])));
+        assert.deepEqual([3, 2, 1], sortBy(compose2(negate, compare), stream([1, 2, 3])));
+    });
+
+    it('sortBy /w infinite stream throws', function () {
+        expect(function () {
+            sortBy(compose2(negate, compare), repeat(7));
+        }).to.throw();
     });
 
     it('sortBy /w string', function () {

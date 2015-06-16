@@ -7,6 +7,12 @@ var highlightjs = require('highlight.js');
 
 require('./nodash').install(GLOBAL);
 
+marked.setOptions({
+  highlight: function (code) {
+    return highlightjs.highlight('js', code).value;
+  }
+});
+
 function formatSource(m) {
   var func = m.function;
   if (func.composed) {
@@ -29,9 +35,11 @@ module.exports = function (metadata) {
     idf(metadata),
     
     map(function (m) {
+      var name = head(filter(compose(isAsciiLetter, fst), stream(m.aliases)));
       return {
         group: m.group,
-        name: head(filter(compose(isAsciiLetter, fst), stream(m.aliases))),
+        name: name,
+        aliases: difference(m.aliases, [name]),
         arity: m.function.length,
         source: highlightjs.highlight('js', formatSource(m)).value,
         description: marked(m.description || "")

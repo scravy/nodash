@@ -22,7 +22,7 @@
 {{#functions}}
   <li><a href="#f-{{name}}">
     <span class="name">{{name}}</span>
-    {{#aliases}}{{^isName}}<span class="alias">{{name}}</span>{{/isName}}{{/aliases}}
+    {{#aliases}}<span class="alias">{{.}}</span>{{/aliases}}
   </a></li>
 {{/functions}}
 </ul>
@@ -40,7 +40,7 @@
 {{& primer}}
 
 {{#functions}}
-<h3 id="f-{{name}}">{{name}}</h2>
+<h3 id="f-{{name}}">{{name}} <small>{{#aliases}}<span class="alias">{{.}}</span>{{/aliases}}</small></h2>
 <div class="section">
 {{&description}}
 {{#source}}

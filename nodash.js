@@ -658,7 +658,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return a + b;
   });
 
-  register('-', 'sub', 'SUB', 'minus', 'MINUS', 'subtract', description(function () {
+  register('-', 'sub', 'minus', 'MINUS', 'subtract', description(function () {
   // `Number → Number → Number`
   }), function _sub(a, b) {
     return a - b;

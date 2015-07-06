@@ -122,7 +122,7 @@ gulp.task('docco', [ 'lint' ], function (done) {
 
 gulp.task('styles', function (done) {
   gulp.src('site/*.less')
-      .pipe(less())
+      .pipe(less(lessOptions))
       .pipe(gulp.dest('dist/'))
       .on('finish', done);
 });

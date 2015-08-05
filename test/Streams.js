@@ -41,6 +41,14 @@ describe('Streams', function () {
         assert.deepEqual([1,2,3], zs);
     });
     
+    it('each /w array + index', function () {
+        var zs = [];
+        each(function (x, ix) {
+            zs.push([x, ix]);
+        }, [1,2,3]);
+        assert.deepEqual([[1, 0],[2, 1],[3, 2]], zs);
+    });
+ 
     it('each /w object', function () {
         var zs = {};
         each(function (x, k) {

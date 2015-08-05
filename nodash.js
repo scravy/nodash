@@ -1036,7 +1036,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
       }
     } else if (isArray(xs) || isString(xs)) {
       for (var i = 0; i < xs.length; i++) {
-        f(xs[i]);
+        f(xs[i], i);
       }
     } else {
       var ks = keys(xs);
@@ -2332,6 +2332,22 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   register('keys', description(function () {
   // `Object → [String]`
   }), keys);
+
+  register('clone', description(function () {
+  // `Any → Any`
+  }), function _clone(thing) {
+    if (typeof thing === 'object') {
+      if (thing === null) {
+        return null;
+      }
+      var result = isArray(thing) ? [] : {};
+      Nodash.each(function (value, key) {
+        result[key] = Nodash.clone(value);
+      }, thing);
+      return result;
+    }
+    return thing;
+  });
 
 
   return Nodash;

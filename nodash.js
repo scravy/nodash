@@ -10,7 +10,7 @@ var NativeMath   = Math;
 var NativeArray  = Array;
 var NativeObject = Object;
 
-function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefined) {
+function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined) {
   "use strict";
 
   // Use either the supplied objects from the arguments,
@@ -121,11 +121,11 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     };
   }());
 
-  // Either use the native set or (if `dontUseNativeSet` is `true` or
+  // Either use the native set or (if `dontUseNatives` is `true` or
   // there is no native set implementation) a drop-in replacement.
   // It reproduces only the actually used functionality, which is
   // `add` and `has`. It uses the keys of an object to simulate the Set.
-  var Set = (!dontUseNativeSet && NativeSet) || (function () {
+  var Set = (!dontUseNatives && NativeSet) || (function () {
     
     var Set = function () {
       this.xs = {};
@@ -142,6 +142,11 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
 
     return Set;
   }());
+
+  var trampoline = (!dontUseNatives && setImmediate) || function (f) {
+    setTimeout(f, 0);
+  };
+
 
   // The identity function that returns what was passed in unaltered.
   function id(x) { return x; }
@@ -2394,12 +2399,6 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
       }, dependencies);
       tasks[name] = task;
     }, specification);
-
-    console.log(tasks);
-
-    function trampoline(f) {
-      setTimeout(f, 0);
-    }
 
     return function _runTasks(callback) {
 

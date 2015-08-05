@@ -1,11 +1,11 @@
-var P = require('../nodash').install(GLOBAL);
 var assert = require('assert');
 
 describe('Tasks', function () {
 
     it('run', function (done) {
+        var P = require('../nodash').install({}, null, null, null, true);
         var invocations = 0;
-        run({
+        P.run({
             eins: function (callback) {
                 invocations += 1;
                 callback(1);
@@ -32,8 +32,9 @@ describe('Tasks', function () {
     });
 
     it('run /w exception', function (done) {
+        var P = require('../nodash').install();
         var invocations = 0;
-        run({
+        P.run({
             eins: function (callback) {
                 invocations += 1;
                 callback(1);

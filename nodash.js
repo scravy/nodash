@@ -2373,8 +2373,8 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
   }), function _async(f) {
     return function () {
       try {
-        var callback = last(arguments);
-        var result = f.apply(null, init(arguments));
+        var callback = Nodash.last(arguments);
+        var result = f.apply(null, Nodash.init(arguments));
         trampoline(function () { callback(result); });
       } catch (e) {
         trampoline(function () { callback(null, e); });

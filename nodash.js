@@ -1292,7 +1292,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     if (isString(xs)) {
       return xs.slice(1);
     }
-    return Array.prototype.slice.call(xs, 1);
+    return [].slice.call(xs, 1);
   });
 
   register('init', description(function () {
@@ -1314,7 +1314,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     if (isString(xs)) {
       return xs.slice(0, xs.length - 1);
     }
-    return Array.prototype.slice.call(xs, 0, xs.length - 1);
+    return [].slice.call(xs, 0, xs.length - 1);
   });
 
   register('isNull', 'null_', 'isEmpty', description(function () {

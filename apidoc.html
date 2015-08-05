@@ -171,7 +171,7 @@
   </a></li>
   <li><a href="#f-isNull">
     <span class="name">isNull</span>
-    <span class="alias">null_</span>
+    <span class="alias">null_</span><span class="alias">isEmpty</span>
   </a></li>
   <li><a href="#f-isPrefixOf">
     <span class="name">isPrefixOf</span>
@@ -696,6 +696,10 @@
 </ul>
 <h6><a href="#g-Objects">Objects</a></h6>
 <ul class="list-unstyled">
+  <li><a href="#f-clone">
+    <span class="name">clone</span>
+    
+  </a></li>
   <li><a href="#f-keys">
     <span class="name">keys</span>
     
@@ -751,6 +755,13 @@
     
   </a></li>
 </ul>
+<h6><a href="#g-Tasks">Tasks</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-run">
+    <span class="name">run</span>
+    
+  </a></li>
+</ul>
 <h6><a href="#g-Tuples">Tuples</a></h6>
 <ul class="list-unstyled">
   <li><a href="#f-fst">
@@ -792,6 +803,10 @@
     <span class="name">isNumber</span>
     
   </a></li>
+  <li><a href="#f-isObject">
+    <span class="name">isObject</span>
+    
+  </a></li>
   <li><a href="#f-isStream">
     <span class="name">isStream</span>
     
@@ -802,7 +817,7 @@
 
 <div class="content">
 
-<h1>nodash 0.7.2 <small>api documentation</small></h1>
+<h1>nodash 0.8.0 <small>api documentation</small></h1>
 
 
 <h2 id="g-ArraysLists">Arrays &#x2F; Lists</h1>
@@ -1503,7 +1518,7 @@ insertBy(compare)
 </pre>
 </div>
 
-<h3 id="f-isNull">isNull <small><span class="alias">null_</span></small></h2>
+<h3 id="f-isNull">isNull <small><span class="alias">null_</span><span class="alias">isEmpty</span></small></h2>
 <div class="section">
 <p><code>[a] → Bool</code></p>
 
@@ -1511,6 +1526,12 @@ insertBy(compare)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_null</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
     <span class="hljs-keyword">return</span> xs() === eos;
+  }
+  <span class="hljs-keyword">if</span> (isObject(xs)) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> _ <span class="hljs-keyword">in</span> xs) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
   }
   <span class="hljs-keyword">return</span> xs.length === <span class="hljs-number">0</span>;
 }
@@ -1609,6 +1630,9 @@ map(lasts)
       n += <span class="hljs-number">1</span>;
     }
     <span class="hljs-keyword">return</span> n;
+  }
+  <span class="hljs-keyword">if</span> (isObject(xs)) {
+    <span class="hljs-keyword">return</span> keys(xs).length;
   }
   <span class="hljs-keyword">return</span> xs.length;
 }
@@ -3188,7 +3212,7 @@ Lowest common denominator.</p>
 <h3 id="f-round">round <small></small></h2>
 <div class="section">
 <p><code>Number → Number → Number</code>
-Haskell&#39;s round and JavaScripts Math.round are different</p>
+Haskell’s round and JavaScripts Math.round are different</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_round</span>(<span class="hljs-params">x</span>) </span>{
@@ -3311,6 +3335,27 @@ Haskell&#39;s round and JavaScripts Math.round are different</p>
 <h2 id="g-Objects">Objects</h1>
 
 
+<h3 id="f-clone">clone <small></small></h2>
+<div class="section">
+<p><code>Any → Any</code></p>
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_clone</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> thing === <span class="hljs-string">'object'</span>) {
+    <span class="hljs-keyword">if</span> (thing === <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+    <span class="hljs-keyword">var</span> result = isArray(thing) ? [] : {};
+    Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value, key</span>) </span>{
+      result[key] = Nodash.clone(value);
+    }, thing);
+    <span class="hljs-keyword">return</span> result;
+  }
+  <span class="hljs-keyword">return</span> thing;
+}
+</pre>
+</div>
+
 <h3 id="f-keys">keys <small></small></h2>
 <div class="section">
 <p><code>Object → [String]</code></p>
@@ -3424,7 +3469,7 @@ Haskell&#39;s round and JavaScripts Math.round are different</p>
     }
   } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
-      f(xs[i]);
+      f(xs[i], i);
     }
   } <span class="hljs-keyword">else</span> {
     <span class="hljs-keyword">var</span> ks = keys(xs);
@@ -3544,6 +3589,123 @@ Haskell&#39;s round and JavaScripts Math.round are different</p>
 
 
 
+<h2 id="g-Tasks">Tasks</h1>
+
+
+<h3 id="f-run">run <small></small></h2>
+<div class="section">
+<p>TaskSpec → (Result → ()) → ()</p>
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_run</span>(<span class="hljs-params">specification</span>) </span>{
+  <span class="hljs-comment">// this function does its own currying.</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length == <span class="hljs-number">2</span>) {
+    Nodash.run(specification)(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-keyword">var</span> tasks = {};
+
+  <span class="hljs-comment">// prepare tasks specification.</span>
+  Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">spec, name</span>) </span>{
+    <span class="hljs-keyword">var</span> dependencies = [];
+    <span class="hljs-keyword">var</span> func = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (isArray(spec)) {
+      dependencies = Nodash.init(spec);
+      func = Nodash.last(spec);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isFunction(spec)) {
+      func = spec;
+    }
+
+    <span class="hljs-keyword">var</span> task = {
+      func: func,
+      args: dependencies,
+      depends: {},
+      enables: tasks[name] ? tasks[name].enables : {}
+    };
+    Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+      task.depends[dependency] = <span class="hljs-literal">true</span>;
+      <span class="hljs-keyword">if</span> (!tasks[dependency]) {
+          tasks[dependency] = { enables: {} };
+      }
+      tasks[dependency].enables[name] = <span class="hljs-literal">true</span>;
+    }, dependencies);
+    tasks[name] = task;
+  }, specification);
+
+  <span class="hljs-built_in">console</span>.log(tasks);
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">trampoline</span>(<span class="hljs-params">f</span>) </span>{
+    setTimeout(f, <span class="hljs-number">0</span>);
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_runTasks</span>(<span class="hljs-params">callback</span>) </span>{
+
+    <span class="hljs-keyword">var</span> depends = {},
+        initial = [],
+        results = {},
+        toGo = Nodash.length(tasks);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span>(<span class="hljs-params">task</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result, error</span>) </span>{
+        results[task] = {};
+        <span class="hljs-keyword">if</span> (!error) {
+          results[task].result = result;
+        } <span class="hljs-keyword">else</span> {
+          results[task].error = error;
+        }
+        toGo -= <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span> (toGo === <span class="hljs-number">0</span>) {
+          callback(results);
+        } <span class="hljs-keyword">else</span> {
+          Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, next</span>) </span>{
+            <span class="hljs-keyword">delete</span> depends[next][task];
+            <span class="hljs-keyword">if</span> (isEmpty(depends[next])) {
+              schedule(next);
+            }
+          }, tasks[task].enables);
+        }
+      };
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">schedule</span>(<span class="hljs-params">taskName</span>) </span>{
+      <span class="hljs-keyword">var</span> task = tasks[taskName];
+      trampoline(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_executeTask</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> f = handle(taskName);
+        <span class="hljs-keyword">var</span> dependenciesFailed = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">var</span> args = Nodash.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+          <span class="hljs-keyword">if</span> (results[dependency].error) {
+            dependenciesFailed = <span class="hljs-literal">true</span>;
+          }
+          <span class="hljs-keyword">return</span> results[dependency].result;
+        }, task.args);
+        <span class="hljs-keyword">if</span> (dependenciesFailed) {
+          trampoline(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ f(<span class="hljs-literal">null</span>, <span class="hljs-string">"dependencies failed"</span>); });
+        } <span class="hljs-keyword">else</span> {
+          args.push(f);
+          <span class="hljs-keyword">try</span> {
+            task.func.apply(<span class="hljs-literal">null</span>, args);
+          } <span class="hljs-keyword">catch</span> (e) {
+            trampoline(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ f(<span class="hljs-literal">null</span>, e); });
+          }
+        }
+      });
+    }
+
+    Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
+      depends[taskName] = Nodash.clone(task.depends) || {};
+
+      <span class="hljs-keyword">if</span> (Nodash.isNull(depends[taskName])) {
+        schedule(taskName);
+      }
+    }, tasks);
+  };
+}
+</pre>
+</div>
+
+
+
 <h2 id="g-Tuples">Tuples</h1>
 
 
@@ -3632,6 +3794,20 @@ Haskell&#39;s round and JavaScripts Math.round are different</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span>; }
+</pre>
+</div>
+
+<h3 id="f-isObject">isObject <small></small></h2>
+<div class="section">
+<p><code>Any → Bool</code></p>
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isObject</span>(<span class="hljs-params">obj</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> obj === <span class="hljs-string">'object'</span>) {
+    <span class="hljs-keyword">return</span> obj !== <span class="hljs-literal">null</span> &amp;&amp; !isArray(obj);
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
 </pre>
 </div>
 

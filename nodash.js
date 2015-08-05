@@ -1334,6 +1334,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
       }
       return n;
     }
+    if (isObject(xs)) {
+      return keys(xs).length;
+    }
     return xs.length;
   });
 
@@ -2347,6 +2350,118 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
       return result;
     }
     return thing;
+  });
+
+
+  // ## Tasks
+
+  group('Tasks');
+
+  register('run', description(function () {
+  // TaskSpec → (Result → ()) → ()
+  }), function _run(specification) {
+    // this function does its own currying.
+    if (arguments.length == 2) {
+      Nodash.run(specification)(arguments[1]);
+      return;
+    }
+
+    var tasks = {};
+
+    // prepare tasks specification.
+    Nodash.each(function (spec, name) {
+      var dependencies = [];
+      var func = null;
+      if (isArray(spec)) {
+        dependencies = Nodash.init(spec);
+        func = Nodash.last(spec);
+      } else if (isFunction(spec)) {
+        func = spec;
+      }
+
+      var task = {
+        func: func,
+        args: dependencies,
+        depends: {},
+        enables: tasks[name] ? tasks[name].enables : {}
+      };
+      Nodash.each(function (dependency) {
+        task.depends[dependency] = true;
+        if (!tasks[dependency]) {
+            tasks[dependency] = { enables: {} };
+        }
+        tasks[dependency].enables[name] = true;
+      }, dependencies);
+      tasks[name] = task;
+    }, specification);
+
+    console.log(tasks);
+
+    function trampoline(f) {
+      setTimeout(f, 0);
+    }
+
+    return function _runTasks(callback) {
+
+      var depends = {},
+          initial = [],
+          results = {},
+          toGo = Nodash.length(tasks);
+
+      function handle(task) {
+        return function (result, error) {
+          results[task] = {};
+          if (!error) {
+            results[task].result = result;
+          } else {
+            results[task].error = error;
+          }
+          toGo -= 1;
+          if (toGo === 0) {
+            callback(results);
+          } else {
+            Nodash.each(function (_, next) {
+              delete depends[next][task];
+              if (isEmpty(depends[next])) {
+                schedule(next);
+              }
+            }, tasks[task].enables);
+          }
+        };
+      }
+
+      function schedule(taskName) {
+        var task = tasks[taskName];
+        trampoline(function _executeTask() {
+          var f = handle(taskName);
+          var dependenciesFailed = false;
+          var args = Nodash.map(function (dependency) {
+            if (results[dependency].error) {
+              dependenciesFailed = true;
+            }
+            return results[dependency].result;
+          }, task.args);
+          if (dependenciesFailed) {
+            trampoline(function () { f(null, "dependencies failed"); });
+          } else {
+            args.push(f);
+            try {
+              task.func.apply(null, args);
+            } catch (e) {
+              trampoline(function () { f(null, e); });
+            }
+          }
+        });
+      }
+
+      Nodash.each(function (task, taskName) {
+        depends[taskName] = Nodash.clone(task.depends) || {};
+
+        if (Nodash.isNull(depends[taskName])) {
+          schedule(taskName);
+        }
+      }, tasks);
+    };
   });
 
 

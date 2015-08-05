@@ -13,6 +13,11 @@ describe('Lists', function () {
         assert.strictEqual(false, isNull("x"));
     });
 
+    it('isNull /w object', function () {
+        assert.strictEqual(true, isNull({}));
+        assert.strictEqual(false, isNull({ a: 3 }));
+    });
+
     it('isNull /w stream', function () {
         assert.strictEqual(true, isNull(stream("")));
         assert.strictEqual(false, isNull(stream("x")));

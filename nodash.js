@@ -71,6 +71,15 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return NativeObject.prototype.toString.call(arr) === '[object Array]';
   };
 
+  // `isObject` checks whether a thing is an object and neither an
+  // array nor null.
+  var isObject = function _isObject(obj) {
+    if (typeof obj === 'object') {
+      return obj !== null && !isArray(obj);
+    }
+    return false;
+  };
+
   // Utility functions for checking basic JavaScript types.
   function isFunction(x) { return typeof x === 'function'; }
   function isString(x)   { return typeof x === 'string'; }
@@ -413,6 +422,9 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   register('isInfinite', description(function () {
   // `Any → Bool`
   }), isInfinite);
+  register('isObject', description(function () {
+  // `Any → Bool`
+  }), isObject);
 
   // ## Functions dealing with functions
 
@@ -1294,11 +1306,17 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
     return xs.slice(0, xs.length - 1);
   });
 
-  register('isNull', 'null_', description(function () {
+  register('isNull', 'null_', 'isEmpty', description(function () {
   // `[a] → Bool`
   }), function _null(xs) {
     if (isStream(xs)) {
       return xs() === eos;
+    }
+    if (isObject(xs)) {
+      for (var _ in xs) {
+        return false;
+      }
+      return true;
     }
     return xs.length === 0;
   });
@@ -2314,6 +2332,7 @@ function install(Nodash, Math, Array, Object, dontUseNativeSet, refObj, undefine
   register('keys', description(function () {
   // `Object → [String]`
   }), keys);
+
 
   return Nodash;
 }

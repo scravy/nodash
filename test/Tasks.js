@@ -1,3 +1,4 @@
+require('../nodash').install(GLOBAL);
 var assert = require('assert');
 
 describe('Tasks', function () {
@@ -59,5 +60,27 @@ describe('Tasks', function () {
         });
     });
 
+    it('run /w async', function (done) {
+        run({
+            eins: function (callback) {
+                callback(2);
+            },
+            zwei: [ 'eins', async(plus(3)) ]
+        }, function (results) {
+            assert.strictEqual(5, results.zwei.result);
+            done();
+        });
+    });
 
+    it('run /w async + exception', function (done) {
+        run({
+            eins: function (callback) {
+                callback(2);
+            },
+            zwei: [ 'eins', async(function () { throw "error"; }) ]
+        }, function (results) {
+            assert.strictEqual("error", results.zwei.error);
+            done();
+        });
+    });
 });

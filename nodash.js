@@ -1289,7 +1289,10 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
       xs();
       return xs;
     }
-    return xs.slice(1);
+    if (isString(xs)) {
+      return xs.slice(1);
+    }
+    return Array.prototype.slice.call(xs, 1);
   });
 
   register('init', description(function () {
@@ -1308,7 +1311,10 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
         return r;
       });
     }
-    return xs.slice(0, xs.length - 1);
+    if (isString(xs)) {
+      return xs.slice(0, xs.length - 1);
+    }
+    return Array.prototype.slice.call(xs, 0, xs.length - 1);
   });
 
   register('isNull', 'null_', 'isEmpty', description(function () {
@@ -2362,8 +2368,22 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   group('Tasks');
 
+  register('async', description(function () {
+  // 
+  }), function _async(f) {
+    return function () {
+      try {
+        var callback = last(arguments);
+        var result = f.apply(null, init(arguments));
+        trampoline(function () { callback(result); });
+      } catch (e) {
+        trampoline(function () { callback(null, e); });
+      }
+    };
+  });
+
   register('run', description(function () {
-  // TaskSpec → (Result → ()) → ()
+  // `TaskSpec → (Result → ()) → ()`
   }), function _run(specification) {
     // this function does its own currying.
     if (arguments.length == 2) {
@@ -2407,7 +2427,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
           results = {},
           toGo = Nodash.length(tasks);
 
-      function handle(task) {
+      function callbackHandle(task) {
         return function (result, error) {
           results[task] = {};
           if (!error) {
@@ -2432,7 +2452,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
       function schedule(taskName) {
         var task = tasks[taskName];
         trampoline(function _executeTask() {
-          var f = handle(taskName);
+          var f = callbackHandle(taskName);
           var dependenciesFailed = false;
           var args = Nodash.map(function (dependency) {
             if (results[dependency].error) {

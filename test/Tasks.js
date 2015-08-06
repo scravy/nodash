@@ -3,6 +3,36 @@ var assert = require('assert');
 
 describe('Tasks', function () {
 
+    it('run (waterfall)', function (done) {
+        var P = require('../nodash').install({}, null, null, null, true);
+        var invocations = 0;
+        P.run([
+            function (callback) {
+                invocations += 1;
+                callback(1);
+            },
+            function (data, callback) {
+                invocations += 1;
+                assert.strictEqual(1, data);
+                callback(2);
+            },
+            function (data, callback) {
+                invocations += 1;
+                assert.strictEqual(2, data);
+                callback(3);
+            },
+            function (data, callback) {
+                invocations += 1;
+                assert.strictEqual(3, data);
+                callback(4);
+            }
+        ], function (results) {
+            assert.deepEqual({ 3: { result: 4 } }, results);
+            assert.strictEqual(4, invocations);
+            done();
+        });
+    });
+
     it('run', function (done) {
         var P = require('../nodash').install({}, null, null, null, true);
         var invocations = 0;
@@ -56,6 +86,39 @@ describe('Tasks', function () {
             }]
         }, function (results) {
             assert.strictEqual(3, invocations);
+            done();
+        });
+    });
+
+    it('run /w exception + .runAlways', function (done) {
+        var P = require('../nodash').install();
+        var invocations = 0;
+        P.run({
+            eins: {
+              func: function (callback) {
+                invocations += 1;
+                callback(1);
+              }
+            },
+            zwei: [function (callback) {
+                invocations += 1;
+                callback(2);
+            }],
+            drei: ['eins', 'vier', {
+              func: function (eins, vier, callback) {
+                invocations += 1;
+                assert.strictEqual(1, eins);
+                assert.strictEqual(4, vier);
+                callback(3);
+              },
+              runAlways: true
+            }],
+            vier: ['eins', function (eins, callback) {
+                invocations += 1;
+                throw new Error('Aww Snap!');
+            }]
+        }, function (results) {
+            assert.strictEqual(4, invocations);
             done();
         });
     });

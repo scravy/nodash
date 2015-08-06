@@ -2391,6 +2391,17 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
       return;
     }
 
+    // if spec is an array, translate to object spec
+    if (isArray(specification)) {
+      var prev = null;
+      var newSpec = {};
+      Nodash.each(function (func, taskName) {
+        newSpec[taskName] = prev === null ? func : [ prev, func ];
+        prev = taskName;
+      }, specification);
+      specification = newSpec;
+    }
+
     var tasks = {};
 
     // prepare tasks specification.
@@ -2400,7 +2411,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
       if (isArray(spec)) {
         dependencies = Nodash.init(spec);
         func = Nodash.last(spec);
-      } else if (isFunction(spec)) {
+      } else {
         func = spec;
       }
 
@@ -2423,51 +2434,70 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return function _runTasks(callback) {
 
       var depends = {},
-          initial = [],
-          results = {},
-          toGo = Nodash.length(tasks);
+          toGo = Nodash.length(tasks),
+          results = Nodash.map(function (task, taskName) {
+        return { toGo: Nodash.length(task.enables) };
+      }, tasks);
 
-      function callbackHandle(task) {
+      function callbackHandle(taskName) {
         return function (result, error) {
-          results[task] = {};
           if (!error) {
-            results[task].result = result;
+            results[taskName].result = result;
           } else {
-            results[task].error = error;
+            results[taskName].error = error;
           }
+
+          // clean up results if need be
+          Nodash.each(function (_, dependency) {
+            results[dependency].toGo -= 1;
+            if (results[dependency].toGo === 0) {
+              delete results[dependency];
+            }
+          }, tasks[taskName].depends);
+
           toGo -= 1;
           if (toGo === 0) {
+            // clean results object
+            Nodash.each(function (result) {
+              delete result.toGo;
+            }, results);
             callback(results);
           } else {
             Nodash.each(function (_, next) {
-              delete depends[next][task];
+              delete depends[next][taskName];
               if (isEmpty(depends[next])) {
-                schedule(next);
+                execute(next);
               }
-            }, tasks[task].enables);
+            }, tasks[taskName].enables);
           }
         };
       }
 
-      function schedule(taskName) {
-        var task = tasks[taskName];
+      function execute(taskName) {
+        var task = tasks[taskName],
+            callback = callbackHandle(taskName),
+            dependenciesFailed = false,
+            args = Nodash.map(function (dependency) {
+              if (results[dependency].error) {
+                dependenciesFailed = true;
+              }
+              return results[dependency].result;
+            }, task.args);
+
+        args.push(callback);
+
         trampoline(function _executeTask() {
-          var f = callbackHandle(taskName);
-          var dependenciesFailed = false;
-          var args = Nodash.map(function (dependency) {
-            if (results[dependency].error) {
-              dependenciesFailed = true;
-            }
-            return results[dependency].result;
-          }, task.args);
-          if (dependenciesFailed) {
-            trampoline(function () { f(null, "dependencies failed"); });
+          if (dependenciesFailed && !task.func.runAlways) {
+            callback(null, "dependencies failed");
           } else {
-            args.push(f);
+            var f = task.func;
+            if (isObject(f)) {
+              f = f.func;
+            }
             try {
-              task.func.apply(null, args);
+              f.apply(null, args);
             } catch (e) {
-              trampoline(function () { f(null, e); });
+              callback(null, e);
             }
           }
         });
@@ -2477,7 +2507,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
         depends[taskName] = Nodash.clone(task.depends) || {};
 
         if (Nodash.isNull(depends[taskName])) {
-          schedule(taskName);
+          execute(taskName);
         }
       }, tasks);
     };

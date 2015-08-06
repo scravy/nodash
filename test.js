@@ -9,12 +9,15 @@ var tasks = {
         }, Math.random() * 2000);
     },
 
-    'ZWEI': [ 'VIER', function (vier, callback) {
+    'ZWEI': [ 'VIER', {
+      func: function (vier, callback) {
         console.log("Starting: ZWEI", vier);
         setTimeout(function () {
             console.log("Finishing: ZWEI");
             callback("zwei");
         }, Math.random() * 2000);
+      },
+      runAlways: false
     }],
 
     'DREI': [ 'EINS', 'VIER', function (eins, vier, callback) {

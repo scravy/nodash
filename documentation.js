@@ -24,7 +24,7 @@ function formatSource(m) {
   var source = lines(func.toString());
   source[0] = "  " + source[0];
   var indent = minimum(map(compose(length, takeWhile(eq(' '))),
-                           filter(compose(not, isNull), source)));
+                           filter(compose(not, isEmpty), source)));
   return unlines(map(drop(indent), source));
 }
 

@@ -5328,11 +5328,7 @@ Lowest common denominator.</p>
       <span class="hljs-keyword">if</span> (thing === <span class="hljs-literal">null</span>) {
         <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
       }
-      <span class="hljs-keyword">var</span> result = isArray(thing) ? [] : {};
-      Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value, key</span>) </span>{
-        result[key] = Nodash.clone(value);
-      }, thing);
-      <span class="hljs-keyword">return</span> result;
+      <span class="hljs-keyword">return</span> Nodash.map(Nodash.clone, thing);
     }
     <span class="hljs-keyword">return</span> thing;
   });</pre></div></div>

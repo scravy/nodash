@@ -875,11 +875,11 @@ foldl(AND, <span class="hljs-literal">true</span>)
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_append</span>(<span class="hljs-params">xs, ys</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs) || isStream(ys)) {
-    xs = Nodash.stream(xs);
+    xs = stream(xs);
     <span class="hljs-keyword">if</span> (isInfinite(xs)) {
       <span class="hljs-keyword">return</span> xs;
     }
-    ys = Nodash.stream(ys);
+    ys = stream(ys);
     <span class="hljs-keyword">var</span> atSecondStream = <span class="hljs-literal">false</span>;
     <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">if</span> (atSecondStream) {
@@ -999,7 +999,7 @@ compose2(concat, map)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_deleteBy</span>(<span class="hljs-params">p, x, xs</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
     <span class="hljs-keyword">if</span> (p(x, xs[i])) {
-      <span class="hljs-keyword">return</span> Nodash.append(xs.slice(<span class="hljs-number">0</span>,i), xs.slice(i+<span class="hljs-number">1</span>));
+      <span class="hljs-keyword">return</span> append(xs.slice(<span class="hljs-number">0</span>,i), xs.slice(i+<span class="hljs-number">1</span>));
     }
   }
   <span class="hljs-keyword">return</span> xs;
@@ -1015,7 +1015,7 @@ compose2(concat, map)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_delete</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">var</span> i = xs.indexOf(x);
   <span class="hljs-keyword">if</span> (i &gt;= <span class="hljs-number">0</span>) {
-    <span class="hljs-keyword">return</span> Nodash.append(xs.slice(<span class="hljs-number">0</span>,i), xs.slice(i+<span class="hljs-number">1</span>));
+    <span class="hljs-keyword">return</span> append(xs.slice(<span class="hljs-number">0</span>,i), xs.slice(i+<span class="hljs-number">1</span>));
   }
   <span class="hljs-keyword">return</span> xs;
 }
@@ -1071,7 +1071,7 @@ compose2(concat, map)
     <span class="hljs-keyword">var</span> x;
     <span class="hljs-keyword">while</span> ((x = xs()) !== eos &amp;&amp; p(x)) {
     }
-    <span class="hljs-keyword">return</span> Nodash.cons(x, xs);
+    <span class="hljs-keyword">return</span> cons(x, xs);
   }
   <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
   <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
@@ -1091,14 +1091,14 @@ compose2(concat, map)
   <span class="hljs-keyword">if</span> (isStream(xs)) {
     <span class="hljs-keyword">var</span> z;
     <span class="hljs-keyword">while</span> ((z = xs()) !== eos) {
-      <span class="hljs-keyword">if</span> (Nodash.eq(z, x)) {
+      <span class="hljs-keyword">if</span> (eq(z, x)) {
         <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
       }
     }
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
-    <span class="hljs-keyword">if</span> (Nodash.eq(xs[i], x)) {
+    <span class="hljs-keyword">if</span> (eq(xs[i], x)) {
       <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
     }
   }
@@ -1113,7 +1113,7 @@ compose2(concat, map)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">x, xs</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.findIndex(Nodash.eq(x), xs);
+  <span class="hljs-keyword">return</span> findIndex(eq(x), xs);
 }
 </pre>
 </div>
@@ -1124,7 +1124,7 @@ compose2(concat, map)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">x, xs</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.findIndices(Nodash.eq(x), xs);
+  <span class="hljs-keyword">return</span> findIndices(eq(x), xs);
 }
 </pre>
 </div>
@@ -1225,13 +1225,13 @@ compose2(concat, map)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldl</span>(<span class="hljs-params">f, x, xs</span>) </span>{
   <span class="hljs-keyword">var</span> streaming = isStream(xs);
   <span class="hljs-keyword">if</span> (streaming) {
-    xs = Nodash.consume(xs);
+    xs = consume(xs);
   }
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
     x = f(x, xs[i]);
   }
   <span class="hljs-keyword">if</span> (isArray(x) &amp;&amp; streaming) {
-    <span class="hljs-keyword">return</span> Nodash.stream(x);
+    <span class="hljs-keyword">return</span> stream(x);
   }
   <span class="hljs-keyword">return</span> x;
 }
@@ -1246,14 +1246,14 @@ compose2(concat, map)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldl1</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">var</span> streaming = isStream(xs);
   <span class="hljs-keyword">if</span> (streaming) {
-    xs = Nodash.consume(xs);
+    xs = consume(xs);
   }
   <span class="hljs-keyword">var</span> x = xs[<span class="hljs-number">0</span>];
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; xs.length; i++) {
     x = f(x, xs[i]);
   }
   <span class="hljs-keyword">if</span> (isArray(x) &amp;&amp; streaming) {
-    <span class="hljs-keyword">return</span> Nodash.stream(x);
+    <span class="hljs-keyword">return</span> stream(x);
   }
   <span class="hljs-keyword">return</span> x;
 }
@@ -1320,7 +1320,7 @@ groupBy(eq)
     last = xs[i];
   }
   zs.push(current);
-  <span class="hljs-keyword">return</span> isString(xs) ? Nodash.map(listToString, zs) : zs;
+  <span class="hljs-keyword">return</span> isString(xs) ? map(listToString, zs) : zs;
 }
 </pre>
 </div>
@@ -1454,10 +1454,10 @@ insertBy(compare)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_insertBy</span>(<span class="hljs-params">f, x, xs</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
     <span class="hljs-keyword">if</span> (f(x, xs[i]) &lt;= <span class="hljs-number">0</span>) {
-      <span class="hljs-keyword">return</span> Nodash.concat([xs.slice(<span class="hljs-number">0</span>,i), x, xs.slice(i)]);
+      <span class="hljs-keyword">return</span> concat([xs.slice(<span class="hljs-number">0</span>,i), x, xs.slice(i)]);
     }
   }
-  <span class="hljs-keyword">return</span> Nodash.append(xs, x);
+  <span class="hljs-keyword">return</span> append(xs, x);
 }
 </pre>
 </div>
@@ -1468,7 +1468,7 @@ insertBy(compare)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_intercalate</span>(<span class="hljs-params">x, xs</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.concat(Nodash.intersperse(x, xs));
+  <span class="hljs-keyword">return</span> concat(intersperse(x, xs));
 }
 </pre>
 </div>
@@ -1552,7 +1552,7 @@ insertBy(compare)
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isPrefixOf</span>(<span class="hljs-params">prefix, string</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(prefix)) {
-    prefix = Nodash.consume(prefix);
+    prefix = consume(prefix);
   }
   <span class="hljs-keyword">if</span> (isStream(string)) {
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; prefix.length; i++) {
@@ -1579,10 +1579,10 @@ insertBy(compare)
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSuffixOf</span>(<span class="hljs-params">suffix, string</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(suffix)) {
-    suffix = Nodash.consume(suffix);
+    suffix = consume(suffix);
   }
   <span class="hljs-keyword">if</span> (isStream(string)) {
-    string = Nodash.consume(string);
+    string = consume(string);
   }
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; suffix.length; i++) {
     <span class="hljs-keyword">if</span> (string[string.length - suffix.length + i] !== suffix[i]) {
@@ -1654,7 +1654,7 @@ map(lasts)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lookup</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isArray(xs)) {
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
-      <span class="hljs-keyword">if</span> (xs[i] &amp;&amp; Nodash.eq(xs[i][<span class="hljs-number">0</span>], x)) {
+      <span class="hljs-keyword">if</span> (xs[i] &amp;&amp; eq(xs[i][<span class="hljs-number">0</span>], x)) {
         <span class="hljs-keyword">return</span> xs[i][<span class="hljs-number">1</span>];
       }
     }
@@ -1712,7 +1712,7 @@ foldl(max, -<span class="hljs-literal">Infinity</span>)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_maximumBy</span>(<span class="hljs-params">f, xs</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.foldl1(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> foldl1(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">if</span> (f(a, b) &gt; <span class="hljs-number">0</span>) {
       <span class="hljs-keyword">return</span> a;
     }
@@ -1737,7 +1737,7 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_minimumBy</span>(<span class="hljs-params">f, xs</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.foldl1(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> foldl1(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">if</span> (f(a, b) &lt; <span class="hljs-number">0</span>) {
       <span class="hljs-keyword">return</span> a;
     }
@@ -1756,14 +1756,14 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
   <span class="hljs-keyword">if</span> (isStream(xs)) {
     <span class="hljs-keyword">var</span> z;
     <span class="hljs-keyword">while</span> ((z = xs()) !== eos) {
-      <span class="hljs-keyword">if</span> (Nodash.eq(z, x)) {
+      <span class="hljs-keyword">if</span> (eq(z, x)) {
         <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
       }
     }
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
   }
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
-    <span class="hljs-keyword">if</span> (Nodash.eq(xs[i], x)) {
+    <span class="hljs-keyword">if</span> (eq(xs[i], x)) {
       <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
     }
   }
@@ -1812,7 +1812,7 @@ foldl(OR, <span class="hljs-literal">false</span>)
     (p(xs[i]) ? <span class="hljs-keyword">as</span> : bs).push(xs[i]);
   }
   <span class="hljs-keyword">if</span> (isString(xs)) {
-    <span class="hljs-keyword">return</span> Nodash.map(listToString, [ <span class="hljs-keyword">as</span>, bs ]);
+    <span class="hljs-keyword">return</span> map(listToString, [ <span class="hljs-keyword">as</span>, bs ]);
   }
   <span class="hljs-keyword">return</span> [ <span class="hljs-keyword">as</span>, bs ];
 }
@@ -1851,7 +1851,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_reverse</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
     checkFinite(xs);
-    xs = Nodash.consume(xs);
+    xs = consume(xs);
     <span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">0</span>) {
@@ -1874,7 +1874,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanl</span>(<span class="hljs-params">f, x, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
-    <span class="hljs-keyword">return</span> Nodash.cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">var</span> r = xs();
       <span class="hljs-keyword">if</span> (r === eos) {
         <span class="hljs-keyword">return</span> eos;
@@ -1900,7 +1900,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanl1</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
-    <span class="hljs-keyword">return</span> Nodash.scanl(f, xs(), xs);
+    <span class="hljs-keyword">return</span> scanl(f, xs(), xs);
   }
   <span class="hljs-keyword">var</span> x = xs[<span class="hljs-number">0</span>];
   <span class="hljs-keyword">var</span> zs = [x];
@@ -1952,7 +1952,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_select</span>(<span class="hljs-params">path, object</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.foldl(Nodash.at, object, path.split(<span class="hljs-regexp">/\./</span>));
+  <span class="hljs-keyword">return</span> foldl(at, object, path.split(<span class="hljs-regexp">/\./</span>));
 }
 </pre>
 </div>
@@ -1973,7 +1973,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
   } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isString(zs[<span class="hljs-number">0</span>])) {
     zs.sort(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a.localeCompare(b); });
   } <span class="hljs-keyword">else</span> {
-    zs.sort(Nodash.compare);
+    zs.sort(compare);
   }
   <span class="hljs-keyword">return</span> isString(xs) ? zs.join(<span class="hljs-string">''</span>) : zs;
 }
@@ -1988,7 +1988,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sortBy</span>(<span class="hljs-params">fn, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
     checkFinite(xs);
-    xs = Nodash.consume(xs);
+    xs = consume(xs);
   }
   <span class="hljs-keyword">if</span> (xs.length &lt;= <span class="hljs-number">1</span>) {
     <span class="hljs-keyword">return</span> xs;
@@ -2136,7 +2136,7 @@ map(tails)
     j += <span class="hljs-number">1</span>;
   } <span class="hljs-keyword">while</span> (current.length &gt; <span class="hljs-number">0</span> &amp;&amp; zs.push(current));
   <span class="hljs-keyword">if</span> (isString(xss[<span class="hljs-number">0</span>])) {
-    zs = Nodash.map(listToString, zs);
+    zs = map(listToString, zs);
   }
   <span class="hljs-keyword">return</span> zs;
 }
@@ -2200,8 +2200,8 @@ zipWith4(tuple4)
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith</span>(<span class="hljs-params">f, as, bs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs)) {
-    <span class="hljs-keyword">as</span> = Nodash.stream(<span class="hljs-keyword">as</span>);
-    bs = Nodash.stream(bs);
+    <span class="hljs-keyword">as</span> = stream(<span class="hljs-keyword">as</span>);
+    bs = stream(bs);
     <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">as</span>();
       <span class="hljs-keyword">var</span> b = bs();
@@ -2228,9 +2228,9 @@ zipWith4(tuple4)
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith3</span>(<span class="hljs-params">f, as, bs, cs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs) || isStream(cs)) {
-    <span class="hljs-keyword">as</span> = Nodash.stream(<span class="hljs-keyword">as</span>);
-    bs = Nodash.stream(bs);
-    cs = Nodash.stream(cs);
+    <span class="hljs-keyword">as</span> = stream(<span class="hljs-keyword">as</span>);
+    bs = stream(bs);
+    cs = stream(cs);
     <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">as</span>();
       <span class="hljs-keyword">var</span> b = bs();
@@ -2241,7 +2241,7 @@ zipWith4(tuple4)
       <span class="hljs-keyword">return</span> f(a, b, c);
     });
   }
-  <span class="hljs-keyword">var</span> length = Nodash.minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length]);
+  <span class="hljs-keyword">var</span> length = minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length]);
   <span class="hljs-keyword">var</span> zs = [];
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
     zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i]);
@@ -2258,10 +2258,10 @@ zipWith4(tuple4)
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith4</span>(<span class="hljs-params">f, as, bs, cs, ds</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs) || isStream(cs) || isStream(ds)) {
-    <span class="hljs-keyword">as</span> = Nodash.stream(<span class="hljs-keyword">as</span>);
-    bs = Nodash.stream(bs);
-    cs = Nodash.stream(cs);
-    ds = Nodash.stream(ds);
+    <span class="hljs-keyword">as</span> = stream(<span class="hljs-keyword">as</span>);
+    bs = stream(bs);
+    cs = stream(cs);
+    ds = stream(ds);
     <span class="hljs-keyword">return</span> mkStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">as</span>();
       <span class="hljs-keyword">var</span> b = bs();
@@ -2273,7 +2273,7 @@ zipWith4(tuple4)
       <span class="hljs-keyword">return</span> f(a, b, c, d);
     });
   }
-  <span class="hljs-keyword">var</span> length = Nodash.minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length]);
+  <span class="hljs-keyword">var</span> length = minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length]);
   <span class="hljs-keyword">var</span> zs = [];
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
     zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i]);
@@ -2372,7 +2372,7 @@ zipWith4(tuple4)
       <span class="hljs-keyword">return</span> a.compareTo(b);
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(a)) {
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">Math</span>.min(a.length, b.length); i++) {
-        <span class="hljs-keyword">var</span> r = Nodash.compare(a[i], b[i]);
+        <span class="hljs-keyword">var</span> r = compare(a[i], b[i]);
         <span class="hljs-keyword">if</span> (r !== <span class="hljs-number">0</span>) {
             <span class="hljs-keyword">return</span> r;
         }
@@ -2381,7 +2381,7 @@ zipWith4(tuple4)
     }
     <span class="hljs-keyword">return</span> a.toString().localeCompare(b.toString());
   <span class="hljs-keyword">case</span> <span class="hljs-string">'number'</span>:
-    <span class="hljs-keyword">return</span> Nodash.signum(a - b);
+    <span class="hljs-keyword">return</span> signum(a - b);
   }
   <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
 }
@@ -2394,7 +2394,7 @@ zipWith4(tuple4)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_comparing</span>(<span class="hljs-params">f, a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.compare(f(a), f(b));
+  <span class="hljs-keyword">return</span> compare(f(a), f(b));
 }
 </pre>
 </div>
@@ -2414,9 +2414,9 @@ zipWith4(tuple4)
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
   <span class="hljs-keyword">if</span> (ta === <span class="hljs-string">'object'</span>) {
-    <span class="hljs-keyword">var</span> k = Nodash.union(keys(a), keys(b));
+    <span class="hljs-keyword">var</span> k = union(keys(a), keys(b));
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; k.length; i++) {
-      <span class="hljs-keyword">if</span> (!Nodash.eq(a[k[i]], b[k[i]])) {
+      <span class="hljs-keyword">if</span> (!eq(a[k[i]], b[k[i]])) {
         <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
       }
     }
@@ -2433,7 +2433,7 @@ zipWith4(tuple4)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gt</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.compare(a, b) &gt; <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">return</span> compare(a, b) &gt; <span class="hljs-number">0</span>;
 }
 </pre>
 </div>
@@ -2444,7 +2444,7 @@ zipWith4(tuple4)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gte</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.compare(a, b) &gt;= <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">return</span> compare(a, b) &gt;= <span class="hljs-number">0</span>;
 }
 </pre>
 </div>
@@ -2455,7 +2455,7 @@ zipWith4(tuple4)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lt</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.compare(a, b) &lt; <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">return</span> compare(a, b) &lt; <span class="hljs-number">0</span>;
 }
 </pre>
 </div>
@@ -2466,7 +2466,7 @@ zipWith4(tuple4)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lte</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> Nodash.compare(a, b) &lt;= <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">return</span> compare(a, b) &lt;= <span class="hljs-number">0</span>;
 }
 </pre>
 </div>
@@ -2477,7 +2477,7 @@ zipWith4(tuple4)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_max</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">if</span> (Nodash.gt(a, b)) {
+  <span class="hljs-keyword">if</span> (gt(a, b)) {
     <span class="hljs-keyword">return</span> a;
   }
   <span class="hljs-keyword">return</span> b;
@@ -2491,7 +2491,7 @@ zipWith4(tuple4)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_min</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">if</span> (Nodash.lt(a, b)) {
+  <span class="hljs-keyword">if</span> (lt(a, b)) {
     <span class="hljs-keyword">return</span> a;
   }
   <span class="hljs-keyword">return</span> b;
@@ -2505,7 +2505,7 @@ zipWith4(tuple4)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_neq</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> !Nodash.eq(a, b);
+  <span class="hljs-keyword">return</span> !eq(a, b);
 }
 </pre>
 </div>
@@ -2660,7 +2660,7 @@ zipWith4(tuple4)
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isRight</span>(<span class="hljs-params">val</span>) </span>{
   <span class="hljs-keyword">return</span> (val.right !== <span class="hljs-literal">undefined</span> || val[<span class="hljs-number">1</span>] !== <span class="hljs-literal">undefined</span>) &amp;&amp;
-    !Nodash.isLeft(val);
+    !isLeft(val);
 }
 </pre>
 </div>
@@ -2677,7 +2677,7 @@ zipWith4(tuple4)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_partitionEithers</span>(<span class="hljs-params">xs</span>) </span>{
-  <span class="hljs-keyword">return</span> [ Nodash.lefts(xs), Nodash.rights(xs) ];
+  <span class="hljs-keyword">return</span> [ lefts(xs), rights(xs) ];
 }
 </pre>
 </div>
@@ -3021,7 +3021,7 @@ compose2(filter(isJust), map)
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_divMod</span>(<span class="hljs-params">a, b</span>)  </span>{
-  <span class="hljs-keyword">return</span> [Nodash.div(a, b), Nodash.mod(a, b)];
+  <span class="hljs-keyword">return</span> [div(a, b), mod(a, b)];
 }
 </pre>
 </div>
@@ -3071,7 +3071,7 @@ Greatest common divisor.</p>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gcd</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">var</span> c;
   <span class="hljs-keyword">while</span> (b !== <span class="hljs-number">0</span>) {
-    c = Nodash.rem(a, b);
+    c = rem(a, b);
     a = b;
     b = c;
   }
@@ -3090,7 +3090,7 @@ Lowest common denominator.</p>
   <span class="hljs-keyword">if</span> (a === <span class="hljs-number">0</span> || b === <span class="hljs-number">0</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
   }
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(Nodash.quot(a, Nodash.gcd(a, b)) * b);
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(quot(a, gcd(a, b)) * b);
 }
 </pre>
 </div>
@@ -3121,9 +3121,9 @@ Lowest common denominator.</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mod</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">var</span> q = Nodash.quot(a, b);
-  <span class="hljs-keyword">var</span> r = Nodash.rem(a, b);
-  <span class="hljs-keyword">return</span> Nodash.signum(r) == -Nodash.signum(b) ? r + b : r;
+  <span class="hljs-keyword">var</span> q = quot(a, b);
+  <span class="hljs-keyword">var</span> r = rem(a, b);
+  <span class="hljs-keyword">return</span> signum(r) == -signum(b) ? r + b : r;
 }
 </pre>
 </div>
@@ -3172,7 +3172,7 @@ Lowest common denominator.</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_properFraction</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">var</span> num = Nodash.truncate(x);
+  <span class="hljs-keyword">var</span> num = truncate(x);
   <span class="hljs-keyword">return</span> [ num, -(num - x) ];
 }
 </pre>
@@ -3196,7 +3196,7 @@ Lowest common denominator.</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quotRem</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> [Nodash.quot(a, b), Nodash.rem(a, b)];
+  <span class="hljs-keyword">return</span> [quot(a, b), rem(a, b)];
 }
 </pre>
 </div>
@@ -3226,10 +3226,10 @@ Haskell’s round and JavaScripts Math.round are different</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_round</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">var</span> fraction = Nodash.properFraction(x);
+  <span class="hljs-keyword">var</span> fraction = properFraction(x);
   <span class="hljs-keyword">var</span> n = fraction[<span class="hljs-number">0</span>];
   <span class="hljs-keyword">var</span> m = fraction[<span class="hljs-number">1</span>] &lt; <span class="hljs-number">0</span> ? n - <span class="hljs-number">1</span> : n + <span class="hljs-number">1</span>;
-  <span class="hljs-keyword">switch</span> (Nodash.signum(<span class="hljs-built_in">Math</span>.abs(fraction[<span class="hljs-number">1</span>]) - <span class="hljs-number">0.5</span>)) {
+  <span class="hljs-keyword">switch</span> (signum(<span class="hljs-built_in">Math</span>.abs(fraction[<span class="hljs-number">1</span>]) - <span class="hljs-number">0.5</span>)) {
     <span class="hljs-keyword">case</span> -<span class="hljs-number">1</span>:
       <span class="hljs-keyword">return</span> n;
     <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
@@ -3329,7 +3329,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_truncate</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">switch</span> (Nodash.signum(x)) {
+  <span class="hljs-keyword">switch</span> (signum(x)) {
   <span class="hljs-keyword">case</span> -<span class="hljs-number">1</span>:
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.ceil(x);
   <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
@@ -3355,11 +3355,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
     <span class="hljs-keyword">if</span> (thing === <span class="hljs-literal">null</span>) {
       <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
     }
-    <span class="hljs-keyword">var</span> result = isArray(thing) ? [] : {};
-    Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value, key</span>) </span>{
-      result[key] = Nodash.clone(value);
-    }, thing);
-    <span class="hljs-keyword">return</span> result;
+    <span class="hljs-keyword">return</span> map(clone, thing);
   }
   <span class="hljs-keyword">return</span> thing;
 }
@@ -3609,8 +3605,8 @@ Haskell’s round and JavaScripts Math.round are different</p>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_async</span>(<span class="hljs-params">f</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">try</span> {
-      <span class="hljs-keyword">var</span> callback = Nodash.last(<span class="hljs-built_in">arguments</span>);
-      <span class="hljs-keyword">var</span> result = f.apply(<span class="hljs-literal">null</span>, Nodash.init(<span class="hljs-built_in">arguments</span>));
+      <span class="hljs-keyword">var</span> callback = last(<span class="hljs-built_in">arguments</span>);
+      <span class="hljs-keyword">var</span> result = f.apply(<span class="hljs-literal">null</span>, init(<span class="hljs-built_in">arguments</span>));
       trampoline(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(result); });
     } <span class="hljs-keyword">catch</span> (e) {
       trampoline(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(<span class="hljs-literal">null</span>, e); });
@@ -3628,7 +3624,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_run</span>(<span class="hljs-params">specification</span>) </span>{
   <span class="hljs-comment">// this function does its own currying.</span>
   <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length == <span class="hljs-number">2</span>) {
-    Nodash.run(specification)(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]);
+    run(specification)(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]);
     <span class="hljs-keyword">return</span>;
   }
 
@@ -3636,7 +3632,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
   <span class="hljs-keyword">if</span> (isArray(specification)) {
     <span class="hljs-keyword">var</span> prev = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">var</span> newSpec = {};
-    Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">func, taskName</span>) </span>{
+    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">func, taskName</span>) </span>{
       newSpec[taskName] = prev === <span class="hljs-literal">null</span> ? func : [ prev, func ];
       prev = taskName;
     }, specification);
@@ -3647,12 +3643,12 @@ Haskell’s round and JavaScripts Math.round are different</p>
       initial = [];
 
   <span class="hljs-comment">// prepare tasks specification.</span>
-  Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">spec, name</span>) </span>{
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">spec, name</span>) </span>{
     <span class="hljs-keyword">var</span> dependencies = [];
     <span class="hljs-keyword">var</span> func = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">if</span> (isArray(spec)) {
-      dependencies = Nodash.init(spec);
-      func = Nodash.last(spec);
+      dependencies = init(spec);
+      func = last(spec);
     } <span class="hljs-keyword">else</span> {
       <span class="hljs-keyword">if</span> (isArray(spec.depends)) {
         dependencies = spec.depends;
@@ -3666,7 +3662,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
       depends: {},
       enables: tasks[name] ? tasks[name].enables : {}
     };
-    Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
       task.depends[dependency] = <span class="hljs-literal">true</span>;
       <span class="hljs-keyword">if</span> (!tasks[dependency]) {
           tasks[dependency] = { enables: {} };
@@ -3678,8 +3674,8 @@ Haskell’s round and JavaScripts Math.round are different</p>
 
   <span class="hljs-comment">// check spec for unmet dependencies</span>
   <span class="hljs-keyword">var</span> unmetDependencies = [];
-  Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
-    Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, dependency</span>) </span>{
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
+    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, dependency</span>) </span>{
       <span class="hljs-keyword">if</span> (!specification[dependency]) {
         unmetDependencies.push([ taskName, dependency ]);
       }
@@ -3697,7 +3693,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
   <span class="hljs-keyword">if</span> (!isEmpty(unmetDependencies)) {
     <span class="hljs-keyword">return</span> mkError({
       message: <span class="hljs-string">"unmet dependencies"</span>,
-      details: Nodash.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">detail</span>) </span>{
+      details: map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">detail</span>) </span>{
         <span class="hljs-keyword">return</span> <span class="hljs-string">"`"</span> +
           detail[<span class="hljs-number">0</span>] + <span class="hljs-string">"` depends on `"</span> +
           detail[<span class="hljs-number">1</span>] + <span class="hljs-string">"` which is not defined"</span>;
@@ -3706,13 +3702,13 @@ Haskell’s round and JavaScripts Math.round are different</p>
   }
 
   <span class="hljs-comment">// build initial set</span>
-  Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
-    <span class="hljs-keyword">if</span> (Nodash.isEmpty(task.depends)) {
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
+    <span class="hljs-keyword">if</span> (isEmpty(task.depends)) {
       initial.push(taskName);
     }
   }, tasks);
 
-  <span class="hljs-keyword">if</span> (Nodash.isEmpty(initial)) {
+  <span class="hljs-keyword">if</span> (isEmpty(initial)) {
     <span class="hljs-keyword">return</span> mkError({
       message: <span class="hljs-string">"no initial task"</span>,
       details: <span class="hljs-string">"There is no task without any dependencies."</span>
@@ -3721,7 +3717,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
 
   <span class="hljs-comment">// check spec for cycles</span>
   <span class="hljs-keyword">var</span> cycles = [];
-  Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">taskName</span>) </span>{
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">taskName</span>) </span>{
 
     <span class="hljs-keyword">var</span> visited = {};
     <span class="hljs-keyword">var</span> path = [];
@@ -3729,10 +3725,10 @@ Haskell’s round and JavaScripts Math.round are different</p>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">visit</span>(<span class="hljs-params">node</span>) </span>{
       path.push(node);
       <span class="hljs-keyword">if</span> (visited[node]) {
-        cycles.push(Nodash.map(id, path));
+        cycles.push(map(id, path));
       } <span class="hljs-keyword">else</span> {
         visited[node] = <span class="hljs-literal">true</span>;
-        Nodash.each(visit, keys(tasks[node].enables));
+        each(visit, keys(tasks[node].enables));
       }
       <span class="hljs-keyword">delete</span> visited[path.pop()];
     }
@@ -3741,23 +3737,23 @@ Haskell’s round and JavaScripts Math.round are different</p>
 
   }, initial);
 
-  <span class="hljs-keyword">if</span> (!Nodash.isEmpty(cycles)) {
-    cycles = Nodash.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cycle</span>) </span>{
-      cycle = Nodash.dropWhile(Nodash.NEQ(Nodash.last(cycle)), cycle);
-      <span class="hljs-keyword">return</span> Nodash.reverse(cycle);
+  <span class="hljs-keyword">if</span> (!isEmpty(cycles)) {
+    cycles = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cycle</span>) </span>{
+      cycle = dropWhile(NEQ(last(cycle)), cycle);
+      <span class="hljs-keyword">return</span> reverse(cycle);
     }, cycles);
     <span class="hljs-keyword">return</span> mkError({
       message: <span class="hljs-string">"cycle detected"</span>,
-      details: Nodash.map(Nodash.intercalate(<span class="hljs-string">" -&gt; "</span>), cycles)
+      details: map(intercalate(<span class="hljs-string">" -&gt; "</span>), cycles)
     });
   }
 
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_runTasks</span>(<span class="hljs-params">callback</span>) </span>{
 
     <span class="hljs-keyword">var</span> depends = {},
-        toGo = Nodash.length(tasks),
-        results = Nodash.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
-      <span class="hljs-keyword">return</span> { toGo: Nodash.length(task.enables) };
+        toGo = length(tasks),
+        results = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
+      <span class="hljs-keyword">return</span> { toGo: length(task.enables) };
     }, tasks);
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callbackHandle</span>(<span class="hljs-params">taskName</span>) </span>{
@@ -3769,7 +3765,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
         }
 
         <span class="hljs-comment">// clean up results if need be</span>
-        Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, dependency</span>) </span>{
+        each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, dependency</span>) </span>{
           results[dependency].toGo -= <span class="hljs-number">1</span>;
           <span class="hljs-keyword">if</span> (results[dependency].toGo === <span class="hljs-number">0</span>) {
             <span class="hljs-keyword">delete</span> results[dependency];
@@ -3779,12 +3775,12 @@ Haskell’s round and JavaScripts Math.round are different</p>
         toGo -= <span class="hljs-number">1</span>;
         <span class="hljs-keyword">if</span> (toGo === <span class="hljs-number">0</span>) {
           <span class="hljs-comment">// clean results object</span>
-          Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>{
+          each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>{
             <span class="hljs-keyword">delete</span> result.toGo;
           }, results);
           callback(results);
         } <span class="hljs-keyword">else</span> {
-          Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, next</span>) </span>{
+          each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, next</span>) </span>{
             <span class="hljs-keyword">delete</span> depends[next][taskName];
             <span class="hljs-keyword">if</span> (isEmpty(depends[next])) {
               execute(next);
@@ -3798,7 +3794,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
       <span class="hljs-keyword">var</span> task = tasks[taskName],
           callback = callbackHandle(taskName),
           dependenciesFailed = <span class="hljs-literal">false</span>,
-          args = Nodash.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+          args = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
             <span class="hljs-keyword">if</span> (results[dependency].error) {
               dependenciesFailed = <span class="hljs-literal">true</span>;
             }
@@ -3807,7 +3803,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
 
       <span class="hljs-keyword">if</span> (dependenciesFailed &amp;&amp; isFunction(task.func.runOnError)) {
         <span class="hljs-keyword">var</span> tempResult = {};
-        Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+        each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
           <span class="hljs-keyword">var</span> result = results[dependency];
           <span class="hljs-keyword">var</span> stubResult = {};
           <span class="hljs-keyword">if</span> (result.error) {
@@ -3818,7 +3814,7 @@ Haskell’s round and JavaScripts Math.round are different</p>
           tempResult[dependency] = stubResult;
         }, task.args);
         tempResult = task.func.runOnError(tempResult) || tempResult;
-        args = Nodash.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+        args = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
           <span class="hljs-keyword">return</span> tempResult[dependency].result;
         }, task.args);
       }
@@ -3842,11 +3838,11 @@ Haskell’s round and JavaScripts Math.round are different</p>
       });
     }
 
-    Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
-      depends[taskName] = Nodash.clone(task.depends);
+    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
+      depends[taskName] = clone(task.depends);
     }, tasks);
 
-    Nodash.each(execute, initial);
+    each(execute, initial);
   };
 }
 </pre>

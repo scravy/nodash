@@ -1043,7 +1043,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
       for (var i = 0; i < xs.length; i++) {
         f(xs[i], i);
       }
-    } else {
+    } else if (isObject(xs)) {
       var ks = keys(xs);
       for (var j = 0; j < ks.length; j += 1) {
         f(xs[ks[j]], ks[j]);
@@ -1317,19 +1317,19 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return [].slice.call(xs, 0, xs.length - 1);
   });
 
-  register('isNull', 'null_', 'isEmpty', description(function () {
+  register('isEmpty', 'null_', description(function () {
   // `[a] → Bool`
   }), function _null(xs) {
     if (isStream(xs)) {
       return xs() === eos;
     }
-    if (isObject(xs)) {
-      for (var _ in xs) {
-        return false;
-      }
-      return true;
+    if (isArray(xs) || isString(xs)) {
+      return xs.length === 0;
     }
-    return xs.length === 0;
+    for (var _ in xs) {
+      return false;
+    }
+    return true;
   });
 
   register('length', description(function () {
@@ -2402,7 +2402,8 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
       specification = newSpec;
     }
 
-    var tasks = {};
+    var tasks = {},
+        initial = [];
 
     // prepare tasks specification.
     Nodash.each(function (spec, name) {
@@ -2412,6 +2413,9 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
         dependencies = Nodash.init(spec);
         func = Nodash.last(spec);
       } else {
+        if (isArray(spec.depends)) {
+          dependencies = spec.depends;
+        }
         func = spec;
       }
 
@@ -2430,6 +2434,82 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
       }, dependencies);
       tasks[name] = task;
     }, specification);
+
+    // check spec for unmet dependencies
+    var unmetDependencies = [];
+    Nodash.each(function (task, taskName) {
+      Nodash.each(function (_, dependency) {
+        if (!specification[dependency]) {
+          unmetDependencies.push([ taskName, dependency ]);
+        }
+      }, task.depends);
+    }, tasks);
+
+    function mkError(message) {
+      return function (callback) {
+        trampoline(function () {
+          callback(null, message);
+        });
+      };
+    }
+
+    if (!isEmpty(unmetDependencies)) {
+      return mkError({
+        message: "unmet dependencies",
+        details: Nodash.map(function (detail) {
+          return "`" +
+            detail[0] + "` depends on `" +
+            detail[1] + "` which is not defined";
+        }, unmetDependencies)
+      });
+    }
+
+    // build initial set
+    Nodash.each(function (task, taskName) {
+      if (Nodash.isEmpty(task.depends)) {
+        initial.push(taskName);
+      }
+    }, tasks);
+
+    if (Nodash.isEmpty(initial)) {
+      return mkError({
+        message: "no initial task",
+        details: "There is no task without any dependencies."
+      });
+    }
+
+    // check spec for cycles
+    var cycles = [];
+    Nodash.each(function (taskName) {
+
+      var visited = {};
+      var path = [];
+
+      function visit(node) {
+        path.push(node);
+        if (visited[node]) {
+          cycles.push(Nodash.map(id, path));
+        } else {
+          visited[node] = true;
+          Nodash.each(visit, keys(tasks[node].enables));
+        }
+        delete visited[path.pop()];
+      }
+
+      visit(taskName);
+
+    }, initial);
+
+    if (!Nodash.isEmpty(cycles)) {
+      cycles = Nodash.map(function (cycle) {
+        cycle = Nodash.dropWhile(Nodash.NEQ(Nodash.last(cycle)), cycle);
+        return Nodash.reverse(cycle);
+      }, cycles);
+      return mkError({
+        message: "cycle detected",
+        details: Nodash.map(Nodash.intercalate(" -> "), cycles)
+      });
+    }
 
     return function _runTasks(callback) {
 
@@ -2506,7 +2586,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
         trampoline(function _executeTask() {
           if (dependenciesFailed && !task.func.runOnError) {
-            callback(null, "dependencies failed");
+            callback(null, { message: "dependencies failed" });
           } else {
             var f = task.func;
             if (isObject(f)) {
@@ -2522,12 +2602,10 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
       }
 
       Nodash.each(function (task, taskName) {
-        depends[taskName] = Nodash.clone(task.depends) || {};
-
-        if (Nodash.isNull(depends[taskName])) {
-          execute(taskName);
-        }
+        depends[taskName] = Nodash.clone(task.depends);
       }, tasks);
+
+      Nodash.each(execute, initial);
     };
   });
 

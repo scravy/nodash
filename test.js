@@ -17,7 +17,10 @@ var tasks = {
             callback("zwei");
         }, Math.random() * 2000);
       },
-      runAlways: false
+      runOnError: function (results) {
+          console.log(results);
+          results.VIER.result = "fallback";
+      }
     }],
 
     'DREI': [ 'EINS', 'VIER', function (eins, vier, callback) {
@@ -45,8 +48,26 @@ var tasks = {
     }
 };
 
-run(tasks, function (results) {
+run(tasks, function (results, error) {
     console.log(results);
+    console.log(error);    
     console.log('DONE');
 });
+
+run({
+
+    zero: [ null ],
+
+    one: [ 'two', 'zero', null ],
+
+    two: [ 'one', null ],
+
+    three: [ 'two', null ]
+
+}, function (results, error) {
+    console.log(results);
+    console.log(error);
+    console.log("DONE");
+});
+
 

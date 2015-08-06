@@ -173,14 +173,44 @@ describe('Tasks', function () {
             drei: ['eins', 'vier', {
               func: function (eins, vier, callback) {
                 invocations += 1;
-                assert.strictEqual(1, eins);
-                assert.strictEqual(4, vier);
                 callback(3);
               },
               runOnError: function (results) {
                   
               }
             }],
+            vier: ['eins', function (eins, callback) {
+                invocations += 1;
+                throw new Error('Aww Snap!');
+            }]
+        }, function (results) {
+            assert.strictEqual(4, invocations);
+            done();
+        });
+    });
+
+    it('run /w exception + .runOnError (terse syntax)', function (done) {
+        var P = require('../nodash').install();
+        var invocations = 0;
+        P.run({
+            eins: {
+              func: function (callback) {
+                invocations += 1;
+                callback(1);
+              }
+            },
+            zwei: [function (callback) {
+                invocations += 1;
+                callback(2);
+            }],
+            drei: {
+              func: function (eins, vier, callback) {
+                invocations += 1;
+                callback(3);
+              },
+              depends: ['eins', 'vier'],
+              runOnError: P.id
+            },
             vier: ['eins', function (eins, callback) {
                 invocations += 1;
                 throw new Error('Aww Snap!');
@@ -214,4 +244,60 @@ describe('Tasks', function () {
             done();
         });
     });
+    
+    it('run, error: unmet dependencies', function (done) {
+        run({
+            eins: {
+              func: function (callback) {
+                callback(2);
+              },
+              depends: [ 'zwei' ]
+            }
+        }, function (results, error) {
+            assert.deepEqual({
+                message: "unmet dependencies",
+                details: [ '`eins` depends on `zwei` which is not defined' ]
+            }, error);
+            done();
+        });
+    });
+
+    it('run, error: cycle detected', function (done) {
+        
+        run({
+            zero: [ async(constant(2)) ],
+
+            one: [ 'two', 'zero', async(id) ],
+
+            two: [ 'one', async(id) ],
+
+            three: [ 'two', async(id) ]
+        }, function (results, error) {
+            assert.deepEqual({
+                message: "cycle detected",
+                details: [ 'one -> two -> one' ]
+            }, error);
+            done();
+        });
+    });
+
+    it('run, error: no initial task', function (done) {
+        
+        run({
+            zero: [ 'three', async(constant(2)) ],
+
+            one: [ 'two', 'zero', async(id) ],
+
+            two: [ 'one', async(id) ],
+
+            three: [ 'two', async(id) ]
+        }, function (results, error) {
+            assert.deepEqual({
+                message: "no initial task",
+                details: "There is no task without any dependencies."
+            }, error);
+            done();
+        });
+    });
+
 });

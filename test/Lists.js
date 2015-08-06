@@ -3,24 +3,24 @@ var assert = map(flip, require('assert'));
 
 describe('Lists', function () {
 
-    it('isNull', function () {
-        assert.strictEqual(true, isNull([]));
-        assert.strictEqual(false, isNull([ 1 ]));
+    it('isEmpty', function () {
+        assert.strictEqual(true, isEmpty([]));
+        assert.strictEqual(false, isEmpty([ 1 ]));
     });
 
-    it('isNull /w string', function () {
-        assert.strictEqual(true, isNull(""));
-        assert.strictEqual(false, isNull("x"));
+    it('isEmpty /w string', function () {
+        assert.strictEqual(true, isEmpty(""));
+        assert.strictEqual(false, isEmpty("x"));
     });
 
-    it('isNull /w object', function () {
-        assert.strictEqual(true, isNull({}));
-        assert.strictEqual(false, isNull({ a: 3 }));
+    it('isEmpty /w object', function () {
+        assert.strictEqual(true, isEmpty({}));
+        assert.strictEqual(false, isEmpty({ a: 3 }));
     });
 
-    it('isNull /w stream', function () {
-        assert.strictEqual(true, isNull(stream("")));
-        assert.strictEqual(false, isNull(stream("x")));
+    it('isEmpty /w stream', function () {
+        assert.strictEqual(true, isEmpty(stream("")));
+        assert.strictEqual(false, isEmpty(stream("x")));
     });
 
     it('length', function () {

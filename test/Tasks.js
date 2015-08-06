@@ -90,7 +90,7 @@ describe('Tasks', function () {
         });
     });
 
-    it('run /w exception + .runAlways', function (done) {
+    it('run /w exception + .runOnError', function (done) {
         var P = require('../nodash').install();
         var invocations = 0;
         P.run({
@@ -111,7 +111,75 @@ describe('Tasks', function () {
                 assert.strictEqual(4, vier);
                 callback(3);
               },
-              runAlways: true
+              runOnError: true
+            }],
+            vier: ['eins', function (eins, callback) {
+                invocations += 1;
+                throw new Error('Aww Snap!');
+            }]
+        }, function (results) {
+            assert.strictEqual(4, invocations);
+            done();
+        });
+    });
+
+    it('run /w exception + .runOnError (function identity)', function (done) {
+        var P = require('../nodash').install();
+        var invocations = 0;
+        P.run({
+            eins: {
+              func: function (callback) {
+                invocations += 1;
+                callback(1);
+              }
+            },
+            zwei: [function (callback) {
+                invocations += 1;
+                callback(2);
+            }],
+            drei: ['eins', 'vier', {
+              func: function (eins, vier, callback) {
+                invocations += 1;
+                assert.strictEqual(1, eins);
+                assert.strictEqual(4, vier);
+                callback(3);
+              },
+              runOnError: P.id
+            }],
+            vier: ['eins', function (eins, callback) {
+                invocations += 1;
+                throw new Error('Aww Snap!');
+            }]
+        }, function (results) {
+            assert.strictEqual(4, invocations);
+            done();
+        });
+    });
+
+    it('run /w exception + .runOnError (return missing)', function (done) {
+        var P = require('../nodash').install();
+        var invocations = 0;
+        P.run({
+            eins: {
+              func: function (callback) {
+                invocations += 1;
+                callback(1);
+              }
+            },
+            zwei: [function (callback) {
+                invocations += 1;
+                callback(2);
+            }],
+            drei: ['eins', 'vier', {
+              func: function (eins, vier, callback) {
+                invocations += 1;
+                assert.strictEqual(1, eins);
+                assert.strictEqual(4, vier);
+                callback(3);
+              },
+              runOnError: function (results) {
+                  
+              }
             }],
             vier: ['eins', function (eins, callback) {
                 invocations += 1;

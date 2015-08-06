@@ -2484,10 +2484,28 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
               return results[dependency].result;
             }, task.args);
 
+        if (dependenciesFailed && isFunction(task.func.runOnError)) {
+          var tempResult = {};
+          Nodash.each(function (dependency) {
+            var result = results[dependency];
+            var stubResult = {};
+            if (result.error) {
+              stubResult.error = result.error;
+            } else {
+              stubResult.result = result.result;
+            }
+            tempResult[dependency] = stubResult;
+          }, task.args);
+          tempResult = task.func.runOnError(tempResult) || tempResult;
+          args = Nodash.map(function (dependency) {
+            return tempResult[dependency].result;
+          }, task.args);
+        }
+
         args.push(callback);
 
         trampoline(function _executeTask() {
-          if (dependenciesFailed && !task.func.runAlways) {
+          if (dependenciesFailed && !task.func.runOnError) {
             callback(null, "dependencies failed");
           } else {
             var f = task.func;

@@ -424,6 +424,9 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
   register('isNumber', description(function () {
   // `Any → Bool`
   }), isNumber);
+  register('isString', description(function () {
+  // `Any → Bool`
+  }), isString);
   register('isInfinite', description(function () {
   // `Any → Bool`
   }), isInfinite);

@@ -815,6 +815,10 @@
     <span class="name">isStream</span>
     
   </a></li>
+  <li><a href="#f-isString">
+    <span class="name">isString</span>
+    
+  </a></li>
 </ul>
 
 </div>
@@ -3961,6 +3965,15 @@ Haskell’s round and JavaScripts Math.round are different</p>
 
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isStream</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> isFunction(x) &amp;&amp; x.__stream__ === stream; }
+</pre>
+</div>
+
+<h3 id="f-isString">isString <small></small></h2>
+<div class="section">
+<p><code>Any → Bool</code></p>
+
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isString</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'string'</span>; }
 </pre>
 </div>
 

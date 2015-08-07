@@ -731,7 +731,7 @@ a name prefixed with an underscore, i.e.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  }), isNumber);
-  register(<span class="hljs-string">'isInfinite'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'isString'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -746,8 +746,8 @@ a name prefixed with an underscore, i.e.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), isInfinite);
-  register(<span class="hljs-string">'isObject'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  }), isString);
+  register(<span class="hljs-string">'isInfinite'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -762,7 +762,8 @@ a name prefixed with an underscore, i.e.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), isObject);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  }), isInfinite);
+  register(<span class="hljs-string">'isObject'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -772,6 +773,21 @@ a name prefixed with an underscore, i.e.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p><code>Any → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), isObject);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <h2 id="functions-dealing-with-functions">Functions dealing with functions</h2>
 
@@ -785,11 +801,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p><code>a → a</code></p>
 
@@ -802,11 +818,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p><code>a → () → a</code></p>
 
@@ -823,11 +839,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p><code>a → b → a</code>
 Accepts two arguments and returns the first one, thereby discarding
@@ -845,11 +861,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p><code>(a → b) → a → b</code></p>
 
@@ -864,11 +880,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p><code>(b → c) → (a → b) → (a → c)</code></p>
 
@@ -883,11 +899,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p><code>(c → d) → (a → b → c) → (a → b → d)</code></p>
 
@@ -902,11 +918,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p><code>Any → Bool</code></p>
 
@@ -921,11 +937,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p><strong>on</strong></p>
 
@@ -936,11 +952,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p><code>(b → b → c) → (a → b) → (a → a → c)</code></p>
 
@@ -953,11 +969,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <h2 id="functions-for-working-with-boolean-functions">Functions for working with boolean functions</h2>
 
@@ -967,23 +983,6 @@ functions.</p>
   group(<span class="hljs-string">'Boolean'</span>);
 
   register(<span class="hljs-string">'&amp;&amp;'</span>, <span class="hljs-string">'AND'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-38">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
-              </div>
-              <p><code>Bool → Bool → Bool</code></p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_AND</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a &amp;&amp; b; });
-
-  register(<span class="hljs-string">'||'</span>, <span class="hljs-string">'OR'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -998,9 +997,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_OR</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a || b; });
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_AND</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a &amp;&amp; b; });
 
-  register(<span class="hljs-string">'not'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'||'</span>, <span class="hljs-string">'OR'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1010,6 +1009,23 @@ functions.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p><code>Bool → Bool → Bool</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_OR</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a || b; });
+
+  register(<span class="hljs-string">'not'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p><code>Bool → Bool</code></p>
 
@@ -1022,11 +1038,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p><code>a → a → Bool → a</code></p>
 
@@ -1039,11 +1055,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-42">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <h2 id="tuple">Tuple</h2>
 
@@ -1057,11 +1073,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-43">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <p><code>(a, b) → a</code></p>
 
@@ -1074,11 +1090,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-44">
+        <li id="section-45">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <p><code>(a, b) → b</code></p>
 
@@ -1091,11 +1107,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-45">
+        <li id="section-46">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+                <a class="pilcrow" href="#section-46">&#182;</a>
               </div>
               <p><code>a → b → (a, b)</code></p>
 
@@ -1108,11 +1124,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-46">
+        <li id="section-47">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+                <a class="pilcrow" href="#section-47">&#182;</a>
               </div>
               <p><code>a → b → c → (a, b, c)</code></p>
 
@@ -1125,11 +1141,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-47">
+        <li id="section-48">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-48">&#182;</a>
               </div>
               <p><code>a → b → c → d → (a, b, c, d)</code></p>
 
@@ -1140,11 +1156,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-48">
+        <li id="section-49">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
               <p>Eq</p>
 
@@ -1158,11 +1174,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-49">
+        <li id="section-50">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-50">&#182;</a>
               </div>
               <p><code>Any → Any → Bool</code></p>
 
@@ -1194,11 +1210,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-50">
+        <li id="section-51">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
               <p><code>Any → Any → Bool</code></p>
 
@@ -1211,11 +1227,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-51">
+        <li id="section-52">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+                <a class="pilcrow" href="#section-52">&#182;</a>
               </div>
               <p>Ord</p>
 
@@ -1227,11 +1243,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-52">
+        <li id="section-53">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
+                <a class="pilcrow" href="#section-53">&#182;</a>
               </div>
               <p><code>a → a → Number</code></p>
 
@@ -1265,11 +1281,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-53">
+        <li id="section-54">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+                <a class="pilcrow" href="#section-54">&#182;</a>
               </div>
               <p><code>a → a → Bool</code></p>
 
@@ -1284,11 +1300,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-54">
+        <li id="section-55">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
+                <a class="pilcrow" href="#section-55">&#182;</a>
               </div>
               <p><code>a → a → Bool</code></p>
 
@@ -1303,11 +1319,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-55">
+        <li id="section-56">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-55">&#182;</a>
+                <a class="pilcrow" href="#section-56">&#182;</a>
               </div>
               <p><code>a → a → Bool</code></p>
 
@@ -1322,11 +1338,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-56">
+        <li id="section-57">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-56">&#182;</a>
+                <a class="pilcrow" href="#section-57">&#182;</a>
               </div>
               <p><code>a → a → Bool</code></p>
 
@@ -1341,11 +1357,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-57">
+        <li id="section-58">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-57">&#182;</a>
+                <a class="pilcrow" href="#section-58">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code></p>
 
@@ -1363,11 +1379,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-58">
+        <li id="section-59">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-58">&#182;</a>
+                <a class="pilcrow" href="#section-59">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code></p>
 
@@ -1385,11 +1401,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-59">
+        <li id="section-60">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-59">&#182;</a>
+                <a class="pilcrow" href="#section-60">&#182;</a>
               </div>
               <p><code>(a → b) → a → a → Number</code></p>
 
@@ -1402,11 +1418,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-60">
+        <li id="section-61">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-60">&#182;</a>
+                <a class="pilcrow" href="#section-61">&#182;</a>
               </div>
               <p>Data.Char</p>
 
@@ -1416,25 +1432,6 @@ functions.</p>
   group(<span class="hljs-string">'Characters'</span>);
   
   register(<span class="hljs-string">'isDigit'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-61">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-61">&#182;</a>
-              </div>
-              <p><code>Char → Bool</code></p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
-    <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[0-9]/</span>);
-  });
-
-  register(<span class="hljs-string">'isAsciiLetter'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1449,9 +1446,11 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
-    <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[a-zA-Z]/</span>);
-  });</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[0-9]/</span>);
+  });
+
+  register(<span class="hljs-string">'isAsciiLetter'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1462,14 +1461,13 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-63">&#182;</a>
               </div>
-              <p>Num</p>
+              <p><code>Char → Bool</code></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-  group(<span class="hljs-string">'Numbers'</span>);
-
-  register(<span class="hljs-string">'+'</span>, <span class="hljs-string">'add'</span>, <span class="hljs-string">'ADD'</span>, <span class="hljs-string">'plus'</span>, <span class="hljs-string">'PLUS'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[a-zA-Z]/</span>);
+  });</pre></div></div>
             
         </li>
         
@@ -1480,15 +1478,14 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-64">&#182;</a>
               </div>
-              <p><code>Number → Number → Number</code></p>
+              <p>Num</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_add</span>(<span class="hljs-params">a, b</span>) </span>{
-    <span class="hljs-keyword">return</span> a + b;
-  });
+            <div class="content"><div class='highlight'><pre>
+  group(<span class="hljs-string">'Numbers'</span>);
 
-  register(<span class="hljs-string">'-'</span>, <span class="hljs-string">'sub'</span>, <span class="hljs-string">'minus'</span>, <span class="hljs-string">'MINUS'</span>, <span class="hljs-string">'subtract'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'+'</span>, <span class="hljs-string">'add'</span>, <span class="hljs-string">'ADD'</span>, <span class="hljs-string">'plus'</span>, <span class="hljs-string">'PLUS'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1503,11 +1500,11 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sub</span>(<span class="hljs-params">a, b</span>) </span>{
-    <span class="hljs-keyword">return</span> a - b;
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_add</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">return</span> a + b;
   });
 
-  register(<span class="hljs-string">'*'</span>, <span class="hljs-string">'mul'</span>, <span class="hljs-string">'MUL'</span>, <span class="hljs-string">'times'</span>, <span class="hljs-string">'TIMES'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'-'</span>, <span class="hljs-string">'sub'</span>, <span class="hljs-string">'minus'</span>, <span class="hljs-string">'MINUS'</span>, <span class="hljs-string">'subtract'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1522,11 +1519,11 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mul</span>(<span class="hljs-params">a, b</span>) </span>{
-    <span class="hljs-keyword">return</span> a * b;
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sub</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">return</span> a - b;
   });
 
-  register(<span class="hljs-string">'abs'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'*'</span>, <span class="hljs-string">'mul'</span>, <span class="hljs-string">'MUL'</span>, <span class="hljs-string">'times'</span>, <span class="hljs-string">'TIMES'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1537,13 +1534,15 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-67">&#182;</a>
               </div>
-              <p><code>Number → Number</code></p>
+              <p><code>Number → Number → Number</code></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.abs);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mul</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">return</span> a * b;
+  });
 
-  register(<span class="hljs-string">'negate'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'abs'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1558,9 +1557,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_negate</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> -a; });
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.abs);
 
-  register(<span class="hljs-string">'signum'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'negate'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1570,6 +1569,23 @@ functions.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-69">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_negate</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> -a; });
+
+  register(<span class="hljs-string">'signum'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-70">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-70">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -1587,11 +1603,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-70">
+        <li id="section-71">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-70">&#182;</a>
+                <a class="pilcrow" href="#section-71">&#182;</a>
               </div>
               <p>Integral</p>
 
@@ -1603,11 +1619,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-71">
+        <li id="section-72">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-71">&#182;</a>
+                <a class="pilcrow" href="#section-72">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code></p>
 
@@ -1620,11 +1636,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-72">
+        <li id="section-73">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-72">&#182;</a>
+                <a class="pilcrow" href="#section-73">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code></p>
 
@@ -1640,11 +1656,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-73">
+        <li id="section-74">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-73">&#182;</a>
+                <a class="pilcrow" href="#section-74">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code></p>
 
@@ -1657,11 +1673,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-74">
+        <li id="section-75">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-74">&#182;</a>
+                <a class="pilcrow" href="#section-75">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code></p>
 
@@ -1678,11 +1694,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-75">
+        <li id="section-76">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-75">&#182;</a>
+                <a class="pilcrow" href="#section-76">&#182;</a>
               </div>
               <p><code>Number → Number → (Number, Number)</code></p>
 
@@ -1697,11 +1713,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-76">
+        <li id="section-77">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-76">&#182;</a>
+                <a class="pilcrow" href="#section-77">&#182;</a>
               </div>
               <p><code>Number → Number → (Number, Number)</code></p>
 
@@ -1714,11 +1730,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-77">
+        <li id="section-78">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-77">&#182;</a>
+                <a class="pilcrow" href="#section-78">&#182;</a>
               </div>
               <p>Fractional</p>
 
@@ -1730,11 +1746,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-78">
+        <li id="section-79">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-78">&#182;</a>
+                <a class="pilcrow" href="#section-79">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code></p>
 
@@ -1747,11 +1763,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-79">
+        <li id="section-80">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-79">&#182;</a>
+                <a class="pilcrow" href="#section-80">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -1762,11 +1778,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-80">
+        <li id="section-81">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-80">&#182;</a>
+                <a class="pilcrow" href="#section-81">&#182;</a>
               </div>
               <p>Floating</p>
 
@@ -1774,23 +1790,6 @@ functions.</p>
             
             <div class="content"><div class='highlight'><pre>
   register(<span class="hljs-string">'exp'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-81">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-81">&#182;</a>
-              </div>
-              <p><code>Number → Number</code></p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.exp);
-
-  register(<span class="hljs-string">'sqrt'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1805,9 +1804,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.sqrt);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.exp);
 
-  register(<span class="hljs-string">'log'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'sqrt'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1822,9 +1821,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.log);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.sqrt);
 
-  register(<span class="hljs-string">'logBase'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'log'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1835,15 +1834,13 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-84">&#182;</a>
               </div>
-              <p><code>Number → Number → Number</code></p>
+              <p><code>Number → Number</code></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_logBase</span>(<span class="hljs-params">a, b</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(a) / <span class="hljs-built_in">Math</span>.log(b);
-  });
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.log);
 
-  register(<span class="hljs-string">'**'</span>, <span class="hljs-string">'pow'</span>, <span class="hljs-string">'^'</span>, <span class="hljs-string">'^^'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'logBase'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1858,9 +1855,11 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.pow);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_logBase</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(a) / <span class="hljs-built_in">Math</span>.log(b);
+  });
 
-  register(<span class="hljs-string">'sin'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'**'</span>, <span class="hljs-string">'pow'</span>, <span class="hljs-string">'^'</span>, <span class="hljs-string">'^^'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1871,13 +1870,13 @@ functions.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-86">&#182;</a>
               </div>
-              <p><code>Number → Number</code></p>
+              <p><code>Number → Number → Number</code></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.sin);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.pow);
 
-  register(<span class="hljs-string">'tan'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'sin'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1892,9 +1891,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.tan);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.sin);
 
-  register(<span class="hljs-string">'cos'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'tan'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1909,9 +1908,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.cos);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.tan);
 
-  register(<span class="hljs-string">'asin'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'cos'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1926,9 +1925,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.asin);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.cos);
 
-  register(<span class="hljs-string">'atan'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'asin'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1943,9 +1942,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.atan);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.asin);
 
-  register(<span class="hljs-string">'acos'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'atan'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1960,9 +1959,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.acos);
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.atan);
 
-  register(<span class="hljs-string">'sinh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'acos'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1977,11 +1976,9 @@ functions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.sinh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sinh</span>(<span class="hljs-params">x</span>) </span>{
-    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
-  });
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.acos);
 
-  register(<span class="hljs-string">'tanh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'sinh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -1991,6 +1988,25 @@ functions.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-93">&#182;</a>
+              </div>
+              <p><code>Number → Number</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), <span class="hljs-built_in">Math</span>.sinh || <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sinh</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
+  });
+
+  register(<span class="hljs-string">'tanh'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-94">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-94">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -2011,11 +2027,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-94">
+        <li id="section-95">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-94">&#182;</a>
+                <a class="pilcrow" href="#section-95">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -2030,11 +2046,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-95">
+        <li id="section-96">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-95">&#182;</a>
+                <a class="pilcrow" href="#section-96">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -2053,11 +2069,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-96">
+        <li id="section-97">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-96">&#182;</a>
+                <a class="pilcrow" href="#section-97">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -2072,11 +2088,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-97">
+        <li id="section-98">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-97">&#182;</a>
+                <a class="pilcrow" href="#section-98">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -2089,11 +2105,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-98">
+        <li id="section-99">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-98">&#182;</a>
+                <a class="pilcrow" href="#section-99">&#182;</a>
               </div>
               <p>RealFrac</p>
 
@@ -2105,11 +2121,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-99">
+        <li id="section-100">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-99">&#182;</a>
+                <a class="pilcrow" href="#section-100">&#182;</a>
               </div>
               <p><code>Number → (Number, Number)</code></p>
 
@@ -2125,11 +2141,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-100">
+        <li id="section-101">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-100">&#182;</a>
+                <a class="pilcrow" href="#section-101">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -2150,11 +2166,11 @@ functions.</p>
         </li>
         
         
-        <li id="section-101">
+        <li id="section-102">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-101">&#182;</a>
+                <a class="pilcrow" href="#section-102">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code>
 Haskell’s round and JavaScripts Math.round are different</p>
@@ -2180,11 +2196,11 @@ Haskell’s round and JavaScripts Math.round are different</p>
         </li>
         
         
-        <li id="section-102">
+        <li id="section-103">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-102">&#182;</a>
+                <a class="pilcrow" href="#section-103">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -2197,11 +2213,11 @@ Haskell’s round and JavaScripts Math.round are different</p>
         </li>
         
         
-        <li id="section-103">
+        <li id="section-104">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-103">&#182;</a>
+                <a class="pilcrow" href="#section-104">&#182;</a>
               </div>
               <p><code>Number → Number</code></p>
 
@@ -2212,11 +2228,11 @@ Haskell’s round and JavaScripts Math.round are different</p>
         </li>
         
         
-        <li id="section-104">
+        <li id="section-105">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-104">&#182;</a>
+                <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
               <p>RealFloat</p>
 
@@ -2228,11 +2244,11 @@ Haskell’s round and JavaScripts Math.round are different</p>
         </li>
         
         
-        <li id="section-105">
+        <li id="section-106">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-105">&#182;</a>
+                <a class="pilcrow" href="#section-106">&#182;</a>
               </div>
               <p>Numeric</p>
 
@@ -2244,11 +2260,11 @@ Haskell’s round and JavaScripts Math.round are different</p>
         </li>
         
         
-        <li id="section-106">
+        <li id="section-107">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-106">&#182;</a>
+                <a class="pilcrow" href="#section-107">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code>
 Greatest common divisor.</p>
@@ -2270,11 +2286,11 @@ Greatest common divisor.</p>
         </li>
         
         
-        <li id="section-107">
+        <li id="section-108">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-107">&#182;</a>
+                <a class="pilcrow" href="#section-108">&#182;</a>
               </div>
               <p><code>Number → Number → Number</code>
 Lowest common denominator.</p>
@@ -2293,11 +2309,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-108">
+        <li id="section-109">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-108">&#182;</a>
+                <a class="pilcrow" href="#section-109">&#182;</a>
               </div>
               <p><code>Number → Bool</code></p>
 
@@ -2310,11 +2326,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-109">
+        <li id="section-110">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-109">&#182;</a>
+                <a class="pilcrow" href="#section-110">&#182;</a>
               </div>
               <p><code>Number → Bool</code></p>
 
@@ -2330,11 +2346,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-110">
+        <li id="section-111">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-110">&#182;</a>
+                <a class="pilcrow" href="#section-111">&#182;</a>
               </div>
               <p><code>(a → Bool) → (a → a) → a → a</code></p>
 
@@ -2352,11 +2368,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-111">
+        <li id="section-112">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-111">&#182;</a>
+                <a class="pilcrow" href="#section-112">&#182;</a>
               </div>
               <p>Pipes.</p>
 
@@ -2401,11 +2417,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-112">
+        <li id="section-113">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-112">&#182;</a>
+                <a class="pilcrow" href="#section-113">&#182;</a>
               </div>
               <p><code>[a] → [a]</code></p>
 
@@ -2434,11 +2450,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-113">
+        <li id="section-114">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-113">&#182;</a>
+                <a class="pilcrow" href="#section-114">&#182;</a>
               </div>
               <p><code>[a] → [a]</code></p>
 
@@ -2461,11 +2477,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-114">
+        <li id="section-115">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-114">&#182;</a>
+                <a class="pilcrow" href="#section-115">&#182;</a>
               </div>
               <p><code>[a] → String</code></p>
 
@@ -2487,11 +2503,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-115">
+        <li id="section-116">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-115">&#182;</a>
+                <a class="pilcrow" href="#section-116">&#182;</a>
               </div>
               <p><code>(a → ()) → [a] → ()</code></p>
 
@@ -2520,11 +2536,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-116">
+        <li id="section-117">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-116">&#182;</a>
+                <a class="pilcrow" href="#section-117">&#182;</a>
               </div>
               <p><code>[a] → [a]</code></p>
 
@@ -2577,11 +2593,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-117">
+        <li id="section-118">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-117">&#182;</a>
+                <a class="pilcrow" href="#section-118">&#182;</a>
               </div>
               <p><code>a → [a]</code></p>
 
@@ -2598,11 +2614,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-118">
+        <li id="section-119">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-118">&#182;</a>
+                <a class="pilcrow" href="#section-119">&#182;</a>
               </div>
               <p><code>(a → a) → a → [a]</code></p>
 
@@ -2624,11 +2640,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-119">
+        <li id="section-120">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-119">&#182;</a>
+                <a class="pilcrow" href="#section-120">&#182;</a>
               </div>
               <p><code>String → [String]</code></p>
 
@@ -2647,11 +2663,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-120">
+        <li id="section-121">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-120">&#182;</a>
+                <a class="pilcrow" href="#section-121">&#182;</a>
               </div>
               <p><code>[String] → String</code></p>
 
@@ -2666,11 +2682,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-121">
+        <li id="section-122">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-121">&#182;</a>
+                <a class="pilcrow" href="#section-122">&#182;</a>
               </div>
               <p><code>String → [String]</code></p>
 
@@ -2685,11 +2701,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-122">
+        <li id="section-123">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-122">&#182;</a>
+                <a class="pilcrow" href="#section-123">&#182;</a>
               </div>
               <p><code>[String] → String</code></p>
 
@@ -2707,11 +2723,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-123">
+        <li id="section-124">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-123">&#182;</a>
+                <a class="pilcrow" href="#section-124">&#182;</a>
               </div>
               <p><code>a → [a] → [a]</code></p>
 
@@ -2738,11 +2754,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-124">
+        <li id="section-125">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-124">&#182;</a>
+                <a class="pilcrow" href="#section-125">&#182;</a>
               </div>
               <p><code>[a] → [a] → [a]</code></p>
 
@@ -2782,11 +2798,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-125">
+        <li id="section-126">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-125">&#182;</a>
+                <a class="pilcrow" href="#section-126">&#182;</a>
               </div>
               <p><code>(a → b) → [a] → [b]</code></p>
 
@@ -2823,11 +2839,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-126">
+        <li id="section-127">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-126">&#182;</a>
+                <a class="pilcrow" href="#section-127">&#182;</a>
               </div>
               <p><code>(a → Bool) → [a] → [a]</code></p>
 
@@ -2870,11 +2886,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-127">
+        <li id="section-128">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-127">&#182;</a>
+                <a class="pilcrow" href="#section-128">&#182;</a>
               </div>
               <p><code>[a] → a</code></p>
 
@@ -2893,11 +2909,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-128">
+        <li id="section-129">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-128">&#182;</a>
+                <a class="pilcrow" href="#section-129">&#182;</a>
               </div>
               <p><code>a → [a]</code></p>
 
@@ -2920,11 +2936,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-129">
+        <li id="section-130">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-129">&#182;</a>
+                <a class="pilcrow" href="#section-130">&#182;</a>
               </div>
               <p><code>[a] → [a]</code></p>
 
@@ -2946,11 +2962,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-130">
+        <li id="section-131">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-130">&#182;</a>
+                <a class="pilcrow" href="#section-131">&#182;</a>
               </div>
               <p><code>[a] → [a]</code></p>
 
@@ -2981,11 +2997,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-131">
+        <li id="section-132">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-131">&#182;</a>
+                <a class="pilcrow" href="#section-132">&#182;</a>
               </div>
               <p><code>[a] → Bool</code></p>
 
@@ -3009,11 +3025,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-132">
+        <li id="section-133">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-132">&#182;</a>
+                <a class="pilcrow" href="#section-133">&#182;</a>
               </div>
               <p><code>[a] → Number</code></p>
 
@@ -3041,11 +3057,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-133">
+        <li id="section-134">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-133">&#182;</a>
+                <a class="pilcrow" href="#section-134">&#182;</a>
               </div>
               <p><code>String → Object → Unknown</code></p>
 
@@ -3060,11 +3076,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-134">
+        <li id="section-135">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-134">&#182;</a>
+                <a class="pilcrow" href="#section-135">&#182;</a>
               </div>
               <p><code>[a] → Number → a</code></p>
 
@@ -3089,11 +3105,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-135">
+        <li id="section-136">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-135">&#182;</a>
+                <a class="pilcrow" href="#section-136">&#182;</a>
               </div>
               <p><code>[a] → [a]</code></p>
 
@@ -3121,11 +3137,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-136">
+        <li id="section-137">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-136">&#182;</a>
+                <a class="pilcrow" href="#section-137">&#182;</a>
               </div>
               <p><code>Number → [a] → [a]</code></p>
 
@@ -3150,11 +3166,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-137">
+        <li id="section-138">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-137">&#182;</a>
+                <a class="pilcrow" href="#section-138">&#182;</a>
               </div>
               <p><code>Number → [a] → [a]</code></p>
 
@@ -3175,11 +3191,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-138">
+        <li id="section-139">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-138">&#182;</a>
+                <a class="pilcrow" href="#section-139">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3194,11 +3210,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-139">
+        <li id="section-140">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-139">&#182;</a>
+                <a class="pilcrow" href="#section-140">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3228,11 +3244,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-140">
+        <li id="section-141">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-140">&#182;</a>
+                <a class="pilcrow" href="#section-141">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3257,11 +3273,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-141">
+        <li id="section-142">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-141">&#182;</a>
+                <a class="pilcrow" href="#section-142">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3280,11 +3296,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-142">
+        <li id="section-143">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-142">&#182;</a>
+                <a class="pilcrow" href="#section-143">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3303,11 +3319,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-143">
+        <li id="section-144">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-143">&#182;</a>
+                <a class="pilcrow" href="#section-144">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3336,11 +3352,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-144">
+        <li id="section-145">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-144">&#182;</a>
+                <a class="pilcrow" href="#section-145">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3369,11 +3385,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-145">
+        <li id="section-146">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-145">&#182;</a>
+                <a class="pilcrow" href="#section-146">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3395,11 +3411,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-146">
+        <li id="section-147">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-146">&#182;</a>
+                <a class="pilcrow" href="#section-147">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3424,11 +3440,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-147">
+        <li id="section-148">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-147">&#182;</a>
+                <a class="pilcrow" href="#section-148">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3454,11 +3470,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-148">
+        <li id="section-149">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-148">&#182;</a>
+                <a class="pilcrow" href="#section-149">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3476,11 +3492,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-149">
+        <li id="section-150">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-149">&#182;</a>
+                <a class="pilcrow" href="#section-150">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3499,23 +3515,6 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-150">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-150">&#182;</a>
-              </div>
-              <p><code>→</code></p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.AND, <span class="hljs-literal">true</span>);}));
-
-  register(<span class="hljs-string">'or'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-151">
             <div class="annotation">
               
@@ -3526,9 +3525,9 @@ Lowest common denominator.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.OR, <span class="hljs-literal">false</span>);}));
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.AND, <span class="hljs-literal">true</span>);}));
 
-  register(<span class="hljs-string">'sum'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'or'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -3543,9 +3542,9 @@ Lowest common denominator.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.ADD, <span class="hljs-number">0</span>);}));
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.OR, <span class="hljs-literal">false</span>);}));
 
-  register(<span class="hljs-string">'product'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'sum'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -3560,9 +3559,9 @@ Lowest common denominator.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.MUL, <span class="hljs-number">1</span>);}));
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.ADD, <span class="hljs-number">0</span>);}));
 
-  register(<span class="hljs-string">'maximum'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'product'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -3577,9 +3576,9 @@ Lowest common denominator.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.max, -<span class="hljs-literal">Infinity</span>);}));
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.MUL, <span class="hljs-number">1</span>);}));
 
-  register(<span class="hljs-string">'minimum'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'maximum'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -3594,9 +3593,9 @@ Lowest common denominator.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.min, +<span class="hljs-literal">Infinity</span>);}));
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.max, -<span class="hljs-literal">Infinity</span>);}));
 
-  register(<span class="hljs-string">'any'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'minimum'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -3606,6 +3605,23 @@ Lowest common denominator.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-156">&#182;</a>
+              </div>
+              <p><code>→</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.foldl(Nodash.min, +<span class="hljs-literal">Infinity</span>);}));
+
+  register(<span class="hljs-string">'any'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-157">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-157">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3625,11 +3641,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-157">
+        <li id="section-158">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-157">&#182;</a>
+                <a class="pilcrow" href="#section-158">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3649,11 +3665,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-158">
+        <li id="section-159">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-158">&#182;</a>
+                <a class="pilcrow" href="#section-159">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3683,11 +3699,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-159">
+        <li id="section-160">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-159">&#182;</a>
+                <a class="pilcrow" href="#section-160">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3711,11 +3727,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-160">
+        <li id="section-161">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-160">&#182;</a>
+                <a class="pilcrow" href="#section-161">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3735,11 +3751,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-161">
+        <li id="section-162">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-161">&#182;</a>
+                <a class="pilcrow" href="#section-162">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3760,11 +3776,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-162">
+        <li id="section-163">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-162">&#182;</a>
+                <a class="pilcrow" href="#section-163">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3787,11 +3803,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-163">
+        <li id="section-164">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-163">&#182;</a>
+                <a class="pilcrow" href="#section-164">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3804,11 +3820,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-164">
+        <li id="section-165">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-164">&#182;</a>
+                <a class="pilcrow" href="#section-165">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3827,11 +3843,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-165">
+        <li id="section-166">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-165">&#182;</a>
+                <a class="pilcrow" href="#section-166">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3863,11 +3879,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-166">
+        <li id="section-167">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-166">&#182;</a>
+                <a class="pilcrow" href="#section-167">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3901,11 +3917,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-167">
+        <li id="section-168">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-167">&#182;</a>
+                <a class="pilcrow" href="#section-168">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -3941,11 +3957,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-168">
+        <li id="section-169">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-168">&#182;</a>
+                <a class="pilcrow" href="#section-169">&#182;</a>
               </div>
               <p><code>[a] → [b] → ([a], [b])</code></p>
 
@@ -3958,11 +3974,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-169">
+        <li id="section-170">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-169">&#182;</a>
+                <a class="pilcrow" href="#section-170">&#182;</a>
               </div>
               <p><code>[a] → [b] → [c] → ([a], [b], [c])</code></p>
 
@@ -3975,11 +3991,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-170">
+        <li id="section-171">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-170">&#182;</a>
+                <a class="pilcrow" href="#section-171">&#182;</a>
               </div>
               <p><code>[a] → [b] → [c] → [d] → ([a], [b], [c], [d])</code></p>
 
@@ -3990,11 +4006,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-171">
+        <li id="section-172">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-171">&#182;</a>
+                <a class="pilcrow" href="#section-172">&#182;</a>
               </div>
               <p>further from Data.List</p>
 
@@ -4006,11 +4022,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-172">
+        <li id="section-173">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-172">&#182;</a>
+                <a class="pilcrow" href="#section-173">&#182;</a>
               </div>
               <p><code>a → [a] → [a]</code></p>
 
@@ -4033,11 +4049,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-173">
+        <li id="section-174">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-173">&#182;</a>
+                <a class="pilcrow" href="#section-174">&#182;</a>
               </div>
               <p><code>[a] → [a] → [a]</code></p>
 
@@ -4052,11 +4068,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-174">
+        <li id="section-175">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-174">&#182;</a>
+                <a class="pilcrow" href="#section-175">&#182;</a>
               </div>
               <p><code>[[a]] → [[a]]</code></p>
 
@@ -4092,27 +4108,13 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-175">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-175">&#182;</a>
-              </div>
-              <p>   register(‘subsequences’, function _subsequences() {
-   });</p>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-176">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-176">&#182;</a>
               </div>
-              <p>   register(‘permutations’, function _permutations() {
+              <p>   register(‘subsequences’, function _subsequences() {
    });</p>
 
             </div>
@@ -4126,7 +4128,7 @@ Lowest common denominator.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-177">&#182;</a>
               </div>
-              <p>   register(‘mapAccumL’, function _mapAccumL() {
+              <p>   register(‘permutations’, function _permutations() {
    });</p>
 
             </div>
@@ -4140,7 +4142,7 @@ Lowest common denominator.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-178">&#182;</a>
               </div>
-              <p>   register(‘mapAccumR’, function _mapAccumR() {
+              <p>   register(‘mapAccumL’, function _mapAccumL() {
    });</p>
 
             </div>
@@ -4154,7 +4156,7 @@ Lowest common denominator.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-179">&#182;</a>
               </div>
-              <p>   register(‘unfoldr’, function _unfoldr() {
+              <p>   register(‘mapAccumR’, function _mapAccumR() {
    });</p>
 
             </div>
@@ -4168,7 +4170,7 @@ Lowest common denominator.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-180">&#182;</a>
               </div>
-              <p>   register(‘stripPrefix’, function _stripPrefix() {
+              <p>   register(‘unfoldr’, function _unfoldr() {
    });</p>
 
             </div>
@@ -4182,7 +4184,7 @@ Lowest common denominator.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-181">&#182;</a>
               </div>
-              <p>   register(‘nubBy’, function () {
+              <p>   register(‘stripPrefix’, function _stripPrefix() {
    });</p>
 
             </div>
@@ -4196,7 +4198,7 @@ Lowest common denominator.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-182">&#182;</a>
               </div>
-              <p>   register(‘unionBy’, function () {
+              <p>   register(‘nubBy’, function () {
    });</p>
 
             </div>
@@ -4210,13 +4212,10 @@ Lowest common denominator.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-183">&#182;</a>
               </div>
-              <p>   register(‘intersectBy’, function () {
+              <p>   register(‘unionBy’, function () {
    });</p>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>
-  register(<span class="hljs-string">'heads'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -4227,13 +4226,13 @@ Lowest common denominator.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-184">&#182;</a>
               </div>
-              <p><code>[[a]] → [a]</code></p>
+              <p>   register(‘intersectBy’, function () {
+   });</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.head);}));
-
-  register(<span class="hljs-string">'lasts'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+  register(<span class="hljs-string">'heads'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -4248,9 +4247,9 @@ Lowest common denominator.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.lasts);}));
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.head);}));
 
-  register(<span class="hljs-string">'inits'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'lasts'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -4261,13 +4260,13 @@ Lowest common denominator.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-186">&#182;</a>
               </div>
-              <p><code>[[a]] → [[a]]</code></p>
+              <p><code>[[a]] → [a]</code></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.inits);}));
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.lasts);}));
 
-  register(<span class="hljs-string">'tails'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'inits'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -4282,9 +4281,9 @@ Lowest common denominator.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.tails);}));
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.inits);}));
 
-  register(<span class="hljs-string">'isPrefixOf'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  register(<span class="hljs-string">'tails'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -4294,6 +4293,23 @@ Lowest common denominator.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-188">&#182;</a>
+              </div>
+              <p><code>[[a]] → [[a]]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }), composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.tails);}));
+
+  register(<span class="hljs-string">'isPrefixOf'</span>, description(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-189">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-189">&#182;</a>
               </div>
               <p><code>[a] → [a] → Bool</code></p>
 
@@ -4324,11 +4340,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-189">
+        <li id="section-190">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-189">&#182;</a>
+                <a class="pilcrow" href="#section-190">&#182;</a>
               </div>
               <p><code>[a] → [a] → Bool</code></p>
 
@@ -4354,11 +4370,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-190">
+        <li id="section-191">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-190">&#182;</a>
+                <a class="pilcrow" href="#section-191">&#182;</a>
               </div>
               <p><code>[a] → [a] → Bool</code></p>
 
@@ -4375,11 +4391,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-191">
+        <li id="section-192">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-191">&#182;</a>
+                <a class="pilcrow" href="#section-192">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4399,11 +4415,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-192">
+        <li id="section-193">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-192">&#182;</a>
+                <a class="pilcrow" href="#section-193">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4426,11 +4442,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-193">
+        <li id="section-194">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-193">&#182;</a>
+                <a class="pilcrow" href="#section-194">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4450,11 +4466,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-194">
+        <li id="section-195">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-194">&#182;</a>
+                <a class="pilcrow" href="#section-195">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4475,11 +4491,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-195">
+        <li id="section-196">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-195">&#182;</a>
+                <a class="pilcrow" href="#section-196">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4494,11 +4510,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-196">
+        <li id="section-197">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-196">&#182;</a>
+                <a class="pilcrow" href="#section-197">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4513,11 +4529,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-197">
+        <li id="section-198">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-197">&#182;</a>
+                <a class="pilcrow" href="#section-198">&#182;</a>
               </div>
               <p><code>[a] → [a]</code></p>
 
@@ -4540,11 +4556,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-198">
+        <li id="section-199">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-198">&#182;</a>
+                <a class="pilcrow" href="#section-199">&#182;</a>
               </div>
               <p><code>[a] → [a] → [a]</code></p>
 
@@ -4570,11 +4586,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-199">
+        <li id="section-200">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-199">&#182;</a>
+                <a class="pilcrow" href="#section-200">&#182;</a>
               </div>
               <p><code>[a] → [a] → [a]</code></p>
 
@@ -4601,11 +4617,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-200">
+        <li id="section-201">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-200">&#182;</a>
+                <a class="pilcrow" href="#section-201">&#182;</a>
               </div>
               <p><code>[a] → [a] → [a]</code></p>
 
@@ -4631,11 +4647,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-201">
+        <li id="section-202">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-201">&#182;</a>
+                <a class="pilcrow" href="#section-202">&#182;</a>
               </div>
               <p><code>[a] → [a]</code></p>
 
@@ -4662,11 +4678,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-202">
+        <li id="section-203">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-202">&#182;</a>
+                <a class="pilcrow" href="#section-203">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4686,11 +4702,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-203">
+        <li id="section-204">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-203">&#182;</a>
+                <a class="pilcrow" href="#section-204">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4709,11 +4725,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-204">
+        <li id="section-205">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-204">&#182;</a>
+                <a class="pilcrow" href="#section-205">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4733,11 +4749,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-205">
+        <li id="section-206">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-205">&#182;</a>
+                <a class="pilcrow" href="#section-206">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4750,11 +4766,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-206">
+        <li id="section-207">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-206">&#182;</a>
+                <a class="pilcrow" href="#section-207">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4785,11 +4801,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-207">
+        <li id="section-208">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-207">&#182;</a>
+                <a class="pilcrow" href="#section-208">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4802,11 +4818,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-208">
+        <li id="section-209">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-208">&#182;</a>
+                <a class="pilcrow" href="#section-209">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4831,11 +4847,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-209">
+        <li id="section-210">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-209">&#182;</a>
+                <a class="pilcrow" href="#section-210">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4855,11 +4871,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-210">
+        <li id="section-211">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-210">&#182;</a>
+                <a class="pilcrow" href="#section-211">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -4877,11 +4893,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-211">
+        <li id="section-212">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-211">&#182;</a>
+                <a class="pilcrow" href="#section-212">&#182;</a>
               </div>
               <h2 id="maybe">Maybe</h2>
 
@@ -4895,11 +4911,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-212">
+        <li id="section-213">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-212">&#182;</a>
+                <a class="pilcrow" href="#section-213">&#182;</a>
               </div>
               <p><code>b → (a → b) Maybe a → b</code></p>
 
@@ -4917,11 +4933,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-213">
+        <li id="section-214">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-213">&#182;</a>
+                <a class="pilcrow" href="#section-214">&#182;</a>
               </div>
               <p><code>Maybe a → Bool</code></p>
 
@@ -4936,11 +4952,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-214">
+        <li id="section-215">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-214">&#182;</a>
+                <a class="pilcrow" href="#section-215">&#182;</a>
               </div>
               <p><code>Maybe a → Bool</code></p>
 
@@ -4955,11 +4971,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-215">
+        <li id="section-216">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-215">&#182;</a>
+                <a class="pilcrow" href="#section-216">&#182;</a>
               </div>
               <p><code>a → Maybe a → a</code></p>
 
@@ -4977,11 +4993,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-216">
+        <li id="section-217">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-216">&#182;</a>
+                <a class="pilcrow" href="#section-217">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -5000,11 +5016,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-217">
+        <li id="section-218">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-217">&#182;</a>
+                <a class="pilcrow" href="#section-218">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -5022,11 +5038,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-218">
+        <li id="section-219">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-218">&#182;</a>
+                <a class="pilcrow" href="#section-219">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -5039,11 +5055,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-219">
+        <li id="section-220">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-219">&#182;</a>
+                <a class="pilcrow" href="#section-220">&#182;</a>
               </div>
               <p><code>→</code></p>
 
@@ -5054,11 +5070,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-220">
+        <li id="section-221">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-220">&#182;</a>
+                <a class="pilcrow" href="#section-221">&#182;</a>
               </div>
               <h2 id="either">Either</h2>
 
@@ -5072,11 +5088,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-221">
+        <li id="section-222">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-221">&#182;</a>
+                <a class="pilcrow" href="#section-222">&#182;</a>
               </div>
               <p><code>(a → c) → (b → c) → Either a b → c</code></p>
 
@@ -5099,11 +5115,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-222">
+        <li id="section-223">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-222">&#182;</a>
+                <a class="pilcrow" href="#section-223">&#182;</a>
               </div>
               <p><code>a → Either a b</code></p>
 
@@ -5118,11 +5134,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-223">
+        <li id="section-224">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-223">&#182;</a>
+                <a class="pilcrow" href="#section-224">&#182;</a>
               </div>
               <p><code>b → Either a b</code></p>
 
@@ -5137,11 +5153,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-224">
+        <li id="section-225">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-224">&#182;</a>
+                <a class="pilcrow" href="#section-225">&#182;</a>
               </div>
               <p><code>Either a b → Bool</code></p>
 
@@ -5157,11 +5173,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-225">
+        <li id="section-226">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-225">&#182;</a>
+                <a class="pilcrow" href="#section-226">&#182;</a>
               </div>
               <p><code>Either a b → Bool</code></p>
 
@@ -5177,11 +5193,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-226">
+        <li id="section-227">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-226">&#182;</a>
+                <a class="pilcrow" href="#section-227">&#182;</a>
               </div>
               <p><code>Either a b → a</code></p>
 
@@ -5199,11 +5215,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-227">
+        <li id="section-228">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-227">&#182;</a>
+                <a class="pilcrow" href="#section-228">&#182;</a>
               </div>
               <p><code>Either a b → b</code></p>
 
@@ -5221,11 +5237,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-228">
+        <li id="section-229">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-228">&#182;</a>
+                <a class="pilcrow" href="#section-229">&#182;</a>
               </div>
               <p><code>[Either a b] → [a]</code></p>
 
@@ -5241,11 +5257,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-229">
+        <li id="section-230">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-229">&#182;</a>
+                <a class="pilcrow" href="#section-230">&#182;</a>
               </div>
               <p><code>[Either a b] → [b]</code></p>
 
@@ -5261,11 +5277,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-230">
+        <li id="section-231">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-230">&#182;</a>
+                <a class="pilcrow" href="#section-231">&#182;</a>
               </div>
               <p><code>[Either a b] → ([a], [b])</code></p>
 
@@ -5278,11 +5294,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-231">
+        <li id="section-232">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-231">&#182;</a>
+                <a class="pilcrow" href="#section-232">&#182;</a>
               </div>
               <h2 id="objects">Objects</h2>
 
@@ -5296,11 +5312,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-232">
+        <li id="section-233">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-232">&#182;</a>
+                <a class="pilcrow" href="#section-233">&#182;</a>
               </div>
               <p><code>Object → [String]</code></p>
 
@@ -5313,11 +5329,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-233">
+        <li id="section-234">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-233">&#182;</a>
+                <a class="pilcrow" href="#section-234">&#182;</a>
               </div>
               <p><code>Any → Any</code></p>
 
@@ -5336,11 +5352,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-234">
+        <li id="section-235">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-234">&#182;</a>
+                <a class="pilcrow" href="#section-235">&#182;</a>
               </div>
               <h2 id="tasks">Tasks</h2>
 
@@ -5354,11 +5370,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-235">
+        <li id="section-236">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-235">&#182;</a>
+                <a class="pilcrow" href="#section-236">&#182;</a>
               </div>
               
             </div>
@@ -5380,11 +5396,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-236">
+        <li id="section-237">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-236">&#182;</a>
+                <a class="pilcrow" href="#section-237">&#182;</a>
               </div>
               <p><code>TaskSpec → (Result → ()) → ()</code></p>
 
@@ -5395,11 +5411,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-237">
+        <li id="section-238">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-237">&#182;</a>
+                <a class="pilcrow" href="#section-238">&#182;</a>
               </div>
               <p>this function does its own currying.</p>
 
@@ -5413,11 +5429,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-238">
+        <li id="section-239">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-238">&#182;</a>
+                <a class="pilcrow" href="#section-239">&#182;</a>
               </div>
               <p>if spec is an array, translate to object spec</p>
 
@@ -5439,11 +5455,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-239">
+        <li id="section-240">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-239">&#182;</a>
+                <a class="pilcrow" href="#section-240">&#182;</a>
               </div>
               <p>prepare tasks specification.</p>
 
@@ -5481,11 +5497,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-240">
+        <li id="section-241">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-240">&#182;</a>
+                <a class="pilcrow" href="#section-241">&#182;</a>
               </div>
               <p>check spec for unmet dependencies</p>
 
@@ -5522,11 +5538,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-241">
+        <li id="section-242">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-241">&#182;</a>
+                <a class="pilcrow" href="#section-242">&#182;</a>
               </div>
               <p>build initial set</p>
 
@@ -5548,11 +5564,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-242">
+        <li id="section-243">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-242">&#182;</a>
+                <a class="pilcrow" href="#section-243">&#182;</a>
               </div>
               <p>check spec for cycles</p>
 
@@ -5609,11 +5625,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-243">
+        <li id="section-244">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-243">&#182;</a>
+                <a class="pilcrow" href="#section-244">&#182;</a>
               </div>
               <p>clean up results if need be</p>
 
@@ -5632,11 +5648,11 @@ Lowest common denominator.</p>
         </li>
         
         
-        <li id="section-244">
+        <li id="section-245">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-244">&#182;</a>
+                <a class="pilcrow" href="#section-245">&#182;</a>
               </div>
               <p>clean results object</p>
 

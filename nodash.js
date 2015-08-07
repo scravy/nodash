@@ -2354,11 +2354,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
       if (thing === null) {
         return null;
       }
-      var result = isArray(thing) ? [] : {};
-      Nodash.each(function (value, key) {
-        result[key] = Nodash.clone(value);
-      }, thing);
-      return result;
+      return Nodash.map(Nodash.clone, thing);
     }
     return thing;
   });

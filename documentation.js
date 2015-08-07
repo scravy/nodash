@@ -21,7 +21,7 @@ function formatSource(m) {
   if (!func.name) {
     return "";
   }
-  var source = lines(func.toString());
+  var source = lines(func.toString().replace(/Nodash\./g, ""));
   source[0] = "  " + source[0];
   var indent = minimum(map(compose(length, takeWhile(eq(' '))),
                            filter(compose(not, isEmpty), source)));

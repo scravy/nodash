@@ -327,24 +327,13 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   /* @ifdef WITH_ONLINE_HELP */
   Nodash.metadata = [];
-  function description(f) {
-    var text = "";
-    if (isFunction(f)) {
-      f();
-      text = f.toString()
-              .replace(/^ *function *\(\) *\{/, '')
-              .replace(/\} *$/, '')
-              .replace(/^ *\/\/ ?/gm, '');
-    }
-    return { description: text };
-  }
   /* @endif */
 
   var currentGroup = "";
 
   /* @ifdef WITH_ONLINE_HELP */
   function group(name, desc) {
-    currentGroup = { name: name, description: description(desc).description };
+    currentGroup = { name: name };
   }
 
   function callsites() {

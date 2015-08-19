@@ -49,7 +49,6 @@ gulp.task('minify', [ 'lint' ], function (done) {
       .pipe(sourcemaps.init())
       .pipe(preprocess())
       .pipe(uglify({ compressor: { global_defs: { group: true } } }))
-      .pipe(replace(",description(function(){})", ""))
       .pipe(replace(/(group\(('[^']*'|"[^"]*")(,function\(\)\{\})?\),?)/g, ""))
       .pipe(replace(/composed\(function\(\)\{return ([^}]+)\}\)/g, "$1"))
       .pipe(rename({ suffix: '.min' }))

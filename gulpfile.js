@@ -149,7 +149,7 @@ gulp.task('site', [ 'build', 'docco', 'apidoc' ], function (done) {
           TODAY: new Date().toISOString().substring(0, 10)
         };
 
-        gulp.src('site/index.html')
+        gulp.src('site/*.html')
             .pipe(preprocess({ context: variables }))
             .pipe(gulp.dest('dist/'))
             .on('finish', done);

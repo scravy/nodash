@@ -143,10 +143,11 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return Set;
   }());
 
-  var trampoline = (!dontUseNatives && setImmediate) || function (f) {
-    setTimeout(f, 0);
-  };
-
+  // A function to postpone an action on the event queue
+  var trampoline = function (f) { setTimeout(f, 0); };
+  if (!dontUseNatives && typeof(setImmediate) === 'function') {
+    trampoline = setImmediate;
+  }
 
   // The identity function that returns what was passed in unaltered.
   function id(x) { return x; }

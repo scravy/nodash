@@ -28,17 +28,34 @@ A port of the Haskell Prelude to JavaScript/NodeJS.
 
     npm install --save nodash
 
+Usage in Node, installed in `GLOBAL` (usable without prefix):
+
 ```JavaScript
-// install it globally
 require('nodash').install(GLOBAL);
 
 var reverse = foldl(flip(cons), []);
+```
 
-// have it in a variable P
+Usage in Node:
+
+```JavaScript
 var P = require('nodash');
 
 var reverse = P.foldl(P.flip(P.cons), []);
 ```
+
+Usage in the browser:
+
+```JavaScript
+<script src="nodash.js"></script>
+<script>
+// nodash is available in window.Nodash
+var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
+
+// you can use `Nodash.install()` like you would in node
+Nodash.install(window);
+
+var reverse2 = foldl(flip(cons, []));
 
 License
 -------

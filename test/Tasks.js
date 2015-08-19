@@ -244,7 +244,21 @@ describe('Tasks', function () {
             done();
         });
     });
-    
+   
+    it('run /w async + error', function (done) {
+        run({
+            eins: function (callback) {
+                callback(2);
+            },
+            zwei: [ 'eins', function (result, callback) {
+                callback(2, "error");
+            } ]
+        }, function (results) {
+            assert.strictEqual("error", results.zwei.error);
+            done();
+        });
+    });
+     
     it('run, error: unmet dependencies', function (done) {
         run({
             eins: {

@@ -409,87 +409,52 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
   // to make stack traces more readable.
 
   
-  group('Types', function () {
-  // 
-  });
+  group('Types');
 
-  register('isFunction', description(function () {
-  // `Any → Bool`
-  }), isFunction);
-  register('isStream', description(function () {
-  // `Any → Bool`
-  }), isStream);
-  register('isArray', description(function () {
-  // `Any → Bool`
-  }), isArray);
-  register('isNumber', description(function () {
-  // `Any → Bool`
-  }), isNumber);
-  register('isString', description(function () {
-  // `Any → Bool`
-  }), isString);
-  register('isInfinite', description(function () {
-  // `Any → Bool`
-  }), isInfinite);
-  register('isObject', description(function () {
-  // `Any → Bool`
-  }), isObject);
+  register('isFunction', isFunction);
+  register('isStream', isStream);
+  register('isArray', isArray);
+  register('isNumber', isNumber);
+  register('isString', isString);
+  register('isInfinite', isInfinite);
+  register('isObject', isObject);
 
   // ## Functions dealing with functions
 
   group('Functions');
 
-  register('id', description(function () {
-  // `a → a`
-  }), id);
+  register('id', id);
 
-  register('idf', description(function () {
-  // `a → () → a`
-  }), function _idf(x) {
+  register('idf', function _idf(x) {
     return function () {
       return x;
     };
   });
 
-  register('const', 'const_', 'constant', description(function () {
-  // `a → b → a`
-  // Accepts two arguments and returns the first one, thereby discarding
-  // the second one. This function is primarily useful for composing other
-  // functions.
-  }), function _const(a, b) {
+  register('const', 'const_', 'constant', function _const(a, b) {
     return a;
   });
 
-  register('$', 'apply', description(function () {
-  // `(a → b) → a → b`
-  }), function _apply(f, x) {
+  register('$', 'apply', function _apply(f, x) {
     return f(x);
   });
 
-  register('.', 'compose', description(function () {
-  // `(b → c) → (a → b) → (a → c)`
-  }), function _compose(f, g, x) {
+  register('.', 'compose', function _compose(f, g, x) {
     return f(g(x));
   });
 
-  register('compose2', description(function () {
-  // `(c → d) → (a → b → c) → (a → b → d)`
-  }), function _compose2(f, g, x, y) {
+  register('compose2', function _compose2(f, g, x, y) {
     return f(g(x, y));
   });
 
-  register('flip', description(function () {
-  // `Any → Bool`
-  }), function _flip(f) {
+  register('flip', function _flip(f) {
     return funcs[2](function (b, a) {
       return f(a, b);
     });
   });
 
   // **on**
-  register('on', description(function () {
-  // `(b → b → c) → (a → b) → (a → a → c)`
-  }), function _on(g, f, a, b) {
+  register('on', function _on(g, f, a, b) {
     return g(f(a), f(b));
   });
 
@@ -498,21 +463,13 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   group('Boolean');
 
-  register('&&', 'AND', description(function () {
-  // `Bool → Bool → Bool`
-  }), function _AND(a, b) { return a && b; });
+  register('&&', 'AND', function _AND(a, b) { return a && b; });
 
-  register('||', 'OR', description(function () {
-  // `Bool → Bool → Bool`
-  }), function _OR(a, b) { return a || b; });
+  register('||', 'OR', function _OR(a, b) { return a || b; });
 
-  register('not', description(function () {
-  // `Bool → Bool`
-  }), function _not(value) { return !value; });
+  register('not', function _not(value) { return !value; });
 
-  register('bool', description(function () {
-  // `a → a → Bool → a`
-  }), function _bool(yes, no, bool) {
+  register('bool', function _bool(yes, no, bool) {
     return bool ? yes : no;
   });
 
@@ -521,34 +478,22 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
   
   group('Tuples');
 
-  register('fst', description(function () {
-  // `(a, b) → a`
-  }), function _fst(arr) { return arr[0]; });
+  register('fst', function _fst(arr) { return arr[0]; });
 
-  register('snd', description(function () {
-  // `(a, b) → b`
-  }), function _snd(arr) { return arr[1]; });
+  register('snd', function _snd(arr) { return arr[1]; });
 
-  register(',', 'tuple', description(function () {
-  // `a → b → (a, b)`
-  }), function _tuple(a, b) { return [ a, b ]; });
+  register(',', 'tuple', function _tuple(a, b) { return [ a, b ]; });
 
-  register(',,', 'tuple3', description(function () {
-  // `a → b → c → (a, b, c)`
-  }), function _tuple3(a, b, c) { return [ a, b, c ]; });
+  register(',,', 'tuple3', function _tuple3(a, b, c) { return [ a, b, c ]; });
 
-  register(',,,', 'tuple4', description(function () {
-  // `a → b → c → d → (a, b, c, d)`
-  }), function _tuple4(a, b, c, d) { return [ a, b, c, d ]; });
+  register(',,,', 'tuple4', function _tuple4(a, b, c, d) { return [ a, b, c, d ]; });
 
   
   // Eq
   
   group("Comparisons");
 
-  register('==', 'eq', 'EQ', description(function () {
-  // `Any → Any → Bool`
-  }), function _eq(a, b) {
+  register('==', 'eq', 'EQ', function _eq(a, b) {
     if (a === b) {
       return true;
     }
@@ -569,18 +514,14 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return false;
   });
 
-  register('/=', 'neq', 'NEQ', description(function () {
-  // `Any → Any → Bool`
-  }), function _neq(a, b) {
+  register('/=', 'neq', 'NEQ', function _neq(a, b) {
     return !Nodash.eq(a, b);
   });
 
 
   // Ord
 
-  register('compare', description(function () {
-  // `a → a → Number`
-  }), function _compare(a, b) {
+  register('compare', function _compare(a, b) {
     switch (typeof a) {
     case 'string':
       return a.localeCompare(b);
@@ -603,51 +544,37 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return undefined;
   });
 
-  register('<', 'lt', 'LT', description(function () {
-  // `a → a → Bool`
-  }), function _lt(a, b) {
+  register('<', 'lt', 'LT', function _lt(a, b) {
     return Nodash.compare(a, b) < 0;
   });
 
-  register('>', 'gt', 'GT', description(function () {
-  // `a → a → Bool`
-  }), function _gt(a, b) {
+  register('>', 'gt', 'GT', function _gt(a, b) {
     return Nodash.compare(a, b) > 0;
   });
 
-  register('<=', 'lte', 'LTE', description(function () {
-  // `a → a → Bool`
-  }), function _lte(a, b) {
+  register('<=', 'lte', 'LTE', function _lte(a, b) {
     return Nodash.compare(a, b) <= 0;
   });
 
-  register('>=', 'gte', 'GTE', description(function () {
-  // `a → a → Bool`
-  }), function _gte(a, b) {
+  register('>=', 'gte', 'GTE', function _gte(a, b) {
     return Nodash.compare(a, b) >= 0;
   });
 
-  register('max', description(function () {
-  // `Number → Number → Number`
-  }), function _max(a, b) {
+  register('max', function _max(a, b) {
     if (Nodash.gt(a, b)) {
       return a;
     }
     return b;
   });
 
-  register('min', description(function () {
-  // `Number → Number → Number`
-  }), function _min(a, b) {
+  register('min', function _min(a, b) {
     if (Nodash.lt(a, b)) {
       return a;
     }
     return b;
   });
 
-  register('comparing', description(function () {
-  // `(a → b) → a → a → Number`
-  }), function _comparing(f, a, b) {
+  register('comparing', function _comparing(f, a, b) {
     return Nodash.compare(f(a), f(b));
   });
 
@@ -656,15 +583,11 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   group('Characters');
   
-  register('isDigit', description(function () {
-  // `Char → Bool`
-  }), function _isDigit(x) {
+  register('isDigit', function _isDigit(x) {
     return !!x.match(/[0-9]/);
   });
 
-  register('isAsciiLetter', description(function () {
-  // `Char → Bool`
-  }), function _isAsciiLetter(x) {
+  register('isAsciiLetter', function _isAsciiLetter(x) {
     return !!x.match(/[a-zA-Z]/);
   });
 
@@ -673,35 +596,23 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   group('Numbers');
 
-  register('+', 'add', 'ADD', 'plus', 'PLUS', description(function () {
-  // `Number → Number → Number`
-  }), function _add(a, b) {
+  register('+', 'add', 'ADD', 'plus', 'PLUS', function _add(a, b) {
     return a + b;
   });
 
-  register('-', 'sub', 'minus', 'MINUS', 'subtract', description(function () {
-  // `Number → Number → Number`
-  }), function _sub(a, b) {
+  register('-', 'sub', 'minus', 'MINUS', 'subtract', function _sub(a, b) {
     return a - b;
   });
 
-  register('*', 'mul', 'MUL', 'times', 'TIMES', description(function () {
-  // `Number → Number → Number`
-  }), function _mul(a, b) {
+  register('*', 'mul', 'MUL', 'times', 'TIMES', function _mul(a, b) {
     return a * b;
   });
 
-  register('abs', description(function () {
-  // `Number → Number`
-  }), Math.abs);
+  register('abs', Math.abs);
 
-  register('negate', description(function () {
-  // `Number → Number`
-  }), function _negate(a) { return -a; });
+  register('negate', function _negate(a) { return -a; });
 
-  register('signum', description(function () {
-  // `Number → Number`
-  }), function _signum(x) {
+  register('signum', function _signum(x) {
     if (x > 0) {
       return 1;
     } else if (x === 0) {
@@ -713,110 +624,68 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   // Integral
 
-  register('div', description(function () {
-  // `Number → Number → Number`
-  }), function _div(a, b) { return Math.floor(a / b); });
+  register('div', function _div(a, b) { return Math.floor(a / b); });
 
-  register('quot', description(function () {
-  // `Number → Number → Number`
-  }), function _quot(a, b) {
+  register('quot', function _quot(a, b) {
     var r = a / b;
     return r >= 0 ? Math.floor(r) : Math.ceil(r);
   });
 
-  register('rem', description(function () {
-  // `Number → Number → Number`
-  }), function _rem(a, b) { return a % b; });
+  register('rem', function _rem(a, b) { return a % b; });
 
-  register('mod', description(function () {
-  // `Number → Number → Number`
-  }), function _mod(a, b) {
+  register('mod', function _mod(a, b) {
     var q = Nodash.quot(a, b);
     var r = Nodash.rem(a, b);
     return Nodash.signum(r) == -Nodash.signum(b) ? r + b : r;
   });
 
-  register('divMod', description(function () {
-  // `Number → Number → (Number, Number)`
-  }), function _divMod(a, b)  {
+  register('divMod', function _divMod(a, b)  {
     return [Nodash.div(a, b), Nodash.mod(a, b)];
   });
 
-  register('quotRem', description(function () {
-  // `Number → Number → (Number, Number)`
-  }), function _quotRem(a, b) {
+  register('quotRem', function _quotRem(a, b) {
     return [Nodash.quot(a, b), Nodash.rem(a, b)];
   });
 
 
   // Fractional
 
-  register('/', 'frac', description(function () {
-  // `Number → Number → Number`
-  }), function _frac(a, b) { return a / b; });
+  register('/', 'frac', function _frac(a, b) { return a / b; });
 
-  register('recip', description(function () {
-  // `Number → Number`
-  }), function _recip(a) { return 1 / a; });
+  register('recip', function _recip(a) { return 1 / a; });
 
 
   // Floating
 
-  register('exp', description(function () {
-  // `Number → Number`
-  }), Math.exp);
+  register('exp', Math.exp);
 
-  register('sqrt', description(function () {
-  // `Number → Number`
-  }), Math.sqrt);
+  register('sqrt', Math.sqrt);
 
-  register('log', description(function () {
-  // `Number → Number`
-  }), Math.log);
+  register('log', Math.log);
 
-  register('logBase', description(function () {
-  // `Number → Number → Number`
-  }), function _logBase(a, b) {
+  register('logBase', function _logBase(a, b) {
     return Math.log(a) / Math.log(b);
   });
 
-  register('**', 'pow', '^', '^^', description(function () {
-  // `Number → Number → Number`
-  }), Math.pow);
+  register('**', 'pow', '^', '^^', Math.pow);
 
-  register('sin', description(function () {
-  // `Number → Number`
-  }), Math.sin);
+  register('sin', Math.sin);
 
-  register('tan', description(function () {
-  // `Number → Number`
-  }), Math.tan);
+  register('tan', Math.tan);
 
-  register('cos', description(function () {
-  // `Number → Number`
-  }), Math.cos);
+  register('cos', Math.cos);
 
-  register('asin', description(function () {
-  // `Number → Number`
-  }), Math.asin);
+  register('asin', Math.asin);
 
-  register('atan', description(function () {
-  // `Number → Number`
-  }), Math.atan);
+  register('atan', Math.atan);
 
-  register('acos', description(function () {
-  // `Number → Number`
-  }), Math.acos);
+  register('acos', Math.acos);
 
-  register('sinh', description(function () {
-  // `Number → Number`
-  }), Math.sinh || function _sinh(x) {
+  register('sinh', Math.sinh || function _sinh(x) {
     return (Math.exp(x) - Math.exp(-x)) / 2;
   });
 
-  register('tanh', description(function () {
-  // `Number → Number`
-  }), Math.tanh || function _tanh(x) {
+  register('tanh', Math.tanh || function _tanh(x) {
     if (x === Infinity) {
       return 1;
     } else if (x === -Infinity) {
@@ -826,15 +695,11 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     }
   });
 
-  register('cosh', description(function () {
-  // `Number → Number`
-  }), Math.cosh || function _cosh(x) {
+  register('cosh', Math.cosh || function _cosh(x) {
     return (Math.exp(x) + Math.exp(-x)) / 2;
   });
 
-  register('asinh', description(function () {
-  // `Number → Number`
-  }), Math.asinh || function _asinh(x) {
+  register('asinh', Math.asinh || function _asinh(x) {
     if (x === -Infinity) {
       return x;
     } else {
@@ -842,31 +707,23 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     }
   });
 
-  register('atanh', description(function () {
-  // `Number → Number`
-  }), Math.atanh || function _atanh(x) {
+  register('atanh', Math.atanh || function _atanh(x) {
     return Math.log((1 + x) / (1 - x)) / 2;
   });
 
-  register('acosh', description(function () {
-  // `Number → Number`
-  }), Math.acosh || function _acosh(x) {
+  register('acosh', Math.acosh || function _acosh(x) {
     return Math.log(x + Math.sqrt(x * x - 1));
   });
 
 
   // RealFrac
 
-  register('properFraction', description(function () {
-  // `Number → (Number, Number)`
-  }), function _properFraction(x) {
+  register('properFraction', function _properFraction(x) {
     var num = Nodash.truncate(x);
     return [ num, -(num - x) ];
   });
 
-  register('truncate', description(function () {
-  // `Number → Number`
-  }), Math.trunc || function _truncate(x) {
+  register('truncate', Math.trunc || function _truncate(x) {
     switch (Nodash.signum(x)) {
     case -1:
       return Math.ceil(x);
@@ -876,10 +733,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return 0;
   });
 
-  register('round', description(function () {
-  // `Number → Number → Number`
-  // Haskell's round and JavaScripts Math.round are different
-  }), function _round(x) {
+  register('round', function _round(x) {
     var fraction = Nodash.properFraction(x);
     var n = fraction[0];
     var m = fraction[1] < 0 ? n - 1 : n + 1;
@@ -893,13 +747,9 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     }
   });
 
-  register('ceiling', description(function () {
-  // `Number → Number`
-  }), Math.ceil);
+  register('ceiling', Math.ceil);
 
-  register('floor', description(function () {
-  // `Number → Number`
-  }), Math.floor);
+  register('floor', Math.floor);
 
 
   // RealFloat
@@ -909,10 +759,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   // Numeric
 
-  register('gcd', description(function () {
-  // `Number → Number → Number`
-  // Greatest common divisor.
-  }), function _gcd(a, b) {
+  register('gcd', function _gcd(a, b) {
     var c;
     while (b !== 0) {
       c = Nodash.rem(a, b);
@@ -922,39 +769,28 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return a;
   });
 
-  register('lcm', description(function () {
-  // `Number → Number → Number`
-  // Lowest common denominator.
-  }), function _lcm(a, b) {
+  register('lcm', function _lcm(a, b) {
     if (a === 0 || b === 0) {
       return 0;
     }
     return Math.abs(Nodash.quot(a, Nodash.gcd(a, b)) * b);
   });
 
-  register('even', description(function () {
-  // `Number → Bool`
-  }), function _even(x) { return (x % 2) === 0; });
+  register('even', function _even(x) { return (x % 2) === 0; });
 
-  register('odd', description(function () {
-  // `Number → Bool`
-  }), function _odd(x) { return (x % 2) !== 0; });
+  register('odd', function _odd(x) { return (x % 2) !== 0; });
 
 
   group('Control flow');
 
-  register('until', description(function () {
-  // `(a → Bool) → (a → a) → a → a`
-  }), function _until(p, f, v) {
+  register('until', function _until(p, f, v) {
     while (!p(v)) {
       v = f(v);
     }
     return v;
   });
 
-  register('pipe', description(function () {
-  // Pipes.
-  }), function _pipe() {
+  register('pipe', function _pipe() {
     var functions, intermediateResult, callback;
     var error = null;
     if (isArray(arguments[0])) {
@@ -988,9 +824,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   group('Streams');
 
-  register('stream', 'lazy', description(function () {
-  // `[a] → [a]`
-  }), function _stream(xs) {
+  register('stream', 'lazy', function _stream(xs) {
     if (isStream(xs)) {
       return xs;
     }
@@ -1008,9 +842,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     });
   });
 
-  register('consume', description(function () {
-  // `[a] → [a]`
-  }), function _consume(xs) {
+  register('consume', function _consume(xs) {
     if (!isStream(xs)) {
       return xs;
     }
@@ -1022,9 +854,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('consumeString', description(function () {
-  // `[a] → String`
-  }), function _consumeString(xs) {
+  register('consumeString', function _consumeString(xs) {
     if (!isStream(xs)) {
       return "" + xs;
     }
@@ -1035,9 +865,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('each', description(function () {
-  // `(a → ()) → [a] → ()`
-  }), function _each(f, xs) {
+  register('each', function _each(f, xs) {
     if (isStream(xs)) {
       var x;
       while ((x = xs()) !== eos) {
@@ -1055,9 +883,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     }
   });
 
-  register('cycle', description(function () {
-  // `[a] → [a]`
-  }), function _cycle(xs) {
+  register('cycle', function _cycle(xs) {
     if (isStream(xs)) {
       if (isInfinite(xs)) {
         return xs;
@@ -1099,17 +925,13 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     }
   });
 
-  register('repeat', description(function () {
-  // `a → [a]`
-  }), function _repeat(x) {
+  register('repeat', function _repeat(x) {
     return mkInfinite(function () {
       return x;
     });
   });
 
-  register('iterate', description(function () {
-  // `(a → a) → a → [a]`
-  }), function _iterate(f, x) {
+  register('iterate', function _iterate(f, x) {
     return mkInfinite(function () {
       var r = x;
       x = f(x);
@@ -1120,9 +942,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   group('Strings');
 
-  register('lines', description(function () {
-  // `String → [String]`
-  }), function _lines(string) {
+  register('lines', function _lines(string) {
     var result = string.split(/\n/);
     if (result[result.length - 1].length === 0) {
       delete result[result.length - 1];
@@ -1130,30 +950,22 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return result;
   });
 
-  register('unlines', description(function () {
-  // `[String] → String`
-  }), function _unlines(lines) {
+  register('unlines', function _unlines(lines) {
     return lines.join('\n');
   });
 
-  register('words', description(function () {
-  // `String → [String]`
-  }), function _words(string) {
+  register('words', function _words(string) {
     return string.split(/[\n\r\v\t ]/);
   });
 
-  register('unwords', description(function () {
-  // `[String] → String`
-  }), function _unwords(words) {
+  register('unwords', function _unwords(words) {
     return words.join(' ');
   });
 
 
   group('Arrays / Lists');
 
-  register(':', 'cons', description(function () {
-  // `a → [a] → [a]`
-  }), function _cons(x, xs) {
+  register(':', 'cons', function _cons(x, xs) {
     if (isStream(xs)) {
       var consumedFirst = false;
       return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
@@ -1169,9 +981,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('++', 'append', description(function () {
-  // `[a] → [a] → [a]`
-  }), function _append(xs, ys) {
+  register('++', 'append', function _append(xs, ys) {
     if (isStream(xs) || isStream(ys)) {
       xs = Nodash.stream(xs);
       if (isInfinite(xs)) {
@@ -1200,9 +1010,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('map', description(function () {
-  // `(a → b) → [a] → [b]`
-  }), function _map(f, xs) {
+  register('map', function _map(f, xs) {
     if (isStream(xs)) {
       return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
         var x = xs();
@@ -1228,9 +1036,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return ys;
   });
 
-  register('filter', description(function () {
-  // `(a → Bool) → [a] → [a]`
-  }), function _filter(p, xs) {
+  register('filter', function _filter(p, xs) {
     if (isStream(xs)) {
       return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
         var x;
@@ -1262,9 +1068,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return ys;
   });
 
-  register('head', description(function () {
-  // `[a] → a`
-  }), function _head(xs) {
+  register('head', function _head(xs) {
     if (isStream(xs)) {
       var x = xs();
       return x === eos ? undefined : x;
@@ -1272,9 +1076,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs[0];
   });
 
-  register('last', description(function () {
-  // `a → [a]`
-  }), function _last(xs) {
+  register('last', function _last(xs) {
     if (isStream(xs)) {
       checkFinite(xs);
       var x, z;
@@ -1286,9 +1088,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs[xs.length - 1];
   });
 
-  register('tail', description(function () {
-  // `[a] → [a]`
-  }), function _tail(xs) {
+  register('tail', function _tail(xs) {
     if (isStream(xs)) {
       xs();
       return xs;
@@ -1299,9 +1099,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return [].slice.call(xs, 1);
   });
 
-  register('init', description(function () {
-  // `[a] → [a]`
-  }), function _init(xs) {
+  register('init', function _init(xs) {
     if (isStream(xs)) {
       checkFinite(xs);
       var a = xs(), b;
@@ -1321,9 +1119,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return [].slice.call(xs, 0, xs.length - 1);
   });
 
-  register('isEmpty', 'null_', description(function () {
-  // `[a] → Bool`
-  }), function _null(xs) {
+  register('isEmpty', 'null_', function _null(xs) {
     if (isStream(xs)) {
       return xs() === eos;
     }
@@ -1336,9 +1132,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return true;
   });
 
-  register('length', description(function () {
-  // `[a] → Number`
-  }), function _length(xs) {
+  register('length', function _length(xs) {
     if (isStream(xs)) {
       if (isInfinite(xs)) {
         return Infinity;
@@ -1355,15 +1149,11 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs.length;
   });
 
-  register('select', description(function () {
-  // `String → Object → Unknown`
-  }), function _select(path, object) {
+  register('select', function _select(path, object) {
     return Nodash.foldl(Nodash.at, object, path.split(/\./));
   });
 
-  register('!!', 'at', 'AT', description(function () {
-  // `[a] → Number → a`
-  }), function _at(xs, ix) {
+  register('!!', 'at', 'AT', function _at(xs, ix) {
     if (isStream(xs)) {
       var x;
       for (var i = 0; i < ix; i++) {
@@ -1377,9 +1167,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs[ix];
   });
 
-  register('reverse', description(function () {
-  // `[a] → [a]`
-  }), function _reverse(xs) {
+  register('reverse', function _reverse(xs) {
     if (isStream(xs)) {
       checkFinite(xs);
       xs = Nodash.consume(xs);
@@ -1396,9 +1184,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return isString(xs) ? zs.join('') : zs;
   });
 
-  register('take', description(function () {
-  // `Number → [a] → [a]`
-  }), function _take(n, xs) {
+  register('take', function _take(n, xs) {
     if (isStream(xs)) {
       var i = 0;
       return mkStream(function () {
@@ -1411,9 +1197,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs.slice(0, n);
   });
 
-  register('drop', description(function () {
-  // `Number → [a] → [a]`
-  }), function _drop(n, xs) {
+  register('drop', function _drop(n, xs) {
     if (isStream(xs)) {
       for (var i = 0; i < n; i++) {
         xs();
@@ -1423,15 +1207,11 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs.slice(n);
   });
 
-  register('splitAt', description(function () {
-  // `→`
-  }), function _splitAt(n, xs) {
+  register('splitAt', function _splitAt(n, xs) {
     return [ xs.slice(0, n), xs.slice(n) ];
   });
 
-  register('takeWhile', description(function () {
-  // `→`
-  }), function _takeWhile(p, xs) {
+  register('takeWhile', function _takeWhile(p, xs) {
     if (isStream(xs)) {
       var exhausted = false;
       return mkStream(function () {
@@ -1450,9 +1230,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs.slice(0, i);
   });
 
-  register('dropWhile', description(function () {
-  // `→`
-  }), function _dropWhile(p, xs) {
+  register('dropWhile', function _dropWhile(p, xs) {
     if (isStream(xs)) {
       var x;
       while ((x = xs()) !== eos && p(x)) {
@@ -1466,9 +1244,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs.slice(i);
   });
 
-  register('span', description(function () {
-  // `→`
-  }), function _span(p, xs) {
+  register('span', function _span(p, xs) {
     var i = 0;
     while (i < xs.length && p(xs[i])) {
         i++;
@@ -1476,9 +1252,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return [ xs.slice(0, i), xs.slice(i) ];
   });
 
-  register('break_', 'break', description(function () {
-  // `→`
-  }), function _break(p, xs) {
+  register('break_', 'break', function _break(p, xs) {
     var i = 0;
     while (i < xs.length && !p(xs[i])) {
       i++;
@@ -1486,9 +1260,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return [ xs.slice(0, i), xs.slice(i) ];
   });
 
-  register('elem', description(function () {
-  // `→`
-  }), function _elem(x, xs) {
+  register('elem', function _elem(x, xs) {
     if (isStream(xs)) {
       var z;
       while ((z = xs()) !== eos) {
@@ -1506,9 +1278,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return false;
   });
 
-  register('notElem', description(function () {
-  // `→`
-  }), function _notElem(x, xs) {
+  register('notElem', function _notElem(x, xs) {
     if (isStream(xs)) {
       var z;
       while ((z = xs()) !== eos) {
@@ -1526,9 +1296,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return true;
   });
 
-  register('lookup', description(function () {
-  // `→`
-  }), function _lookup(x, xs) {
+  register('lookup', function _lookup(x, xs) {
     if (isArray(xs)) {
       for (var i = 0; i < xs.length; i++) {
         if (xs[i] && Nodash.eq(xs[i][0], x)) {
@@ -1539,9 +1307,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs[x];
   });
 
-  register('foldl', 'foldl\'', description(function () {
-  // `→`
-  }), function _foldl(f, x, xs) {
+  register('foldl', 'foldl\'', function _foldl(f, x, xs) {
     var streaming = isStream(xs);
     if (streaming) {
       xs = Nodash.consume(xs);
@@ -1555,9 +1321,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return x;
   });
 
-  register('foldl1', 'foldl1\'', description(function () {
-  // `→`
-  }), function _foldl1(f, xs) {
+  register('foldl1', 'foldl1\'', function _foldl1(f, xs) {
     var streaming = isStream(xs);
     if (streaming) {
       xs = Nodash.consume(xs);
@@ -1572,18 +1336,14 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return x;
   });
 
-  register('foldr', description(function () {
-  // `→`
-  }), function _foldr(f, x, xs) {
+  register('foldr', function _foldr(f, x, xs) {
     for (var i = xs.length - 1; i >= 0; i--) {
       x = f(xs[i], x);
     }
     return x;
   });
 
-  register('foldr1', description(function () {
-  // `→`
-  }), function _foldr1(f, xs) {
+  register('foldr1', function _foldr1(f, xs) {
     var x = xs[xs.length - 1];
     for (var i = xs.length - 2; i >= 0; i--) {
       x = f(xs[i], x);
@@ -1591,33 +1351,19 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return x;
   });
 
-  register('and', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.foldl(Nodash.AND, true);}));
+  register('and', composed(function (){return Nodash.foldl(Nodash.AND, true);}));
 
-  register('or', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.foldl(Nodash.OR, false);}));
+  register('or', composed(function (){return Nodash.foldl(Nodash.OR, false);}));
 
-  register('sum', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.foldl(Nodash.ADD, 0);}));
+  register('sum', composed(function (){return Nodash.foldl(Nodash.ADD, 0);}));
 
-  register('product', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.foldl(Nodash.MUL, 1);}));
+  register('product', composed(function (){return Nodash.foldl(Nodash.MUL, 1);}));
 
-  register('maximum', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.foldl(Nodash.max, -Infinity);}));
+  register('maximum', composed(function (){return Nodash.foldl(Nodash.max, -Infinity);}));
 
-  register('minimum', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.foldl(Nodash.min, +Infinity);}));
+  register('minimum', composed(function (){return Nodash.foldl(Nodash.min, +Infinity);}));
 
-  register('any', description(function () {
-  // `→`
-  }), function _any(p, xs) {
+  register('any', function _any(p, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (p(xs[i])) {
         return true;
@@ -1626,9 +1372,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return false;
   });
 
-  register('all', description(function () {
-  // `→`
-  }), function _all(p, xs) {
+  register('all', function _all(p, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (!p(xs[i])) {
         return false;
@@ -1637,9 +1381,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return true;
   });
 
-  register('scanl', description(function () {
-  // `→`
-  }), function _scanl(f, x, xs) {
+  register('scanl', function _scanl(f, x, xs) {
     if (isStream(xs)) {
       return Nodash.cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(function () {
         var r = xs();
@@ -1658,9 +1400,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('scanl1', description(function () {
-  // `→`
-  }), function _scanl1(f, xs) {
+  register('scanl1', function _scanl1(f, xs) {
     if (isStream(xs)) {
       return Nodash.scanl(f, xs(), xs);
     }
@@ -1673,9 +1413,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('scanr', description(function () {
-  // `→`
-  }), function _scanr(f, x, xs) {
+  register('scanr', function _scanr(f, x, xs) {
     var zs = [x];
     for (var i = xs.length - 1; i >= 0; i--) {
       x = f(xs[i], x);
@@ -1684,9 +1422,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('scanr1', description(function () {
-  // `→`
-  }), function _scanr1(f, xs) {
+  register('scanr1', function _scanr1(f, xs) {
     var x = xs[xs.length - 1];
     var zs = [x];
     for (var i = xs.length - 2; i >= 0; i--) {
@@ -1696,9 +1432,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('concat', description(function () {
-  // `→`
-  }), function _concat(xs) {
+  register('concat', function _concat(xs) {
     if (isString(xs[0])) {
       return xs.join('');
     }
@@ -1710,13 +1444,9 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('concatMap', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.compose2(Nodash.concat, Nodash.map);}));
+  register('concatMap', composed(function (){return Nodash.compose2(Nodash.concat, Nodash.map);}));
 
-  register('replicate', description(function () {
-  // `→`
-  }), function _replicate(n, x) {
+  register('replicate', function _replicate(n, x) {
     var xs = [];
     for (var i = 0; i < n; i++) {
       xs.push(x);
@@ -1724,9 +1454,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs;
   });
 
-  register('zipWith', description(function () {
-  // `→`
-  }), function _zipWith(f, as, bs) {
+  register('zipWith', function _zipWith(f, as, bs) {
     if (isStream(as) || isStream(bs)) {
       as = Nodash.stream(as);
       bs = Nodash.stream(bs);
@@ -1747,9 +1475,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('zipWith3', description(function () {
-  // `→`
-  }), function _zipWith3(f, as, bs, cs) {
+  register('zipWith3', function _zipWith3(f, as, bs, cs) {
     if (isStream(as) || isStream(bs) || isStream(cs)) {
       as = Nodash.stream(as);
       bs = Nodash.stream(bs);
@@ -1772,9 +1498,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('zipWith4', description(function () {
-  // `→`
-  }), function _zipWith4(f, as, bs, cs, ds) {
+  register('zipWith4', function _zipWith4(f, as, bs, cs, ds) {
     if (isStream(as) || isStream(bs) || isStream(cs) || isStream(ds)) {
       as = Nodash.stream(as);
       bs = Nodash.stream(bs);
@@ -1799,24 +1523,16 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('zip', description(function () {
-  // `[a] → [b] → ([a], [b])`
-  }), composed(function (){return Nodash.zipWith(Nodash.tuple);}));
+  register('zip', composed(function (){return Nodash.zipWith(Nodash.tuple);}));
 
-  register('zip3', description(function () {
-  // `[a] → [b] → [c] → ([a], [b], [c])`
-  }), composed(function (){return Nodash.zipWith3(Nodash.tuple3);}));
+  register('zip3', composed(function (){return Nodash.zipWith3(Nodash.tuple3);}));
 
-  register('zip4', description(function () {
-  // `[a] → [b] → [c] → [d] → ([a], [b], [c], [d])`
-  }), composed(function (){return Nodash.zipWith4(Nodash.tuple4);}));
+  register('zip4', composed(function (){return Nodash.zipWith4(Nodash.tuple4);}));
 
   
   // further from Data.List
 
-  register('intersperse', description(function () {
-  // `a → [a] → [a]`
-  }), function _intersperse(x, xs) {
+  register('intersperse', function _intersperse(x, xs) {
     if (xs.length === 0) {
       return [];
     }
@@ -1828,15 +1544,11 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return z;
   });
 
-  register('intercalate', description(function () {
-  // `[a] → [a] → [a]`
-  }), function _intercalate(x, xs) {
+  register('intercalate', function _intercalate(x, xs) {
     return Nodash.concat(Nodash.intersperse(x, xs));
   });
 
-  register('transpose', description(function () {
-  // `[[a]] → [[a]]`
-  }), function _transpose(xss) {
+  register('transpose', function _transpose(xss) {
     if (!isArray(xss)) {
       var zss = {};
       var ks = keys(xss);
@@ -1890,25 +1602,15 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 //    register('intersectBy', function () {
 //    });
 
-  register('heads', description(function () {
-  // `[[a]] → [a]`
-  }), composed(function (){return Nodash.map(Nodash.head);}));
+  register('heads', composed(function (){return Nodash.map(Nodash.head);}));
 
-  register('lasts', description(function () {
-  // `[[a]] → [a]`
-  }), composed(function (){return Nodash.map(Nodash.lasts);}));
+  register('lasts', composed(function (){return Nodash.map(Nodash.lasts);}));
 
-  register('inits', description(function () {
-  // `[[a]] → [[a]]`
-  }), composed(function (){return Nodash.map(Nodash.inits);}));
+  register('inits', composed(function (){return Nodash.map(Nodash.inits);}));
 
-  register('tails', description(function () {
-  // `[[a]] → [[a]]`
-  }), composed(function (){return Nodash.map(Nodash.tails);}));
+  register('tails', composed(function (){return Nodash.map(Nodash.tails);}));
 
-  register('isPrefixOf', description(function () {
-  // `[a] → [a] → Bool`
-  }), function _isPrefixOf(prefix, string) {
+  register('isPrefixOf', function _isPrefixOf(prefix, string) {
     if (isStream(prefix)) {
       prefix = Nodash.consume(prefix);
     }
@@ -1928,9 +1630,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return true;
   });
 
-  register('isSuffixOf', description(function () {
-  // `[a] → [a] → Bool`
-  }), function _isSuffixOf(suffix, string) {
+  register('isSuffixOf', function _isSuffixOf(suffix, string) {
     if (isStream(suffix)) {
       suffix = Nodash.consume(suffix);
     }
@@ -1945,17 +1645,13 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return true;
   });
 
-  register('isInfixOf', description(function () {
-  // `[a] → [a] → Bool`
-  }), function _isInfixOf(infix, string) {
+  register('isInfixOf', function _isInfixOf(infix, string) {
       return indexOf(infix, string) >= 0;
   });
 
   register('indexOf', indexOf);
 
-  register('find', description(function () {
-  // `→`
-  }), function _find(p, xs) {
+  register('find', function _find(p, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (p(xs[i])) {
         return xs[i];
@@ -1964,9 +1660,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return null;
   });
 
-  register('partition', description(function () {
-  // `→`
-  }), function _partition(p, xs) {
+  register('partition', function _partition(p, xs) {
     var as = [];
     var bs = [];
     for (var i = 0; i < xs.length; i++) {
@@ -1978,9 +1672,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return [ as, bs ];
   });
 
-  register('findIndex', description(function () {
-  // `→`
-  }), function _elemIndex(p, xs) {
+  register('findIndex', function _elemIndex(p, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (p(xs[i])) {
         return i;
@@ -1989,9 +1681,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return null;
   });
 
-  register('findIndices', description(function () {
-  // `→`
-  }), function _elemIndex(p, xs) {
+  register('findIndices', function _elemIndex(p, xs) {
     var zs = [];
     for (var i = 0; i < xs.length; i++) {
       if (p(xs[i])) {
@@ -2001,21 +1691,15 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
   
-  register('elemIndex', description(function () {
-  // `→`
-  }), function _elemIndex(x, xs) {
+  register('elemIndex', function _elemIndex(x, xs) {
     return Nodash.findIndex(Nodash.eq(x), xs);
   });
 
-  register('elemIndices', description(function () {
-  // `→`
-  }), function _elemIndex(x, xs) {
+  register('elemIndices', function _elemIndex(x, xs) {
     return Nodash.findIndices(Nodash.eq(x), xs);
   });
 
-  register('nub', description(function () {
-  // `[a] → [a]`
-  }), function _nub(xs) {
+  register('nub', function _nub(xs) {
     var set = new Set();
     var zs = [];
     for (var i = 0; i < xs.length; i++) {
@@ -2027,9 +1711,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('\\\\', 'difference', description(function () {
-  // `[a] → [a] → [a]`
-  }), function _difference(xs, ys) {
+  register('\\\\', 'difference', function _difference(xs, ys) {
     var set = new Set();
     var i;
     for (i = 0; i < ys.length; i++) {
@@ -2044,9 +1726,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return isString(xs) ? listToString(zs) : zs;
   });
 
-  register('union', description(function () {
-  // `[a] → [a] → [a]`
-  }), function _union(xs, ys) {
+  register('union', function _union(xs, ys) {
     var set = new Set();
     var zs = [];
     var i;
@@ -2062,9 +1742,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('intersect', description(function () {
-  // `[a] → [a] → [a]`
-  }), function _intersect(xs, ys) {
+  register('intersect', function _intersect(xs, ys) {
     var set = new Set();
     var zs = [];
     var i;
@@ -2079,9 +1757,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return zs;
   });
 
-  register('sort', description(function () {
-  // `[a] → [a]`
-  }), function _sort(xs) {
+  register('sort', function _sort(xs) {
     checkFinite(xs);
     if (xs.length <= 1) {
       return xs;
@@ -2097,9 +1773,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return isString(xs) ? zs.join('') : zs;
   });
 
-  register('deleteBy', description(function () {
-  // `→`
-  }), function _deleteBy(p, x, xs) {
+  register('deleteBy', function _deleteBy(p, x, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (p(x, xs[i])) {
         return Nodash.append(xs.slice(0,i), xs.slice(i+1));
@@ -2108,9 +1782,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs;
   });
 
-  register('delete_', 'delete', description(function () {
-  // `→`
-  }), function _delete(x, xs) {
+  register('delete_', 'delete', function _delete(x, xs) {
     var i = xs.indexOf(x);
     if (i >= 0) {
       return Nodash.append(xs.slice(0,i), xs.slice(i+1));
@@ -2118,9 +1790,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs;
   });
 
-  register('insertBy', description(function () {
-  // `→`
-  }), function _insertBy(f, x, xs) {
+  register('insertBy', function _insertBy(f, x, xs) {
     for (var i = 0; i < xs.length; i++) {
       if (f(x, xs[i]) <= 0) {
         return Nodash.concat([xs.slice(0,i), x, xs.slice(i)]);
@@ -2129,13 +1799,9 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return Nodash.append(xs, x);
   });
 
-  register('insert', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.insertBy(Nodash.compare);}));
+  register('insert', composed(function (){return Nodash.insertBy(Nodash.compare);}));
 
-  register('groupBy', description(function () {
-  // `→`
-  }), function _groupBy(p, xs) {
+  register('groupBy', function _groupBy(p, xs) {
     if (xs.length === 0) {
       return [];
     }
@@ -2155,13 +1821,9 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return isString(xs) ? Nodash.map(listToString, zs) : zs;
   });
 
-  register('group', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.groupBy(Nodash.eq);}));
+  register('group', composed(function (){return Nodash.groupBy(Nodash.eq);}));
 
-  register('sortBy', description(function () {
-  // `→`
-  }), function _sortBy(fn, xs) {
+  register('sortBy', function _sortBy(fn, xs) {
     if (isStream(xs)) {
       checkFinite(xs);
       xs = Nodash.consume(xs);
@@ -2175,9 +1837,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return yesItsAString ? zs.join('') : zs;
   });
 
-  register('maximumBy', description(function () {
-  // `→`
-  }), function _maximumBy(f, xs) {
+  register('maximumBy', function _maximumBy(f, xs) {
     return Nodash.foldl1(function (a, b) {
       if (f(a, b) > 0) {
         return a;
@@ -2186,9 +1846,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     }, xs);
   });
 
-  register('minimumBy', description(function () {
-  // `→`
-  }), function _minimumBy(f, xs) {
+  register('minimumBy', function _minimumBy(f, xs) {
     return Nodash.foldl1(function (a, b) {
       if (f(a, b) < 0) {
         return a;
@@ -2202,39 +1860,29 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   group('Maybe');
 
-  register('maybe', description(function () {
-  // `b → (a → b) Maybe a → b`
-  }), function _maybe(def, fun, maybe) {
+  register('maybe', function _maybe(def, fun, maybe) {
     if (maybe === undefined || maybe === null) {
       return def;
     }
     return fun(maybe);
   });
 
-  register('isJust', description(function () {
-  // `Maybe a → Bool`
-  }), function _isJust(value) {
+  register('isJust', function _isJust(value) {
     return value !== undefined && value !== null;
   });
 
-  register('isNothing', description(function () {
-  // `Maybe a → Bool`
-  }), function _isNothing(value) {
+  register('isNothing', function _isNothing(value) {
     return value === undefined || value === null;
   });
 
-  register('fromMaybe', description(function () {
-  // `a → Maybe a → a`
-  }), function _fromMaybe(def, maybe) {
+  register('fromMaybe', function _fromMaybe(def, maybe) {
     if (maybe === undefined || maybe === null) {
       return def;
     }
     return maybe;
   });
 
-  register('listToMaybe', description(function () {
-  // `→`
-  }), function _listToMaybe(xs) {
+  register('listToMaybe', function _listToMaybe(xs) {
     if (isStream(xs)) {
       var r = xs();
       return r === eos ? null : r;
@@ -2242,31 +1890,23 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return xs[0];
   });
 
-  register('maybeToList', description(function () {
-  // `→`
-  }), function _maybeToList(maybe) {
+  register('maybeToList', function _maybeToList(maybe) {
     if (maybe === undefined || maybe === null) {
       return [];
     }
     return [maybe];
   });
 
-  register('catMaybes', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.filter(Nodash.isJust);}));
+  register('catMaybes', composed(function (){return Nodash.filter(Nodash.isJust);}));
 
-  register('mapMaybe', description(function () {
-  // `→`
-  }), composed(function (){return Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map);}));
+  register('mapMaybe', composed(function (){return Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map);}));
 
 
   // ## Either
 
   group('Either');
 
-  register('either', description(function () {
-  // `(a → c) → (b → c) → Either a b → c`
-  }), function _either(afun, bfun, either) {
+  register('either', function _either(afun, bfun, either) {
     var left = either.left || either[0];
     if (left) {
       return afun(left);
@@ -2278,67 +1918,49 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return null;
   });
 
-  register('Left', description(function () {
-  // `a → Either a b`
-  }), function _Left(value) {
+  register('Left', function _Left(value) {
     return { left: value };
   });
 
-  register('Right', description(function () {
-  // `b → Either a b`
-  }), function _Right(value) {
+  register('Right', function _Right(value) {
     return { right: value };
   });
 
-  register('isLeft', description(function () {
-  // `Either a b → Bool`
-  }), function _isLeft(val) {
+  register('isLeft', function _isLeft(val) {
     return val.left !== undefined ||
       (val[0] !== undefined && val[0] !== null);
   });
 
-  register('isRight', description(function () {
-  // `Either a b → Bool`
-  }), function _isRight(val) {
+  register('isRight', function _isRight(val) {
     return (val.right !== undefined || val[1] !== undefined) &&
       !Nodash.isLeft(val);
   });
 
-  register('fromLeft', description(function () {
-  // `Either a b → a`
-  }), function _fromLeft(val) {
+  register('fromLeft', function _fromLeft(val) {
     if (val.left !== undefined) {
       return val.left;
     }
     return val[0];
   });
 
-  register('fromRight', description(function () {
-  // `Either a b → b`
-  }), function _fromRight(val) {
+  register('fromRight', function _fromRight(val) {
     if (val.right !== undefined) {
       return val.right;
     }
     return val[1];
   });
 
-  register('lefts', description(function () {
-  // `[Either a b] → [a]`
-  }), Nodash.compose(
+  register('lefts', Nodash.compose(
               Nodash.map(Nodash.fromLeft),
               Nodash.filter(Nodash.isLeft)
   ));
 
-  register('rights', description(function () {
-  // `[Either a b] → [b]`
-  }), Nodash.compose(
+  register('rights', Nodash.compose(
               Nodash.map(Nodash.fromRight),
               Nodash.filter(Nodash.isRight)
   ));
 
-  register('partitionEithers', description(function () {
-  // `[Either a b] → ([a], [b])`
-  }), function _partitionEithers(xs) {
+  register('partitionEithers', function _partitionEithers(xs) {
     return [ Nodash.lefts(xs), Nodash.rights(xs) ];
   });
 
@@ -2347,13 +1969,9 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
   
   group('Objects');
 
-  register('keys', description(function () {
-  // `Object → [String]`
-  }), keys);
+  register('keys', keys);
 
-  register('clone', description(function () {
-  // `Any → Any`
-  }), function _clone(thing) {
+  register('clone', function _clone(thing) {
     if (typeof thing === 'object') {
       if (thing === null) {
         return null;
@@ -2368,9 +1986,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   group('Tasks');
 
-  register('async', description(function () {
-  // 
-  }), function _async(f) {
+  register('async', function _async(f) {
     return function () {
       try {
         var callback = Nodash.last(arguments);
@@ -2382,9 +1998,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     };
   });
 
-  register('run', description(function () {
-  // `TaskSpec → (Result → ()) → ()`
-  }), function _run(specification) {
+  register('run', function _run(specification) {
     // this function does its own currying.
     if (arguments.length == 2) {
       Nodash.run(specification)(arguments[1]);

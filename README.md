@@ -56,6 +56,7 @@ var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
 Nodash.install(window);
 
 var reverse2 = foldl(flip(cons, []));
+```
 
 License
 -------

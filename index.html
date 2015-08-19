@@ -23,7 +23,7 @@
   <h1>nodash <small>Functional JavaScript Utility Library</small></h1>
 
   <p>
-    Bleeding edge: 0.8.0, as of 2015-08-07.
+    Bleeding edge: 0.8.1, as of 2015-08-19.
   </p>
 </div>
 
@@ -50,16 +50,25 @@ and it can cope with <em>infinite streams</em>.</p>
 <h2 id="usage">Usage</h2>
 <p>A port of the Haskell Prelude to JavaScript/NodeJS.</p>
 <pre><code>npm install --save nodash
-</code></pre><pre><code class="lang-JavaScript">// install it globally
-require(&#39;nodash&#39;).install(GLOBAL);
+</code></pre><p>Usage in Node, installed in <code>GLOBAL</code> (usable without prefix):</p>
+<pre><code class="lang-JavaScript">require(&#39;nodash&#39;).install(GLOBAL);
 
 var reverse = foldl(flip(cons), []);
-
-// have it in a variable P
-var P = require(&#39;nodash&#39;);
+</code></pre>
+<p>Usage in Node:</p>
+<pre><code class="lang-JavaScript">var P = require(&#39;nodash&#39;);
 
 var reverse = P.foldl(P.flip(P.cons), []);
 </code></pre>
+<p>Usage in the browser:</p>
+<p>```JavaScript</p>
+<p><script src="nodash.js"></script></p>
+<p><script>
+// nodash is available in window.Nodash
+var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);</p>
+<p>// you can use <code>Nodash.install()</code> like you would in node
+Nodash.install(window);</p>
+<p>var reverse2 = foldl(flip(cons, []));</p>
 <h2 id="license">License</h2>
 <pre><code>Copyright (c) <span class="hljs-number">2015</span> Julian Fleischer
 
@@ -117,11 +126,11 @@ IN THE SOFTWARE.
         <ul class="list-unstyled small" style="line-height: 1.8em;">
             <li><a href="nodash.min.js">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                nodash.min.js (20.5 kB)
+                nodash.min.js (20.54 kB)
             </a></li>
             <li><a href="nodash.min.js.gz">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                nodash.min.js.gz (6.32 kB)
+                nodash.min.js.gz (6.34 kB)
             </a></li>
             <li><a href="nodash.min.js.map">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>

@@ -17,16 +17,25 @@ and it can cope with <em>infinite streams</em>.</p>
 <h2 id="usage">Usage</h2>
 <p>A port of the Haskell Prelude to JavaScript/NodeJS.</p>
 <pre><code>npm install --save nodash
-</code></pre><pre><code class="lang-JavaScript">// install it globally
-require(&#39;nodash&#39;).install(GLOBAL);
+</code></pre><p>Usage in Node, installed in <code>GLOBAL</code> (usable without prefix):</p>
+<pre><code class="lang-JavaScript">require(&#39;nodash&#39;).install(GLOBAL);
 
 var reverse = foldl(flip(cons), []);
-
-// have it in a variable P
-var P = require(&#39;nodash&#39;);
+</code></pre>
+<p>Usage in Node:</p>
+<pre><code class="lang-JavaScript">var P = require(&#39;nodash&#39;);
 
 var reverse = P.foldl(P.flip(P.cons), []);
 </code></pre>
+<p>Usage in the browser:</p>
+<p>```JavaScript</p>
+<p><script src="nodash.js"></script></p>
+<p><script>
+// nodash is available in window.Nodash
+var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);</p>
+<p>// you can use <code>Nodash.install()</code> like you would in node
+Nodash.install(window);</p>
+<p>var reverse2 = foldl(flip(cons, []));</p>
 <h2 id="license">License</h2>
 <pre><code>Copyright (c) <span class="hljs-number">2015</span> Julian Fleischer
 

@@ -61,14 +61,16 @@ var reverse = foldl(flip(cons), []);
 var reverse = P.foldl(P.flip(P.cons), []);
 </code></pre>
 <p>Usage in the browser:</p>
-<p>```JavaScript</p>
-<p><script src="nodash.js"></script></p>
-<p><script>
+<pre><code class="lang-JavaScript">&lt;script src=&quot;nodash.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
 // nodash is available in window.Nodash
-var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);</p>
-<p>// you can use <code>Nodash.install()</code> like you would in node
-Nodash.install(window);</p>
-<p>var reverse2 = foldl(flip(cons, []));</p>
+var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
+
+// you can use `Nodash.install()` like you would in node
+Nodash.install(window);
+
+var reverse2 = foldl(flip(cons, []));
+</code></pre>
 <h2 id="license">License</h2>
 <pre><code>Copyright (c) <span class="hljs-number">2015</span> Julian Fleischer
 

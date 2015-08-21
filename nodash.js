@@ -10,19 +10,20 @@ var NativeMath   = Math;
 var NativeArray  = Array;
 var NativeObject = Object;
 
-function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined) {
+//function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined) {
+function makeNodash(options, undefined) {
   "use strict";
+
+  options = options || {};
+
+  // This is the object the nodash functions will be attached to.
+  var Nodash = {};
 
   // Use either the supplied objects from the arguments,
   // or the references saved above.
-  Math   = Math   || NativeMath;
-  Array  = Array  || NativeArray;
-  Object = Object || NativeObject;
-
-  // This is the object the nodash functions will be attached to.
-  // If none is given, just use a new empty object (this is the
-  // object which will be returned eventually).
-  Nodash = Nodash || {};
+  var Math   = options.Math   || NativeMath;
+  var Array  = options.Array  || NativeArray;
+  var Object = options.Object || NativeObject;
 
   function showEndOfStream() {
     return "end of stream";
@@ -42,8 +43,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     return f;
   }
 
-  function isStream(x)   { return isFunction(x) && x.__stream__ === stream; }
-
+  function isStream(x) { return isFunction(x) && x.__stream__ === stream; }
 
   function mkInfinite(f) {
     f = mkStream(f);
@@ -90,7 +90,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
   // with oddities in IE 8 (the "don't enum bug").
   var keys = Object.keys || (function() {
     var hasOwnProperty = NativeObject.prototype.hasOwnProperty,
-        hasDontEnumBug = !(refObj || { toString: null }).propertyIsEnumerable('toString'),
+        hasDontEnumBug = !(options.refObj || { toString: null }).propertyIsEnumerable('toString'),
         dontEnums = [
           'toString',
           'toLocaleString',
@@ -125,7 +125,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
   // there is no native set implementation) a drop-in replacement.
   // It reproduces only the actually used functionality, which is
   // `add` and `has`. It uses the keys of an object to simulate the Set.
-  var Set = (!dontUseNatives && NativeSet) || (function () {
+  var Set = (!options.dontUseNatives && NativeSet) || (function () {
     
     var Set = function () {
       this.xs = {};
@@ -145,7 +145,7 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
 
   // A function to postpone an action on the event queue
   var trampoline = function (f) { setTimeout(f, 0); };
-  if (!dontUseNatives && typeof(setImmediate) === 'function') {
+  if (!options.dontUseNatives && typeof(setImmediate) === 'function') {
     trampoline = setImmediate;
   }
 
@@ -768,47 +768,6 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
   register('even', function _even(x) { return (x % 2) === 0; });
 
   register('odd', function _odd(x) { return (x % 2) !== 0; });
-
-
-  group('Control flow');
-
-  register('until', function _until(p, f, v) {
-    while (!p(v)) {
-      v = f(v);
-    }
-    return v;
-  });
-
-  register('pipe', function _pipe() {
-    var functions, intermediateResult, callback;
-    var error = null;
-    if (isArray(arguments[0])) {
-      functions = arguments[0];
-      callback = arguments[1];
-    } else {
-      functions = arguments;
-    }
-    if (functions.length > 0) {
-      if (isFunction(functions[0])) {
-        intermediateResult = functions[0]();
-      } else {
-        intermediateResult = functions[0];
-      }
-      for (var i = 1; i < functions.length; i += 1) {
-        try {
-          intermediateResult = functions[i](intermediateResult);
-        } catch (err) {
-          error = err;
-        }
-      }
-    }
-    if (isFunction(callback)) {
-      callback(error, intermediateResult);
-    } else if (error) {
-      throw error;
-    }
-    return intermediateResult;
-  });
 
 
   group('Streams');
@@ -1971,9 +1930,9 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
   });
 
 
-  // ## Tasks
+  // ## Control
 
-  group('Tasks');
+  group('Control');
 
   register('async', function _async(f) {
     return function () {
@@ -2212,21 +2171,76 @@ function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined)
     };
   });
 
+  register('until', function _until(p, f, v) {
+    while (!p(v)) {
+      v = f(v);
+    }
+    return v;
+  });
+
+  register('pipe', function _pipe() {
+    var functions, intermediateResult, callback;
+    var error = null;
+    if (isArray(arguments[0])) {
+      functions = arguments[0];
+      callback = arguments[1];
+    } else {
+      functions = arguments;
+    }
+    if (functions.length > 0) {
+      if (isFunction(functions[0])) {
+        intermediateResult = functions[0]();
+      } else {
+        intermediateResult = functions[0];
+      }
+      for (var i = 1; i < functions.length; i += 1) {
+        try {
+          intermediateResult = functions[i](intermediateResult);
+        } catch (err) {
+          error = err;
+        }
+      }
+    }
+    if (isFunction(callback)) {
+      callback(error, intermediateResult);
+    } else if (error) {
+      throw error;
+    }
+    return intermediateResult;
+  });
+
+
+  group('Nodash');
+
+  register('install', function _install() {
+    var mountpoint = arguments[0];
+    var options = arguments[1];
+    var nodashObject = Nodash;
+    if (options) {
+      nodashObject = makeNodash(options);
+    }
+    if (!mountpoint) {
+      return nodashObject;
+    }
+    Nodash.each(function (func, name) {
+      if (isFunction(func)) {
+        mountpoint[name] = func;
+      }
+    }, nodashObject);
+    return mountpoint;
+  });
 
   return Nodash;
 }
 
-var P = install({
-  install: install
-});
+var Nodash = makeNodash();
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = P;
+  module.exports = Nodash;
 } else if (typeof define === 'function' && define.amd) {
-  define(P.idf(P));
+  define(Nodash.idf(Nodash));
 } else {
-  window.Prelude = P;
-  window.Nodash = P;
+  window.Nodash = Nodash;
 }
 
 }());

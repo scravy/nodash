@@ -4,7 +4,7 @@ var assert = require('assert');
 describe('Tasks', function () {
 
     it('run (waterfall)', function (done) {
-        var P = require('../nodash').install({}, null, null, null, true);
+        var P = require('../nodash').install({}, { dontUseNatives: true });
         var invocations = 0;
         P.run([
             function (callback) {
@@ -34,7 +34,7 @@ describe('Tasks', function () {
     });
 
     it('run', function (done) {
-        var P = require('../nodash').install({}, null, null, null, true);
+        var P = require('../nodash').install({}, { dontUseNatives: true });
         var invocations = 0;
         P.run({
             eins: function (callback) {
@@ -91,7 +91,7 @@ describe('Tasks', function () {
     });
 
     it('run /w exception + .runOnError', function (done) {
-        var P = require('../nodash').install();
+        var P = require('../nodash');
         var invocations = 0;
         P.run({
             eins: {
@@ -124,7 +124,7 @@ describe('Tasks', function () {
     });
 
     it('run /w exception + .runOnError (function identity)', function (done) {
-        var P = require('../nodash').install();
+        var P = require('../nodash');
         var invocations = 0;
         P.run({
             eins: {
@@ -157,7 +157,7 @@ describe('Tasks', function () {
     });
 
     it('run /w exception + .runOnError (return missing)', function (done) {
-        var P = require('../nodash').install();
+        var P = require('../nodash');
         var invocations = 0;
         P.run({
             eins: {
@@ -190,7 +190,7 @@ describe('Tasks', function () {
     });
 
     it('run /w exception + .runOnError (terse syntax)', function (done) {
-        var P = require('../nodash').install();
+        var P = require('../nodash');
         var invocations = 0;
         P.run({
             eins: {

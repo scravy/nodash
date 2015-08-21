@@ -28,12 +28,28 @@ A port of the Haskell Prelude to JavaScript/NodeJS.
 
     npm install --save nodash
 
-Usage in Node, installed in `GLOBAL` (usable without prefix):
+Usage in Node, installed in `GLOBAL`:
 
 ```JavaScript
 require('nodash').install(GLOBAL);
 
 var reverse = foldl(flip(cons), []);
+```
+
+Usage in Node, installed in `GLOBAL` but prefixed:
+
+```JavaScript
+require('nodash').install([ '_', GLOBAL ]);
+
+var reverse = _foldl(_flip(_cons), []);
+```
+
+Usage in Node, installed in `GLOBAL` but prefixed + postfixed:
+
+```JavaScript
+require('nodash').install([ '__', GLOBAL, '__' ]);
+
+var reverse = __foldl__(__flip__(__cons__), []);
 ```
 
 Usage in Node:
@@ -56,6 +72,11 @@ var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
 Nodash.install(window);
 
 var reverse2 = foldl(flip(cons, []));
+
+// also with prefix/postfix (a postfix only in the line below)
+Nodash.install([ window, '$' ]);
+
+var reverse3 = foldl$(flip$(cons$, []));
 ```
 
 License

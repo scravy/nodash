@@ -2210,22 +2210,30 @@ function makeNodash(options, undefined) {
 
   group('Nodash');
 
+  register('isNodash', isNodash);
+
   register('install', function _install(mountpoint) {
     var options = arguments[1];
     var nodashObject = Nodash;
     var prefix = '';
+    var postfix = '';
     if (options) {
       nodashObject = makeNodash(options);
     }
     if (isArray(mountpoint)) {
-      prefix = mountpoint[0];
-      mountpoint = mountpoint[1] || {};
+      if (isString(mountpoint[0])) {
+        prefix = NativeArray.prototype.shift.call(mountpoint);
+      }
+      if (isString(mountpoint[1])) {
+        postfix = mountpoint[1];
+      }
+      mountpoint = mountpoint[0] || {};
     }
     Nodash.each(function (func, name) {
       if (!isNodash(func)) {
         return;
       }
-      mountpoint[prefix + name] = func;
+      mountpoint[prefix + name + postfix] = func;
     }, nodashObject);
     return mountpoint;
   });

@@ -17,10 +17,20 @@ and it can cope with <em>infinite streams</em>.</p>
 <h2 id="usage">Usage</h2>
 <p>A port of the Haskell Prelude to JavaScript/NodeJS.</p>
 <pre><code>npm install --save nodash
-</code></pre><p>Usage in Node, installed in <code>GLOBAL</code> (usable without prefix):</p>
+</code></pre><p>Usage in Node, installed in <code>GLOBAL</code>:</p>
 <pre><code class="lang-JavaScript">require(&#39;nodash&#39;).install(GLOBAL);
 
 var reverse = foldl(flip(cons), []);
+</code></pre>
+<p>Usage in Node, installed in <code>GLOBAL</code> but prefixed:</p>
+<pre><code class="lang-JavaScript">require(&#39;nodash&#39;).install([ &#39;$&#39;, GLOBAL ]);
+
+var reverse = $foldl($flip($cons), []);
+</code></pre>
+<p>Usage in Node, installed in <code>GLOBAL</code> but prefixed + postfixed:</p>
+<pre><code class="lang-JavaScript">require(&#39;nodash&#39;).install([ &#39;__&#39;, GLOBAL, &#39;__&#39; ]);
+
+var reverse = __foldl__(__flip__(__cons__), []);
 </code></pre>
 <p>Usage in Node:</p>
 <pre><code class="lang-JavaScript">var P = require(&#39;nodash&#39;);
@@ -37,6 +47,11 @@ var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
 Nodash.install(window);
 
 var reverse2 = foldl(flip(cons, []));
+
+// also with prefix/postfix (a postfix only in the line below)
+Nodash.install([ window, &#39;_&#39; ]);
+
+var reverse3 = foldl_(flip_(cons_, []));
 </code></pre>
 <h2 id="license">License</h2>
 <pre><code>Copyright (c) <span class="hljs-number">2015</span> Julian Fleischer

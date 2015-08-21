@@ -39,9 +39,9 @@ var reverse = foldl(flip(cons), []);
 Usage in Node, installed in `GLOBAL` but prefixed:
 
 ```JavaScript
-require('nodash').install([ '_', GLOBAL ]);
+require('nodash').install([ '$', GLOBAL ]);
 
-var reverse = _foldl(_flip(_cons), []);
+var reverse = $foldl($flip($cons), []);
 ```
 
 Usage in Node, installed in `GLOBAL` but prefixed + postfixed:
@@ -74,9 +74,9 @@ Nodash.install(window);
 var reverse2 = foldl(flip(cons, []));
 
 // also with prefix/postfix (a postfix only in the line below)
-Nodash.install([ window, '$' ]);
+Nodash.install([ window, '_' ]);
 
-var reverse3 = foldl$(flip$(cons$, []));
+var reverse3 = foldl_(flip_(cons_, []));
 ```
 
 License

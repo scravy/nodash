@@ -84,6 +84,7 @@ function makeNodash(options, undefined) {
   function isFunction(x) { return typeof x === 'function'; }
   function isString(x)   { return typeof x === 'string'; }
   function isNumber(x)   { return typeof x === 'number'; }
+  function isNodash(f)   { return isFunction(f) && f.__isNodash; }
 
   // Enumerates the keys of an object. If `Object.keys` is not availabe,
   // fall back to a polyfill. The polyfill is so hilariously big to cope
@@ -324,6 +325,7 @@ function makeNodash(options, undefined) {
   // Turns an ordinary function into a function which can be partially applied.
   // The maximum arity that this can deal with is 8 (see above).
   Nodash.curried = function (fn) { return funcs[fn.length](fn); };
+  Nodash.curried.__isNodash = true;
 
   /* @ifdef WITH_ONLINE_HELP */
   Nodash.metadata = [];
@@ -366,14 +368,10 @@ function makeNodash(options, undefined) {
       case 'function':
         f = arg;
         break;
-      /* @ifdef WITH_ONLINE_HELP */
-      case 'object':
-        metadata.description = arg.description;
-        break;
-      /* @endif */
       }
     }
     fCurried = Nodash.curried(f.composed ? f() : f);
+    fCurried.__isNodash = true;
     for (i = 0; i < aliases.length; i++) {
       Nodash[aliases[i]] = fCurried;
     }
@@ -2212,20 +2210,22 @@ function makeNodash(options, undefined) {
 
   group('Nodash');
 
-  register('install', function _install() {
-    var mountpoint = arguments[0];
+  register('install', function _install(mountpoint) {
     var options = arguments[1];
     var nodashObject = Nodash;
+    var prefix = '';
     if (options) {
       nodashObject = makeNodash(options);
     }
-    if (!mountpoint) {
-      return nodashObject;
+    if (isArray(mountpoint)) {
+      prefix = mountpoint[0];
+      mountpoint = mountpoint[1] || {};
     }
     Nodash.each(function (func, name) {
-      if (isFunction(func)) {
-        mountpoint[name] = func;
+      if (!isNodash(func)) {
+        return;
       }
+      mountpoint[prefix + name] = func;
     }, nodashObject);
     return mountpoint;
   });

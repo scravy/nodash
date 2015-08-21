@@ -1,4 +1,4 @@
-require('../nodash').install(GLOBAL);
+require('../nodash').install([ '$', GLOBAL ]);
 var assert = require('assert');
 
 describe('Tasks', function () {
@@ -63,7 +63,7 @@ describe('Tasks', function () {
     });
 
     it('run /w exception', function (done) {
-        var P = require('../nodash').install();
+        var P = require('../nodash');
         var invocations = 0;
         P.run({
             eins: function (callback) {
@@ -222,7 +222,7 @@ describe('Tasks', function () {
     });
 
     it('run /w async', function (done) {
-        run({
+        $run({
             eins: function (callback) {
                 callback(2);
             },
@@ -234,7 +234,7 @@ describe('Tasks', function () {
     });
 
     it('run /w async + exception', function (done) {
-        run({
+        $run({
             eins: function (callback) {
                 callback(2);
             },
@@ -246,7 +246,7 @@ describe('Tasks', function () {
     });
    
     it('run /w async + error', function (done) {
-        run({
+        $run({
             eins: function (callback) {
                 callback(2);
             },
@@ -260,7 +260,7 @@ describe('Tasks', function () {
     });
      
     it('run, error: unmet dependencies', function (done) {
-        run({
+        $run({
             eins: {
               func: function (callback) {
                 callback(2);
@@ -277,8 +277,7 @@ describe('Tasks', function () {
     });
 
     it('run, error: cycle detected', function (done) {
-        
-        run({
+        $run({
             zero: [ async(constant(2)) ],
 
             one: [ 'two', 'zero', async(id) ],
@@ -296,8 +295,7 @@ describe('Tasks', function () {
     });
 
     it('run, error: no initial task', function (done) {
-        
-        run({
+        $run({
             zero: [ 'three', async(constant(2)) ],
 
             one: [ 'two', 'zero', async(id) ],

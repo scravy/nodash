@@ -426,6 +426,10 @@ function makeNodash(options, undefined) {
     return f(x);
   });
 
+  register('invoke', function _invoke(f) {
+    return f();
+  });
+
   register('.', 'compose', function _compose(f, g, x) {
     return f(g(x));
   });
@@ -957,6 +961,21 @@ function makeNodash(options, undefined) {
   });
 
   register('map', function _map(f, xs) {
+    var i, ys;
+    if (isArray(xs)) {
+      ys = [];
+      for (i = 0; i < xs.length; i++) {
+        ys.push(f(xs[i]));
+      }
+      return ys;
+    }
+    if (isString(xs)) {
+      ys = [];
+      for (i = 0; i < xs.length; i++) {
+        ys.push(f(xs[i]));
+      }
+      return listToString(ys);
+    }
     if (isStream(xs)) {
       return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
         var x = xs();
@@ -965,14 +984,6 @@ function makeNodash(options, undefined) {
         }
         return f(x);
       });
-    }
-    var ys;
-    if (isArray(xs) || isString(xs)) {
-      ys = [];
-      for (var i = 0; i < xs.length; i++) {
-        ys.push(f(xs[i]));
-      }
-      return isString(xs) ? listToString(ys) : ys;
     }
     ys = {};
     var ks = keys(xs);
@@ -1109,6 +1120,9 @@ function makeNodash(options, undefined) {
       }
       x = xs();
       return x === eos ? undefined : x;
+    }
+    if (xs === undefined) {
+      return xs;
     }
     return xs[ix];
   });
@@ -1916,6 +1930,14 @@ function makeNodash(options, undefined) {
   group('Objects');
 
   register('keys', keys);
+
+  register('values', function _values(object) {
+    var values = [];
+    each(function (value) {
+      values.push(value);
+    }, object);
+    return values;
+  });
 
   register('clone', function _clone(thing) {
     if (typeof thing === 'object') {

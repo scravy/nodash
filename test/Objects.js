@@ -26,4 +26,7 @@ describe('Objects', function () {
         });
     });
 
+    it('values', function () {
+        assert.deepEqual([ 1, 1, 1], values({ a: 1, b: 1, c: 1 }));
+    });
 });

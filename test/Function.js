@@ -24,5 +24,10 @@ describe('Function', function () {
         assert.strictEqual(210, compose(plus(10), times(10))(20));
         assert.strictEqual(300, compose(times(10), plus(10))(20));
     });
+
+    it('invoke', function () {
+        var value = Math.random();
+        assert.strictEqual(value, invoke(idf(value)));
+    });
 });
 

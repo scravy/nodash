@@ -48,9 +48,9 @@
     "highlight.js": "^8.6.0",
     "less-plugin-autoprefix": "^1.4.2",
     "less-plugin-clean-css": "^1.5.0",
-    "lodash": "^3.7.0",
-    "lodash-cli": "^3.7.0",
+    "lodash": "^3.10.1",
     "marked": "^0.3.3",
+    "sprintf": "^0.1.5",
     "underscore": "^1.8.3"
   }
 }

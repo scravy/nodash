@@ -15,13 +15,6 @@ benchmark.timeSuite({
   median: true
 }, {
 
-  something: idf(3),
-
-  group: {
-    something: idf(5),
-    anything: function () { throw "Exception while executing"; }
-  },
-
   map: {
 
     0: function () { return [ 1, 1, 2, 3, 5, 8, 13 ]; },

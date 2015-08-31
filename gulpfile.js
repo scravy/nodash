@@ -69,7 +69,7 @@ gulp.task('gzip', [ 'minify' ], function (done) {
 });
 
 gulp.task('lint', function (done) {
-  gulp.src([ 'nodash.js', 'test/*.js' ])
+  gulp.src([ 'nodash.js', 'test/*.js', 'benchmark/*.js' ])
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
       .pipe(jshint.reporter('fail'))

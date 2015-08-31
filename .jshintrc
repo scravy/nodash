@@ -1,0 +1,18 @@
+{
+  "predef": [
+    "map",
+    "invoke",
+    "compare",
+    "floor",
+    "each",
+    "isInfixOf",
+    "isFunction",
+    "isObject",
+    "clone",
+    "values",
+    "select",
+    "minimum",
+    "maximum",
+    "run"
+  ]
+}

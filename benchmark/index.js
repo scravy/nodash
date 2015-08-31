@@ -1,5 +1,6 @@
 /* vim: set et sw=2 ts=2: */
-
+/* jshint node: true */
+/* global map */
 "use strict";
 
 var benchmark = require('./benchmark.js');
@@ -7,15 +8,13 @@ var underscore = require('underscore');
 var nodash = require('../nodash.js');
 var lodash = require('lodash');
 
-function plus1(x) { return x + 1; }
-
 benchmark.timeSuite({
   iterations: 100000,
-  delay: 1,
+  delay: 2,
   median: true
 }, {
 
-  map: {
+  'map': {
 
     0: function () { return [ 1, 1, 2, 3, 5, 8, 13 ]; },
     1: function () { return function (x) { return x + 1; }; },
@@ -41,6 +40,51 @@ benchmark.timeSuite({
     },
 
     'nodash (curried)': nodash.map(nodash.plus(1))
+  },
+
+  'map (alternatives)': {
+
+    0: function () { return nodash.plus(1); },
+    1: function () { return [ 1, 1, 2, 3, 5, 8, 13 ]; },
+
+    'for loop': function (f, xs) {
+      var length = xs.length;
+      var result = new Array(length);
+      for (var i = 0; i < length; i += 1) {
+        result[i] = f(xs[i]);
+      }
+      return result;
+    },
+
+    'while loop': function (f, xs) {
+      var length = xs.length;
+      var result = new Array(length);
+      var i = 0;
+      while (++i < length) {
+        result[i] = f(xs[i]);
+      }
+      return result;
+    },
+
+    'array push': function (f, xs) {
+      var result = [];
+      for (var i = 0; i < xs.length; i += 1) {
+        result.push(f(xs[i]));
+      }
+      return result;
+    },
+    
+    'array push + while': function (f, xs) {
+      var result = [];
+      var length = xs.length;
+      var i = 0;
+      while (++i < length) {
+        result.push(f(xs[i]));
+      }
+      return result;
+    }
+
+
   }
 
 }, function (results) {

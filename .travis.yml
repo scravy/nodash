@@ -12,4 +12,5 @@ install:
   - npm install
 script:
   - gulp test
-
+after_success:
+  - node benchmark

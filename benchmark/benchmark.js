@@ -154,7 +154,7 @@ function printResults(results) {
 
     console.log('');
     console.log(chalk.gray(sprintf(
-      "%-17s %8s %8s %8s %8s", group, "MIN", "MAX", "AVG", "MEDIAN")));
+      "%-17s %6s %8s %8s %8s %8s", group, "%", "AVG", "MEDIAN", "MIN", "MAX")));
 
     each(function (result, key) {
       if (result.error) {
@@ -169,8 +169,8 @@ function printResults(results) {
         } else if (result.avg === worst) {
           format = chalk.yellow;
         }
-        console.log(format(sprintf("  %-15s %8d %8d %8d %8d",
-            key, result.min, result.max, result.avg, result.median)));
+        console.log(format(sprintf("  %-15s %6.2f %8d %8d %8d %8d",
+            key, result.avg / best, result.avg, result.median, result.min, result.max)));
       }
     }, results);
 

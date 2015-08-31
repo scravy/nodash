@@ -1,16 +1,15 @@
 /* vim: set et sw=2 ts=2: */
 /* jshint node: true */
-/* global map */
 "use strict";
 
-var benchmark = require('./benchmark.js');
+var benchmark = require('./benchmark');
 var underscore = require('underscore');
 var nodash = require('../nodash.js');
 var lodash = require('lodash');
 
 benchmark.timeSuite({
-  iterations: 100000,
-  delay: 2,
+  iterations: 20000,
+  delay: 1,
   median: true
 }, {
 

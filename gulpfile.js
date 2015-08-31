@@ -30,10 +30,13 @@ sourcemaps = require('gulp-sourcemaps'),
   filesize = require('filesize'),
       gulp = require('gulp');
 
+var LessPluginAutoprefix = require('less-plugin-autoprefix');
+var LessPluginCleanCSS = require('less-plugin-clean-css');
+
 var lessOptions = {
   plugins: [
-//    require('less-plugin-autoprefix'),
-//    require('less-plugin-clean-css')
+    new LessPluginAutoprefix({ browsers: [ "last 2 versions" ]}),
+    new LessPluginCleanCSS({ advanced: true })
   ]
 };
 

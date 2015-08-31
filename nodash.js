@@ -85,6 +85,7 @@ function makeNodash(options, undefined) {
   function isString(x)   { return typeof x === 'string'; }
   function isNumber(x)   { return typeof x === 'number'; }
   function isNodash(f)   { return isFunction(f) && f.__isNodash; }
+  function isNumeric(x)  { return /^[0-9]+$/.test(x); }
 
   // Enumerates the keys of an object. If `Object.keys` is not availabe,
   // fall back to a polyfill. The polyfill is so hilariously big to cope
@@ -402,11 +403,11 @@ function makeNodash(options, undefined) {
   register('isStream', isStream);
   register('isArray', isArray);
   register('isNumber', isNumber);
+  register('isNumeric', isNumeric);
   register('isString', isString);
   register('isInfinite', isInfinite);
   register('isObject', isObject);
 
-  // ## Functions dealing with functions
 
   group('Functions');
 

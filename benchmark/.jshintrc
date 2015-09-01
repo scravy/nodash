@@ -13,6 +13,7 @@
     "select",
     "minimum",
     "maximum",
-    "run"
+    "run",
+    "idf"
   ]
 }

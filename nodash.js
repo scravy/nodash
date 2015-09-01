@@ -9,6 +9,7 @@ var NativeSet    = typeof Set !== 'undefined' && Set;
 var NativeMath   = Math;
 var NativeArray  = Array;
 var NativeObject = Object;
+var NativeString = String;
 
 //function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined) {
 function makeNodash(options, undefined) {
@@ -24,6 +25,7 @@ function makeNodash(options, undefined) {
   var Math   = options.Math   || NativeMath;
   var Array  = options.Array  || NativeArray;
   var Object = options.Object || NativeObject;
+  var String = options.String || NativeString;
 
   function showEndOfStream() {
     return "end of stream";
@@ -403,7 +405,6 @@ function makeNodash(options, undefined) {
   register('isStream', isStream);
   register('isArray', isArray);
   register('isNumber', isNumber);
-  register('isNumeric', isNumeric);
   register('isString', isString);
   register('isInfinite', isInfinite);
   register('isObject', isObject);
@@ -575,12 +576,30 @@ function makeNodash(options, undefined) {
 
   group('Characters');
   
+  register('isNumeric', isNumeric);
+
   register('isDigit', function _isDigit(x) {
     return !!x.match(/[0-9]/);
   });
 
   register('isAsciiLetter', function _isAsciiLetter(x) {
     return !!x.match(/[a-zA-Z]/);
+  });
+
+  register('isUpper', function _isUpper(x) {
+    return x === x.toUpperCase();
+  });
+
+  register('isLower', function _isLower(x) {
+    return x === x.toLowerCase();
+  });
+
+  register('ord', function _ord(x) {
+    return x.charCodeAt(0);
+  });
+
+  register('chr', function _chr(x) {
+    return String.fromCharCode(x);
   });
 
 
@@ -955,10 +974,10 @@ function makeNodash(options, undefined) {
     if (isString(xs)) {
       return xs + ys;
     }
-    var zs = [];
-    [].push.apply(zs, xs);
-    [].push.apply(zs, ys);
-    return zs;
+    if (isArray(xs)) {
+      return [].concat.call(xs, ys);
+    }
+    // type error
   });
 
   register('map', function _map(f, xs) {
@@ -1563,13 +1582,53 @@ function makeNodash(options, undefined) {
 //    register('intersectBy', function () {
 //    });
 
-  register('heads', composed(function (){return Nodash.map(Nodash.head);}));
+  register('inits', function _inits(xs) {
+    var result, current, i, length;
+    if (isArray(xs)) {
+      result = [[]];
+      current = [];
+      length = xs.length;
+      for (i = 0; i < length; i += 1) {
+        current = current.concat(xs[i]);
+        result.push(current);
+      }
+      return result;
+    }
+    if (isString(xs)) {
+      result = [''];
+      current = '';
+      length = xs.length;
+      for (i = 0; i < length; i += 1) {
+        current += xs[i];
+        result.push(current);
+      }
+      return result;
+    }
+    // type error
+  });
 
-  register('lasts', composed(function (){return Nodash.map(Nodash.lasts);}));
-
-  register('inits', composed(function (){return Nodash.map(Nodash.inits);}));
-
-  register('tails', composed(function (){return Nodash.map(Nodash.tails);}));
+  register('tails', function _tails(xs) {
+    var result, current, i;
+    if (isArray(xs)) {
+      result = [[]];
+      current = [];
+      for (i = xs.length - 1; i >= 0; i -= 1) {
+        current = [xs[i]].concat(current);
+        result.unshift(current);
+      }
+      return result;
+    }
+    if (isString(xs)) {
+      result = [''];
+      current = '';
+      for (i = xs.length - 1; i >= 0; i -= 1) {
+        current = xs[i] + current;
+        result.unshift(current);
+      }
+      return result;
+    }
+    // type error
+  });
 
   register('isPrefixOf', function _isPrefixOf(prefix, string) {
     if (isStream(prefix)) {

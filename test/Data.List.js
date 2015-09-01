@@ -4,36 +4,20 @@ var expect = require('chai').expect;
 
 describe('Data.List', function () {
 
-    it('heads', function () {
-
-    });
-
-    it('heads /w string', function () {
-
-    });
-
     it('tails', function () {
-
+        assert.deepEqual([ [1, 2, 3], [2, 3], [3], [] ], tails([1, 2, 3]));
     });
 
     it('tails /w string', function () {
-
+        assert.deepEqual(["hello", "ello", "llo", "lo", "o", ""], tails("hello"));
     });
 
     it('inits', function () {
-
+        assert.deepEqual([ [], [1], [1, 2], [1, 2, 3] ], inits([1, 2, 3]));
     });
 
     it('inits /w string', function () {
-
-    });
-
-    it('lasts', function () {
-
-    });
-
-    it('lasts /w string', function () {
-
+        assert.deepEqual(["", "h", "he", "hel", "hell", "hello"], inits("hello"));
     });
 
     it('partition', function () {

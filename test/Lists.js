@@ -350,5 +350,12 @@ describe('Lists', function () {
         assert.strictEqual(undefined, flip(at)(0, stream([])));
         assert.strictEqual(1, flip(at)(0, stream([ 1 ])));
     });
-});
 
+    it('at /w undefined', function () {
+        assert.strictEqual(undefined, at(undefined, "prop"));
+    });
+    
+    it('select /w path that does not exist', function () {
+        assert.strictEqual(undefined, select("hello.world", {}));
+    });
+});

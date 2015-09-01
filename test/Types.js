@@ -43,4 +43,16 @@ describe('Types', function () {
         assert.strictEqual(false, isArray(null));
     });
 
+    it('isNumeric /w "abc"', function () {
+        assert.strictEqual(false, isNumeric("abc"));
+    });
+    
+    it('isNumeric /w "abc456"', function () {
+        assert.strictEqual(false, isNumeric("abc456"));
+    });
+
+    it('isNumeric /w "789"', function () {
+        assert.strictEqual(true, isNumeric("789"));
+    });
+
 });

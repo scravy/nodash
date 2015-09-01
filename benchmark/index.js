@@ -13,10 +13,58 @@ benchmark.timeSuite({
   median: true
 }, {
 
+  'filter': {
+
+    0: idf(nodash.odd),
+    1: idf([ 1, 1, 3, 4, 7, 19, 4, 20, 8, 3, 22 ]),
+
+    'underscore': function (p, xs) {
+      underscore.filter(xs, p);
+    },
+
+    'lodash': function (p, xs) {
+      lodash.filter(xs, p);
+    },
+
+    'nodash': function (p, xs) {
+      nodash.filter(p, xs);
+    },
+
+    'nodash (curried)': nodash.filter
+
+  },
+
+  'filter (huge set)': {
+
+    0: idf(nodash.odd),
+    1: function () {
+      var array = [];
+      for (var i = 0; i < 10000; i += 1) {
+        array.push(i % 39);
+      }
+      return array;
+    },
+
+    'underscore': function (p, xs) {
+      underscore.filter(xs, p);
+    },
+
+    'lodash': function (p, xs) {
+      lodash.filter(xs, p);
+    },
+
+    'nodash': function (p, xs) {
+      nodash.filter(p, xs);
+    },
+
+    'nodash (curried)': nodash.filter
+
+  },
+
   'map': {
 
-    0: function () { return [ 1, 1, 2, 3, 5, 8, 13 ]; },
-    1: function () { return function (x) { return x + 1; }; },
+    0: idf([ 1, 1, 2, 3, 5, 8, 13 ]),
+    1: idf(function (x) { return x + 1; }),
 
     'underscore': function (xs, plus1) {
       underscore.map(xs, plus1);
@@ -43,8 +91,8 @@ benchmark.timeSuite({
 
   'map (alternatives)': {
 
-    0: function () { return nodash.plus(1); },
-    1: function () { return [ 1, 1, 2, 3, 5, 8, 13 ]; },
+    0: idf(nodash.plus(1)),
+    1: idf([ 1, 1, 2, 3, 5, 8, 13 ]),
 
     'for loop': function (f, xs) {
       var length = xs.length;
@@ -82,7 +130,6 @@ benchmark.timeSuite({
       }
       return result;
     }
-
 
   }
 

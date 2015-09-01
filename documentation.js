@@ -36,13 +36,17 @@ module.exports = function (metadata) {
     
     map(function (m) {
       var name = head(filter(compose(isAsciiLetter, fst), stream(m.aliases)));
+
+      var filename = './doc/' + name + '.md';
+      var description = fs.existsSync(filename) ?
+                    fs.readFileSync(filename, { encoding: 'utf8' }) : '';
       return {
         group: m.group,
         name: name,
         aliases: difference(m.aliases, [name]),
         arity: m.function.length,
         source: highlightjs.highlight('js', formatSource(m)).value,
-        description: marked(m.description || "")
+        description: marked(description)
       };
     }),
 
@@ -50,13 +54,17 @@ module.exports = function (metadata) {
 
     groupBy(on(eq, select("group.name"))),
 
-    map(function (fs) {
-      var group = head(fs).group;
+    map(function (funcs) {
+      var group = head(funcs).group;
+      var filename = './doc/' + group.name + '.md';
+      var description = fs.existsSync(filename) ?
+                    fs.readFileSync(filename, { encoding: 'utf8' }) : '';
+
       return {
         id: filter(isAsciiLetter, group.name),
         name: group.name,
-        primer: marked(group.description || ""),
-        functions: sortBy(on(compare, select("name")), fs)
+        primer: marked(description),
+        functions: sortBy(on(compare, select("name")), funcs)
       };
     })
   

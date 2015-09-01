@@ -61,3 +61,35 @@ v0.7 "Eich"
 
 + Added a lot documentation
 
+v0.8 "Floyd"
+------------
+
++ Tasks! The new `run` function allows you do declare a schedule with
+  dependencies between tasks which is scheduled asynchronously
++ `async` added - turns ordinary functions into asynchronous functions
++ `isObject` added - checks if something is an object but not an array
+   and not `null`
++ renamed `isNull` to `isEmpty`
++ `clone` added to create deep copies of objects
+
+### v0.8.1
+
+Nodash v0.8 would not work in browsers as it references `setImmediate`
+which is only available in NodeJS. This patch fixes that.
+
+### v0.8.2
+
++ `install` completely refactored:
+  + allows for specifying an array as mountpoint with pre- and postfixes
+  which are added to the names of the functions.
+  + shows up in the API doc now.
+
+v0.9 "Gosling"
+--------------
+
++ `invoke` added - `invoke(f)` invokes the function `f` (useful with map etc.)
++ `isNumeric` added - checks if a string is numeric (`/^[0-9]+$/`)
++ `values` added - creates an array from the values of an object
++ Added benchmarks, can be run with `node benchmark`
++ `at` and `select` will return `undefined` now if invoked on `undefined`
+

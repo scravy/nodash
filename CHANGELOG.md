@@ -87,9 +87,16 @@ which is only available in NodeJS. This patch fixes that.
 v0.9 "Gosling"
 --------------
 
-+ `invoke` added - `invoke(f)` invokes the function `f` (useful with map etc.)
-+ `isNumeric` added - checks if a string is numeric (`/^[0-9]+$/`)
-+ `values` added - creates an array from the values of an object
 + Added benchmarks, can be run with `node benchmark`
++ `invoke` added - `invoke(f)` invokes the function `f` (useful with map etc.)
++ `values` added - creates an array from the values of an object
 + `at` and `select` will return `undefined` now if invoked on `undefined`
-
++ `isUpper` added - checks if a string is all upper case
++ `isLower` added - checks if a string is all lower case
++ `isNumeric` added - checks if a string is numeric (`/^[0-9]+$/`)
++ `ord` added - returns the unicode code point for the given character
++ `chr` added - returns the character for the given unicode code point
++ `lasts` and `heads` removed - they were added in a bleary-eyed night
+  and do not make any sense at all
++ `inits` and `lasts` implemented - they were added but implementations
+  were forgotten in that same bleary-eyed night

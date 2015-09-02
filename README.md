@@ -20,7 +20,7 @@ and it can cope with *infinite streams*.
 
 Browse through the
  [apidoc](https://scravy.github.io/nodash/apidoc.html),
- [benchmark](https://github.com/scravy/nodash/tree/master/benchmark/index.js),
+ [benchmark](https://github.com/scravy/nodash/tree/master/benchmark/index.js), or
  [tests](https://github.com/scravy/nodash/tree/master/test) for examples.
 
 
@@ -58,9 +58,9 @@ var reverse = __foldl__(__flip__(__cons__), []);
 Usage in Node:
 
 ```JavaScript
-var P = require('nodash');
+var Nodash = require('nodash');
 
-var reverse = P.foldl(P.flip(P.cons), []);
+var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
 ```
 
 Usage in the browser:

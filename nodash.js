@@ -578,12 +578,10 @@ function makeNodash(options, undefined) {
   
   register('isNumeric', isNumeric);
 
-  register('isDigit', function _isDigit(x) {
-    return !!x.match(/[0-9]/);
-  });
+  register('isDigit', isNumeric);
 
   register('isAsciiLetter', function _isAsciiLetter(x) {
-    return !!x.match(/[a-zA-Z]/);
+    return !!x.match(/^[a-zA-Z]+$/);
   });
 
   register('isUpper', function _isUpper(x) {

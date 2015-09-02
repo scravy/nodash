@@ -862,10 +862,13 @@
 <h3 id="f-all">all <small></small></h2>
 <div class="section">
 <p><code>(a -&gt; Bool) -&gt; [a] -&gt; Bool</code></p>
-<p>Applied to a predicate and a list, all determines if all elements of the list satisfy the predicate. For the result to be True, the list must be finite; False, however, results from a False value for the predicate applied to an element at a finite index of a finite or infinite list.</p>
+<p>Applied to a predicate and a list, all determines if all elements of the list
+satisfy the predicate.</p>
 <p>Example:</p>
 <pre><code>all(even, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) === <span class="hljs-literal">false</span>
 all(lte(<span class="hljs-number">3</span>), [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) === <span class="hljs-literal">true</span>
+</code></pre><p>This function does work with strings too:</p>
+<pre><code>all(isDigit, <span class="hljs-string">"123"</span>) === <span class="hljs-literal">true</span>
 </code></pre>
 <p>Source:</p>
 <pre>
@@ -882,6 +885,11 @@ all(lte(<span class="hljs-number">3</span>), [<span class="hljs-number">1</span>
 
 <h3 id="f-and">and <small></small></h2>
 <div class="section">
+<p><code>[Bool] → Bool</code></p>
+<p>Returns the conjunction of a Boolean list, i.e. it returns <code>true</code> iff all the
+elements in the list evaluate to <code>true</code>.</p>
+<p><em>NOTE:</em> This, the lowercase <code>and</code>, is not the binary boolean operator, which
+is the uppercase <code>AND</code>.</p>
 
 <p>Source:</p>
 <pre>
@@ -891,7 +899,15 @@ foldl(AND, <span class="hljs-literal">true</span>)
 
 <h3 id="f-any">any <small></small></h2>
 <div class="section">
-
+<p><code>(a -&gt; Bool) -&gt; [a] -&gt; Bool</code></p>
+<p>Applied to a predicate and a list, any determines if any element of the list
+satisfies the predicate.</p>
+<p>Example:</p>
+<pre><code>any(even, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) === <span class="hljs-literal">true</span>
+any(gt(<span class="hljs-number">3</span>), [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) === <span class="hljs-literal">false</span>
+</code></pre><p>This function does work with strings too:</p>
+<pre><code>any(isAsciiLetter, <span class="hljs-string">"17e9"</span>) === <span class="hljs-literal">true</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_any</span>(<span class="hljs-params">p, xs</span>) </span>{
@@ -1846,6 +1862,11 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 
 <h3 id="f-or">or <small></small></h2>
 <div class="section">
+<p><code>[Bool] → Bool</code></p>
+<p>Returns the disjunction of a Boolean list, i.e. it returns <code>false</code> iff all the
+elements in the list evaluate to <code>false</code>.</p>
+<p><em>NOTE:</em> This, the lowercase <code>or</code>, is not the binary boolean operator, which
+is the uppercase <code>OR</code>.</p>
 
 <p>Source:</p>
 <pre>
@@ -1874,7 +1895,11 @@ foldl(OR, <span class="hljs-literal">false</span>)
 
 <h3 id="f-product">product <small></small></h2>
 <div class="section">
-
+<p><code>[Number] → Number</code></p>
+<p>The sum function computes the product of a list of numbers.</p>
+<p>Example:</p>
+<pre><code>product([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>]) === <span class="hljs-number">56</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 foldl(MUL, <span class="hljs-number">1</span>)
@@ -2082,7 +2107,11 @@ foldl(MUL, <span class="hljs-number">1</span>)
 
 <h3 id="f-sum">sum <small></small></h2>
 <div class="section">
-
+<p><code>[Number] → Number</code></p>
+<p>The sum function computes the sum of a list of numbers.</p>
+<p>Example:</p>
+<pre><code>sum([<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>]) === <span class="hljs-number">14</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 foldl(ADD, <span class="hljs-number">0</span>)

@@ -48,7 +48,7 @@ no optional arguments). Also you have a distinction between <em>lists</em> and <
 and it can cope with <em>infinite streams</em>.</p>
 <p>Browse through the
  <a href="https://scravy.github.io/nodash/apidoc.html">apidoc</a>,
- <a href="https://github.com/scravy/nodash/tree/master/benchmark/index.js">benchmark</a>,
+ <a href="https://github.com/scravy/nodash/tree/master/benchmark/index.js">benchmark</a>, or
  <a href="https://github.com/scravy/nodash/tree/master/test">tests</a> for examples.</p>
 <h2 id="usage">Usage</h2>
 <p>A port of the Haskell Prelude to JavaScript/NodeJS.</p>
@@ -69,9 +69,9 @@ var reverse = $foldl($flip($cons), []);
 var reverse = __foldl__(__flip__(__cons__), []);
 </code></pre>
 <p>Usage in Node:</p>
-<pre><code class="lang-JavaScript">var P = require(&#39;nodash&#39;);
+<pre><code class="lang-JavaScript">var Nodash = require(&#39;nodash&#39;);
 
-var reverse = P.foldl(P.flip(P.cons), []);
+var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
 </code></pre>
 <p>Usage in the browser:</p>
 <pre><code class="lang-JavaScript">&lt;script src=&quot;nodash.js&quot;&gt;&lt;/script&gt;
@@ -152,7 +152,7 @@ IN THE SOFTWARE.
         <ul class="list-unstyled small" style="line-height: 1.8em;">
             <li><a href="nodash.min.js">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                nodash.min.js (21.56 kB)
+                nodash.min.js (21.53 kB)
             </a></li>
             <li><a href="nodash.min.js.gz">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>

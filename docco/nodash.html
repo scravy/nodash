@@ -913,12 +913,10 @@ a name prefixed with an underscore, i.e.</p>
   
   register(<span class="hljs-string">'isNumeric'</span>, isNumeric);
 
-  register(<span class="hljs-string">'isDigit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
-    <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[0-9]/</span>);
-  });
+  register(<span class="hljs-string">'isDigit'</span>, isNumeric);
 
   register(<span class="hljs-string">'isAsciiLetter'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
-    <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[a-zA-Z]/</span>);
+    <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/^[a-zA-Z]+$/</span>);
   });
 
   register(<span class="hljs-string">'isUpper'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isUpper</span>(<span class="hljs-params">x</span>) </span>{

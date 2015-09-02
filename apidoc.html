@@ -2471,7 +2471,7 @@ This way it can be refered to as a value and used in higher order functions.</p>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[a-zA-Z]/</span>);
+  <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/^[a-zA-Z]+$/</span>);
 }
 </pre>
 </div>
@@ -2481,15 +2481,21 @@ This way it can be refered to as a value and used in higher order functions.</p>
 
 <p>Source:</p>
 <pre>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[0-9]/</span>);
-}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumeric</span>(<span class="hljs-params">x</span>)  </span>{ <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[0-9]+$/</span>.test(x); }
 </pre>
 </div>
 
 <h3 id="f-isLower">isLower <small></small></h2>
 <div class="section">
-
+<p><code>String → Bool</code></p>
+<p>Determines whether the all alphabetic characters in the given string are lower case characters.</p>
+<p>Example:</p>
+<pre><code>isUpper(<span class="hljs-string">"HELLO"</span>) === <span class="hljs-literal">false</span>
+isUpper(<span class="hljs-string">"hello"</span>) === <span class="hljs-literal">true</span>
+isUpper(<span class="hljs-string">"hELLO"</span>) === <span class="hljs-literal">false</span>
+isUpper(<span class="hljs-string">"8"</span>) === <span class="hljs-literal">true</span>
+isUpper(<span class="hljs-string">"hello7"</span>) === <span class="hljs-literal">true</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLower</span>(<span class="hljs-params">x</span>) </span>{
@@ -2500,7 +2506,13 @@ This way it can be refered to as a value and used in higher order functions.</p>
 
 <h3 id="f-isNumeric">isNumeric <small></small></h2>
 <div class="section">
-
+<p><code>String → Bool</code></p>
+<p>Determine whether the given String represents a decimal unsigned integer.</p>
+<p>Example:</p>
+<pre><code>isNumeric(<span class="hljs-string">"37"</span>) === <span class="hljs-literal">true</span>
+isNumeric(<span class="hljs-string">"x39"</span>) === <span class="hljs-literal">false</span>
+isNumeric(<span class="hljs-string">"abc"</span>) === <span class="hljs-literal">false</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumeric</span>(<span class="hljs-params">x</span>)  </span>{ <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[0-9]+$/</span>.test(x); }
@@ -2509,7 +2521,15 @@ This way it can be refered to as a value and used in higher order functions.</p>
 
 <h3 id="f-isUpper">isUpper <small></small></h2>
 <div class="section">
-
+<p><code>String → Bool</code></p>
+<p>Determines whether the all alphabetic characters in the given string are upper case characters.</p>
+<p>Example:</p>
+<pre><code>isUpper(<span class="hljs-string">"HELLO"</span>) === <span class="hljs-literal">true</span>
+isUpper(<span class="hljs-string">"hello"</span>) === <span class="hljs-literal">false</span>
+isUpper(<span class="hljs-string">"hELLO"</span>) === <span class="hljs-literal">false</span>
+isUpper(<span class="hljs-string">"8"</span>) === <span class="hljs-literal">true</span>
+isUpper(<span class="hljs-string">"HELLO7"</span>) === <span class="hljs-literal">true</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isUpper</span>(<span class="hljs-params">x</span>) </span>{
@@ -3361,7 +3381,13 @@ compose2(filter(isJust), map)
 
 <h3 id="f-isNodash">isNodash <small></small></h2>
 <div class="section">
-
+<p><code>Something → Bool</code></p>
+<p>Determines whether something is the Nodash object.</p>
+<p>Example:</p>
+<pre><code><span class="hljs-keyword">var</span> Nodash === <span class="hljs-built_in">require</span>(<span class="hljs-string">"nodash"</span>);
+Nodash.isNodash(Nodash) === <span class="hljs-literal">true</span>
+Nodash.isNodash({}) === <span class="hljs-literal">false</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNodash</span>(<span class="hljs-params">f</span>)   </span>{ <span class="hljs-keyword">return</span> isFunction(f) &amp;&amp; f.__isNodash; }
@@ -4161,7 +4187,15 @@ think of it as having the overloaded signatures <code>[a] → a</code> and <code
 
 <h3 id="f-isFunction">isFunction <small></small></h2>
 <div class="section">
-
+<p><code>Something → Bool</code></p>
+<p>Determines whether something is a function or not. The same as <code>typeof x === &#39;function&#39;</code>.</p>
+<p>Example:</p>
+<pre><code>isFunction(<span class="hljs-built_in">Array</span>.isArray) === <span class="hljs-literal">true</span>
+isFunction(isFunction) === <span class="hljs-literal">true</span>
+isFunction(<span class="hljs-literal">true</span>) === <span class="hljs-literal">false</span>
+isFunction(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{}) === <span class="hljs-literal">true</span>
+isFunction(<span class="hljs-literal">undefined</span>) === <span class="hljs-literal">false</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isFunction</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'function'</span>; }
@@ -4181,7 +4215,15 @@ think of it as having the overloaded signatures <code>[a] → a</code> and <code
 
 <h3 id="f-isNumber">isNumber <small></small></h2>
 <div class="section">
-
+<p><code>Something → Bool</code></p>
+<p>Determines whether something is a number or not. The same as <code>typeof x === &#39;number&#39;</code>.</p>
+<p>Example:</p>
+<pre><code>isNumber(<span class="hljs-number">18e3</span>) === <span class="hljs-literal">true</span>
+isNumber(<span class="hljs-string">"18"</span>) === <span class="hljs-literal">false</span>
+isNumber(<span class="hljs-number">139</span>) === <span class="hljs-literal">true</span>
+isNumber(<span class="hljs-string">""</span>) === <span class="hljs-literal">false</span>
+isNumber([<span class="hljs-number">3</span>]) === <span class="hljs-literal">false</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span>; }
@@ -4190,7 +4232,16 @@ think of it as having the overloaded signatures <code>[a] → a</code> and <code
 
 <h3 id="f-isObject">isObject <small></small></h2>
 <div class="section">
-
+<p><code>Someting → Bool</code></p>
+<p>Determine whether something is an object, but not an array nor <code>null</code>.</p>
+<p>Example:</p>
+<pre><code>isObject({}) === <span class="hljs-literal">true</span>
+isObject(<span class="hljs-number">7</span>) === <span class="hljs-literal">false</span>
+isObject(<span class="hljs-string">""</span>) === <span class="hljs-literal">false</span>
+isObject([]) === <span class="hljs-literal">false</span>
+isObject(<span class="hljs-literal">null</span>) === <span class="hljs-literal">false</span>
+isObject(<span class="hljs-literal">undefined</span>) === <span class="hljs-literal">false</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isObject</span>(<span class="hljs-params">obj</span>) </span>{
@@ -4204,7 +4255,12 @@ think of it as having the overloaded signatures <code>[a] → a</code> and <code
 
 <h3 id="f-isStream">isStream <small></small></h2>
 <div class="section">
-
+<p><code>Something → Bool</code></p>
+<p>Determines whether something is a Stream or not.</p>
+<p>Example:</p>
+<pre><code>isStream(<span class="hljs-number">7</span>) === <span class="hljs-literal">false</span>
+isStream(stream(<span class="hljs-string">"hello"</span>)) === <span class="hljs-literal">true</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isStream</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> isFunction(x) &amp;&amp; x.__stream__ === stream; }
@@ -4213,7 +4269,14 @@ think of it as having the overloaded signatures <code>[a] → a</code> and <code
 
 <h3 id="f-isString">isString <small></small></h2>
 <div class="section">
-
+<p><code>Something → Bool</code></p>
+<p>Determines whether something is a String or not. Equivalent to <code>typeof x === &#39;string&#39;</code>.</p>
+<p>Example:</p>
+<pre><code>isString(<span class="hljs-string">"hello"</span>) === <span class="hljs-literal">true</span>
+isString(<span class="hljs-literal">undefined</span>) === <span class="hljs-literal">false</span>
+isString(<span class="hljs-number">42</span>) === <span class="hljs-literal">false</span>
+isString({}) === <span class="hljs-literal">false</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isString</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'string'</span>; }

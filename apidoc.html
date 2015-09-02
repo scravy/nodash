@@ -867,6 +867,7 @@
 <pre><code>all(even, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) === <span class="hljs-literal">false</span>
 all(lte(<span class="hljs-number">3</span>), [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) === <span class="hljs-literal">true</span>
 </code></pre>
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_all</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
@@ -882,6 +883,7 @@ all(lte(<span class="hljs-number">3</span>), [<span class="hljs-number">1</span>
 <h3 id="f-and">and <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 foldl(AND, <span class="hljs-literal">true</span>)
 </pre>
@@ -890,6 +892,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 <h3 id="f-any">any <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_any</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
@@ -905,6 +908,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 <h3 id="f-append">append <small><span class="alias">++</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_append</span>(<span class="hljs-params">xs, ys</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs) || isStream(ys)) {
@@ -940,6 +944,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 <h3 id="f-at">at <small><span class="alias">!!</span><span class="alias">AT</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_at</span>(<span class="hljs-params">xs, ix</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -963,6 +968,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 <h3 id="f-break_">break_ <small><span class="alias">break</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_break</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
@@ -977,6 +983,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 <h3 id="f-concat">concat <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_concat</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isString(xs[<span class="hljs-number">0</span>])) {
@@ -995,6 +1002,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 <h3 id="f-concatMap">concatMap <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 compose2(concat, map)
 </pre>
@@ -1003,6 +1011,7 @@ compose2(concat, map)
 <h3 id="f-cons">cons <small><span class="alias">:</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cons</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1025,6 +1034,7 @@ compose2(concat, map)
 <h3 id="f-deleteBy">deleteBy <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_deleteBy</span>(<span class="hljs-params">p, x, xs</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
@@ -1040,6 +1050,7 @@ compose2(concat, map)
 <h3 id="f-delete_">delete_ <small><span class="alias">delete</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_delete</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">var</span> i = xs.indexOf(x);
@@ -1054,6 +1065,7 @@ compose2(concat, map)
 <h3 id="f-difference">difference <small><span class="alias">\\</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_difference</span>(<span class="hljs-params">xs, ys</span>) </span>{
   <span class="hljs-keyword">var</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
@@ -1075,6 +1087,7 @@ compose2(concat, map)
 <h3 id="f-drop">drop <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_drop</span>(<span class="hljs-params">n, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1091,6 +1104,7 @@ compose2(concat, map)
 <h3 id="f-dropWhile">dropWhile <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_dropWhile</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1111,6 +1125,7 @@ compose2(concat, map)
 <h3 id="f-elem">elem <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elem</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1135,6 +1150,7 @@ compose2(concat, map)
 <h3 id="f-elemIndex">elemIndex <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">return</span> findIndex(eq(x), xs);
@@ -1145,6 +1161,7 @@ compose2(concat, map)
 <h3 id="f-elemIndices">elemIndices <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">return</span> findIndices(eq(x), xs);
@@ -1155,6 +1172,7 @@ compose2(concat, map)
 <h3 id="f-filter">filter <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_filter</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1193,6 +1211,7 @@ compose2(concat, map)
 <h3 id="f-find">find <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_find</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
@@ -1208,6 +1227,7 @@ compose2(concat, map)
 <h3 id="f-findIndex">findIndex <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
@@ -1223,6 +1243,7 @@ compose2(concat, map)
 <h3 id="f-findIndices">findIndices <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_elemIndex</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">var</span> zs = [];
@@ -1239,6 +1260,7 @@ compose2(concat, map)
 <h3 id="f-foldl">foldl <small><span class="alias">foldl&#39;</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldl</span>(<span class="hljs-params">f, x, xs</span>) </span>{
   <span class="hljs-keyword">var</span> streaming = isStream(xs);
@@ -1259,6 +1281,7 @@ compose2(concat, map)
 <h3 id="f-foldl1">foldl1 <small><span class="alias">foldl1&#39;</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldl1</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">var</span> streaming = isStream(xs);
@@ -1280,6 +1303,7 @@ compose2(concat, map)
 <h3 id="f-foldr">foldr <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldr</span>(<span class="hljs-params">f, x, xs</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = xs.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
@@ -1293,6 +1317,7 @@ compose2(concat, map)
 <h3 id="f-foldr1">foldr1 <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_foldr1</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">var</span> x = xs[xs.length - <span class="hljs-number">1</span>];
@@ -1307,6 +1332,7 @@ compose2(concat, map)
 <h3 id="f-group">group <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 groupBy(eq)
 </pre>
@@ -1315,6 +1341,7 @@ groupBy(eq)
 <h3 id="f-groupBy">groupBy <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_groupBy</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (xs.length === <span class="hljs-number">0</span>) {
@@ -1341,6 +1368,7 @@ groupBy(eq)
 <h3 id="f-head">head <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_head</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1355,6 +1383,7 @@ groupBy(eq)
 <h3 id="f-indexOf">indexOf <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">indexOf</span>(<span class="hljs-params">word, string</span>) </span>{
   <span class="hljs-keyword">var</span> m = <span class="hljs-number">0</span>;
@@ -1407,6 +1436,7 @@ groupBy(eq)
 <h3 id="f-init">init <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_init</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1433,6 +1463,7 @@ groupBy(eq)
 <h3 id="f-inits">inits <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_inits</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">var</span> result, current, i, length;
@@ -1464,6 +1495,7 @@ groupBy(eq)
 <h3 id="f-insert">insert <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 insertBy(compare)
 </pre>
@@ -1472,6 +1504,7 @@ insertBy(compare)
 <h3 id="f-insertBy">insertBy <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_insertBy</span>(<span class="hljs-params">f, x, xs</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
@@ -1487,6 +1520,7 @@ insertBy(compare)
 <h3 id="f-intercalate">intercalate <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_intercalate</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">return</span> concat(intersperse(x, xs));
@@ -1497,6 +1531,7 @@ insertBy(compare)
 <h3 id="f-intersect">intersect <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_intersect</span>(<span class="hljs-params">xs, ys</span>) </span>{
   <span class="hljs-keyword">var</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
@@ -1518,6 +1553,7 @@ insertBy(compare)
 <h3 id="f-intersperse">intersperse <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_intersperse</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (xs.length === <span class="hljs-number">0</span>) {
@@ -1536,6 +1572,7 @@ insertBy(compare)
 <h3 id="f-isEmpty">isEmpty <small><span class="alias">null_</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_null</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1555,6 +1592,7 @@ insertBy(compare)
 <h3 id="f-isInfixOf">isInfixOf <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isInfixOf</span>(<span class="hljs-params">infix, string</span>) </span>{
     <span class="hljs-keyword">return</span> indexOf(infix, string) &gt;= <span class="hljs-number">0</span>;
@@ -1565,6 +1603,7 @@ insertBy(compare)
 <h3 id="f-isPrefixOf">isPrefixOf <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isPrefixOf</span>(<span class="hljs-params">prefix, string</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(prefix)) {
@@ -1591,6 +1630,7 @@ insertBy(compare)
 <h3 id="f-isSuffixOf">isSuffixOf <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSuffixOf</span>(<span class="hljs-params">suffix, string</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(suffix)) {
@@ -1612,6 +1652,7 @@ insertBy(compare)
 <h3 id="f-last">last <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_last</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1630,6 +1671,7 @@ insertBy(compare)
 <h3 id="f-length">length <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_length</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1653,6 +1695,7 @@ insertBy(compare)
 <h3 id="f-lookup">lookup <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lookup</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isArray(xs)) {
@@ -1670,6 +1713,7 @@ insertBy(compare)
 <h3 id="f-map">map <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_map</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">var</span> i, ys;
@@ -1709,6 +1753,7 @@ insertBy(compare)
 <h3 id="f-maximum">maximum <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 foldl(max, -<span class="hljs-literal">Infinity</span>)
 </pre>
@@ -1717,6 +1762,7 @@ foldl(max, -<span class="hljs-literal">Infinity</span>)
 <h3 id="f-maximumBy">maximumBy <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_maximumBy</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">return</span> foldl1(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
@@ -1732,6 +1778,7 @@ foldl(max, -<span class="hljs-literal">Infinity</span>)
 <h3 id="f-minimum">minimum <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 foldl(min, +<span class="hljs-literal">Infinity</span>)
 </pre>
@@ -1740,6 +1787,7 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 <h3 id="f-minimumBy">minimumBy <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_minimumBy</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">return</span> foldl1(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
@@ -1755,6 +1803,7 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 <h3 id="f-notElem">notElem <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_notElem</span>(<span class="hljs-params">x, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1779,6 +1828,7 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 <h3 id="f-nub">nub <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_nub</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">var</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
@@ -1797,6 +1847,7 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 <h3 id="f-or">or <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 foldl(OR, <span class="hljs-literal">false</span>)
 </pre>
@@ -1805,6 +1856,7 @@ foldl(OR, <span class="hljs-literal">false</span>)
 <h3 id="f-partition">partition <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_partition</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">var</span> <span class="hljs-keyword">as</span> = [];
@@ -1823,6 +1875,7 @@ foldl(OR, <span class="hljs-literal">false</span>)
 <h3 id="f-product">product <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 foldl(MUL, <span class="hljs-number">1</span>)
 </pre>
@@ -1831,6 +1884,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-replicate">replicate <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_replicate</span>(<span class="hljs-params">n, x</span>) </span>{
   <span class="hljs-keyword">var</span> xs = [];
@@ -1845,6 +1899,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-reverse">reverse <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_reverse</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1868,6 +1923,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-scanl">scanl <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanl</span>(<span class="hljs-params">f, x, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1893,6 +1949,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-scanl1">scanl1 <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanl1</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1912,6 +1969,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-scanr">scanr <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanr</span>(<span class="hljs-params">f, x, xs</span>) </span>{
   <span class="hljs-keyword">var</span> zs = [x];
@@ -1927,6 +1985,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-scanr1">scanr1 <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_scanr1</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">var</span> x = xs[xs.length - <span class="hljs-number">1</span>];
@@ -1943,6 +2002,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-select">select <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_select</span>(<span class="hljs-params">path, object</span>) </span>{
   <span class="hljs-keyword">return</span> foldl(at, object, path.split(<span class="hljs-regexp">/\./</span>));
@@ -1953,6 +2013,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-sort">sort <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sort</span>(<span class="hljs-params">xs</span>) </span>{
   checkFinite(xs);
@@ -1975,6 +2036,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-sortBy">sortBy <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sortBy</span>(<span class="hljs-params">fn, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -1995,6 +2057,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-span">span <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_span</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
@@ -2009,6 +2072,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-splitAt">splitAt <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_splitAt</span>(<span class="hljs-params">n, xs</span>) </span>{
   <span class="hljs-keyword">return</span> [ xs.slice(<span class="hljs-number">0</span>, n), xs.slice(n) ];
@@ -2019,6 +2083,7 @@ foldl(MUL, <span class="hljs-number">1</span>)
 <h3 id="f-sum">sum <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 foldl(ADD, <span class="hljs-number">0</span>)
 </pre>
@@ -2027,6 +2092,7 @@ foldl(ADD, <span class="hljs-number">0</span>)
 <h3 id="f-tail">tail <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tail</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -2044,6 +2110,7 @@ foldl(ADD, <span class="hljs-number">0</span>)
 <h3 id="f-tails">tails <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tails</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">var</span> result, current, i;
@@ -2073,6 +2140,7 @@ foldl(ADD, <span class="hljs-number">0</span>)
 <h3 id="f-take">take <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_take</span>(<span class="hljs-params">n, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -2092,6 +2160,7 @@ foldl(ADD, <span class="hljs-number">0</span>)
 <h3 id="f-takeWhile">takeWhile <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_takeWhile</span>(<span class="hljs-params">p, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -2117,6 +2186,7 @@ foldl(ADD, <span class="hljs-number">0</span>)
 <h3 id="f-transpose">transpose <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_transpose</span>(<span class="hljs-params">xss</span>) </span>{
   <span class="hljs-keyword">if</span> (!isArray(xss)) {
@@ -2150,6 +2220,7 @@ foldl(ADD, <span class="hljs-number">0</span>)
 <h3 id="f-union">union <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_union</span>(<span class="hljs-params">xs, ys</span>) </span>{
   <span class="hljs-keyword">var</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
@@ -2172,6 +2243,7 @@ foldl(ADD, <span class="hljs-number">0</span>)
 <h3 id="f-zip">zip <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 zipWith(tuple)
 </pre>
@@ -2180,6 +2252,7 @@ zipWith(tuple)
 <h3 id="f-zip3">zip3 <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 zipWith3(tuple3)
 </pre>
@@ -2188,6 +2261,7 @@ zipWith3(tuple3)
 <h3 id="f-zip4">zip4 <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 zipWith4(tuple4)
 </pre>
@@ -2196,6 +2270,7 @@ zipWith4(tuple4)
 <h3 id="f-zipWith">zipWith <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith</span>(<span class="hljs-params">f, as, bs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs)) {
@@ -2223,6 +2298,7 @@ zipWith4(tuple4)
 <h3 id="f-zipWith3">zipWith3 <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith3</span>(<span class="hljs-params">f, as, bs, cs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs) || isStream(cs)) {
@@ -2252,6 +2328,7 @@ zipWith4(tuple4)
 <h3 id="f-zipWith4">zipWith4 <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_zipWith4</span>(<span class="hljs-params">f, as, bs, cs, ds</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(<span class="hljs-keyword">as</span>) || isStream(bs) || isStream(cs) || isStream(ds)) {
@@ -2290,6 +2367,7 @@ zipWith4(tuple4)
 <p><code>Bool → Bool → Bool</code></p>
 <p>Boolean “and”</p>
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_AND</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a &amp;&amp; b; }
 </pre>
@@ -2300,6 +2378,7 @@ zipWith4(tuple4)
 <p><code>Bool → Bool → Bool</code></p>
 <p>Boolean “or”</p>
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_OR</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a || b; }
 </pre>
@@ -2308,6 +2387,7 @@ zipWith4(tuple4)
 <h3 id="f-bool">bool <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_bool</span>(<span class="hljs-params">yes, no, bool</span>) </span>{
   <span class="hljs-keyword">return</span> bool ? yes : no;
@@ -2317,7 +2397,14 @@ zipWith4(tuple4)
 
 <h3 id="f-not">not <small></small></h2>
 <div class="section">
-
+<p><code>Bool → Bool</code></p>
+<p>Boolean “not”.</p>
+<p>This is exactly the same as the unary <code>!</code> operator but in function form.
+This way it can be refered to as a value and used in higher order functions.</p>
+<p>Example:</p>
+<pre><code>eq(map(not, [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]), [<span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>]) === <span class="hljs-literal">true</span>
+</code></pre>
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_not</span>(<span class="hljs-params">value</span>) </span>{ <span class="hljs-keyword">return</span> !value; }
 </pre>
@@ -2331,6 +2418,7 @@ zipWith4(tuple4)
 <h3 id="f-chr">chr <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_chr</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>.fromCharCode(x);
@@ -2341,6 +2429,7 @@ zipWith4(tuple4)
 <h3 id="f-isAsciiLetter">isAsciiLetter <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[a-zA-Z]/</span>);
@@ -2351,6 +2440,7 @@ zipWith4(tuple4)
 <h3 id="f-isDigit">isDigit <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[0-9]/</span>);
@@ -2361,6 +2451,7 @@ zipWith4(tuple4)
 <h3 id="f-isLower">isLower <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLower</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> x === x.toLowerCase();
@@ -2371,6 +2462,7 @@ zipWith4(tuple4)
 <h3 id="f-isNumeric">isNumeric <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumeric</span>(<span class="hljs-params">x</span>)  </span>{ <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[0-9]+$/</span>.test(x); }
 </pre>
@@ -2379,6 +2471,7 @@ zipWith4(tuple4)
 <h3 id="f-isUpper">isUpper <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isUpper</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> x === x.toUpperCase();
@@ -2389,6 +2482,7 @@ zipWith4(tuple4)
 <h3 id="f-ord">ord <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_ord</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> x.charCodeAt(<span class="hljs-number">0</span>);
@@ -2404,6 +2498,7 @@ zipWith4(tuple4)
 <h3 id="f-compare">compare <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compare</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">typeof</span> a) {
@@ -2433,6 +2528,7 @@ zipWith4(tuple4)
 <h3 id="f-comparing">comparing <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_comparing</span>(<span class="hljs-params">f, a, b</span>) </span>{
   <span class="hljs-keyword">return</span> compare(f(a), f(b));
@@ -2443,6 +2539,7 @@ zipWith4(tuple4)
 <h3 id="f-eq">eq <small><span class="alias">==</span><span class="alias">EQ</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_eq</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">if</span> (a === b) {
@@ -2470,6 +2567,7 @@ zipWith4(tuple4)
 <h3 id="f-gt">gt <small><span class="alias">&gt;</span><span class="alias">GT</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gt</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> compare(a, b) &gt; <span class="hljs-number">0</span>;
@@ -2480,6 +2578,7 @@ zipWith4(tuple4)
 <h3 id="f-gte">gte <small><span class="alias">&gt;=</span><span class="alias">GTE</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gte</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> compare(a, b) &gt;= <span class="hljs-number">0</span>;
@@ -2490,6 +2589,7 @@ zipWith4(tuple4)
 <h3 id="f-lt">lt <small><span class="alias">&lt;</span><span class="alias">LT</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lt</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> compare(a, b) &lt; <span class="hljs-number">0</span>;
@@ -2500,6 +2600,7 @@ zipWith4(tuple4)
 <h3 id="f-lte">lte <small><span class="alias">&lt;=</span><span class="alias">LTE</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lte</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> compare(a, b) &lt;= <span class="hljs-number">0</span>;
@@ -2510,6 +2611,7 @@ zipWith4(tuple4)
 <h3 id="f-max">max <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_max</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">if</span> (gt(a, b)) {
@@ -2523,6 +2625,7 @@ zipWith4(tuple4)
 <h3 id="f-min">min <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_min</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">if</span> (lt(a, b)) {
@@ -2536,6 +2639,7 @@ zipWith4(tuple4)
 <h3 id="f-neq">neq <small><span class="alias">&#x2F;=</span><span class="alias">NEQ</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_neq</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> !eq(a, b);
@@ -2551,6 +2655,7 @@ zipWith4(tuple4)
 <h3 id="f-async">async <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_async</span>(<span class="hljs-params">f</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
@@ -2569,6 +2674,7 @@ zipWith4(tuple4)
 <h3 id="f-pipe">pipe <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_pipe</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">var</span> functions, intermediateResult, callback;
@@ -2606,6 +2712,7 @@ zipWith4(tuple4)
 <h3 id="f-run">run <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_run</span>(<span class="hljs-params">specification</span>) </span>{
   <span class="hljs-comment">// this function does its own currying.</span>
@@ -2837,6 +2944,7 @@ zipWith4(tuple4)
 <h3 id="f-until">until <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_until</span>(<span class="hljs-params">p, f, v</span>) </span>{
   <span class="hljs-keyword">while</span> (!p(v)) {
@@ -2855,6 +2963,7 @@ zipWith4(tuple4)
 <h3 id="f-Left">Left <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_Left</span>(<span class="hljs-params">value</span>) </span>{
   <span class="hljs-keyword">return</span> { left: value };
@@ -2865,6 +2974,7 @@ zipWith4(tuple4)
 <h3 id="f-Right">Right <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_Right</span>(<span class="hljs-params">value</span>) </span>{
   <span class="hljs-keyword">return</span> { right: value };
@@ -2875,6 +2985,7 @@ zipWith4(tuple4)
 <h3 id="f-either">either <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_either</span>(<span class="hljs-params">afun, bfun, either</span>) </span>{
   <span class="hljs-keyword">var</span> left = either.left || either[<span class="hljs-number">0</span>];
@@ -2893,6 +3004,7 @@ zipWith4(tuple4)
 <h3 id="f-fromLeft">fromLeft <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fromLeft</span>(<span class="hljs-params">val</span>) </span>{
   <span class="hljs-keyword">if</span> (val.left !== <span class="hljs-literal">undefined</span>) {
@@ -2906,6 +3018,7 @@ zipWith4(tuple4)
 <h3 id="f-fromRight">fromRight <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fromRight</span>(<span class="hljs-params">val</span>) </span>{
   <span class="hljs-keyword">if</span> (val.right !== <span class="hljs-literal">undefined</span>) {
@@ -2919,6 +3032,7 @@ zipWith4(tuple4)
 <h3 id="f-isLeft">isLeft <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLeft</span>(<span class="hljs-params">val</span>) </span>{
   <span class="hljs-keyword">return</span> val.left !== <span class="hljs-literal">undefined</span> ||
@@ -2930,6 +3044,7 @@ zipWith4(tuple4)
 <h3 id="f-isRight">isRight <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isRight</span>(<span class="hljs-params">val</span>) </span>{
   <span class="hljs-keyword">return</span> (val.right !== <span class="hljs-literal">undefined</span> || val[<span class="hljs-number">1</span>] !== <span class="hljs-literal">undefined</span>) &amp;&amp;
@@ -2946,6 +3061,7 @@ zipWith4(tuple4)
 <h3 id="f-partitionEithers">partitionEithers <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_partitionEithers</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">return</span> [ lefts(xs), rights(xs) ];
@@ -2966,6 +3082,7 @@ zipWith4(tuple4)
 <h3 id="f-apply">apply <small><span class="alias">$</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_apply</span>(<span class="hljs-params">f, x</span>) </span>{
   <span class="hljs-keyword">return</span> f(x);
@@ -2976,6 +3093,7 @@ zipWith4(tuple4)
 <h3 id="f-compose">compose <small><span class="alias">.</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose</span>(<span class="hljs-params">f, g, x</span>) </span>{
   <span class="hljs-keyword">return</span> f(g(x));
@@ -2986,6 +3104,7 @@ zipWith4(tuple4)
 <h3 id="f-compose2">compose2 <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose2</span>(<span class="hljs-params">f, g, x, y</span>) </span>{
   <span class="hljs-keyword">return</span> f(g(x, y));
@@ -2996,6 +3115,7 @@ zipWith4(tuple4)
 <h3 id="f-const">const <small><span class="alias">const_</span><span class="alias">constant</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_const</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> a;
@@ -3006,6 +3126,7 @@ zipWith4(tuple4)
 <h3 id="f-flip">flip <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_flip</span>(<span class="hljs-params">f</span>) </span>{
   <span class="hljs-keyword">return</span> funcs[<span class="hljs-number">2</span>](<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">b, a</span>) </span>{
@@ -3018,6 +3139,7 @@ zipWith4(tuple4)
 <h3 id="f-id">id <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">id</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> x; }
 </pre>
@@ -3026,6 +3148,7 @@ zipWith4(tuple4)
 <h3 id="f-idf">idf <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_idf</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
@@ -3038,6 +3161,7 @@ zipWith4(tuple4)
 <h3 id="f-invoke">invoke <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_invoke</span>(<span class="hljs-params">f</span>) </span>{
   <span class="hljs-keyword">return</span> f();
@@ -3048,6 +3172,7 @@ zipWith4(tuple4)
 <h3 id="f-on">on <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_on</span>(<span class="hljs-params">g, f, a, b</span>) </span>{
   <span class="hljs-keyword">return</span> g(f(a), f(b));
@@ -3063,6 +3188,7 @@ zipWith4(tuple4)
 <h3 id="f-catMaybes">catMaybes <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 filter(isJust)
 </pre>
@@ -3071,6 +3197,7 @@ filter(isJust)
 <h3 id="f-fromMaybe">fromMaybe <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fromMaybe</span>(<span class="hljs-params">def, maybe</span>) </span>{
   <span class="hljs-keyword">if</span> (maybe === <span class="hljs-literal">undefined</span> || maybe === <span class="hljs-literal">null</span>) {
@@ -3084,6 +3211,7 @@ filter(isJust)
 <h3 id="f-isJust">isJust <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isJust</span>(<span class="hljs-params">value</span>) </span>{
   <span class="hljs-keyword">return</span> value !== <span class="hljs-literal">undefined</span> &amp;&amp; value !== <span class="hljs-literal">null</span>;
@@ -3094,6 +3222,7 @@ filter(isJust)
 <h3 id="f-isNothing">isNothing <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isNothing</span>(<span class="hljs-params">value</span>) </span>{
   <span class="hljs-keyword">return</span> value === <span class="hljs-literal">undefined</span> || value === <span class="hljs-literal">null</span>;
@@ -3104,6 +3233,7 @@ filter(isJust)
 <h3 id="f-listToMaybe">listToMaybe <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_listToMaybe</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -3118,6 +3248,7 @@ filter(isJust)
 <h3 id="f-mapMaybe">mapMaybe <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 compose2(filter(isJust), map)
 </pre>
@@ -3126,6 +3257,7 @@ compose2(filter(isJust), map)
 <h3 id="f-maybe">maybe <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_maybe</span>(<span class="hljs-params">def, fun, maybe</span>) </span>{
   <span class="hljs-keyword">if</span> (maybe === <span class="hljs-literal">undefined</span> || maybe === <span class="hljs-literal">null</span>) {
@@ -3139,6 +3271,7 @@ compose2(filter(isJust), map)
 <h3 id="f-maybeToList">maybeToList <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_maybeToList</span>(<span class="hljs-params">maybe</span>) </span>{
   <span class="hljs-keyword">if</span> (maybe === <span class="hljs-literal">undefined</span> || maybe === <span class="hljs-literal">null</span>) {
@@ -3157,6 +3290,7 @@ compose2(filter(isJust), map)
 <h3 id="f-install">install <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_install</span>(<span class="hljs-params">mountpoint</span>) </span>{
   <span class="hljs-keyword">var</span> options = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
@@ -3189,6 +3323,7 @@ compose2(filter(isJust), map)
 <h3 id="f-isNodash">isNodash <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNodash</span>(<span class="hljs-params">f</span>)   </span>{ <span class="hljs-keyword">return</span> isFunction(f) &amp;&amp; f.__isNodash; }
 </pre>
@@ -3202,6 +3337,7 @@ compose2(filter(isJust), map)
 <h3 id="f-abs">abs <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abs</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3210,6 +3346,7 @@ compose2(filter(isJust), map)
 <h3 id="f-acos">acos <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">acos</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3218,6 +3355,7 @@ compose2(filter(isJust), map)
 <h3 id="f-acosh">acosh <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_acosh</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(x + <span class="hljs-built_in">Math</span>.sqrt(x * x - <span class="hljs-number">1</span>));
@@ -3228,6 +3366,7 @@ compose2(filter(isJust), map)
 <h3 id="f-add">add <small><span class="alias">+</span><span class="alias">ADD</span><span class="alias">plus</span><span class="alias">PLUS</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_add</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> a + b;
@@ -3238,6 +3377,7 @@ compose2(filter(isJust), map)
 <h3 id="f-asin">asin <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asin</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3246,6 +3386,7 @@ compose2(filter(isJust), map)
 <h3 id="f-asinh">asinh <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_asinh</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
@@ -3260,6 +3401,7 @@ compose2(filter(isJust), map)
 <h3 id="f-atan">atan <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">atan</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3268,6 +3410,7 @@ compose2(filter(isJust), map)
 <h3 id="f-atanh">atanh <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_atanh</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log((<span class="hljs-number">1</span> + x) / (<span class="hljs-number">1</span> - x)) / <span class="hljs-number">2</span>;
@@ -3278,6 +3421,7 @@ compose2(filter(isJust), map)
 <h3 id="f-ceiling">ceiling <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ceil</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3286,6 +3430,7 @@ compose2(filter(isJust), map)
 <h3 id="f-cos">cos <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cos</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3294,6 +3439,7 @@ compose2(filter(isJust), map)
 <h3 id="f-cosh">cosh <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cosh</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
@@ -3304,6 +3450,7 @@ compose2(filter(isJust), map)
 <h3 id="f-div">div <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_div</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(a / b); }
 </pre>
@@ -3312,6 +3459,7 @@ compose2(filter(isJust), map)
 <h3 id="f-divMod">divMod <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_divMod</span>(<span class="hljs-params">a, b</span>)  </span>{
   <span class="hljs-keyword">return</span> [div(a, b), mod(a, b)];
@@ -3322,6 +3470,7 @@ compose2(filter(isJust), map)
 <h3 id="f-even">even <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_even</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) === <span class="hljs-number">0</span>; }
 </pre>
@@ -3330,6 +3479,7 @@ compose2(filter(isJust), map)
 <h3 id="f-exp">exp <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exp</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3338,6 +3488,7 @@ compose2(filter(isJust), map)
 <h3 id="f-floor">floor <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">floor</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3346,6 +3497,7 @@ compose2(filter(isJust), map)
 <h3 id="f-frac">frac <small><span class="alias">&#x2F;</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_frac</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a / b; }
 </pre>
@@ -3354,6 +3506,7 @@ compose2(filter(isJust), map)
 <h3 id="f-gcd">gcd <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_gcd</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">var</span> c;
@@ -3370,6 +3523,7 @@ compose2(filter(isJust), map)
 <h3 id="f-lcm">lcm <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lcm</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">if</span> (a === <span class="hljs-number">0</span> || b === <span class="hljs-number">0</span>) {
@@ -3383,6 +3537,7 @@ compose2(filter(isJust), map)
 <h3 id="f-log">log <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3391,6 +3546,7 @@ compose2(filter(isJust), map)
 <h3 id="f-logBase">logBase <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_logBase</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(a) / <span class="hljs-built_in">Math</span>.log(b);
@@ -3401,6 +3557,7 @@ compose2(filter(isJust), map)
 <h3 id="f-mod">mod <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mod</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">var</span> q = quot(a, b);
@@ -3413,6 +3570,7 @@ compose2(filter(isJust), map)
 <h3 id="f-mul">mul <small><span class="alias">*</span><span class="alias">MUL</span><span class="alias">times</span><span class="alias">TIMES</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_mul</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> a * b;
@@ -3423,6 +3581,7 @@ compose2(filter(isJust), map)
 <h3 id="f-negate">negate <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_negate</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> -a; }
 </pre>
@@ -3431,6 +3590,7 @@ compose2(filter(isJust), map)
 <h3 id="f-odd">odd <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_odd</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) !== <span class="hljs-number">0</span>; }
 </pre>
@@ -3439,6 +3599,7 @@ compose2(filter(isJust), map)
 <h3 id="f-pow">pow <small><span class="alias">**</span><span class="alias">^</span><span class="alias">^^</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pow</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3447,6 +3608,7 @@ compose2(filter(isJust), map)
 <h3 id="f-properFraction">properFraction <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_properFraction</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">var</span> num = truncate(x);
@@ -3458,6 +3620,7 @@ compose2(filter(isJust), map)
 <h3 id="f-quot">quot <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quot</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">var</span> r = a / b;
@@ -3469,6 +3632,7 @@ compose2(filter(isJust), map)
 <h3 id="f-quotRem">quotRem <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_quotRem</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> [quot(a, b), rem(a, b)];
@@ -3479,6 +3643,7 @@ compose2(filter(isJust), map)
 <h3 id="f-recip">recip <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_recip</span>(<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / a; }
 </pre>
@@ -3487,6 +3652,7 @@ compose2(filter(isJust), map)
 <h3 id="f-rem">rem <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_rem</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a % b; }
 </pre>
@@ -3495,6 +3661,7 @@ compose2(filter(isJust), map)
 <h3 id="f-round">round <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_round</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">var</span> fraction = properFraction(x);
@@ -3515,6 +3682,7 @@ compose2(filter(isJust), map)
 <h3 id="f-signum">signum <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_signum</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>) {
@@ -3530,6 +3698,7 @@ compose2(filter(isJust), map)
 <h3 id="f-sin">sin <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sin</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3538,6 +3707,7 @@ compose2(filter(isJust), map)
 <h3 id="f-sinh">sinh <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sinh</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
@@ -3548,6 +3718,7 @@ compose2(filter(isJust), map)
 <h3 id="f-sqrt">sqrt <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sqrt</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3556,6 +3727,7 @@ compose2(filter(isJust), map)
 <h3 id="f-sub">sub <small><span class="alias">-</span><span class="alias">minus</span><span class="alias">MINUS</span><span class="alias">subtract</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_sub</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> a - b;
@@ -3566,6 +3738,7 @@ compose2(filter(isJust), map)
 <h3 id="f-tan">tan <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tan</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3574,6 +3747,7 @@ compose2(filter(isJust), map)
 <h3 id="f-tanh">tanh <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tanh</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">Infinity</span>) {
@@ -3590,6 +3764,7 @@ compose2(filter(isJust), map)
 <h3 id="f-truncate">truncate <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_truncate</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">switch</span> (signum(x)) {
@@ -3611,6 +3786,7 @@ compose2(filter(isJust), map)
 <h3 id="f-clone">clone <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_clone</span>(<span class="hljs-params">thing</span>) </span>{
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> thing === <span class="hljs-string">'object'</span>) {
@@ -3627,6 +3803,7 @@ compose2(filter(isJust), map)
 <h3 id="f-keys">keys <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keys</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3635,6 +3812,7 @@ compose2(filter(isJust), map)
 <h3 id="f-values">values <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_values</span>(<span class="hljs-params">object</span>) </span>{
   <span class="hljs-keyword">var</span> values = [];
@@ -3654,6 +3832,7 @@ compose2(filter(isJust), map)
 <h3 id="f-consume">consume <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consume</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (!isStream(xs)) {
@@ -3672,6 +3851,7 @@ compose2(filter(isJust), map)
 <h3 id="f-consumeString">consumeString <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_consumeString</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (!isStream(xs)) {
@@ -3689,6 +3869,7 @@ compose2(filter(isJust), map)
 <h3 id="f-cycle">cycle <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_cycle</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -3737,6 +3918,7 @@ compose2(filter(isJust), map)
 <h3 id="f-each">each <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_each</span>(<span class="hljs-params">f, xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -3761,6 +3943,7 @@ compose2(filter(isJust), map)
 <h3 id="f-iterate">iterate <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_iterate</span>(<span class="hljs-params">f, x</span>) </span>{
   <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
@@ -3775,6 +3958,7 @@ compose2(filter(isJust), map)
 <h3 id="f-repeat">repeat <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_repeat</span>(<span class="hljs-params">x</span>) </span>{
   <span class="hljs-keyword">return</span> mkInfinite(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
@@ -3787,6 +3971,7 @@ compose2(filter(isJust), map)
 <h3 id="f-stream">stream <small><span class="alias">lazy</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_stream</span>(<span class="hljs-params">xs</span>) </span>{
   <span class="hljs-keyword">if</span> (isStream(xs)) {
@@ -3816,6 +4001,7 @@ compose2(filter(isJust), map)
 <h3 id="f-lines">lines <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_lines</span>(<span class="hljs-params">string</span>) </span>{
   <span class="hljs-keyword">var</span> result = string.split(<span class="hljs-regexp">/\n/</span>);
@@ -3830,6 +4016,7 @@ compose2(filter(isJust), map)
 <h3 id="f-unlines">unlines <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unlines</span>(<span class="hljs-params">lines</span>) </span>{
   <span class="hljs-keyword">return</span> lines.join(<span class="hljs-string">'\n'</span>);
@@ -3840,6 +4027,7 @@ compose2(filter(isJust), map)
 <h3 id="f-unwords">unwords <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_unwords</span>(<span class="hljs-params">words</span>) </span>{
   <span class="hljs-keyword">return</span> words.join(<span class="hljs-string">' '</span>);
@@ -3850,6 +4038,7 @@ compose2(filter(isJust), map)
 <h3 id="f-words">words <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_words</span>(<span class="hljs-params">string</span>) </span>{
   <span class="hljs-keyword">return</span> string.split(<span class="hljs-regexp">/[\n\r\v\t ]/</span>);
@@ -3864,7 +4053,13 @@ compose2(filter(isJust), map)
 
 <h3 id="f-fst">fst <small></small></h2>
 <div class="section">
+<p><code>(a, b) → b</code></p>
+<p>Extract the first component of a pair.</p>
+<p>Nodash implements pairs as arrays of two elements. <code>fst</code> is a function form for the
+syntactic form <code>x[0]</code> and therefore works on any array or string, i.e. you can
+think of it as having the overloaded signatures <code>[a] → a</code> and <code>String → String</code>.</p>
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_fst</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">0</span>]; }
 </pre>
@@ -3872,7 +4067,13 @@ compose2(filter(isJust), map)
 
 <h3 id="f-snd">snd <small></small></h2>
 <div class="section">
+<p><code>(a, b) → b</code></p>
+<p>Extract the second component of a pair.</p>
+<p>Nodash implements pairs as arrays of two elements. <code>snd</code> is a function form for the
+syntactic form <code>x[1]</code> and therefore works on any array or string, i.e. you can
+think of it as having the overloaded signatures <code>[a] → a</code> and <code>String → String</code>.</p>
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_snd</span>(<span class="hljs-params">arr</span>) </span>{ <span class="hljs-keyword">return</span> arr[<span class="hljs-number">1</span>]; }
 </pre>
@@ -3881,6 +4082,7 @@ compose2(filter(isJust), map)
 <h3 id="f-tuple">tuple <small><span class="alias">,</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple</span>(<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b ]; }
 </pre>
@@ -3889,6 +4091,7 @@ compose2(filter(isJust), map)
 <h3 id="f-tuple3">tuple3 <small><span class="alias">,,</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple3</span>(<span class="hljs-params">a, b, c</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c ]; }
 </pre>
@@ -3897,6 +4100,7 @@ compose2(filter(isJust), map)
 <h3 id="f-tuple4">tuple4 <small><span class="alias">,,,</span></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tuple4</span>(<span class="hljs-params">a, b, c, d</span>) </span>{ <span class="hljs-keyword">return</span> [ a, b, c, d ]; }
 </pre>
@@ -3910,6 +4114,7 @@ compose2(filter(isJust), map)
 <h3 id="f-isArray">isArray <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isArray</span>(<span class="hljs-params"></span>) </span>{ [native code] }
 </pre>
@@ -3918,6 +4123,7 @@ compose2(filter(isJust), map)
 <h3 id="f-isFunction">isFunction <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isFunction</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'function'</span>; }
 </pre>
@@ -3926,6 +4132,7 @@ compose2(filter(isJust), map)
 <h3 id="f-isInfinite">isInfinite <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInfinite</span>(<span class="hljs-params">f</span>) </span>{
   <span class="hljs-keyword">return</span> !!f.__infinite__;
@@ -3936,6 +4143,7 @@ compose2(filter(isJust), map)
 <h3 id="f-isNumber">isNumber <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span>; }
 </pre>
@@ -3944,6 +4152,7 @@ compose2(filter(isJust), map)
 <h3 id="f-isObject">isObject <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isObject</span>(<span class="hljs-params">obj</span>) </span>{
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> obj === <span class="hljs-string">'object'</span>) {
@@ -3957,6 +4166,7 @@ compose2(filter(isJust), map)
 <h3 id="f-isStream">isStream <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isStream</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> isFunction(x) &amp;&amp; x.__stream__ === stream; }
 </pre>
@@ -3965,6 +4175,7 @@ compose2(filter(isJust), map)
 <h3 id="f-isString">isString <small></small></h2>
 <div class="section">
 
+<p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isString</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'string'</span>; }
 </pre>

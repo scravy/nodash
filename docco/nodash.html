@@ -52,7 +52,8 @@ from local polyfills.</p>
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> NativeSet    = <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Set</span> !== <span class="hljs-string">'undefined'</span> &amp;&amp; <span class="hljs-built_in">Set</span>;
 <span class="hljs-keyword">var</span> NativeMath   = <span class="hljs-built_in">Math</span>;
 <span class="hljs-keyword">var</span> NativeArray  = <span class="hljs-built_in">Array</span>;
-<span class="hljs-keyword">var</span> NativeObject = <span class="hljs-built_in">Object</span>;</pre></div></div>
+<span class="hljs-keyword">var</span> NativeObject = <span class="hljs-built_in">Object</span>;
+<span class="hljs-keyword">var</span> NativeString = <span class="hljs-built_in">String</span>;</pre></div></div>
             
         </li>
         
@@ -104,6 +105,7 @@ or the references saved above.</p>
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> <span class="hljs-built_in">Math</span>   = options.Math   || NativeMath;
   <span class="hljs-keyword">var</span> <span class="hljs-built_in">Array</span>  = options.Array  || NativeArray;
   <span class="hljs-keyword">var</span> <span class="hljs-built_in">Object</span> = options.Object || NativeObject;
+  <span class="hljs-keyword">var</span> <span class="hljs-built_in">String</span> = options.String || NativeString;
 
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showEndOfStream</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">"end of stream"</span>;
@@ -200,7 +202,8 @@ array nor null.</p>
             <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isFunction</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'function'</span>; }
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isString</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'string'</span>; }
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">x</span>)   </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span>; }
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNodash</span>(<span class="hljs-params">f</span>)   </span>{ <span class="hljs-keyword">return</span> isFunction(f) &amp;&amp; f.__isNodash; }</pre></div></div>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNodash</span>(<span class="hljs-params">f</span>)   </span>{ <span class="hljs-keyword">return</span> isFunction(f) &amp;&amp; f.__isNodash; }
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumeric</span>(<span class="hljs-params">x</span>)  </span>{ <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[0-9]+$/</span>.test(x); }</pre></div></div>
             
         </li>
         
@@ -672,22 +675,9 @@ a name prefixed with an underscore, i.e.</p>
   register(<span class="hljs-string">'isNumber'</span>, isNumber);
   register(<span class="hljs-string">'isString'</span>, isString);
   register(<span class="hljs-string">'isInfinite'</span>, isInfinite);
-  register(<span class="hljs-string">'isObject'</span>, isObject);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-22">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
-              </div>
-              <h2 id="functions-dealing-with-functions">Functions dealing with functions</h2>
+  register(<span class="hljs-string">'isObject'</span>, isObject);
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
+
   group(<span class="hljs-string">'Functions'</span>);
 
   register(<span class="hljs-string">'id'</span>, id);
@@ -704,6 +694,10 @@ a name prefixed with an underscore, i.e.</p>
 
   register(<span class="hljs-string">'$'</span>, <span class="hljs-string">'apply'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_apply</span>(<span class="hljs-params">f, x</span>) </span>{
     <span class="hljs-keyword">return</span> f(x);
+  });
+
+  register(<span class="hljs-string">'invoke'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_invoke</span>(<span class="hljs-params">f</span>) </span>{
+    <span class="hljs-keyword">return</span> f();
   });
 
   register(<span class="hljs-string">'.'</span>, <span class="hljs-string">'compose'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_compose</span>(<span class="hljs-params">f, g, x</span>) </span>{
@@ -723,11 +717,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p><strong>on</strong></p>
 
@@ -740,11 +734,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <h2 id="functions-for-working-with-boolean-functions">Functions for working with boolean functions</h2>
 
@@ -766,11 +760,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <h2 id="tuple">Tuple</h2>
 
@@ -792,11 +786,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Eq</p>
 
@@ -833,11 +827,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Ord</p>
 
@@ -904,11 +898,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Data.Char</p>
 
@@ -917,22 +911,40 @@ a name prefixed with an underscore, i.e.</p>
             <div class="content"><div class='highlight'><pre>
   group(<span class="hljs-string">'Characters'</span>);
   
+  register(<span class="hljs-string">'isNumeric'</span>, isNumeric);
+
   register(<span class="hljs-string">'isDigit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isDigit</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[0-9]/</span>);
   });
 
   register(<span class="hljs-string">'isAsciiLetter'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/[a-zA-Z]/</span>);
+  });
+
+  register(<span class="hljs-string">'isUpper'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isUpper</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> x === x.toUpperCase();
+  });
+
+  register(<span class="hljs-string">'isLower'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLower</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> x === x.toLowerCase();
+  });
+
+  register(<span class="hljs-string">'ord'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_ord</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> x.charCodeAt(<span class="hljs-number">0</span>);
+  });
+
+  register(<span class="hljs-string">'chr'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_chr</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>.fromCharCode(x);
   });</pre></div></div>
             
         </li>
         
         
-        <li id="section-29">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Num</p>
 
@@ -969,11 +981,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>Integral</p>
 
@@ -1006,11 +1018,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Fractional</p>
 
@@ -1024,11 +1036,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Floating</p>
 
@@ -1096,11 +1108,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>RealFrac</p>
 
@@ -1143,11 +1155,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>RealFloat</p>
 
@@ -1159,11 +1171,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Numeric</p>
 
@@ -1374,13 +1386,41 @@ a name prefixed with an underscore, i.e.</p>
     <span class="hljs-keyword">if</span> (isString(xs)) {
       <span class="hljs-keyword">return</span> xs + ys;
     }
-    <span class="hljs-keyword">var</span> zs = [];
-    [].push.apply(zs, xs);
-    [].push.apply(zs, ys);
-    <span class="hljs-keyword">return</span> zs;
-  });
+    <span class="hljs-keyword">if</span> (isArray(xs)) {
+      <span class="hljs-keyword">return</span> [].concat.call(xs, ys);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>type error</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  });
 
   register(<span class="hljs-string">'map'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_map</span>(<span class="hljs-params">f, xs</span>) </span>{
+    <span class="hljs-keyword">var</span> i, ys;
+    <span class="hljs-keyword">if</span> (isArray(xs)) {
+      ys = [];
+      <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+        ys.push(f(xs[i]));
+      }
+      <span class="hljs-keyword">return</span> ys;
+    }
+    <span class="hljs-keyword">if</span> (isString(xs)) {
+      ys = [];
+      <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+        ys.push(f(xs[i]));
+      }
+      <span class="hljs-keyword">return</span> listToString(ys);
+    }
     <span class="hljs-keyword">if</span> (isStream(xs)) {
       <span class="hljs-keyword">return</span> (isInfinite(xs) ? mkInfinite : mkStream)(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">var</span> x = xs();
@@ -1389,14 +1429,6 @@ a name prefixed with an underscore, i.e.</p>
         }
         <span class="hljs-keyword">return</span> f(x);
       });
-    }
-    <span class="hljs-keyword">var</span> ys;
-    <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
-      ys = [];
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
-        ys.push(f(xs[i]));
-      }
-      <span class="hljs-keyword">return</span> isString(xs) ? listToString(ys) : ys;
     }
     ys = {};
     <span class="hljs-keyword">var</span> ks = keys(xs);
@@ -1533,6 +1565,9 @@ a name prefixed with an underscore, i.e.</p>
       }
       x = xs();
       <span class="hljs-keyword">return</span> x === eos ? <span class="hljs-literal">undefined</span> : x;
+    }
+    <span class="hljs-keyword">if</span> (xs === <span class="hljs-literal">undefined</span>) {
+      <span class="hljs-keyword">return</span> xs;
     }
     <span class="hljs-keyword">return</span> xs[ix];
   });
@@ -2086,13 +2121,79 @@ a name prefixed with an underscore, i.e.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-  register(<span class="hljs-string">'heads'</span>, composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.head);}));
+  register(<span class="hljs-string">'inits'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_inits</span>(<span class="hljs-params">xs</span>) </span>{
+    <span class="hljs-keyword">var</span> result, current, i, length;
+    <span class="hljs-keyword">if</span> (isArray(xs)) {
+      result = [[]];
+      current = [];
+      length = xs.length;
+      <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; length; i += <span class="hljs-number">1</span>) {
+        current = current.concat(xs[i]);
+        result.push(current);
+      }
+      <span class="hljs-keyword">return</span> result;
+    }
+    <span class="hljs-keyword">if</span> (isString(xs)) {
+      result = [<span class="hljs-string">''</span>];
+      current = <span class="hljs-string">''</span>;
+      length = xs.length;
+      <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; length; i += <span class="hljs-number">1</span>) {
+        current += xs[i];
+        result.push(current);
+      }
+      <span class="hljs-keyword">return</span> result;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>type error</p>
 
-  register(<span class="hljs-string">'lasts'</span>, composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.lasts);}));
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  });
 
-  register(<span class="hljs-string">'inits'</span>, composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.inits);}));
+  register(<span class="hljs-string">'tails'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tails</span>(<span class="hljs-params">xs</span>) </span>{
+    <span class="hljs-keyword">var</span> result, current, i;
+    <span class="hljs-keyword">if</span> (isArray(xs)) {
+      result = [[]];
+      current = [];
+      <span class="hljs-keyword">for</span> (i = xs.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i -= <span class="hljs-number">1</span>) {
+        current = [xs[i]].concat(current);
+        result.unshift(current);
+      }
+      <span class="hljs-keyword">return</span> result;
+    }
+    <span class="hljs-keyword">if</span> (isString(xs)) {
+      result = [<span class="hljs-string">''</span>];
+      current = <span class="hljs-string">''</span>;
+      <span class="hljs-keyword">for</span> (i = xs.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i -= <span class="hljs-number">1</span>) {
+        current = xs[i] + current;
+        result.unshift(current);
+      }
+      <span class="hljs-keyword">return</span> result;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>type error</p>
 
-  register(<span class="hljs-string">'tails'</span>, composed(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> Nodash.map(Nodash.tails);}));
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  });
 
   register(<span class="hljs-string">'isPrefixOf'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isPrefixOf</span>(<span class="hljs-params">prefix, string</span>) </span>{
     <span class="hljs-keyword">if</span> (isStream(prefix)) {
@@ -2342,11 +2443,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-46">
+        <li id="section-48">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+                <a class="pilcrow" href="#section-48">&#182;</a>
               </div>
               <h2 id="maybe">Maybe</h2>
 
@@ -2399,11 +2500,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-47">
+        <li id="section-49">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
               <h2 id="either">Either</h2>
 
@@ -2473,11 +2574,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-48">
+        <li id="section-50">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-50">&#182;</a>
               </div>
               <h2 id="objects">Objects</h2>
 
@@ -2487,6 +2588,14 @@ a name prefixed with an underscore, i.e.</p>
   group(<span class="hljs-string">'Objects'</span>);
 
   register(<span class="hljs-string">'keys'</span>, keys);
+
+  register(<span class="hljs-string">'values'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_values</span>(<span class="hljs-params">object</span>) </span>{
+    <span class="hljs-keyword">var</span> values = [];
+    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
+      values.push(value);
+    }, object);
+    <span class="hljs-keyword">return</span> values;
+  });
 
   register(<span class="hljs-string">'clone'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_clone</span>(<span class="hljs-params">thing</span>) </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> thing === <span class="hljs-string">'object'</span>) {
@@ -2501,11 +2610,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-49">
+        <li id="section-51">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
               <h2 id="control">Control</h2>
 
@@ -2531,11 +2640,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-50">
+        <li id="section-52">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-52">&#182;</a>
               </div>
               <p>this function does its own currying.</p>
 
@@ -2549,11 +2658,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-51">
+        <li id="section-53">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+                <a class="pilcrow" href="#section-53">&#182;</a>
               </div>
               <p>if spec is an array, translate to object spec</p>
 
@@ -2575,11 +2684,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-52">
+        <li id="section-54">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
+                <a class="pilcrow" href="#section-54">&#182;</a>
               </div>
               <p>prepare tasks specification.</p>
 
@@ -2617,11 +2726,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-53">
+        <li id="section-55">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+                <a class="pilcrow" href="#section-55">&#182;</a>
               </div>
               <p>check spec for unmet dependencies</p>
 
@@ -2658,11 +2767,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-54">
+        <li id="section-56">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
+                <a class="pilcrow" href="#section-56">&#182;</a>
               </div>
               <p>build initial set</p>
 
@@ -2684,11 +2793,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-55">
+        <li id="section-57">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-55">&#182;</a>
+                <a class="pilcrow" href="#section-57">&#182;</a>
               </div>
               <p>check spec for cycles</p>
 
@@ -2745,11 +2854,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-56">
+        <li id="section-58">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-56">&#182;</a>
+                <a class="pilcrow" href="#section-58">&#182;</a>
               </div>
               <p>clean up results if need be</p>
 
@@ -2768,11 +2877,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-57">
+        <li id="section-59">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-57">&#182;</a>
+                <a class="pilcrow" href="#section-59">&#182;</a>
               </div>
               <p>clean results object</p>
 

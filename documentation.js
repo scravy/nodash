@@ -37,7 +37,6 @@ module.exports = function (metadata) {
     map(function (m) {
       var name = head(filter(compose(isAsciiLetter, fst), stream(m.aliases)));
       var filename = './doc/' + (isUpper(name) ? "_" : "") + name.replace(/_/g, '') + '.md';
-      console.log(name, filename);
       var description = fs.existsSync(filename) ?
                     fs.readFileSync(filename, { encoding: 'utf8' }) : '';
       return {

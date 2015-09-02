@@ -861,7 +861,7 @@
 
 <h3 id="f-all">all <small></small></h2>
 <div class="section">
-<p><code>(a -&gt; Bool) -&gt; [a] -&gt; Bool</code></p>
+<p><code>(a → Bool) → [a] → Bool</code></p>
 <p>Applied to a predicate and a list, all determines if all elements of the list
 satisfy the predicate.</p>
 <p>Example:</p>
@@ -890,7 +890,12 @@ all(lte(<span class="hljs-number">3</span>), [<span class="hljs-number">1</span>
 elements in the list evaluate to <code>true</code>.</p>
 <p><em>NOTE:</em> This, the lowercase <code>and</code>, is not the binary boolean operator, which
 is the uppercase <code>AND</code>.</p>
-
+<p>Example:</p>
+<pre><code>and([<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>]) === <span class="hljs-literal">true</span>
+and([<span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>]) === <span class="hljs-literal">false</span>
+and([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]) === <span class="hljs-literal">true</span>
+and([]) === <span class="hljs-literal">false</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 foldl(AND, <span class="hljs-literal">true</span>)
@@ -899,7 +904,7 @@ foldl(AND, <span class="hljs-literal">true</span>)
 
 <h3 id="f-any">any <small></small></h2>
 <div class="section">
-<p><code>(a -&gt; Bool) -&gt; [a] -&gt; Bool</code></p>
+<p><code>(a → Bool) → [a] → Bool</code></p>
 <p>Applied to a predicate and a list, any determines if any element of the list
 satisfies the predicate.</p>
 <p>Example:</p>
@@ -1867,7 +1872,12 @@ foldl(min, +<span class="hljs-literal">Infinity</span>)
 elements in the list evaluate to <code>false</code>.</p>
 <p><em>NOTE:</em> This, the lowercase <code>or</code>, is not the binary boolean operator, which
 is the uppercase <code>OR</code>.</p>
-
+<p>Example:</p>
+<pre><code>or([<span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>]) === <span class="hljs-literal">true</span>
+or([<span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>]) === <span class="hljs-literal">false</span>
+or([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]) === <span class="hljs-literal">false</span>
+or([]) === <span class="hljs-literal">true</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 foldl(OR, <span class="hljs-literal">false</span>)

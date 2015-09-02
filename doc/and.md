@@ -5,3 +5,10 @@ elements in the list evaluate to `true`.
 
 *NOTE:* This, the lowercase `and`, is not the binary boolean operator, which
 is the uppercase `AND`.
+
+Example:
+
+    and([true, true, true]) === true
+    and([true, false, true]) === false
+    and([1, 1, 1]) === true
+    and([]) === false

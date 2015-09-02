@@ -1,4 +1,4 @@
-`(a -> Bool) -> [a] -> Bool`
+`(a → Bool) → [a] → Bool`
 
 Applied to a predicate and a list, all determines if all elements of the list
 satisfy the predicate.

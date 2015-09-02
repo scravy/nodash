@@ -1,4 +1,4 @@
-`(a -> Bool) -> [a] -> Bool`
+`(a → Bool) → [a] → Bool`
 
 Applied to a predicate and a list, any determines if any element of the list
 satisfies the predicate.

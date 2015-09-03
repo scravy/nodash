@@ -820,7 +820,7 @@ a name prefixed with an underscore, i.e.</p>
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   });
 
-  register(<span class="hljs-string">'/='</span>, <span class="hljs-string">'neq'</span>, <span class="hljs-string">'NEQ'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_neq</span>(<span class="hljs-params">a, b</span>) </span>{
+  register(<span class="hljs-string">'/='</span>, <span class="hljs-string">'!='</span>, <span class="hljs-string">'&lt;&gt;'</span>, <span class="hljs-string">'neq'</span>, <span class="hljs-string">'NEQ'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_neq</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-keyword">return</span> !Nodash.eq(a, b);
   });</pre></div></div>
             
@@ -911,20 +911,43 @@ a name prefixed with an underscore, i.e.</p>
             <div class="content"><div class='highlight'><pre>
   group(<span class="hljs-string">'Characters'</span>);
   
-  register(<span class="hljs-string">'isNumeric'</span>, isNumeric);
-
-  register(<span class="hljs-string">'isDigit'</span>, isNumeric);
+  register(<span class="hljs-string">'isDigit'</span>, <span class="hljs-string">'isNumeric'</span>, isNumeric);
 
   register(<span class="hljs-string">'isAsciiLetter'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> !!x.match(<span class="hljs-regexp">/^[a-zA-Z]+$/</span>);
   });
 
-  register(<span class="hljs-string">'isUpper'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isUpper</span>(<span class="hljs-params">x</span>) </span>{
-    <span class="hljs-keyword">return</span> x === x.toUpperCase();
+  register(<span class="hljs-string">'isLetter'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLetter</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
+    <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i]) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
   });
 
-  register(<span class="hljs-string">'isLower'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLower</span>(<span class="hljs-params">x</span>) </span>{
-    <span class="hljs-keyword">return</span> x === x.toLowerCase();
+  register(<span class="hljs-string">'isUpper'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLetter</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
+    <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i] || x[i] !== xUpper[i]) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  });
+  
+  register(<span class="hljs-string">'isLower'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLetter</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
+    <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i] || x[i] !== xLower[i]) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
   });
 
   register(<span class="hljs-string">'ord'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_ord</span>(<span class="hljs-params">x</span>) </span>{

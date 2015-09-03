@@ -13,6 +13,10 @@
 </head>
 <body>
 
+<div class="search">
+  <input type="text" id="search-field" placeholder="Search...">
+</div>
+
 <div class="sidebar">
 
 <h6><a href="#g-ArraysLists">Arrays &#x2F; Lists</a></h6>
@@ -357,14 +361,14 @@
   </a></li>
   <li><a href="#f-isDigit">
     <span class="name">isDigit</span>
+    <span class="alias">isNumeric</span>
+  </a></li>
+  <li><a href="#f-isLetter">
+    <span class="name">isLetter</span>
     
   </a></li>
   <li><a href="#f-isLower">
     <span class="name">isLower</span>
-    
-  </a></li>
-  <li><a href="#f-isNumeric">
-    <span class="name">isNumeric</span>
     
   </a></li>
   <li><a href="#f-isUpper">
@@ -416,7 +420,7 @@
   </a></li>
   <li><a href="#f-neq">
     <span class="name">neq</span>
-    <span class="alias">&#x2F;=</span><span class="alias">NEQ</span>
+    <span class="alias">&#x2F;=</span><span class="alias">!=</span><span class="alias">&lt;&gt;</span><span class="alias">NEQ</span>
   </a></li>
 </ul>
 <h6><a href="#g-Control">Control</a></h6>
@@ -853,7 +857,7 @@
 
 <div class="content">
 
-<h1>nodash 0.9.0 <small>api documentation</small></h1>
+<h1>nodash 0.9.1 <small>api documentation</small></h1>
 
 
 <h2 id="g-ArraysLists">Arrays &#x2F; Lists</h1>
@@ -2467,7 +2471,13 @@ This way it can be refered to as a value and used in higher order functions.</p>
 
 <h3 id="f-isAsciiLetter">isAsciiLetter <small></small></h2>
 <div class="section">
-
+<p><code>String → Bool</code></p>
+<p>Determines whether the given String or Character is an ascii letter, that is: Matching the regular expression <code>/^[a-zA-Z]+$/</code>.</p>
+<p>Example:</p>
+<pre><code>isAsciiLetter(<span class="hljs-string">'X'</span>) === <span class="hljs-literal">true</span>
+isAsciiLetter(<span class="hljs-string">'@'</span>) === <span class="hljs-literal">false</span>
+isAsciiLetter(<span class="hljs-string">'8'</span>) === <span class="hljs-literal">false</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
@@ -2476,64 +2486,86 @@ This way it can be refered to as a value and used in higher order functions.</p>
 </pre>
 </div>
 
-<h3 id="f-isDigit">isDigit <small></small></h2>
+<h3 id="f-isDigit">isDigit <small><span class="alias">isNumeric</span></small></h2>
 <div class="section">
 
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumeric</span>(<span class="hljs-params">x</span>)  </span>{ <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[0-9]+$/</span>.test(x); }
+</pre>
+</div>
+
+<h3 id="f-isLetter">isLetter <small></small></h2>
+<div class="section">
+<p><code>String → Bool</code></p>
+<p>Determines whether all characters in the given string are alphabetic characters / letters.</p>
+<p>Note that this function only considers characters to be letters if they have an upper case and a lower case variant.</p>
+
+<p>Source:</p>
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLetter</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
+  <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
 </pre>
 </div>
 
 <h3 id="f-isLower">isLower <small></small></h2>
 <div class="section">
 <p><code>String → Bool</code></p>
-<p>Determines whether the all alphabetic characters in the given string are lower case characters.</p>
+<p>Determines whether the all characters in the given string are alphabetic lower case characters.</p>
+<p>Note that this function only considers characters to be letters if they have an upper case and a lower case variant.</p>
 <p>Example:</p>
 <pre><code>isUpper(<span class="hljs-string">"HELLO"</span>) === <span class="hljs-literal">false</span>
 isUpper(<span class="hljs-string">"hello"</span>) === <span class="hljs-literal">true</span>
 isUpper(<span class="hljs-string">"hELLO"</span>) === <span class="hljs-literal">false</span>
-isUpper(<span class="hljs-string">"8"</span>) === <span class="hljs-literal">true</span>
-isUpper(<span class="hljs-string">"hello7"</span>) === <span class="hljs-literal">true</span>
+isUpper(<span class="hljs-string">"8"</span>) === <span class="hljs-literal">false</span>
+isUpper(<span class="hljs-string">"hello7"</span>) === <span class="hljs-literal">false</span>
 </code></pre>
 <p>Source:</p>
 <pre>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLower</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> x === x.toLowerCase();
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLetter</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
+  <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i] || x[i] !== xLower[i]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
-</pre>
-</div>
-
-<h3 id="f-isNumeric">isNumeric <small></small></h2>
-<div class="section">
-<p><code>String → Bool</code></p>
-<p>Determine whether the given String represents a decimal unsigned integer.</p>
-<p>Example:</p>
-<pre><code>isNumeric(<span class="hljs-string">"37"</span>) === <span class="hljs-literal">true</span>
-isNumeric(<span class="hljs-string">"x39"</span>) === <span class="hljs-literal">false</span>
-isNumeric(<span class="hljs-string">"abc"</span>) === <span class="hljs-literal">false</span>
-</code></pre>
-<p>Source:</p>
-<pre>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumeric</span>(<span class="hljs-params">x</span>)  </span>{ <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[0-9]+$/</span>.test(x); }
 </pre>
 </div>
 
 <h3 id="f-isUpper">isUpper <small></small></h2>
 <div class="section">
 <p><code>String → Bool</code></p>
-<p>Determines whether the all alphabetic characters in the given string are upper case characters.</p>
+<p>Determines whether all characters in the given string are alphabetic upper case characters.</p>
+<p>Note that this function only considers characters to be letters if they have an upper case and a lower case variant.</p>
 <p>Example:</p>
 <pre><code>isUpper(<span class="hljs-string">"HELLO"</span>) === <span class="hljs-literal">true</span>
 isUpper(<span class="hljs-string">"hello"</span>) === <span class="hljs-literal">false</span>
 isUpper(<span class="hljs-string">"hELLO"</span>) === <span class="hljs-literal">false</span>
-isUpper(<span class="hljs-string">"8"</span>) === <span class="hljs-literal">true</span>
-isUpper(<span class="hljs-string">"HELLO7"</span>) === <span class="hljs-literal">true</span>
+isUpper(<span class="hljs-string">"8"</span>) === <span class="hljs-literal">false</span>
+isUpper(<span class="hljs-string">"HELLO7"</span>) === <span class="hljs-literal">false</span>
 </code></pre>
 <p>Source:</p>
 <pre>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isUpper</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> x === x.toUpperCase();
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isLetter</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
+  <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i] || x[i] !== xUpper[i]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
 </pre>
 </div>
@@ -2695,7 +2727,7 @@ isUpper(<span class="hljs-string">"HELLO7"</span>) === <span class="hljs-literal
 </pre>
 </div>
 
-<h3 id="f-neq">neq <small><span class="alias">&#x2F;=</span><span class="alias">NEQ</span></small></h2>
+<h3 id="f-neq">neq <small><span class="alias">&#x2F;=</span><span class="alias">!=</span><span class="alias">&lt;&gt;</span><span class="alias">NEQ</span></small></h2>
 <div class="section">
 
 <p>Source:</p>
@@ -4178,7 +4210,15 @@ think of it as having the overloaded signatures <code>[a] → a</code> and <code
 
 <h3 id="f-isArray">isArray <small></small></h2>
 <div class="section">
-
+<p><code>Something → Bool</code></p>
+<p>Determines whether something is an array or not. This is exactly the same as <code>Array.isArray</code>, except that is is polyfilled in environments which do not provide it.</p>
+<p>Example:</p>
+<pre><code>isArray([]) === <span class="hljs-literal">true</span>
+isArray({}) === <span class="hljs-literal">false</span>
+isArray(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">3</span>)) === <span class="hljs-literal">true</span>
+isArray(<span class="hljs-literal">undefined</span>) === <span class="hljs-literal">false</span>
+isArray(<span class="hljs-number">3</span>) === <span class="hljs-literal">false</span>
+</code></pre>
 <p>Source:</p>
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isArray</span>(<span class="hljs-params"></span>) </span>{ [native code] }
@@ -4286,6 +4326,33 @@ isString({}) === <span class="hljs-literal">false</span>
 
 
 </div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+$(function () {
+  var $searchField = $('#search-field');
+  $searchField.on('keyup', function () {
+    var value = $searchField.val().toLowerCase();
+    $('.sidebar li').each(function () {
+      var $this = $(this);
+      if (!value || $this.text().toLowerCase().indexOf(value) >= 0) {
+        $this.removeClass('hidden');
+      } else {
+        $this.addClass('hidden');
+      }
+    });
+    $('.sidebar ul').each(function () {
+      var $this = $(this);
+      console.log($this.find('li').length, $this.find('li.hidden').length);
+      if ($this.find('li.hidden').length === $this.find('li').length) {
+        $this.prev().addClass('hidden');
+      } else {
+        $this.prev().removeClass('hidden');
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>

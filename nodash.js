@@ -576,20 +576,43 @@ function makeNodash(options, undefined) {
 
   group('Characters');
   
-  register('isNumeric', isNumeric);
-
-  register('isDigit', isNumeric);
+  register('isDigit', 'isNumeric', isNumeric);
 
   register('isAsciiLetter', function _isAsciiLetter(x) {
     return !!x.match(/^[a-zA-Z]+$/);
   });
 
-  register('isUpper', function _isUpper(x) {
-    return x === x.toUpperCase();
+  register('isLetter', function _isLetter(x) {
+    var xUpper = x.toUpperCase();
+    var xLower = x.toLowerCase();
+    for (var i = 0; i < x.length; i += 1) {
+      if (xUpper[i] === xLower[i]) {
+        return false;
+      }
+    }
+    return true;
   });
 
-  register('isLower', function _isLower(x) {
-    return x === x.toLowerCase();
+  register('isUpper', function _isLetter(x) {
+    var xUpper = x.toUpperCase();
+    var xLower = x.toLowerCase();
+    for (var i = 0; i < x.length; i += 1) {
+      if (xUpper[i] === xLower[i] || x[i] !== xUpper[i]) {
+        return false;
+      }
+    }
+    return true;
+  });
+  
+  register('isLower', function _isLetter(x) {
+    var xUpper = x.toUpperCase();
+    var xLower = x.toLowerCase();
+    for (var i = 0; i < x.length; i += 1) {
+      if (xUpper[i] === xLower[i] || x[i] !== xLower[i]) {
+        return false;
+      }
+    }
+    return true;
   });
 
   register('ord', function _ord(x) {

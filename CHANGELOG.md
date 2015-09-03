@@ -39,38 +39,38 @@ v0.6 "Dijkstra"
   + not all functions which could support it support it yet
 + Infinte Streams!
 + `repeat`, `iterate`, ...
-+ ~100% code coverage
++ ~100% code coverage.
 + ~5KB minified + gzipped
 + `each` for iterating over arrays, objects, and streams
 
 ### v0.6.1
 
-+ Changed name from `node-prelude` to `nodash`
++ Changed name from `node-prelude` to `nodash`.
 
 v0.7 "Eich"
 -----------
 
-+ `isInfinite` exported as utility function
-+ `keys` for enumerating the keys of an object
-+ `cycle` /w array, string, object, streams, and inifinite streams
-+ `pipe` for chaining functions
-+ Reproduces the complete Haskell 2010 Prelude
-+ All occurences of `Prelude` are now `Nodash`
++ `isInfinite` exported as utility function.
++ `keys` for enumerating the keys of an object.
++ `cycle` /w array, string, object, streams, and inifinite streams.
++ `pipe` for chaining functions.
++ Reproduces the complete Haskell 2010 Prelude.
++ All occurences of `Prelude` are now `Nodash`.
 
 ### v0.7.1
 
-+ Added a lot documentation
++ Added a lot documentation.
 
 v0.8 "Floyd"
 ------------
 
 + Tasks! The new `run` function allows you do declare a schedule with
-  dependencies between tasks which is scheduled asynchronously
-+ `async` added - turns ordinary functions into asynchronous functions
+  dependencies between tasks which is scheduled asynchronously.
++ `async` added - turns ordinary functions into asynchronous functions,
 + `isObject` added - checks if something is an object but not an array
-   and not `null`
-+ renamed `isNull` to `isEmpty`
-+ `clone` added to create deep copies of objects
+   and not `null`.
++ renamed `isNull` to `isEmpty`.
++ `clone` added to create deep copies of objects.
 
 ### v0.8.1
 
@@ -87,16 +87,24 @@ which is only available in NodeJS. This patch fixes that.
 v0.9 "Gosling"
 --------------
 
-+ Added benchmarks, can be run with `node benchmark`
-+ `invoke` added - `invoke(f)` invokes the function `f` (useful with map etc.)
-+ `values` added - creates an array from the values of an object
-+ `at` and `select` will return `undefined` now if invoked on `undefined`
-+ `isUpper` added - checks if a string is all upper case
-+ `isLower` added - checks if a string is all lower case
-+ `isNumeric` added - checks if a string is numeric (`/^[0-9]+$/`)
-+ `ord` added - returns the unicode code point for the given character
-+ `chr` added - returns the character for the given unicode code point
++ Added benchmarks, can be run with `node benchmark`.
++ `invoke` added - `invoke(f)` invokes the function `f` (useful with map etc.).
++ `values` added - creates an array from the values of an object.
++ `at` and `select` will return `undefined` now if invoked on `undefined`.
++ `isUpper` added - checks if a string is all upper case.
++ `isLower` added - checks if a string is all lower case.
++ `isNumeric` added - checks if a string is numeric (`/^[0-9]+$/`).
++ `ord` added - returns the unicode code point for the given character.
++ `chr` added - returns the character for the given unicode code point.
 + `lasts` and `heads` removed - they were added in a bleary-eyed night
-  and do not make any sense at all
+  and do not make any sense at all.
 + `inits` and `lasts` implemented - they were added but implementations
-  were forgotten in that same bleary-eyed night
+  were forgotten in that same bleary-eyed night.
+  
+### v0.9.1
+
++ `isLetter` added - checks if a strings contains of only alphabetic characters
+  where an alphabetic character is something that has an upper case and a lower
+  case.
++ `isUpper` and `isLower` now accept strings that also pass `isLetter`.
++ `curried` is not exported via `register` and shows up in the api documentation.

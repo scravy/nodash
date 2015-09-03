@@ -574,8 +574,9 @@ The maximum arity that this can deal with is 8 (see above).</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Nodash.curried = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">fn</span>) </span>{ <span class="hljs-keyword">return</span> funcs[fn.length](fn); };
-  Nodash.curried.__isNodash = <span class="hljs-literal">true</span>;
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curried</span>(<span class="hljs-params">fn</span>) </span>{
+    <span class="hljs-keyword">return</span> funcs[fn.length](fn);
+  }
 
   <span class="hljs-comment">/* @ifdef WITH_ONLINE_HELP */</span>
   Nodash.metadata = [];
@@ -632,7 +633,7 @@ since ECMA Script 5.</p>
         <span class="hljs-keyword">break</span>;
       }
     }
-    fCurried = Nodash.curried(f.composed ? f() : f);
+    fCurried = curried(f.composed ? f() : f);
     fCurried.__isNodash = <span class="hljs-literal">true</span>;
     <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; aliases.length; i++) {
       Nodash[aliases[i]] = fCurried;
@@ -712,7 +713,13 @@ a name prefixed with an underscore, i.e.</p>
     <span class="hljs-keyword">return</span> funcs[<span class="hljs-number">2</span>](<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">b, a</span>) </span>{
       <span class="hljs-keyword">return</span> f(a, b);
     });
-  });</pre></div></div>
+  });
+
+  register(<span class="hljs-string">'on'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_on</span>(<span class="hljs-params">g, f, a, b</span>) </span>{
+    <span class="hljs-keyword">return</span> g(f(a), f(b));
+  });
+
+  register(<span class="hljs-string">'curried'</span>, curried);</pre></div></div>
             
         </li>
         
@@ -722,23 +729,6 @@ a name prefixed with an underscore, i.e.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-22">&#182;</a>
-              </div>
-              <p><strong>on</strong></p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  register(<span class="hljs-string">'on'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_on</span>(<span class="hljs-params">g, f, a, b</span>) </span>{
-    <span class="hljs-keyword">return</span> g(f(a), f(b));
-  });</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-23">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <h2 id="functions-for-working-with-boolean-functions">Functions for working with boolean functions</h2>
 
@@ -760,11 +750,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <h2 id="tuple">Tuple</h2>
 
@@ -786,11 +776,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Eq</p>
 
@@ -827,11 +817,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Ord</p>
 
@@ -898,11 +888,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Data.Char</p>
 
@@ -961,11 +951,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Num</p>
 
@@ -1002,11 +992,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Integral</p>
 
@@ -1039,11 +1029,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>Fractional</p>
 
@@ -1057,11 +1047,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Floating</p>
 
@@ -1129,11 +1119,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>RealFrac</p>
 
@@ -1176,11 +1166,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>RealFloat</p>
 
@@ -1192,11 +1182,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Numeric</p>
 
@@ -1414,11 +1404,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>type error</p>
 
@@ -1961,11 +1951,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>further from Data.List</p>
 
@@ -2018,13 +2008,27 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>   register(‘subsequences’, function _subsequences() {
+   });</p>
+
+            </div>
+            
+        </li>
+        
+        
         <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
-              <p>   register(‘subsequences’, function _subsequences() {
+              <p>   register(‘permutations’, function _permutations() {
    });</p>
 
             </div>
@@ -2038,7 +2042,7 @@ a name prefixed with an underscore, i.e.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
-              <p>   register(‘permutations’, function _permutations() {
+              <p>   register(‘mapAccumL’, function _mapAccumL() {
    });</p>
 
             </div>
@@ -2052,7 +2056,7 @@ a name prefixed with an underscore, i.e.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
-              <p>   register(‘mapAccumL’, function _mapAccumL() {
+              <p>   register(‘mapAccumR’, function _mapAccumR() {
    });</p>
 
             </div>
@@ -2066,7 +2070,7 @@ a name prefixed with an underscore, i.e.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
-              <p>   register(‘mapAccumR’, function _mapAccumR() {
+              <p>   register(‘unfoldr’, function _unfoldr() {
    });</p>
 
             </div>
@@ -2080,7 +2084,7 @@ a name prefixed with an underscore, i.e.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
-              <p>   register(‘unfoldr’, function _unfoldr() {
+              <p>   register(‘stripPrefix’, function _stripPrefix() {
    });</p>
 
             </div>
@@ -2094,7 +2098,7 @@ a name prefixed with an underscore, i.e.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
-              <p>   register(‘stripPrefix’, function _stripPrefix() {
+              <p>   register(‘nubBy’, function () {
    });</p>
 
             </div>
@@ -2108,7 +2112,7 @@ a name prefixed with an underscore, i.e.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
-              <p>   register(‘nubBy’, function () {
+              <p>   register(‘unionBy’, function () {
    });</p>
 
             </div>
@@ -2121,20 +2125,6 @@ a name prefixed with an underscore, i.e.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-44">&#182;</a>
-              </div>
-              <p>   register(‘unionBy’, function () {
-   });</p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-45">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <p>   register(‘intersectBy’, function () {
    });</p>
@@ -2168,11 +2158,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-46">
+        <li id="section-45">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <p>type error</p>
 
@@ -2204,11 +2194,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-47">
+        <li id="section-46">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-46">&#182;</a>
               </div>
               <p>type error</p>
 
@@ -2464,11 +2454,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-48">
+        <li id="section-47">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-47">&#182;</a>
               </div>
               <h2 id="maybe">Maybe</h2>
 
@@ -2521,11 +2511,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-49">
+        <li id="section-48">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-48">&#182;</a>
               </div>
               <h2 id="either">Either</h2>
 
@@ -2595,11 +2585,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-50">
+        <li id="section-49">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
               <h2 id="objects">Objects</h2>
 
@@ -2631,11 +2621,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-51">
+        <li id="section-50">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+                <a class="pilcrow" href="#section-50">&#182;</a>
               </div>
               <h2 id="control">Control</h2>
 
@@ -2661,11 +2651,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-52">
+        <li id="section-51">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
               <p>this function does its own currying.</p>
 
@@ -2679,11 +2669,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-53">
+        <li id="section-52">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+                <a class="pilcrow" href="#section-52">&#182;</a>
               </div>
               <p>if spec is an array, translate to object spec</p>
 
@@ -2705,11 +2695,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-54">
+        <li id="section-53">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
+                <a class="pilcrow" href="#section-53">&#182;</a>
               </div>
               <p>prepare tasks specification.</p>
 
@@ -2747,11 +2737,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-55">
+        <li id="section-54">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-55">&#182;</a>
+                <a class="pilcrow" href="#section-54">&#182;</a>
               </div>
               <p>check spec for unmet dependencies</p>
 
@@ -2788,11 +2778,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-56">
+        <li id="section-55">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-56">&#182;</a>
+                <a class="pilcrow" href="#section-55">&#182;</a>
               </div>
               <p>build initial set</p>
 
@@ -2814,11 +2804,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-57">
+        <li id="section-56">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-57">&#182;</a>
+                <a class="pilcrow" href="#section-56">&#182;</a>
               </div>
               <p>check spec for cycles</p>
 
@@ -2875,11 +2865,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-58">
+        <li id="section-57">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-58">&#182;</a>
+                <a class="pilcrow" href="#section-57">&#182;</a>
               </div>
               <p>clean up results if need be</p>
 
@@ -2898,11 +2888,11 @@ a name prefixed with an underscore, i.e.</p>
         </li>
         
         
-        <li id="section-59">
+        <li id="section-58">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-59">&#182;</a>
+                <a class="pilcrow" href="#section-58">&#182;</a>
               </div>
               <p>clean results object</p>
 

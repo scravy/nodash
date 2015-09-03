@@ -503,6 +503,10 @@
     <span class="name">const</span>
     <span class="alias">const_</span><span class="alias">constant</span>
   </a></li>
+  <li><a href="#f-curried">
+    <span class="name">curried</span>
+    
+  </a></li>
   <li><a href="#f-flip">
     <span class="name">flip</span>
     
@@ -2745,6 +2749,17 @@ isUpper(<span class="hljs-string">"HELLO7"</span>) === <span class="hljs-literal
 
 <h3 id="f-async">async <small></small></h2>
 <div class="section">
+<p>Turns a sychronous function into an asynchronous function.</p>
+<p>Example:</p>
+<pre><code><span class="hljs-keyword">var</span> asyncMin = <span class="hljs-keyword">async</span>(<span class="hljs-built_in">Math</span>.min);
+<span class="hljs-keyword">async</span>(<span class="hljs-number">3</span>, <span class="hljs-number">17</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result, error</span>) </span>{ result === <span class="hljs-number">3</span>; });
+</code></pre><p>This function is exceptional in the sense that it does not follow several
+conventions in nodash. It accepts a function with an arbitrary number of arguments
+and turns it into a function with one more argument that accepts a callback as
+its last argument. The exceptional thing here is that the functions may have
+arbitrary numbers of arguments.</p>
+<p>It is also worth mentioning that the resulting function is not curried and 
+can not be curried using <code>curried</code>.</p>
 
 <p>Source:</p>
 <pre>
@@ -3210,6 +3225,17 @@ isUpper(<span class="hljs-string">"HELLO7"</span>) === <span class="hljs-literal
 <pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_const</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> a;
+}
+</pre>
+</div>
+
+<h3 id="f-curried">curried <small></small></h2>
+<div class="section">
+
+<p>Source:</p>
+<pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curried</span>(<span class="hljs-params">fn</span>) </span>{
+  <span class="hljs-keyword">return</span> funcs[fn.length](fn);
 }
 </pre>
 </div>

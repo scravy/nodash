@@ -507,7 +507,7 @@ function makeNodash(options, undefined) {
     return false;
   });
 
-  register('/=', 'neq', 'NEQ', function _neq(a, b) {
+  register('/=', '!=', '<>', 'neq', 'NEQ', function _neq(a, b) {
     return !Nodash.eq(a, b);
   });
 

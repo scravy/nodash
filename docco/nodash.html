@@ -719,7 +719,21 @@ a name prefixed with an underscore, i.e.</p>
     <span class="hljs-keyword">return</span> g(f(a), f(b));
   });
 
-  register(<span class="hljs-string">'curried'</span>, curried);</pre></div></div>
+  register(<span class="hljs-string">'curried'</span>, curried);
+
+  register(<span class="hljs-string">'curry'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_curry</span>(<span class="hljs-params">f</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">b</span>) </span>{
+        <span class="hljs-keyword">return</span> f(a, b);
+      };
+    };
+  });
+
+  register(<span class="hljs-string">'uncurry'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_uncurry</span>(<span class="hljs-params">f</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
+      <span class="hljs-keyword">return</span> f(a)(b);
+    };
+  });</pre></div></div>
             
         </li>
         

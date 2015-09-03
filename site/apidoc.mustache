@@ -14,6 +14,10 @@
 </head>
 <body>
 
+<div class="search">
+  <input type="text" id="search-field" placeholder="Search...">
+</div>
+
 <div class="sidebar">
 
 {{#groups}}
@@ -56,6 +60,33 @@
 {{/groups}}
 
 </div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+$(function () {
+  var $searchField = $('#search-field');
+  $searchField.on('keyup', function () {
+    var value = $searchField.val().toLowerCase();
+    $('.sidebar li').each(function () {
+      var $this = $(this);
+      if (!value || $this.text().toLowerCase().indexOf(value) >= 0) {
+        $this.removeClass('hidden');
+      } else {
+        $this.addClass('hidden');
+      }
+    });
+    $('.sidebar ul').each(function () {
+      var $this = $(this);
+      console.log($this.find('li').length, $this.find('li.hidden').length);
+      if ($this.find('li.hidden').length === $this.find('li').length) {
+        $this.prev().addClass('hidden');
+      } else {
+        $this.prev().removeClass('hidden');
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>

@@ -1,14 +1,36 @@
 /* vim: set et sw=2 ts=2: */
+
 @sidebar-width: 200px;
+@search-height: 40px;
+@search-padding: 8px;
 @ornament-color: maroon;
 @padding-left: 10px;
 @width: 850px;
 
-div.sidebar {
+div.search {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  height: @search-height;
+  width: @sidebar-width;
+  padding: @search-padding;
+  background: @ornament-color;
+
+  input[type='text'] {
+    height: 40px - (@search-padding * 2);
+    padding: 0 10px;
+    border-width: 0;
+    border-radius: 15px;
+    width: @sidebar-width - (@search-padding * 2);
+  }
+}
+
+div.sidebar {
+  position: fixed;
+  top: @search-height;
+  left: 0;
+  bottom: 0;
+  xheight: 100%;
   width: @sidebar-width;
   border-right: 1px solid @ornament-color;
   overflow: auto;
@@ -17,6 +39,10 @@ div.sidebar {
     margin-top: 1em;
     margin-bottom: .3em;
     font-weight: bold;
+  }
+
+  .hidden {
+    display: none;
   }
 
   a {
@@ -71,7 +97,7 @@ div.content {
 }
 
 @media (max-width: @width) {
-  div.sidebar {
+  div.sidebar, div.search {
     display: none;
   }
 

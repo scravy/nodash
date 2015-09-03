@@ -327,8 +327,9 @@ function makeNodash(options, undefined) {
 
   // Turns an ordinary function into a function which can be partially applied.
   // The maximum arity that this can deal with is 8 (see above).
-  Nodash.curried = function (fn) { return funcs[fn.length](fn); };
-  Nodash.curried.__isNodash = true;
+  function curried(fn) {
+    return funcs[fn.length](fn);
+  }
 
   /* @ifdef WITH_ONLINE_HELP */
   Nodash.metadata = [];
@@ -373,7 +374,7 @@ function makeNodash(options, undefined) {
         break;
       }
     }
-    fCurried = Nodash.curried(f.composed ? f() : f);
+    fCurried = curried(f.composed ? f() : f);
     fCurried.__isNodash = true;
     for (i = 0; i < aliases.length; i++) {
       Nodash[aliases[i]] = fCurried;
@@ -387,6 +388,7 @@ function makeNodash(options, undefined) {
     /* @endif */
     return fCurried;
   }
+
 
   // # The actual functions
   //
@@ -446,10 +448,11 @@ function makeNodash(options, undefined) {
     });
   });
 
-  // **on**
   register('on', function _on(g, f, a, b) {
     return g(f(a), f(b));
   });
+
+  register('curried', curried);
 
 
   // ## Functions for working with boolean functions

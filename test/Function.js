@@ -29,5 +29,13 @@ describe('Function', function () {
         var value = Math.random();
         assert.strictEqual(value, invoke(idf(value)));
     });
+
+    it('curry', function () {
+        assert.strictEqual(3, curry(Math.min)(3)(4));
+    });
+
+    it('uncurry', function () {
+        assert.strictEqual(3, uncurry(curry(Math.min))(3, 4));
+    });
 });
 

@@ -108,3 +108,8 @@ v0.9 "Gosling"
   case.
 + `isUpper` and `isLower` now accept strings that also pass `isLetter`.
 + `curried` is not exported via `register` and shows up in the api documentation.
+
+### v0.9.2
+
++ `curry` and `uncurry` added
+

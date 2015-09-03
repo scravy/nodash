@@ -454,6 +454,20 @@ function makeNodash(options, undefined) {
 
   register('curried', curried);
 
+  register('curry', function _curry(f) {
+    return function (a) {
+      return function (b) {
+        return f(a, b);
+      };
+    };
+  });
+
+  register('uncurry', function _uncurry(f) {
+    return function (a, b) {
+      return f(a)(b);
+    };
+  });
+
 
   // ## Functions for working with boolean functions
 

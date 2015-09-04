@@ -333,11 +333,9 @@ function makeNodash(options, undefined) {
 
   /* @ifdef WITH_ONLINE_HELP */
   Nodash.metadata = [];
-  /* @endif */
 
   var currentGroup = "";
 
-  /* @ifdef WITH_ONLINE_HELP */
   function group(name, desc) {
     currentGroup = { name: name };
   }

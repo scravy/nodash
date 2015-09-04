@@ -31,11 +31,18 @@ describe('Function', function () {
     });
 
     it('curry', function () {
-        assert.strictEqual(3, curry(Math.min)(3)(4));
+        var f = curry(function (x) { return fst(x) + snd(x); });
+        assert.strictEqual(
+            true,
+            eq(zipWith(f, [ 1, 2, 3 ], [ 3, 2, 1 ]), [ 4, 4, 4 ])
+        );
     });
 
     it('uncurry', function () {
-        assert.strictEqual(3, uncurry(curry(Math.min))(3, 4));
+        assert.strictEqual(
+            true,
+            eq(map(uncurry(Math.min), zip([1, 2, 3], [3, 2, 1])), [1, 2, 1])
+        );
     });
 });
 

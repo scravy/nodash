@@ -455,16 +455,14 @@ function makeNodash(options, undefined) {
   register('curried', curried);
 
   register('curry', function _curry(f) {
-    return function (a) {
-      return function (b) {
-        return f(a, b);
-      };
-    };
+    return curried(function (a, b) {
+      return f([a, b]);
+    });
   });
 
   register('uncurry', function _uncurry(f) {
-    return function (a, b) {
-      return f(a)(b);
+    return function (t) {
+      return f(t[0], t[1]);
     };
   });
 

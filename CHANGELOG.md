@@ -111,5 +111,20 @@ v0.9 "Gosling"
 
 ### v0.9.2
 
-+ `curry` and `uncurry` added
++ *experimental:* `curry` and `uncurry` added
+
+v0.10 "Hollerith"
+-----------------
+
+
+
+v0.11 "Ichbiah"
+---------------
+
+
+
+v0.12 "Joy"
+-----------
+
+
 

@@ -1,3 +1,5 @@
+`Function → Function`
+
 Turns a sychronous function into an asynchronous function.
 
 Example:

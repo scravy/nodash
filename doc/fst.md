@@ -1,4 +1,4 @@
-`(a, b) → b`
+`(a, b) → a`
 
 Extract the first component of a pair.
 

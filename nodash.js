@@ -596,7 +596,7 @@ function makeNodash(options, undefined) {
   register('isDigit', 'isNumeric', isNumeric);
 
   register('isAsciiLetter', function _isAsciiLetter(x) {
-    return !!x.match(/^[a-zA-Z]+$/);
+    return /^[a-zA-Z]+$/.test(x);
   });
 
   register('isLetter', function _isLetter(x) {

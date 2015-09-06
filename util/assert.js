@@ -1,15 +1,17 @@
 var assert = require('assert');
 
-function flip(f) {
-    return function (a, b) {
-        return f(b, a);
-    }
-}
+module.exports = function (value) {
+    assert.strictEqual(value, true);
+};
 
-Object.keys(assert).forEach(function (key) {
-    if (typeof (assert[key]) === 'function') {
-        assert[key] = flip(assert[key]);
-    }
-});
+module.exports.strictEqual = function (expected, actual) {
+    assert.strictEqual(actual, expected);
+};
 
-module.exports = assert;
+module.exports.deepEqual = function (expected, actual) {
+    assert.deepEqual(actual, expected);
+};
+
+module.exports.throws = function (error, block) {
+    assert.throws(block, error);
+};

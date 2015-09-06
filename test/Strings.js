@@ -1,5 +1,5 @@
 require('../nodash').install(GLOBAL);
-var assert = map(flip, require('assert'));
+var assert = require('../util/assert');
 
 describe('Strings', function () {
      

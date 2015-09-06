@@ -1,5 +1,5 @@
 require('../nodash').install(GLOBAL);
-var assert = require('assert');
+var assert = require('../util/assert');
 
 describe('Function', function () {
 
@@ -8,6 +8,7 @@ describe('Function', function () {
     });
 
     it('const', function () {
+        // TODO
         //assert.strictEqual(4, foldl(compose(constant, plus(1)), 0, [1,9,37,0]));
     });
 

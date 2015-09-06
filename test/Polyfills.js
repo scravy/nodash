@@ -16,7 +16,7 @@ var DumbMath = {
     min: Math.min
 };
 
-var assert = require('assert');
+var assert = require('../util/assert');
 
 describe('Polyfills', function () {
 

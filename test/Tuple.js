@@ -1,5 +1,5 @@
 var P = require('../nodash').install(GLOBAL);
-var assert = require('assert');
+var assert = require('../util/assert');
 
 describe('Tuple', function () {
 

@@ -25,7 +25,6 @@
   },
   "homepage": "https://scravy.github.io/nodash",
   "devDependencies": {
-    "chai": "^3.0.0",
     "chalk": "^1.0.0",
     "filesize": "^3.1.2",
     "gulp": "^3.8.11",

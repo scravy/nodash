@@ -27,41 +27,6 @@ function makeNodash(options, undefined) {
   var Object = options.Object || NativeObject;
   var String = options.String || NativeString;
 
-  function showEndOfStream() {
-    return "end of stream";
-  }
-
-  var eos = {
-    toString: showEndOfStream,
-    inspect: showEndOfStream
-  };
-
-  Nodash.endOfStream = eos;
-
-  var stream = {};
-
-  function mkStream(f) {
-    f.__stream__ = stream;
-    return f;
-  }
-
-  function isStream(x) { return isFunction(x) && x.__stream__ === stream; }
-
-  function mkInfinite(f) {
-    f = mkStream(f);
-    f.__infinite__ = true;
-    return f;
-  }
-  function isInfinite(f) {
-    return !!f.__infinite__;
-  }
-
-  function checkFinite(xs) {
-    if (isInfinite(xs)) {
-      throw new Error('this function can not consume infinite streams');
-    }
-  }
-
   // `isArray` checks whether a thing is actually an array object.
   // If `Array.isArray` is not available in this environment it will
   // fall back to comparing the toString representation. The `toString`
@@ -387,26 +352,13 @@ function makeNodash(options, undefined) {
     return fCurried;
   }
 
-
-  // # The actual functions
-  //
-  // Every function is exported by attaching it to the `Nodash` object
-  // via `register`. If the function is defined immediately it is given
-  // a name prefixed with an underscore, i.e.
-  //
-  //     register('<function-name>', function _functionName() { ... }
-  //
-  // to make stack traces more readable.
-
   
   group('Types');
 
   register('isFunction', isFunction);
-  register('isStream', isStream);
   register('isArray', isArray);
   register('isNumber', isNumber);
   register('isString', isString);
-  register('isInfinite', isInfinite);
   register('isObject', isObject);
 
 
@@ -828,54 +780,10 @@ function makeNodash(options, undefined) {
 
   group('Streams');
 
-  register('stream', 'lazy', function _stream(xs) {
-    if (isStream(xs)) {
-      return xs;
-    }
-    if (isFunction(xs)) {
-      return mkInfinite(function () {
-        return xs();
-      });
-    }
-    var i = 0;
-    return mkStream(function () {
-      if (i < xs.length) {
-        return xs[i++];
-      }
-      return eos;
-    });
-  });
-
-  register('consume', function _consume(xs) {
-    if (!isStream(xs)) {
-      return xs;
-    }
-    checkFinite(xs);
-    var z, zs = [];
-    while ((z = xs()) !== eos) {
-      zs.push(z);
-    }
-    return zs;
-  });
-
-  register('consumeString', function _consumeString(xs) {
-    if (!isStream(xs)) {
-      return "" + xs;
-    }
-    var z, zs = "";
-    while ((z = xs()) !== eos) {
-      zs += z;
-    }
-    return zs;
-  });
+  // TODO: stream, lazy, consume, consumeString
 
   register('each', function _each(f, xs) {
-    if (isStream(xs)) {
-      var x;
-      while ((x = xs()) !== eos) {
-        f(x);
-      }
-    } else if (isArray(xs) || isString(xs)) {
+    if (isArray(xs) || isString(xs)) {
       for (var i = 0; i < xs.length; i++) {
         f(xs[i], i);
       }
@@ -887,63 +795,9 @@ function makeNodash(options, undefined) {
     }
   });
 
-  register('cycle', function _cycle(xs) {
-    if (isStream(xs)) {
-      if (isInfinite(xs)) {
-        return xs;
-      }
-      var arr = [];
-      var consumed = false;
-      var h = 0;
-      return mkInfinite(function () {
-        var z;
-        if (!consumed) {
-          if ((z = xs()) !== eos) {
-            arr.push(z);
-            return z;
-          }
-          consumed = true;
-        }
-        if (h >= arr.length) {
-          h = 0;
-        }
-        return arr[h++];
-      });
-    } else if (isArray(xs) || isString(xs)) {
-      var i = 0;
-      return mkInfinite(function () {
-        if (i >= xs.length) {
-          i = 0;
-        }
-        return xs[i++];
-      });
-    } else {
-      var ks = keys(xs);
-      var j = 0;
-      return mkInfinite(function () {
-        if (j >= ks.length) {
-          j = 0;
-        }
-        return xs[ks[j++]];
-      });
-    }
-  });
+  // TODO: cycle, repeat, iterate
 
-  register('repeat', function _repeat(x) {
-    return mkInfinite(function () {
-      return x;
-    });
-  });
-
-  register('iterate', function _iterate(f, x) {
-    return mkInfinite(function () {
-      var r = x;
-      x = f(x);
-      return r;
-    });
-  });
-
-
+  
   group('Strings');
 
   register('lines', function _lines(string) {
@@ -967,51 +821,21 @@ function makeNodash(options, undefined) {
   });
 
 
-  group('Arrays / Lists');
+  group('Collections');
 
   register(':', 'cons', function _cons(x, xs) {
-    if (isStream(xs)) {
-      var consumedFirst = false;
-      return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
-        if (!consumedFirst) {
-          consumedFirst = true;
-          return x;
-        }
-        return xs();
-      });
-    }
+    // TODO
     var zs = [x];
     [].push.apply(zs, xs);
     return zs;
   });
 
   register('++', 'append', function _append(xs, ys) {
-    if (isStream(xs) || isStream(ys)) {
-      xs = Nodash.stream(xs);
-      if (isInfinite(xs)) {
-        return xs;
-      }
-      ys = Nodash.stream(ys);
-      var atSecondStream = false;
-      return mkStream(function () {
-        if (atSecondStream) {
-          return ys();
-        }
-        var r = xs();
-        if (r == eos) {
-          atSecondStream = true;
-          return ys();
-        }
-        return r;
-      });
-    }
     if (isString(xs)) {
       return xs + ys;
     }
-    if (isArray(xs)) {
-      return [].concat.call(xs, ys);
-    }
-    // type error
+    // TODO: the assumption is that it is an array now
+    return [].concat.call(xs, ys);
   });
 
   register('map', function _map(f, xs) {
@@ -1030,15 +854,6 @@ function makeNodash(options, undefined) {
       }
       return listToString(ys);
     }
-    if (isStream(xs)) {
-      return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
-        var x = xs();
-        if (x === eos) {
-          return eos;
-        }
-        return f(x);
-      });
-    }
     ys = {};
     var ks = keys(xs);
     for (var j = 0; j < ks.length; j++) {
@@ -1048,17 +863,6 @@ function makeNodash(options, undefined) {
   });
 
   register('filter', function _filter(p, xs) {
-    if (isStream(xs)) {
-      return (isInfinite(xs) ? mkInfinite : mkStream)(function () {
-        var x;
-        while ((x = xs()) !== eos) {
-          if (p(x)) {
-            return x;
-          }
-        }
-        return eos;
-      });
-    }
     var ys;
     if (isArray(xs) || isString(xs)) {
       ys = [];
@@ -1080,30 +884,14 @@ function makeNodash(options, undefined) {
   });
 
   register('head', function _head(xs) {
-    if (isStream(xs)) {
-      var x = xs();
-      return x === eos ? undefined : x;
-    }
     return xs[0];
   });
 
   register('last', function _last(xs) {
-    if (isStream(xs)) {
-      checkFinite(xs);
-      var x, z;
-      while ((x = xs()) !== eos) {
-        z = x;
-      }
-      return z;
-    }
     return xs[xs.length - 1];
   });
 
   register('tail', function _tail(xs) {
-    if (isStream(xs)) {
-      xs();
-      return xs;
-    }
     if (isString(xs)) {
       return xs.slice(1);
     }
@@ -1111,19 +899,6 @@ function makeNodash(options, undefined) {
   });
 
   register('init', function _init(xs) {
-    if (isStream(xs)) {
-      checkFinite(xs);
-      var a = xs(), b;
-      return mkStream(function () {
-        b = xs();
-        if (b === eos) {
-          return eos;
-        }
-        var r = a;
-        a = b;
-        return r;
-      });
-    }
     if (isString(xs)) {
       return xs.slice(0, xs.length - 1);
     }
@@ -1131,9 +906,6 @@ function makeNodash(options, undefined) {
   });
 
   register('isEmpty', 'null_', function _null(xs) {
-    if (isStream(xs)) {
-      return xs() === eos;
-    }
     if (isArray(xs) || isString(xs)) {
       return xs.length === 0;
     }
@@ -1144,16 +916,6 @@ function makeNodash(options, undefined) {
   });
 
   register('length', function _length(xs) {
-    if (isStream(xs)) {
-      if (isInfinite(xs)) {
-        return Infinity;
-      }
-      var n = 0;
-      while (xs() !== eos) {
-        n += 1;
-      }
-      return n;
-    }
     if (isObject(xs)) {
       return keys(xs).length;
     }
@@ -1165,16 +927,6 @@ function makeNodash(options, undefined) {
   });
 
   register('!!', 'at', 'AT', function _at(xs, ix) {
-    if (isStream(xs)) {
-      var x;
-      for (var i = 0; i < ix; i++) {
-        if (xs() === eos) {
-          return x;
-        }
-      }
-      x = xs();
-      return x === eos ? undefined : x;
-    }
     if (xs === undefined) {
       return xs;
     }
@@ -1182,42 +934,16 @@ function makeNodash(options, undefined) {
   });
 
   register('reverse', function _reverse(xs) {
-    if (isStream(xs)) {
-      checkFinite(xs);
-      xs = Nodash.consume(xs);
-      var i = xs.length - 1;
-      return mkStream(function () {
-        if (i < 0) {
-          return eos;
-        }
-        return xs[i--];
-      });
-    }
     var zs = isString(xs) ? "".split.call(xs, '') : [].slice.call(xs);
     zs.reverse();
     return isString(xs) ? zs.join('') : zs;
   });
 
   register('take', function _take(n, xs) {
-    if (isStream(xs)) {
-      var i = 0;
-      return mkStream(function () {
-        if (i++ < n) {
-          return xs();
-        }
-        return eos;
-      });
-    }
     return xs.slice(0, n);
   });
 
   register('drop', function _drop(n, xs) {
-    if (isStream(xs)) {
-      for (var i = 0; i < n; i++) {
-        xs();
-      }
-      return xs;
-    }
     return xs.slice(n);
   });
 
@@ -1226,17 +952,6 @@ function makeNodash(options, undefined) {
   });
 
   register('takeWhile', function _takeWhile(p, xs) {
-    if (isStream(xs)) {
-      var exhausted = false;
-      return mkStream(function () {
-        var x = xs();
-        if (exhausted || x == eos || !p(x)) {
-          exhausted = true;
-          return eos;
-        }
-        return x;
-      });
-    }
     var i = 0;
     while (i < xs.length && p(xs[i])) {
       i++;
@@ -1245,12 +960,6 @@ function makeNodash(options, undefined) {
   });
 
   register('dropWhile', function _dropWhile(p, xs) {
-    if (isStream(xs)) {
-      var x;
-      while ((x = xs()) !== eos && p(x)) {
-      }
-      return Nodash.cons(x, xs);
-    }
     var i = 0;
     while (i < xs.length && p(xs[i])) {
       i++;
@@ -1275,15 +984,6 @@ function makeNodash(options, undefined) {
   });
 
   register('elem', function _elem(x, xs) {
-    if (isStream(xs)) {
-      var z;
-      while ((z = xs()) !== eos) {
-        if (Nodash.eq(z, x)) {
-          return true;
-        }
-      }
-      return false;
-    }
     for (var i = 0; i < xs.length; i++) {
       if (Nodash.eq(xs[i], x)) {
         return true;
@@ -1293,15 +993,6 @@ function makeNodash(options, undefined) {
   });
 
   register('notElem', function _notElem(x, xs) {
-    if (isStream(xs)) {
-      var z;
-      while ((z = xs()) !== eos) {
-        if (Nodash.eq(z, x)) {
-          return false;
-        }
-      }
-      return true;
-    }
     for (var i = 0; i < xs.length; i++) {
       if (Nodash.eq(xs[i], x)) {
         return false;
@@ -1322,30 +1013,16 @@ function makeNodash(options, undefined) {
   });
 
   register('foldl', 'foldl\'', function _foldl(f, x, xs) {
-    var streaming = isStream(xs);
-    if (streaming) {
-      xs = Nodash.consume(xs);
-    }
     for (var i = 0; i < xs.length; i++) {
       x = f(x, xs[i]);
-    }
-    if (isArray(x) && streaming) {
-      return Nodash.stream(x);
     }
     return x;
   });
 
   register('foldl1', 'foldl1\'', function _foldl1(f, xs) {
-    var streaming = isStream(xs);
-    if (streaming) {
-      xs = Nodash.consume(xs);
-    }
     var x = xs[0];
     for (var i = 1; i < xs.length; i++) {
       x = f(x, xs[i]);
-    }
-    if (isArray(x) && streaming) {
-      return Nodash.stream(x);
     }
     return x;
   });
@@ -1396,16 +1073,6 @@ function makeNodash(options, undefined) {
   });
 
   register('scanl', function _scanl(f, x, xs) {
-    if (isStream(xs)) {
-      return Nodash.cons(x, (isInfinite(xs) ? mkInfinite : mkStream)(function () {
-        var r = xs();
-        if (r === eos) {
-          return eos;
-        }
-        x = f(x, r);
-        return x;
-      }));
-    }
     var zs = [x];
     for (var i = 0; i < xs.length; i++) {
       x = f(x, xs[i]);
@@ -1415,9 +1082,6 @@ function makeNodash(options, undefined) {
   });
 
   register('scanl1', function _scanl1(f, xs) {
-    if (isStream(xs)) {
-      return Nodash.scanl(f, xs(), xs);
-    }
     var x = xs[0];
     var zs = [x];
     for (var i = 1; i < xs.length; i++) {
@@ -1469,18 +1133,6 @@ function makeNodash(options, undefined) {
   });
 
   register('zipWith', function _zipWith(f, as, bs) {
-    if (isStream(as) || isStream(bs)) {
-      as = Nodash.stream(as);
-      bs = Nodash.stream(bs);
-      return mkStream(function () {
-        var a = as();
-        var b = bs();
-        if (a === eos || b === eos) {
-          return eos;
-        }
-        return f(a, b);
-      });
-    }
     var length = Math.min(as.length, bs.length);
     var zs = [];
     for (var i = 0; i < length; i++) {
@@ -1490,20 +1142,6 @@ function makeNodash(options, undefined) {
   });
 
   register('zipWith3', function _zipWith3(f, as, bs, cs) {
-    if (isStream(as) || isStream(bs) || isStream(cs)) {
-      as = Nodash.stream(as);
-      bs = Nodash.stream(bs);
-      cs = Nodash.stream(cs);
-      return mkStream(function () {
-        var a = as();
-        var b = bs();
-        var c = cs();
-        if (a === eos || b === eos || c === eos) {
-          return eos;
-        }
-        return f(a, b, c);
-      });
-    }
     var length = Nodash.minimum([as.length, bs.length, cs.length]);
     var zs = [];
     for (var i = 0; i < length; i++) {
@@ -1513,22 +1151,6 @@ function makeNodash(options, undefined) {
   });
 
   register('zipWith4', function _zipWith4(f, as, bs, cs, ds) {
-    if (isStream(as) || isStream(bs) || isStream(cs) || isStream(ds)) {
-      as = Nodash.stream(as);
-      bs = Nodash.stream(bs);
-      cs = Nodash.stream(cs);
-      ds = Nodash.stream(ds);
-      return mkStream(function () {
-        var a = as();
-        var b = bs();
-        var c = cs();
-        var d = ds();
-        if (a === eos || b === eos || c === eos || d === eos) {
-          return eos;
-        }
-        return f(a, b, c, d);
-      });
-    }
     var length = Nodash.minimum([as.length, bs.length, cs.length, ds.length]);
     var zs = [];
     for (var i = 0; i < length; i++) {
@@ -1589,33 +1211,6 @@ function makeNodash(options, undefined) {
     return zs;
   });
 
-//    register('subsequences', function _subsequences() {
-//    });
-
-//    register('permutations', function _permutations() {
-//    });
-
-//    register('mapAccumL', function _mapAccumL() {
-//    });
-
-//    register('mapAccumR', function _mapAccumR() {
-//    });
-
-//    register('unfoldr', function _unfoldr() {
-//    });
-
-//    register('stripPrefix', function _stripPrefix() {
-//    });
-
-//    register('nubBy', function () {
-//    });
-
-//    register('unionBy', function () {
-//    });
-
-//    register('intersectBy', function () {
-//    });
-
   register('inits', function _inits(xs) {
     var result, current, i, length;
     if (isArray(xs)) {
@@ -1628,17 +1223,15 @@ function makeNodash(options, undefined) {
       }
       return result;
     }
-    if (isString(xs)) {
-      result = [''];
-      current = '';
-      length = xs.length;
-      for (i = 0; i < length; i += 1) {
-        current += xs[i];
-        result.push(current);
-      }
-      return result;
+    // TODO the assumption is it's a string now
+    result = [''];
+    current = '';
+    length = xs.length;
+    for (i = 0; i < length; i += 1) {
+      current += xs[i];
+      result.push(current);
     }
-    // type error
+    return result;
   });
 
   register('tails', function _tails(xs) {
@@ -1652,30 +1245,17 @@ function makeNodash(options, undefined) {
       }
       return result;
     }
-    if (isString(xs)) {
-      result = [''];
-      current = '';
-      for (i = xs.length - 1; i >= 0; i -= 1) {
-        current = xs[i] + current;
-        result.unshift(current);
-      }
-      return result;
+    // TODO the assumption is it's a string now
+    result = [''];
+    current = '';
+    for (i = xs.length - 1; i >= 0; i -= 1) {
+      current = xs[i] + current;
+      result.unshift(current);
     }
-    // type error
+    return result;
   });
 
   register('isPrefixOf', function _isPrefixOf(prefix, string) {
-    if (isStream(prefix)) {
-      prefix = Nodash.consume(prefix);
-    }
-    if (isStream(string)) {
-      for (var i = 0; i < prefix.length; i++) {
-        if (prefix[i] !== string()) {
-          return false;
-        }
-      }
-      return true;
-    }
     for (var j = 0; j < prefix.length; j++) {
       if (string[j] !== prefix[j]) {
         return false;
@@ -1685,12 +1265,6 @@ function makeNodash(options, undefined) {
   });
 
   register('isSuffixOf', function _isSuffixOf(suffix, string) {
-    if (isStream(suffix)) {
-      suffix = Nodash.consume(suffix);
-    }
-    if (isStream(string)) {
-      string = Nodash.consume(string);
-    }
     for (var i = 0; i < suffix.length; i++) {
       if (string[string.length - suffix.length + i] !== suffix[i]) {
         return false;
@@ -1812,7 +1386,6 @@ function makeNodash(options, undefined) {
   });
 
   register('sort', function _sort(xs) {
-    checkFinite(xs);
     if (xs.length <= 1) {
       return xs;
     }
@@ -1878,10 +1451,6 @@ function makeNodash(options, undefined) {
   register('group', composed(function (){return Nodash.groupBy(Nodash.eq);}));
 
   register('sortBy', function _sortBy(fn, xs) {
-    if (isStream(xs)) {
-      checkFinite(xs);
-      xs = Nodash.consume(xs);
-    }
     if (xs.length <= 1) {
       return xs;
     }
@@ -1937,10 +1506,6 @@ function makeNodash(options, undefined) {
   });
 
   register('listToMaybe', function _listToMaybe(xs) {
-    if (isStream(xs)) {
-      var r = xs();
-      return r === eos ? null : r;
-    }
     return xs[0];
   });
 
@@ -2027,7 +1592,7 @@ function makeNodash(options, undefined) {
 
   register('values', function _values(object) {
     var values = [];
-    each(function (value) {
+    Nodash.each(function (value) {
       values.push(value);
     }, object);
     return values;
@@ -2129,7 +1694,7 @@ function makeNodash(options, undefined) {
       };
     }
 
-    if (!isEmpty(unmetDependencies)) {
+    if (!Nodash.isEmpty(unmetDependencies)) {
       return mkError({
         message: "unmet dependencies",
         details: Nodash.map(function (detail) {
@@ -2221,7 +1786,7 @@ function makeNodash(options, undefined) {
           } else {
             Nodash.each(function (_, next) {
               delete depends[next][taskName];
-              if (isEmpty(depends[next])) {
+              if (Nodash.isEmpty(depends[next])) {
                 execute(next);
               }
             }, tasks[taskName].enables);

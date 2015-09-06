@@ -1,4 +1,4 @@
-var assert = require('assert');
+var assert = require('../util/assert');
 var Nodash = require('../nodash');
 
 describe('Install', function () {

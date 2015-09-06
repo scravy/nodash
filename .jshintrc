@@ -1,0 +1,11 @@
+{
+    "undef": true,
+    "predef": [
+        "Set",
+        "setTimeout",
+        "setImmediate",
+        "define",
+        "module",
+        "window"
+    ]
+}

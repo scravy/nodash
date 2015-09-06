@@ -1,6 +1,5 @@
 var P = require('../nodash').install(GLOBAL);
-var assert = map(flip, require('assert'));
-var expect = require('chai').expect;
+var assert = require('../util/assert');
 
 describe('Data.Char', function () {
 

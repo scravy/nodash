@@ -1,8 +1,7 @@
-var P = require('../nodash').install(GLOBAL);
-var assert = map(flip, require('assert'));
-var expect = require('chai').expect;
+require('../nodash').install(GLOBAL);
+var assert = require('../util/assert');
 
-describe('Data.List', function () {
+describe('List Extra', function () {
 
     it('tails', function () {
         assert.deepEqual([ [1, 2, 3], [2, 3], [3], [] ], tails([1, 2, 3]));
@@ -183,17 +182,6 @@ describe('Data.List', function () {
         assert.deepEqual([4, 3, 2, 1], sortBy(compose2(negate, compare), [1, 2, 3, 4]));
     });
 
-    it('sortBy /w stream', function () {
-        assert.deepEqual([], sortBy(compose2(negate, compare), stream([])));
-        assert.deepEqual([3, 2, 1], sortBy(compose2(negate, compare), stream([1, 2, 3])));
-    });
-
-    it('sortBy /w infinite stream throws', function () {
-        expect(function () {
-            sortBy(compose2(negate, compare), repeat(7));
-        }).to.throw();
-    });
-
     it('sortBy /w string', function () {
         assert.deepEqual("abcd", sortBy(compare, "cbda"));
     });
@@ -235,15 +223,6 @@ describe('Data.List', function () {
         assert.strictEqual(false, isPrefixOf('cd', 'abcd'));
     });
 
-    it('isPrefixOf /w stream', function () {
-        assert.strictEqual(true, isPrefixOf('ab', stream('abcd')));
-        assert.strictEqual(true, isPrefixOf(stream('ab'), stream('abcd')));
-        assert.strictEqual(true, isPrefixOf(stream('ab'), 'abcd'));
-        assert.strictEqual(false, isPrefixOf('cd', stream('abcd')));
-        assert.strictEqual(false, isPrefixOf(stream('cd'), 'abcd'));
-        assert.strictEqual(false, isPrefixOf(stream('cd'), stream('abcd')));
-    });
-
     it('isSuffixOf', function () {
         assert.strictEqual(false, isSuffixOf([ 0, 1 ], [ 0, 1, 2, 3 ]));
         assert.strictEqual(true, isSuffixOf([ 2, 3 ], [ 0, 1, 2, 3 ]));
@@ -252,15 +231,6 @@ describe('Data.List', function () {
     it('isSuffixOf /w string', function () {
         assert.strictEqual(false, isSuffixOf('ab', 'abcd'));
         assert.strictEqual(true, isSuffixOf('cd', 'abcd'));
-    });
-
-    it('isSuffixOf /w stream', function () {
-        assert.strictEqual(false, isSuffixOf(stream('ab'), 'abcd'));
-        assert.strictEqual(false, isSuffixOf('ab', stream('abcd')));
-        assert.strictEqual(false, isSuffixOf(stream('ab'), stream('abcd')));
-        assert.strictEqual(true, isSuffixOf(stream('cd'), 'abcd'));
-        assert.strictEqual(true, isSuffixOf('cd', stream('abcd')));
-        assert.strictEqual(true, isSuffixOf(stream('cd'), stream('abcd')));
     });
 
     it('isInfixOf', function () {
@@ -310,12 +280,12 @@ describe('Data.List', function () {
     });
 
     it('delete', function () {
-        assert.deepEqual([1,2,4,5], P.delete(3, [1,2,3,4,5]));
+        assert.deepEqual([1,2,4,5], delete_(3, [1,2,3,4,5]));
     });
 
     it('delete /w string', function () {
-        assert.strictEqual("acdb", P.delete('b', "abcdb"));
-        assert.strictEqual("abcdb", P.delete('x', "abcdb"));
+        assert.strictEqual("acdb", delete_('b', "abcdb"));
+        assert.strictEqual("abcdb", delete_('x', "abcdb"));
     });
 
     it('deleteBy', function () {

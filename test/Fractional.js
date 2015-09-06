@@ -1,5 +1,5 @@
-var P = require('../nodash').install(GLOBAL);
-var assert = map(flip, require('assert'));
+require('../nodash').install(GLOBAL);
+var assert = require('../util/assert');
 
 describe('Fractional', function () {
 

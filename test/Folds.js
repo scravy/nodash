@@ -1,36 +1,14 @@
 require('../nodash').install(GLOBAL);
-var assert = map(flip, require('assert'));
+var assert = require('../util/assert');
 
 describe('Folds', function () {
 
     it('foldl', function () {
         assert.deepEqual([4, 3, 2, 1], foldl(flip(cons), [], [1, 2, 3, 4]));
     });
-
-    it('foldl /w stream', function () {
-        assert.deepEqual(
-            [4, 3, 2, 1],
-            consume(foldl(flip(cons), [], stream([1, 2, 3, 4])))
-        );
-        assert.strictEqual(
-            4*3*2*1,
-            consume(foldl(times, 1, stream([1, 2, 3, 4])))
-        );
-    });  
  
     it('foldl1', function () {
         assert.strictEqual(7*1*4*3, foldl1(times, [7, 1, 4, 3]));
-    });
-
-    it('foldl1 /w stream', function () {
-        assert.strictEqual(
-            7*1*4*3,
-            consume(foldl1(times, stream([7, 1, 4, 3])))
-        );
-        assert.deepEqual(
-            [ 7, 1, 4, 3 ],
-            consume(foldl1(append, stream([ [ 7 ], [ 1 ], [ 4 ], [ 3 ]])))
-        );
     });
 
     it('foldr', function () {
@@ -92,29 +70,8 @@ describe('Folds', function () {
         );
     });
  
-    it('scanl /w stream', function () {
-        assert.deepEqual(
-            [[], [1], [2, 1], [3, 2, 1], [4, 3, 2, 1]],
-            consume(scanl(flip(cons), [], stream([1, 2, 3, 4])))
-        );
-    });
-
-    it('scanl /w infinite stream', function () {
-        assert.deepEqual(
-            [[], [7], [7, 7]],
-            consume(take(3, scanl(flip(cons), [], repeat(7))))
-        );
-    });
-
     it('scanl1', function () {
         assert.deepEqual([7, 7, 28, 84], scanl1(times, [7, 1, 4, 3]));
-    });
-
-    it('scanl1 /w stream', function () {
-        assert.deepEqual(
-            [7, 7, 28, 84],
-            consume(scanl1(times, stream([7, 1, 4, 3])))
-        );
     });
 
     it('scanr', function () {

@@ -2,7 +2,7 @@
 /* jshint node: true */
 "use strict";
 
-var benchmark = require('./benchmark');
+var benchmark = require('../util/benchmark');
 var underscore = require('underscore');
 var nodash = require('../nodash.js');
 var lodash = require('lodash');

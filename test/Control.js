@@ -1,5 +1,5 @@
 var P = require('../nodash').install(GLOBAL);
-var assert = map(flip, require('assert'));
+var assert = require('../util/assert');
 
 describe('Control', function () {
 

@@ -1,5 +1,5 @@
 require('../nodash').install(GLOBAL);
-var assert = map(flip, require('assert'));
+var assert = require('../util/assert');
 
 describe('Maybe', function () {
 
@@ -45,11 +45,6 @@ describe('Maybe', function () {
         assert.strictEqual(9, listToMaybe([ 9, 10 ]));
         assert.strictEqual(true, isJust(listToMaybe([ 13 ])));
         assert.strictEqual(true, isNothing(listToMaybe([])));
-    });
-
-    it("listToMaybe /w stream", function () {
-        assert.strictEqual(9, listToMaybe(repeat(9)));
-        assert.strictEqual(null, listToMaybe(take(0, repeat(9))));
     });
 
     it("maybeToList", function () {

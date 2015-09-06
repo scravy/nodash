@@ -48,11 +48,17 @@ function makeNodash(options, undefined) {
   };
 
   // Utility functions for checking basic JavaScript types.
-  function isFunction(x) { return typeof x === 'function'; }
-  function isString(x)   { return typeof x === 'string'; }
-  function isNumber(x)   { return typeof x === 'number'; }
-  function isNodash(f)   { return isFunction(f) && f.__isNodash; }
-  function isNumeric(x)  { return /^[0-9]+$/.test(x); }
+  function isFunction(x)  { return typeof x === 'function'; }
+  function isString(x)    { return typeof x === 'string'; }
+  function isNumber(x)    { return typeof x === 'number'; }
+  function isBoolean(x)   { return typeof x === 'boolean'; }
+  function isNodash(f)    { return isFunction(f) && f.__isNodash; }
+  function isNumeric(x)   { return /^[0-9]+$/.test(x); }
+  function isUndefined(x) { return x === undefined; }
+
+  function isInteger(x) {
+    return isNumber(x) && !isNaN(x) && x - Math.floor(x) === 0 && x !== Infinity && x !== -Infinity;
+  }
 
   // Enumerates the keys of an object. If `Object.keys` is not availabe,
   // fall back to a polyfill. The polyfill is so hilariously big to cope
@@ -175,7 +181,7 @@ function makeNodash(options, undefined) {
     return -1;
   }
 
-  // ## Partial application
+  // **Partial application**
   //
   // While partial application of functions can be implemented easily
   // using JavaScript's `bind` or `apply` functions, it is more
@@ -360,6 +366,9 @@ function makeNodash(options, undefined) {
   register('isNumber', isNumber);
   register('isString', isString);
   register('isObject', isObject);
+  register('isInteger', isInteger);
+  register('isUndefined', isUndefined);
+  register('isBoolean', isBoolean);
 
 
   group('Functions');
@@ -417,7 +426,7 @@ function makeNodash(options, undefined) {
   });
 
 
-  // ## Functions for working with boolean functions
+  // **Functions for working with boolean functions**
 
   group('Boolean');
 
@@ -432,7 +441,7 @@ function makeNodash(options, undefined) {
   });
 
 
-  // ## Tuple
+  // **Tuples**
   
   group('Tuples');
 
@@ -1479,7 +1488,7 @@ function makeNodash(options, undefined) {
   });
 
 
-  // ## Maybe
+  // **Maybe**
 
   group('Maybe');
 
@@ -1521,7 +1530,7 @@ function makeNodash(options, undefined) {
   register('mapMaybe', composed(function (){return Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map);}));
 
 
-  // ## Either
+  // **Either**
 
   group('Either');
 
@@ -1584,7 +1593,7 @@ function makeNodash(options, undefined) {
   });
 
 
-  // ## Objects
+  // **Objects**
   
   group('Objects');
 

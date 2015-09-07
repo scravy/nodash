@@ -129,6 +129,8 @@ v0.10 "Hollerith"
 + `Either` is now a proper type
   - Functions dealing with `Either` are updated accordingly
 + `consume` and `consumeString` removed in favor of `listToArray` and `listToString`
++ `run` was adapted to fit the node convention of passing the error in the
+  first argument
 
 **Additions:**
 + `List` added, along with `listToArray` and `listToString`

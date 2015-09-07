@@ -9,24 +9,24 @@ describe('Tasks', function () {
         P.run([
             function (callback) {
                 invocations += 1;
-                callback(1);
+                callback(null, 1);
             },
             function (data, callback) {
                 invocations += 1;
                 assert.strictEqual(1, data);
-                callback(2);
+                callback(null, 2);
             },
             function (data, callback) {
                 invocations += 1;
                 assert.strictEqual(2, data);
-                callback(3);
+                callback(null, 3);
             },
             function (data, callback) {
                 invocations += 1;
                 assert.strictEqual(3, data);
-                callback(4);
+                callback(null, 4);
             }
-        ], function (results) {
+        ], function (err, results) {
             assert.deepEqual({ 3: { result: 4 } }, results);
             assert.strictEqual(4, invocations);
             done();
@@ -39,24 +39,24 @@ describe('Tasks', function () {
         P.run({
             eins: function (callback) {
                 invocations += 1;
-                callback(1);
+                callback(null, 1);
             },
             zwei: [function (callback) {
                 invocations += 1;
-                callback(2);
+                callback(null, 2);
             }],
             drei: ['eins', 'vier', function (eins, vier, callback) {
                 invocations += 1;
                 assert.strictEqual(1, eins);
                 assert.strictEqual(4, vier);
-                callback(3);
+                callback(null, 3);
             }],
             vier: ['eins', function (eins, callback) {
                 invocations += 1;
                 assert.strictEqual(1, eins);
-                callback(4);
+                callback(null, 4);
             }]
-        }, function (results) {
+        }, function (err, results) {
             assert.strictEqual(4, invocations);
             done();
         });
@@ -68,23 +68,23 @@ describe('Tasks', function () {
         P.run({
             eins: function (callback) {
                 invocations += 1;
-                callback(1);
+                callback(null, 1);
             },
             zwei: [function (callback) {
                 invocations += 1;
-                callback(2);
+                callback(null, 2);
             }],
             drei: ['eins', 'vier', function (eins, vier, callback) {
                 invocations += 1;
                 assert.strictEqual(1, eins);
                 assert.strictEqual(4, vier);
-                callback(3);
+                callback(null, 3);
             }],
             vier: ['eins', function (eins, callback) {
                 invocations += 1;
                 throw new Error('Aww Snap!');
             }]
-        }, function (results) {
+        }, function (err, results) {
             assert.strictEqual(3, invocations);
             done();
         });
@@ -97,19 +97,19 @@ describe('Tasks', function () {
             eins: {
               func: function (callback) {
                 invocations += 1;
-                callback(1);
+                callback(null, 1);
               }
             },
             zwei: [function (callback) {
                 invocations += 1;
-                callback(2);
+                callback(null, 2);
             }],
             drei: ['eins', 'vier', {
               func: function (eins, vier, callback) {
                 invocations += 1;
                 assert.strictEqual(1, eins);
                 assert.strictEqual(4, vier);
-                callback(3);
+                callback(null, 3);
               },
               runOnError: true
             }],
@@ -117,7 +117,7 @@ describe('Tasks', function () {
                 invocations += 1;
                 throw new Error('Aww Snap!');
             }]
-        }, function (results) {
+        }, function (err, results) {
             assert.strictEqual(4, invocations);
             done();
         });
@@ -130,19 +130,19 @@ describe('Tasks', function () {
             eins: {
               func: function (callback) {
                 invocations += 1;
-                callback(1);
+                callback(null, 1);
               }
             },
             zwei: [function (callback) {
                 invocations += 1;
-                callback(2);
+                callback(null, 2);
             }],
             drei: ['eins', 'vier', {
               func: function (eins, vier, callback) {
                 invocations += 1;
                 assert.strictEqual(1, eins);
                 assert.strictEqual(4, vier);
-                callback(3);
+                callback(null, 3);
               },
               runOnError: P.id
             }],
@@ -150,7 +150,7 @@ describe('Tasks', function () {
                 invocations += 1;
                 throw new Error('Aww Snap!');
             }]
-        }, function (results) {
+        }, function (err, results) {
             assert.strictEqual(4, invocations);
             done();
         });
@@ -163,17 +163,17 @@ describe('Tasks', function () {
             eins: {
               func: function (callback) {
                 invocations += 1;
-                callback(1);
+                callback(null, 1);
               }
             },
             zwei: [function (callback) {
                 invocations += 1;
-                callback(2);
+                callback(null, 2);
             }],
             drei: ['eins', 'vier', {
               func: function (eins, vier, callback) {
                 invocations += 1;
-                callback(3);
+                callback(null, 3);
               },
               runOnError: function (results) {
                   
@@ -183,7 +183,7 @@ describe('Tasks', function () {
                 invocations += 1;
                 throw new Error('Aww Snap!');
             }]
-        }, function (results) {
+        }, function (err, results) {
             assert.strictEqual(4, invocations);
             done();
         });
@@ -196,17 +196,17 @@ describe('Tasks', function () {
             eins: {
               func: function (callback) {
                 invocations += 1;
-                callback(1);
+                callback(null, 1);
               }
             },
             zwei: [function (callback) {
                 invocations += 1;
-                callback(2);
+                callback(null, 2);
             }],
             drei: {
               func: function (eins, vier, callback) {
                 invocations += 1;
-                callback(3);
+                callback(null, 3);
               },
               depends: ['eins', 'vier'],
               runOnError: P.id
@@ -215,7 +215,7 @@ describe('Tasks', function () {
                 invocations += 1;
                 throw new Error('Aww Snap!');
             }]
-        }, function (results) {
+        }, function (err, results) {
             assert.strictEqual(4, invocations);
             done();
         });
@@ -224,10 +224,10 @@ describe('Tasks', function () {
     it('run /w async', function (done) {
         $run({
             eins: function (callback) {
-                callback(2);
+                callback(null, 2);
             },
             zwei: [ 'eins', async(plus(3)) ]
-        }, function (results) {
+        }, function (err, results) {
             assert.strictEqual(5, results.zwei.result);
             done();
         });
@@ -236,10 +236,10 @@ describe('Tasks', function () {
     it('run /w async + exception', function (done) {
         $run({
             eins: function (callback) {
-                callback(2);
+                callback(null, 2);
             },
             zwei: [ 'eins', async(function () { throw "error"; }) ]
-        }, function (results) {
+        }, function (err, results) {
             assert.strictEqual("error", results.zwei.error);
             done();
         });
@@ -248,12 +248,12 @@ describe('Tasks', function () {
     it('run /w async + error', function (done) {
         $run({
             eins: function (callback) {
-                callback(2);
+                callback(null, 2);
             },
             zwei: [ 'eins', function (result, callback) {
-                callback(2, "error");
+                callback("error", 2);
             } ]
-        }, function (results) {
+        }, function (err, results) {
             assert.strictEqual("error", results.zwei.error);
             done();
         });
@@ -263,11 +263,11 @@ describe('Tasks', function () {
         $run({
             eins: {
               func: function (callback) {
-                callback(2);
+                callback(null, 2);
               },
               depends: [ 'zwei' ]
             }
-        }, function (results, error) {
+        }, function (error, results) {
             assert.deepEqual({
                 message: "unmet dependencies",
                 details: [ '`eins` depends on `zwei` which is not defined' ]
@@ -285,7 +285,7 @@ describe('Tasks', function () {
             two: [ 'one', async(id) ],
 
             three: [ 'two', async(id) ]
-        }, function (results, error) {
+        }, function (error, results) {
             assert.deepEqual({
                 message: "cycle detected",
                 details: [ 'one -> two -> one' ]
@@ -303,7 +303,7 @@ describe('Tasks', function () {
             two: [ 'one', async(id) ],
 
             three: [ 'two', async(id) ]
-        }, function (results, error) {
+        }, function (error, results) {
             assert.deepEqual({
                 message: "no initial task",
                 details: "There is no task without any dependencies."

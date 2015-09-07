@@ -1114,7 +1114,7 @@ function makeNodash(options, undefined) {
     return [].slice.call(xs, 0, xs.length - 1);
   });
 
-  register('isEmpty', 'null_', function _null(xs) {
+  function isEmpty(xs) {
     if (is(List, xs) && xs.isEmpty()) {
       return true;
     }
@@ -1125,7 +1125,8 @@ function makeNodash(options, undefined) {
       return false;
     }
     return true;
-  });
+  }
+  register('isEmpty', 'null_', isEmpty);
 
   register('length', function _length(xs) {
     if (isObject(xs)) {
@@ -1817,7 +1818,7 @@ function makeNodash(options, undefined) {
 
   register('values', function _values(object) {
     var values = [];
-    Nodash.each(function (value) {
+    each(function (value) {
       values.push(value);
     }, object);
     return values;
@@ -1843,9 +1844,9 @@ function makeNodash(options, undefined) {
       try {
         var callback = Nodash.last(arguments);
         var result = f.apply(null, Nodash.init(arguments));
-        trampoline(function () { callback(result); });
+        trampoline(function () { callback(null, result); });
       } catch (e) {
-        trampoline(function () { callback(null, e); });
+        trampoline(function () { callback(e); });
       }
     };
   });
@@ -1861,18 +1862,18 @@ function makeNodash(options, undefined) {
     if (isArray(specification)) {
       var prev = null;
       var newSpec = {};
-      Nodash.each(function (func, taskName) {
+      each(function (func, taskName) {
         newSpec[taskName] = prev === null ? func : [ prev, func ];
         prev = taskName;
       }, specification);
       specification = newSpec;
     }
 
-    var tasks = {},
-        initial = [];
+    var tasks = {};
+    var initial = [];
 
     // prepare tasks specification.
-    Nodash.each(function (spec, name) {
+    each(function (spec, name) {
       var dependencies = [];
       var func = null;
       if (isArray(spec)) {
@@ -1891,7 +1892,7 @@ function makeNodash(options, undefined) {
         depends: {},
         enables: tasks[name] ? tasks[name].enables : {}
       };
-      Nodash.each(function (dependency) {
+      each(function (dependency) {
         task.depends[dependency] = true;
         if (!tasks[dependency]) {
             tasks[dependency] = { enables: {} };
@@ -1903,8 +1904,8 @@ function makeNodash(options, undefined) {
 
     // check spec for unmet dependencies
     var unmetDependencies = [];
-    Nodash.each(function (task, taskName) {
-      Nodash.each(function (_, dependency) {
+    each(function (task, taskName) {
+      each(function (_, dependency) {
         if (!specification[dependency]) {
           unmetDependencies.push([ taskName, dependency ]);
         }
@@ -1914,7 +1915,7 @@ function makeNodash(options, undefined) {
     function mkError(message) {
       return function (callback) {
         trampoline(function () {
-          callback(null, message);
+          callback(message);
         });
       };
     }
@@ -1931,7 +1932,7 @@ function makeNodash(options, undefined) {
     }
 
     // build initial set
-    Nodash.each(function (task, taskName) {
+    each(function (task, taskName) {
       if (Nodash.isEmpty(task.depends)) {
         initial.push(taskName);
       }
@@ -1946,7 +1947,7 @@ function makeNodash(options, undefined) {
 
     // check spec for cycles
     var cycles = [];
-    Nodash.each(function (taskName) {
+    each(function (taskName) {
 
       var visited = {};
       var path = [];
@@ -1957,7 +1958,7 @@ function makeNodash(options, undefined) {
           cycles.push(Nodash.map(id, path));
         } else {
           visited[node] = true;
-          Nodash.each(visit, keys(tasks[node].enables));
+          each(visit, keys(tasks[node].enables));
         }
         delete visited[path.pop()];
       }
@@ -1986,7 +1987,7 @@ function makeNodash(options, undefined) {
       }, tasks);
 
       function callbackHandle(taskName) {
-        return function (result, error) {
+        return function (error, result) {
           if (!error) {
             results[taskName].result = result;
           } else {
@@ -1994,7 +1995,7 @@ function makeNodash(options, undefined) {
           }
 
           // clean up results if need be
-          Nodash.each(function (_, dependency) {
+          each(function (_, dependency) {
             results[dependency].toGo -= 1;
             if (results[dependency].toGo === 0) {
               delete results[dependency];
@@ -2004,14 +2005,14 @@ function makeNodash(options, undefined) {
           toGo -= 1;
           if (toGo === 0) {
             // clean results object
-            Nodash.each(function (result) {
+            each(function (result) {
               delete result.toGo;
             }, results);
-            callback(results);
+            callback(null, results);
           } else {
-            Nodash.each(function (_, next) {
+            each(function (_, next) {
               delete depends[next][taskName];
-              if (Nodash.isEmpty(depends[next])) {
+              if (isEmpty(depends[next])) {
                 execute(next);
               }
             }, tasks[taskName].enables);
@@ -2032,7 +2033,7 @@ function makeNodash(options, undefined) {
 
         if (dependenciesFailed && isFunction(task.func.runOnError)) {
           var tempResult = {};
-          Nodash.each(function (dependency) {
+          each(function (dependency) {
             var result = results[dependency];
             var stubResult = {};
             if (result.error) {
@@ -2052,7 +2053,7 @@ function makeNodash(options, undefined) {
 
         trampoline(function _executeTask() {
           if (dependenciesFailed && !task.func.runOnError) {
-            callback(null, { message: "dependencies failed" });
+            callback({ message: "dependencies failed" });
           } else {
             var f = task.func;
             if (isObject(f)) {
@@ -2061,17 +2062,17 @@ function makeNodash(options, undefined) {
             try {
               f.apply(null, args);
             } catch (e) {
-              callback(null, e);
+              callback(e);
             }
           }
         });
       }
 
-      Nodash.each(function (task, taskName) {
+      each(function (task, taskName) {
         depends[taskName] = Nodash.clone(task.depends);
       }, tasks);
 
-      Nodash.each(execute, initial);
+      each(execute, initial);
     };
   });
 
@@ -2135,7 +2136,7 @@ function makeNodash(options, undefined) {
       }
       mountpoint = mountpoint[0] || {};
     }
-    Nodash.each(function (func, name) {
+    each(function (func, name) {
       if (!isNodash(func)) {
         return;
       }

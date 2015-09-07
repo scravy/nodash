@@ -116,7 +116,34 @@ v0.9 "Gosling"
 v0.10 "Hollerith"
 -----------------
 
+**Breaking Changes:**
++ Tuples are no longer implemented by arrays but by a class
+  - `fst` and `snd` therefore no longer work with arrays but with Tuples only
++ Streams and infinite Lists were completely revamped. This affects:
+  - `lazy` is returning a List now and generates a `List`
+  - `stream` takes a generator now and generates a `Stream`
+  - Functions dealing with old streams are updated to handle `List` and `Stream`
+  - `List` and `Stream` have laziness built in by using `Thunk` internally
++ `Maybe` is now a proper type
+  - Functions dealing with `Maybe` are updated accordingly
++ `Either` is now a proper type
+  - Functions dealing with `Either` are updated accordingly
++ `consume` and `consumeString` removed in favor of `listToArray` and `listToString`
 
+**Additions:**
++ `List` added, along with `listToArray` and `listToString`
+  - has the methods `head`, `tail`, and `isEmpty`
++ `Stream` added
+  - has the same interface as `List` but designed infinite Lists
++ `Tuple` added
+  - has the methods `fst` and `snd`
+  - Triples are tuples of tuples `(a, (b, c))`
++ `Maybe` type added
++ `Either` type added
++ `isInteger` added - checks whether something is an integral number
++ `isBoolean` added - checks whether something is a boolean
++ `isUndefined` added - checks whether something is undefined
++ `is` added - flipped shorthand version of `instanceof`
 
 v0.11 "Ichbiah"
 ---------------

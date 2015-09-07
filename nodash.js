@@ -1087,6 +1087,9 @@ function makeNodash(options, undefined) {
   });
 
   register('head', function _head(xs) {
+    if (is(List, xs)) {
+      return xs.head();
+    }
     return xs[0];
   });
 
@@ -1095,6 +1098,9 @@ function makeNodash(options, undefined) {
   });
 
   register('tail', function _tail(xs) {
+    if (is(List, xs)) {
+      return xs.tail();
+    }
     if (isString(xs)) {
       return xs.slice(1);
     }
@@ -1109,6 +1115,9 @@ function makeNodash(options, undefined) {
   });
 
   register('isEmpty', 'null_', function _null(xs) {
+    if (is(List, xs) && xs.isEmpty()) {
+      return true;
+    }
     if (isArray(xs) || isString(xs)) {
       return xs.length === 0;
     }
@@ -1142,16 +1151,29 @@ function makeNodash(options, undefined) {
     return isString(xs) ? zs.join('') : zs;
   });
 
-  register('take', function _take(n, xs) {
-    return xs.slice(0, n);
-  });
+  function take(n, xs) {
+    if (isArray(xs) || isString(xs)) {
+      return xs.slice(0, n);
+    }
+    function generator(i, xs) {
+      if (i <= 0 || xs.isEmpty()) {
+        return emptyList;
+      }
+      return new List(xs.head(), new Thunk(function () {
+        return generator(i-1, xs.tail());
+      }));
+    }
+    return generator(n, xs);
+  }
+  register('take', take);
 
-  register('drop', function _drop(n, xs) {
+  function drop(n, xs) {
     return xs.slice(n);
-  });
+  }
+  register('drop', drop);
 
   register('splitAt', function _splitAt(n, xs) {
-    return tuple(xs.slice(0, n), xs.slice(n));
+    return tuple(take(n, xs), drop(n, xs));
   });
 
   register('takeWhile', function _takeWhile(p, xs) {

@@ -48,6 +48,7 @@ function makeNodash(options, undefined) {
   };
 
   // Utility functions for checking basic JavaScript types.
+  function is(type, val)  { return val instanceof type; }
   function isFunction(x)  { return typeof x === 'function'; }
   function isString(x)    { return typeof x === 'string'; }
   function isNumber(x)    { return typeof x === 'number'; }
@@ -55,8 +56,6 @@ function makeNodash(options, undefined) {
   function isNodash(f)    { return isFunction(f) && f.__isNodash; }
   function isNumeric(x)   { return /^[0-9]+$/.test(x); }
   function isUndefined(x) { return x === undefined; }
-  function is(type, val)  { return val instanceof type; }
-
   function isInteger(x) {
     return isNumber(x) && !isNaN(x) && x - Math.floor(x) === 0 && x !== Infinity && x !== -Infinity;
   }
@@ -199,6 +198,12 @@ function makeNodash(options, undefined) {
     return is(Thunk, x);
   }
 
+  function resolveThunk(x) {
+    if (isThunk(x)) {
+      return x.get();
+    }
+    return x;
+  }
 
   // **Partial application**
   //

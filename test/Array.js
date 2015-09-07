@@ -1,7 +1,7 @@
 require('../nodash').install(GLOBAL);
 var assert = require('../util/assert');
 
-describe('Lists', function () {
+describe('Arrays', function () {
 
     it('isEmpty', function () {
         assert.strictEqual(true, isEmpty([]));
@@ -97,19 +97,19 @@ describe('Lists', function () {
     });
 
     it('splitAt', function () {
-        assert.deepEqual([ [ 1, 2 ], [ 3, 4 ] ], splitAt(2, [ 1, 2, 3, 4 ]));
-        assert.deepEqual([ [ 1, 2 ], [] ], splitAt(3, [ 1, 2 ]));
-        assert.deepEqual([ [], [] ], splitAt(13, []));
+        assert(eq(tuple([ 1, 2 ], [ 3, 4 ]), splitAt(2, [ 1, 2, 3, 4 ])));
+        assert(eq(tuple([ 1, 2 ], []), splitAt(3, [ 1, 2 ])));
+        assert(eq(tuple([], []), splitAt(13, [])));
     });
 
     it('span', function () {
-        assert.deepEqual([ [ 1, 2 ], [ 3, 4, 5 ]], span(flip(lt)(3), [ 1, 2, 3, 4, 5 ]));
-        assert.deepEqual([ [], [ 1, 2, 3, 4, 5 ]], span(flip(gt)(3), [ 1, 2, 3, 4, 5 ]));
+        assert(eq(tuple([ 1, 2 ], [ 3, 4, 5 ]), span(flip(lt)(3), [ 1, 2, 3, 4, 5 ])));
+        assert(eq(tuple([], [ 1, 2, 3, 4, 5 ]), span(flip(gt)(3), [ 1, 2, 3, 4, 5 ])));
     });
 
     it('break', function () {
-        assert.deepEqual([ [], [ 1, 2, 3, 4 ]], break_(flip(lt)(3), [ 1, 2, 3, 4 ]));
-        assert.deepEqual([ [ 1, 2, 3 ], [ 4 ]], break_(flip(gt)(3), [ 1, 2, 3, 4 ]));
+        assert(eq(tuple([], [ 1, 2, 3, 4 ]), break_(flip(lt)(3), [ 1, 2, 3, 4 ])));
+        assert(eq(tuple([ 1, 2, 3 ], [ 4 ]), break_(flip(gt)(3), [ 1, 2, 3, 4 ])));
     });
 
     it('lookup', function () {

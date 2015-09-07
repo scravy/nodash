@@ -20,19 +20,19 @@ describe('List Extra', function () {
     });
 
     it('partition', function () {
-        assert.deepEqual(
-            [ [ 0, -3, -3, -10 ], [ 4, 5, 14 ] ],
+        assert(eq(
+            tuple([ 0, -3, -3, -10 ], [ 4, 5, 14 ]),
             partition(gte(0), [ 0, -3, 4, 5, -3, -10, 14 ])
-        );
+        ));
     });
 
     it('partition /w string', function () {
-        assert.deepEqual(
-            [ " ", "HelloWorld!" ],
+        assert(eq(
+            tuple(" ", "HelloWorld!"),
             partition(function isSpace(chr) {
                 return chr === ' ';
             }, "Hello World!")
-        );
+        ));
     });
 
     it('transpose', function () {

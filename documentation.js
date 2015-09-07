@@ -35,7 +35,7 @@ module.exports = function (metadata) {
     idf(metadata),
     
     map(function (m) {
-      var name = head(filter(compose(isAsciiLetter, fst), stream(m.aliases)));
+      var name = head(filter(compose(isAsciiLetter, head), m.aliases));
       var filename = './doc/' + (isUpper(name) ? "_" : "") + name.replace(/_/g, '') + '.md';
       var description = fs.existsSync(filename) ?
                     fs.readFileSync(filename, { encoding: 'utf8' }) : '';

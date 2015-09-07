@@ -57,11 +57,11 @@ describe('Either', function () {
     });
 
     it("partitionEithers", function () {
-        assert.deepEqual(
-            [ [ 1, 4, 19 ], [ 2, 8, 13 ] ],
+        assert(eq(
+            tuple([ 1, 4, 19 ], [ 2, 8, 13 ]),
             partitionEithers(
                 [ Left(1), Right(2), Left(4), Right(8), Right(13), Left(19) ]
             )
-        );
+        ));
     });
 });

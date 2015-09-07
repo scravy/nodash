@@ -55,6 +55,7 @@ function makeNodash(options, undefined) {
   function isNodash(f)    { return isFunction(f) && f.__isNodash; }
   function isNumeric(x)   { return /^[0-9]+$/.test(x); }
   function isUndefined(x) { return x === undefined; }
+  function is(type, val)  { return val instanceof type; }
 
   function isInteger(x) {
     return isNumber(x) && !isNaN(x) && x - Math.floor(x) === 0 && x !== Infinity && x !== -Infinity;
@@ -128,7 +129,7 @@ function makeNodash(options, undefined) {
   function id(x) { return x; }
 
   // A handy shorthand to reduce a list to a string.
-  function listToString(x) { return x.join(''); }
+  function arrayToString(x) { return x.join(''); }
 
   // `indexOf` uses an implementation of the Knuth-Morrison-Pratt
   // Algorithm for finding the index of a given subsequence
@@ -180,6 +181,24 @@ function makeNodash(options, undefined) {
     // Returns -1 if the subsequence was not found in the sequence.
     return -1;
   }
+
+  // **Thunks**
+
+  function Thunk(generator) {
+    var self = this;
+    this.get = function () {
+      var value = generator();
+      this.get = function () {
+        return value;
+      };
+      return value;
+    };
+  }
+
+  function isThunk(x) {
+    return is(Thunk, x);
+  }
+
 
   // **Partial application**
   //
@@ -343,7 +362,13 @@ function makeNodash(options, undefined) {
         break;
       }
     }
-    fCurried = curried(f.composed ? f() : f);
+    // if it is a constructor (starting with an upper case character)
+    // it is not actually being curried (new XYZ() will not work otherwise).
+    if (/^[A-Z]/.test(aliases[0][0])) {
+      fCurried = f;
+    } else {
+      fCurried = curried(f.composed ? f() : f);
+    }
     fCurried.__isNodash = true;
     for (i = 0; i < aliases.length; i++) {
       Nodash[aliases[i]] = fCurried;
@@ -359,6 +384,8 @@ function makeNodash(options, undefined) {
   }
 
   
+  // **Types**
+
   group('Types');
 
   register('isFunction', isFunction);
@@ -369,17 +396,19 @@ function makeNodash(options, undefined) {
   register('isInteger', isInteger);
   register('isUndefined', isUndefined);
   register('isBoolean', isBoolean);
+  register('is', is);
 
 
   group('Functions');
 
   register('id', id);
 
-  register('idf', function _idf(x) {
+  function idf(x) {
     return function () {
       return x;
     };
-  });
+  }
+  register('idf', idf);
 
   register('const', 'const_', 'constant', function _const(a, b) {
     return a;
@@ -415,16 +444,68 @@ function makeNodash(options, undefined) {
 
   register('curry', function _curry(f) {
     return curried(function (a, b) {
-      return f([a, b]);
+      return f(tuple(a, b));
     });
   });
 
   register('uncurry', function _uncurry(f) {
     return function (t) {
-      return f(t[0], t[1]);
+      return f(fst(t), snd(t));
     };
   });
 
+
+  // **Lists**
+
+  group('Lists');
+  
+  function List(head, tail) {
+    var self = this;
+    this.head = function () {
+      if (isThunk(head)) {
+        var value = head.get();
+        self.head = head.get;
+        return value;
+      }
+      return head;
+    };
+    this.tail = function () {
+      if (isThunk(tail)) {
+        var value = tail.get();
+        self.tail = tail.get;
+        return value;
+      }
+      return tail;
+    };
+    this.isEmpty = idf(false);
+  }
+  List.prototype = {
+    isEmpty: idf(false)
+  };
+  register('List', List);
+
+  var emptyList = new List();
+  emptyList.isEmpty = idf(true);
+
+  register('singleton', function (x) { return new List(x, emptyList); });
+
+  register('emptyList', function () { return emptyList; });
+
+  function listToArray(xs) {
+    if (isThunk(xs)) {
+      xs = xs.get();
+    }
+    var array = [];
+    each(function (x) {
+      array.push(x);
+    }, xs);
+    return array;
+  }
+  register('listToArray', listToArray);
+
+  var listToString = Nodash.compose(arrayToString, listToArray);
+  register('listToString', listToString);
+  
 
   // **Functions for working with boolean functions**
 
@@ -445,22 +526,43 @@ function makeNodash(options, undefined) {
   
   group('Tuples');
 
-  register('fst', function _fst(arr) { return arr[0]; });
+  function Tuple(fst, snd) {
+    this.fst = function () { return isThunk(fst) ? fst.get() : fst; };
+    this.snd = function () { return isThunk(snd) ? snd.get() : snd; };
+  }
+  register('Tuple', Tuple);
 
-  register('snd', function _snd(arr) { return arr[1]; });
+  function fst(t) {
+    return t.fst();
+  }
+  register('fst', fst);
 
-  register(',', 'tuple', function _tuple(a, b) { return [ a, b ]; });
+  function snd(t) {
+    return t.snd();
+  }
+  register('snd', snd);
 
-  register(',,', 'tuple3', function _tuple3(a, b, c) { return [ a, b, c ]; });
+  function tuple(fst, snd) {
+    return new Tuple(fst, snd);
+  }
+  register(',', 'tuple', tuple);
 
-  register(',,,', 'tuple4', function _tuple4(a, b, c, d) { return [ a, b, c, d ]; });
+  function tuple3(fst, snd, third) {
+    return tuple(fst, tuple(snd, third));
+  }
+  register(',,', 'tuple3', tuple3);
+
+  function tuple4(fst, snd, third, fourth) {
+    return tuple3(fst, snd, tuple(third, fourth));
+  }
+  register(',,,', 'tuple4', tuple4);
 
   
-  // Eq
+  // **Eq**
   
   group("Comparisons");
 
-  register('==', 'eq', 'EQ', function _eq(a, b) {
+  function eq(a, b) {
     if (a === b) {
       return true;
     }
@@ -470,6 +572,12 @@ function makeNodash(options, undefined) {
       return false;
     }
     if (ta === 'object') {
+      if (a.constructor !== b.constructor) {
+        return false;
+      }
+      if (is(Tuple, a)) {
+        return eq(fst(a), fst(b)) && eq(snd(a), snd(b));
+      }
       var k = Nodash.union(keys(a), keys(b));
       for (var i = 0; i < k.length; i++) {
         if (!Nodash.eq(a[k[i]], b[k[i]])) {
@@ -479,14 +587,15 @@ function makeNodash(options, undefined) {
       return true;
     }
     return false;
-  });
+  }
+  register('==', 'eq', 'EQ', eq);
 
   register('/=', '!=', '<>', 'neq', 'NEQ', function _neq(a, b) {
-    return !Nodash.eq(a, b);
+    return !eq(a, b);
   });
 
 
-  // Ord
+  // **Ord**
 
   register('compare', function _compare(a, b) {
     switch (typeof a) {
@@ -546,7 +655,7 @@ function makeNodash(options, undefined) {
   });
 
 
-  // Data.Char
+  // **Characters**
 
   group('Characters');
   
@@ -789,10 +898,61 @@ function makeNodash(options, undefined) {
 
   group('Streams');
 
-  // TODO: stream, lazy, consume, consumeString
+  function Stream(generator) {
+    var thunk = new Thunk(generator);
+    var self = this;
+    this.head = function () {
+      var value = thunk.get().fst();
+      self.head = idf(value);
+      return value;
+    };
+    this.tail = function () {
+      var value = new Stream(thunk.get().snd());
+      self.tail = idf(value);
+      return value;
+    };
+  }
+  Stream.prototype = new List();
+  Stream.prototype.isEmpty = idf(false);
+  register('Stream', Stream);
 
-  register('each', function _each(f, xs) {
-    if (isArray(xs) || isString(xs)) {
+  function stream(generator) {
+    return new Stream(generator);
+  }
+  register('stream', stream);
+
+  function lazy(val) {
+    if (isFunction(val)) {
+      return new Thunk(val);
+    }
+    if (!isArray(val) && !isString(val)) {
+      return;
+    }
+    function generator(i) {
+      if (i < val.length) {
+        return new List(val[i], new Thunk(function () {
+          return generator(i + 1);
+        }));
+      }
+      return emptyList;
+    }
+    return generator(0);
+  }
+  register('lazy', lazy);
+
+  function each(f, xs) {
+    if (isThunk(f)) {
+      f = f.get();
+    }
+    if (isThunk(xs)) {
+      xs = xs.get();
+    }
+    if (is(List, xs)) {
+      while (!xs.isEmpty()) {
+        f(xs.head());
+        xs = xs.tail();
+      }
+    } else if (isArray(xs) || isString(xs)) {
       for (var i = 0; i < xs.length; i++) {
         f(xs[i], i);
       }
@@ -802,9 +962,40 @@ function makeNodash(options, undefined) {
         f(xs[ks[j]], ks[j]);
       }
     }
+  }
+  register('each', each);
+
+  register('repeat', function (x) {
+    function generator() {
+      return tuple(x, generator);
+    }
+    return stream(generator);
   });
 
-  // TODO: cycle, repeat, iterate
+  register('iterate', function (f, seed) {
+    function generator(seed) {
+      return function () {
+        var newSeed = f(seed);
+        return tuple(seed, generator(newSeed));
+      };
+    }
+    return stream(generator(seed));
+  });
+
+  register('cycle', function (xs) {
+    if (isArray(xs)) {
+      xs = lazy(xs);
+    }
+    function generator(ys) {
+      if (ys.isEmpty()) {
+        ys = xs;
+      }
+      return function () {
+        return tuple(ys.head(), generator(ys.tail()));
+      };
+    }
+    return stream(generator(xs));
+  });
 
   
   group('Strings');
@@ -833,13 +1024,16 @@ function makeNodash(options, undefined) {
   group('Collections');
 
   register(':', 'cons', function _cons(x, xs) {
-    // TODO
+    if (is(List, xs)) {
+      return new List(x, xs);
+    }
     var zs = [x];
     [].push.apply(zs, xs);
     return zs;
   });
 
   register('++', 'append', function _append(xs, ys) {
+    
     if (isString(xs)) {
       return xs + ys;
     }
@@ -861,7 +1055,7 @@ function makeNodash(options, undefined) {
       for (i = 0; i < xs.length; i++) {
         ys.push(f(xs[i]));
       }
-      return listToString(ys);
+      return arrayToString(ys);
     }
     ys = {};
     var ks = keys(xs);
@@ -880,7 +1074,7 @@ function makeNodash(options, undefined) {
           ys.push(xs[i]);
         }
       }
-      return isString(xs) ? listToString(ys) : ys;
+      return isString(xs) ? arrayToString(ys) : ys;
     }
     ys = {};
     var ks = keys(xs);
@@ -957,7 +1151,7 @@ function makeNodash(options, undefined) {
   });
 
   register('splitAt', function _splitAt(n, xs) {
-    return [ xs.slice(0, n), xs.slice(n) ];
+    return tuple(xs.slice(0, n), xs.slice(n));
   });
 
   register('takeWhile', function _takeWhile(p, xs) {
@@ -981,7 +1175,7 @@ function makeNodash(options, undefined) {
     while (i < xs.length && p(xs[i])) {
         i++;
     }
-    return [ xs.slice(0, i), xs.slice(i) ];
+    return tuple(xs.slice(0, i), xs.slice(i));
   });
 
   register('break_', 'break', function _break(p, xs) {
@@ -989,7 +1183,7 @@ function makeNodash(options, undefined) {
     while (i < xs.length && !p(xs[i])) {
       i++;
     }
-    return [ xs.slice(0, i), xs.slice(i) ];
+    return tuple(xs.slice(0, i), xs.slice(i));
   });
 
   register('elem', function _elem(x, xs) {
@@ -1215,7 +1409,7 @@ function makeNodash(options, undefined) {
       j += 1;
     } while (current.length > 0 && zs.push(current));
     if (isString(xss[0])) {
-      zs = Nodash.map(listToString, zs);
+      zs = Nodash.map(arrayToString, zs);
     }
     return zs;
   });
@@ -1304,9 +1498,9 @@ function makeNodash(options, undefined) {
       (p(xs[i]) ? as : bs).push(xs[i]);
     }
     if (isString(xs)) {
-      return Nodash.map(listToString, [ as, bs ]);
+      return tuple(arrayToString(as), arrayToString(bs));
     }
-    return [ as, bs ];
+    return tuple(as, bs);
   });
 
   register('findIndex', function _elemIndex(p, xs) {
@@ -1360,7 +1554,7 @@ function makeNodash(options, undefined) {
         zs.push(xs[i]);
       }
     }
-    return isString(xs) ? listToString(zs) : zs;
+    return isString(xs) ? arrayToString(zs) : zs;
   });
 
   register('union', function _union(xs, ys) {
@@ -1454,7 +1648,7 @@ function makeNodash(options, undefined) {
       last = xs[i];
     }
     zs.push(current);
-    return isString(xs) ? Nodash.map(listToString, zs) : zs;
+    return isString(xs) ? Nodash.map(arrayToString, zs) : zs;
   });
 
   register('group', composed(function (){return Nodash.groupBy(Nodash.eq);}));
@@ -1589,7 +1783,7 @@ function makeNodash(options, undefined) {
   ));
 
   register('partitionEithers', function _partitionEithers(xs) {
-    return [ Nodash.lefts(xs), Nodash.rights(xs) ];
+    return tuple(Nodash.lefts(xs), Nodash.rights(xs));
   });
 
 

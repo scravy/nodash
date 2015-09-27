@@ -532,8 +532,8 @@ function makeNodash(options, undefined) {
   group('Tuples');
 
   function Tuple(fst, snd) {
-    this.fst = function () { return isThunk(fst) ? fst.get() : fst; };
-    this.snd = function () { return isThunk(snd) ? snd.get() : snd; };
+    this.fst = idf(fst);
+    this.snd = idf(snd);
   }
   register('Tuple', Tuple);
 
@@ -550,7 +550,7 @@ function makeNodash(options, undefined) {
   function tuple(fst, snd) {
     return new Tuple(fst, snd);
   }
-  register(',', 'tuple', tuple);
+  register(',', 'tuple', 'pair', tuple);
 
   function tuple3(fst, snd, third) {
     return tuple(fst, tuple(snd, third));

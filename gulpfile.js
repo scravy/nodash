@@ -169,7 +169,7 @@ gulp.task('deploy', [ 'site' ], function () {
 
 gulp.task('build', [ 'browserify', 'testm', 'gzip' ]);
 
-gulp.task('default', [ 'site', ], function (done) {
+gulp.task('default', [ 'build', ], function (done) {
 
   var minified = filesize(fs.statSync('dist/nodash.min.js').size);
 

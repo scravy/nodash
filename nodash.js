@@ -1,5 +1,4 @@
 /* vim: set et sw=2 ts=2: */
-/* global require */
 
 // Save a reference to `Set` (if defined). Otherwise this variable will
 // be `undefined`. References to some native types (`Math`, `Array`,
@@ -10,8 +9,15 @@ var NativeMath   = Math;
 var NativeString = String;
 
 //function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined) {
-function makeNodash(options, undefined) {
+function makeNodash(options) {
   'use strict';
+
+  if (typeof undefined !== 'undefined') {
+    throw new Error('ES5 `undefined` behavior required.');
+  }
+  if (typeof Object.keys !== 'function' && Object.keys({ x: 7 })[0] !== 7) {
+    throw new Error('ES5 `Object.keys` required.');
+  }
 
   options = options || {};
 

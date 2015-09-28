@@ -82,7 +82,7 @@ gulp.task('lint', function (done) {
 });
 
 gulp.task('coverage', [ 'lint' ], function (done) {
-  gulp.src('nodash.js')
+  gulp.src([ 'nodash.js', 'lib/*.js' ])
       .pipe(istanbul())
       .pipe(istanbul.hookRequire())
       .on('error', errorHandler)
@@ -106,7 +106,7 @@ gulp.task('test', [ 'coverage' ], function (done) {
       .on('finish', done);
 });
 
-// test minified library
+// test browserified + minified library
 gulp.task('testm', [ 'test', 'browserify' ], function (done) {
   gulp.src('test/*.js')
       .pipe(replace('../nodash', '../nodash-testm.js'))

@@ -1,4 +1,5 @@
 /* vim: set et sw=2 ts=2: */
+/* global require */
 
 // Save a reference to `Set` (if defined). Otherwise this variable will
 // be `undefined`. References to some native types (`Math`, `Array`,
@@ -129,56 +130,7 @@ function makeNodash(options, undefined) {
   // A handy shorthand to reduce a list to a string.
   function arrayToString(x) { return x.join(''); }
 
-  // `indexOf` uses an implementation of the Knuth-Morrison-Pratt
-  // Algorithm for finding the index of a given subsequence
-  // (identified as `word` here) within a sequence (identified as
-  // `string` here). Thanks to JavaScript's dynamic nature it
-  // works equally well with strings and arrays.
-  function indexOf(word, string) {
-    var m = 0;
-    var i = 0;
-    var table = [];
-
-    var pos = 2;
-    var cnd = 0;
-
-    table[0] = -1;
-    table[1] = 0;
-
-    // build the table for KMP. This takes `O(word.length)` steps.
-    while (pos < word.length) {
-      if (word[pos - 1] == word[cnd]) {
-        cnd = cnd + 1;
-        table[pos] = cnd;
-        pos = pos + 1;
-      } else if (cnd > 0) {
-        cnd = table[cnd];
-      } else {
-        table[pos] = 0;
-        pos = pos + 1;
-      }
-    }
-    
-    // scan the string. This takes `O(string.length)` steps.
-    while (m + i < string.length) {
-      if (word[i] == string[m + i]) {
-        if (i == word.length - 1) {
-          return m;
-        }
-        i = i + 1;
-      } else {
-        if (table[i] > -1) {
-          m = m + i - table[i];
-          i = table[i];
-        } else {
-          i = 0;
-          m = m + 1;
-        }
-      }
-    }
-    // Returns -1 if the subsequence was not found in the sequence.
-    return -1;
-  }
+  var indexOf = require('knuth-morris-pratt');
 
   // **Thunks**
 
@@ -204,126 +156,7 @@ function makeNodash(options, undefined) {
     return x;
   }
 
-  // **Partial application**
-  //
-  // While partial application of functions can be implemented easily
-  // using JavaScript's `bind` or `apply` functions, it is more
-  // efficient to use closures as JavaScript's native functions
-  // additionally do some heavy error checking and deal with `this`.
-  //
-  // Partial application of functions relies on the `length` reported
-  // by a function. A correct partial application returns a function
-  // with a length
-  // `length of function which is applied MINUS number of arguments consumed`.
-  // Unfortunately this means we need to have some biolerplate code for
-  // every arity of functions and results, thus the big blob of code
-  // below.
-  var funcs = {
-
-    0: id,
-    1: id,
-    2: function (fn) {
-      return function (a, b) {
-        switch (arguments.length) {
-        case 1:
-          return function (b) {
-            return fn(a, b);
-          };
-        }
-        return fn(a, b);
-      };
-    },
-    3: function (fn) {
-      return function (a, b, c) {
-        switch (arguments.length) {
-        case 1:
-          return funcs[2](function (b, c) {
-            return fn(a, b, c);
-          });
-        case 2:
-          return function (c) {
-            return fn(a, b, c);
-          };
-        }
-        return fn(a, b, c);
-      };
-    },
-    4: function (fn) {
-      return function (a, b, c, d) {
-        switch (arguments.length) {
-        case 1:
-          return funcs[3](function (b, c, d) {
-            return fn(a, b, c, d);
-          });
-        case 2:
-          return funcs[2](function (c, d) {
-            return fn(a, b, c, d);
-          });
-        case 3:
-          return function (d) {
-            return fn(a, b, c, d);
-          };
-        }
-        return fn(a, b, c, d);
-      };
-    },
-    5: function (fn) {
-      return function (a, b, c, d, e) {
-        switch (arguments.length) {
-        case 1:
-          return funcs[4](function (b, c, d, e) {
-            return fn(a, b, c, d, e);
-          });
-        case 2:
-          return funcs[3](function (c, d, e) {
-            return fn(a, b, c, d, e);
-          });
-        case 3:
-          return funcs[2](function (d, e) {
-            return fn(a, b, c, d, e);
-          });
-        case 4:
-          return function (e) {
-            return fn(a, b, c, d, e);
-          };
-        }
-        return fn(a, b, c, d, e);
-      };
-    },
-    6: function (fn) {
-      return function (a, b, c, d, e, f) {
-        switch (arguments.length) {
-        case 1:
-          return funcs[5](function (b, c, d, e, f) {
-            return fn(a, b, c, d, e, f);
-          });
-        case 2:
-          return funcs[4](function (c, d, e, f) {
-            return fn(a, b, c, d, e, f);
-          });
-        case 3:
-          return funcs[3](function (d, e, f) {
-            return fn(a, b, c, d, e, f);
-          });
-        case 4:
-          return funcs[2](function (e, f) {
-            return fn(a, b, c, d, e, f);
-          });
-        case 5:
-          return function (f) {
-            return fn(a, b, c, d, e, f);
-          };
-        }
-        return fn(a, b, c, d, e, f);
-      };
-    }
-  };
-
-  // Turns an ordinary function into a function which can be partially applied.
-  // The maximum arity that this can deal with is 8 (see above).
-  function curried(fn) {
-    return funcs[fn.length](fn);
-  }
+  var curried = require('./lib/curried');
 
   /* @ifdef WITH_ONLINE_HELP */
   Nodash.metadata = [];
@@ -435,7 +268,7 @@ function makeNodash(options, undefined) {
   });
 
   register('flip', function _flip(f) {
-    return funcs[2](function (b, a) {
+    return curried(function (b, a) {
       return f(a, b);
     });
   });

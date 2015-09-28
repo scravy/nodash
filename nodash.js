@@ -7,7 +7,6 @@
 // from local polyfills.
 var NativeSet    = typeof Set !== 'undefined' && Set;
 var NativeMath   = Math;
-var NativeArray  = Array;
 var NativeString = String;
 
 //function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined) {
@@ -22,21 +21,10 @@ function makeNodash(options, undefined) {
   // Use either the supplied objects from the arguments,
   // or the references saved above.
   var Math   = options.Math   || NativeMath;
-  var Array  = options.Array  || NativeArray;
   var String = options.String || NativeString;
 
   var keys = Object.keys;
-
-  // `isArray` checks whether a thing is actually an array object.
-  // If `Array.isArray` is not available in this environment it will
-  // fall back to comparing the toString representation. The `toString`
-  // method used is the one from the `NativeObject` to make sure that
-  // client code can not temper with an object and make it look like an
-  // array. The fallback is necessary to cope with legacy browser
-  // environments.
-  var isArray = Array.isArray || function _isArray(arr) {
-    return NativeObject.prototype.toString.call(arr) === '[object Array]';
-  };
+  var isArray = Array.isArray;
 
   // `isObject` checks whether a thing is an object and neither an
   // array nor null.
@@ -1930,7 +1918,7 @@ function makeNodash(options, undefined) {
     }
     if (isArray(mountpoint)) {
       if (isString(mountpoint[0])) {
-        prefix = NativeArray.prototype.shift.call(mountpoint);
+        prefix = [].shift.call(mountpoint);
       }
       if (isString(mountpoint[1])) {
         postfix = mountpoint[1];

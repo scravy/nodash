@@ -110,36 +110,10 @@ function makeNodash(options, undefined) {
 
   var curried = require('./lib/curried');
 
-  /* @ifdef WITH_ONLINE_HELP */
-  Nodash.metadata = [];
-
-  var currentGroup = "";
-
-  function group(name, desc) {
-    currentGroup = { name: name };
-  }
-
-  function callsites() {
-    var _ = Error.prepareStackTrace;
-    Error.prepareStackTrace = function (_, stack) { return stack; };
-    var stack = new Error().stack.slice(1);
-    Error.prepareStackTrace = _;
-    return stack;
-  }
-  
-  function composed(f) {
-    f.composed = f;
-    return f;
-  }
-  /* @endif */
-
   // I would love to name this function `export` but that is a reserved keyword
   // since ECMA Script 5.
   function register() {
     var f, fCurried, i, arg, aliases = [];
-    /* @ifdef WITH_ONLINE_HELP */
-    var metadata = {};
-    /* @endif */
     for (i = 0; i < arguments.length; i++) {
       arg = arguments[i];
       switch (typeof arg) {
@@ -162,13 +136,6 @@ function makeNodash(options, undefined) {
     for (i = 0; i < aliases.length; i++) {
       Nodash[aliases[i]] = fCurried;
     }
-    /* @ifdef WITH_ONLINE_HELP */
-    metadata.function = f;
-    metadata.group = currentGroup;
-    metadata.aliases = aliases;
-    metadata.definedAt = callsites()[1].getPosition();
-    Nodash.metadata.push(metadata);
-    /* @endif */
     return fCurried;
   }
 

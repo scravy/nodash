@@ -11,7 +11,7 @@ var NativeString = String;
 
 //function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined) {
 function makeNodash(options, undefined) {
-  "use strict";
+  'use strict';
 
   options = options || {};
 
@@ -316,7 +316,7 @@ function makeNodash(options, undefined) {
   
   // **Eq**
   
-  // group("Comparisons");
+  // group('Comparisons');
 
   function eq(a, b) {
     if (a === b) {
@@ -903,7 +903,7 @@ function makeNodash(options, undefined) {
   });
 
   register('reverse', function _reverse(xs) {
-    var zs = isString(xs) ? "".split.call(xs, '') : [].slice.call(xs);
+    var zs = isString(xs) ? ''.split.call(xs, '') : [].slice.call(xs);
     zs.reverse();
     return isString(xs) ? zs.join('') : zs;
   });
@@ -1371,7 +1371,7 @@ function makeNodash(options, undefined) {
     if (xs.length <= 1) {
       return xs;
     }
-    var zs = isString(xs) ? "".split.call(xs, '') : [].slice.call(xs);
+    var zs = isString(xs) ? ''.split.call(xs, '') : [].slice.call(xs);
     if (isNumber(zs[0])) {
       zs.sort(function (a, b) { return a - b; });
     } else if (isString(zs[0])) {
@@ -1437,7 +1437,7 @@ function makeNodash(options, undefined) {
       return xs;
     }
     var yesItsAString = isString(xs);
-    var zs = yesItsAString ? "".split.call(xs, '') : [].slice.call(xs);
+    var zs = yesItsAString ? ''.split.call(xs, '') : [].slice.call(xs);
     zs.sort(fn);
     return yesItsAString ? zs.join('') : zs;
   });
@@ -1678,11 +1678,11 @@ function makeNodash(options, undefined) {
 
     if (!Nodash.isEmpty(unmetDependencies)) {
       return mkError({
-        message: "unmet dependencies",
+        message: 'unmet dependencies',
         details: Nodash.map(function (detail) {
-          return "`" +
-            detail[0] + "` depends on `" +
-            detail[1] + "` which is not defined";
+          return '`' +
+            detail[0] + '` depends on `' +
+            detail[1] + '` which is not defined';
         }, unmetDependencies)
       });
     }
@@ -1696,8 +1696,8 @@ function makeNodash(options, undefined) {
 
     if (Nodash.isEmpty(initial)) {
       return mkError({
-        message: "no initial task",
-        details: "There is no task without any dependencies."
+        message: 'no initial task',
+        details: 'There is no task without any dependencies.'
       });
     }
 
@@ -1729,8 +1729,8 @@ function makeNodash(options, undefined) {
         return Nodash.reverse(cycle);
       }, cycles);
       return mkError({
-        message: "cycle detected",
-        details: Nodash.map(Nodash.intercalate(" -> "), cycles)
+        message: 'cycle detected',
+        details: Nodash.map(Nodash.intercalate(' -> '), cycles)
       });
     }
 
@@ -1809,7 +1809,7 @@ function makeNodash(options, undefined) {
 
         trampoline(function _executeTask() {
           if (dependenciesFailed && !task.func.runOnError) {
-            callback({ message: "dependencies failed" });
+            callback({ message: 'dependencies failed' });
           } else {
             var f = task.func;
             if (isObject(f)) {

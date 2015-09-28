@@ -1,6 +1,5 @@
 /* vim: set et sw=2 ts=2: */
-/* jshint node: true */
-"use strict";
+'use strict';
 
 var thresholds = {
   statements: 90,
@@ -38,7 +37,7 @@ var LessPluginCleanCSS = require('less-plugin-clean-css');
 
 var lessOptions = {
   plugins: [
-    new LessPluginAutoprefix({ browsers: [ "last 2 versions" ]}),
+    new LessPluginAutoprefix({ browsers: [ 'last 2 versions' ]}),
     new LessPluginCleanCSS({ advanced: true })
   ]
 };
@@ -138,7 +137,7 @@ gulp.task('apidoc', [ 'styles', 'lint' ], function (done) {
 
   gulp.src('site/apidoc.mustache')
       .pipe(mustache(apidoc(library.metadata)))
-      .pipe(rename({ extname: ".html" }))
+      .pipe(rename({ extname: '.html' }))
       .pipe(gulp.dest('dist/'))
       .on('finish', done);
 });
@@ -184,8 +183,8 @@ gulp.task('default', [ 'build', ], function (done) {
   cases and passed without a doubt.
   */}).toString()
       .slice(14, -3)
-      .replace("CHECKMARK", chalk.green("✓"))
-      .replace("MINIFIED", chalk.yellow(minified))
+      .replace('CHECKMARK', chalk.green('✓'))
+      .replace('MINIFIED', chalk.yellow(minified))
   ));
 
 });

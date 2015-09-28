@@ -8,7 +8,6 @@
 var NativeSet    = typeof Set !== 'undefined' && Set;
 var NativeMath   = Math;
 var NativeArray  = Array;
-var NativeObject = Object;
 var NativeString = String;
 
 //function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined) {
@@ -24,8 +23,9 @@ function makeNodash(options, undefined) {
   // or the references saved above.
   var Math   = options.Math   || NativeMath;
   var Array  = options.Array  || NativeArray;
-  var Object = options.Object || NativeObject;
   var String = options.String || NativeString;
+
+  var keys = Object.keys;
 
   // `isArray` checks whether a thing is actually an array object.
   // If `Array.isArray` is not available in this environment it will
@@ -59,42 +59,6 @@ function makeNodash(options, undefined) {
   function isInteger(x) {
     return isNumber(x) && !isNaN(x) && x - Math.floor(x) === 0 && x !== Infinity && x !== -Infinity;
   }
-
-  // Enumerates the keys of an object. If `Object.keys` is not availabe,
-  // fall back to a polyfill. The polyfill is so hilariously big to cope
-  // with oddities in IE 8 (the "don't enum bug").
-  var keys = Object.keys || (function() {
-    var hasOwnProperty = NativeObject.prototype.hasOwnProperty,
-        hasDontEnumBug = !(options.refObj || { toString: null }).propertyIsEnumerable('toString'),
-        dontEnums = [
-          'toString',
-          'toLocaleString',
-          'valueOf',
-          'hasOwnProperty',
-          'isPrototypeOf',
-          'propertyIsEnumerable',
-          'constructor'
-        ],
-        dontEnumsLength = dontEnums.length;
-
-    return function _Object_keys(obj) {
-      var result = [], prop, i;
-
-      for (prop in obj) {
-        if (hasOwnProperty.call(obj, prop)) {
-          result.push(prop);
-        }
-      }
-      if (hasDontEnumBug) {
-        for (i = 0; i < dontEnumsLength; i++) {
-          if (hasOwnProperty.call(obj, dontEnums[i])) {
-            result.push(dontEnums[i]);
-          }
-        }
-      }
-      return result;
-    };
-  }());
 
   // Either use the native set or (if `dontUseNatives` is `true` or
   // there is no native set implementation) a drop-in replacement.

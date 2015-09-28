@@ -130,7 +130,7 @@ function makeNodash(options, undefined) {
     if (/^[A-Z]/.test(aliases[0][0])) {
       fCurried = f;
     } else {
-      fCurried = curried(f.composed ? f() : f);
+      fCurried = curried(f);
     }
     fCurried.__isNodash = true;
     for (i = 0; i < aliases.length; i++) {
@@ -142,7 +142,7 @@ function makeNodash(options, undefined) {
   
   // **Types**
 
-  group('Types');
+  // group('Types');
 
   register('isFunction', isFunction);
   register('isArray', isArray);
@@ -155,7 +155,7 @@ function makeNodash(options, undefined) {
   register('is', is);
 
 
-  group('Functions');
+  // group('Functions');
 
   register('id', id);
 
@@ -213,7 +213,7 @@ function makeNodash(options, undefined) {
 
   // **Lists**
 
-  group('Lists');
+  // group('Lists');
   
   function List(head, tail) {
     var self = this;
@@ -265,7 +265,7 @@ function makeNodash(options, undefined) {
 
   // **Functions for working with boolean functions**
 
-  group('Boolean');
+  // group('Boolean');
 
   register('&&', 'AND', function _AND(a, b) { return a && b; });
 
@@ -280,7 +280,7 @@ function makeNodash(options, undefined) {
 
   // **Tuples**
   
-  group('Tuples');
+  // group('Tuples');
 
   function Tuple(fst, snd) {
     this.fst = idf(fst);
@@ -316,7 +316,7 @@ function makeNodash(options, undefined) {
   
   // **Eq**
   
-  group("Comparisons");
+  // group("Comparisons");
 
   function eq(a, b) {
     if (a === b) {
@@ -413,7 +413,7 @@ function makeNodash(options, undefined) {
 
   // **Characters**
 
-  group('Characters');
+  // group('Characters');
   
   register('isDigit', 'isNumeric', isNumeric);
 
@@ -465,7 +465,7 @@ function makeNodash(options, undefined) {
 
   // Num
 
-  group('Numbers');
+  // group('Numbers');
 
   register('+', 'add', 'ADD', 'plus', 'PLUS', function _add(a, b) {
     return a + b;
@@ -652,7 +652,7 @@ function makeNodash(options, undefined) {
   register('odd', function _odd(x) { return (x % 2) !== 0; });
 
 
-  group('Streams');
+  // group('Streams');
 
   function Stream(generator) {
     var thunk = new Thunk(generator);
@@ -754,7 +754,7 @@ function makeNodash(options, undefined) {
   });
 
   
-  group('Strings');
+  // group('Strings');
 
   register('lines', function _lines(string) {
     var result = string.split(/\n/);
@@ -777,7 +777,7 @@ function makeNodash(options, undefined) {
   });
 
 
-  group('Collections');
+  // group('Collections');
 
   register(':', 'cons', function _cons(x, xs) {
     if (is(List, xs)) {
@@ -1024,17 +1024,17 @@ function makeNodash(options, undefined) {
     return x;
   });
 
-  register('and', composed(function (){return Nodash.foldl(Nodash.AND, true);}));
+  register('and', Nodash.foldl(Nodash.AND, true));
 
-  register('or', composed(function (){return Nodash.foldl(Nodash.OR, false);}));
+  register('or', Nodash.foldl(Nodash.OR, false));
 
-  register('sum', composed(function (){return Nodash.foldl(Nodash.ADD, 0);}));
+  register('sum', Nodash.foldl(Nodash.ADD, 0));
 
-  register('product', composed(function (){return Nodash.foldl(Nodash.MUL, 1);}));
+  register('product', Nodash.foldl(Nodash.MUL, 1));
 
-  register('maximum', composed(function (){return Nodash.foldl(Nodash.max, -Infinity);}));
+  register('maximum', Nodash.foldl(Nodash.max, -Infinity));
 
-  register('minimum', composed(function (){return Nodash.foldl(Nodash.min, +Infinity);}));
+  register('minimum', Nodash.foldl(Nodash.min, +Infinity));
 
   register('any', function _any(p, xs) {
     for (var i = 0; i < xs.length; i++) {
@@ -1104,7 +1104,7 @@ function makeNodash(options, undefined) {
     return zs;
   });
 
-  register('concatMap', composed(function (){return Nodash.compose2(Nodash.concat, Nodash.map);}));
+  register('concatMap', Nodash.compose2(Nodash.concat, Nodash.map));
 
   register('replicate', function _replicate(n, x) {
     var xs = [];
@@ -1141,11 +1141,11 @@ function makeNodash(options, undefined) {
     return zs;
   });
 
-  register('zip', composed(function (){return Nodash.zipWith(Nodash.tuple);}));
+  register('zip', Nodash.zipWith(Nodash.tuple));
 
-  register('zip3', composed(function (){return Nodash.zipWith3(Nodash.tuple3);}));
+  register('zip3', Nodash.zipWith3(Nodash.tuple3));
 
-  register('zip4', composed(function (){return Nodash.zipWith4(Nodash.tuple4);}));
+  register('zip4', Nodash.zipWith4(Nodash.tuple4));
 
   
   // further from Data.List
@@ -1408,7 +1408,7 @@ function makeNodash(options, undefined) {
     return Nodash.append(xs, x);
   });
 
-  register('insert', composed(function (){return Nodash.insertBy(Nodash.compare);}));
+  register('insert', Nodash.insertBy(Nodash.compare));
 
   register('groupBy', function _groupBy(p, xs) {
     if (xs.length === 0) {
@@ -1430,7 +1430,7 @@ function makeNodash(options, undefined) {
     return isString(xs) ? Nodash.map(arrayToString, zs) : zs;
   });
 
-  register('group', composed(function (){return Nodash.groupBy(Nodash.eq);}));
+  register('group', Nodash.groupBy(Nodash.eq));
 
   register('sortBy', function _sortBy(fn, xs) {
     if (xs.length <= 1) {
@@ -1463,7 +1463,7 @@ function makeNodash(options, undefined) {
 
   // **Maybe**
 
-  group('Maybe');
+  // group('Maybe');
 
   register('maybe', function _maybe(def, fun, maybe) {
     if (maybe === undefined || maybe === null) {
@@ -1498,14 +1498,14 @@ function makeNodash(options, undefined) {
     return [maybe];
   });
 
-  register('catMaybes', composed(function (){return Nodash.filter(Nodash.isJust);}));
+  register('catMaybes', Nodash.filter(Nodash.isJust));
 
-  register('mapMaybe', composed(function (){return Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map);}));
+  register('mapMaybe', Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map));
 
 
   // **Either**
 
-  group('Either');
+  // group('Either');
 
   register('either', function _either(afun, bfun, either) {
     var left = either.left || either[0];
@@ -1568,7 +1568,7 @@ function makeNodash(options, undefined) {
 
   // **Objects**
   
-  group('Objects');
+  // group('Objects');
 
   register('keys', keys);
 
@@ -1593,7 +1593,7 @@ function makeNodash(options, undefined) {
 
   // ## Control
 
-  group('Control');
+  // group('Control');
 
   register('async', function _async(f) {
     return function () {
@@ -1871,7 +1871,7 @@ function makeNodash(options, undefined) {
   });
 
 
-  group('Nodash');
+  // group('Nodash');
 
   register('isNodash', isNodash);
 

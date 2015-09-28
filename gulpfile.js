@@ -50,21 +50,22 @@ function errorHandler(err) {
   process.exit(1);
 }
 
-gulp.task('minify', [ 'lint' ], function (done) {
-  gulp.src('nodash.js')
-      .pipe(sourcemaps.init())
-      .pipe(preprocess())
-      .pipe(uglify({ compressor: { global_defs: { group: true } } }))
-      .pipe(replace(/(group\(('[^']*'|"[^"]*")(,function\(\)\{\})?\),?)/g, ""))
-      .pipe(replace(/composed\(function\(\)\{return ([^}]+)\}\)/g, "$1"))
-      .pipe(rename({ suffix: '.min' }))
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('dist/'))
-      .on('error', errorHandler)
-      .on('finish', done);
+gulp.task('browserify', [ 'lint' ], function (done) {
+  browserify({
+    entries: [ 'nodash.js' ]
+  }).bundle()
+    .pipe(source('nodash.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(uglify({ compressor: { global_defs: { group: true } } }))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./dist'))
+    .on('error', errorHandler)
+    .on('finish', done);
 });
 
-gulp.task('gzip', [ 'minify' ], function (done) {
+gulp.task('gzip', [ 'browserify' ], function (done) {
   gulp.src('dist/nodash.min.js')
       .pipe(gzip({ append: true, gzipOptions: { level: 9 } }))
       .pipe(gulp.dest('dist/'))
@@ -106,9 +107,9 @@ gulp.task('test', [ 'coverage' ], function (done) {
 });
 
 // test minified library
-gulp.task('testm', [ 'test', 'minify' ], function (done) {
+gulp.task('testm', [ 'test', 'browserify' ], function (done) {
   gulp.src('test/*.js')
-      .pipe(replace('../nodash', '../dist/nodash.min'))
+      .pipe(replace('../nodash', '../nodash-testm.js'))
       .pipe(gulp.dest('testm/'))
       .on('finish', function () {
         gulp.src('testm/*.js')
@@ -166,7 +167,7 @@ gulp.task('deploy', [ 'site' ], function () {
       .pipe(ghPages({ }));
 });
 
-gulp.task('build', [ 'minify', 'testm', 'gzip' ]);
+gulp.task('build', [ 'browserify', 'testm', 'gzip' ]);
 
 gulp.task('default', [ 'site', ], function (done) {
 

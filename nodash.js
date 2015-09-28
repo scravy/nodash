@@ -1,5 +1,4 @@
 /* vim: set et sw=2 ts=2: */
-(function () {
 
 // Save a reference to `Set` (if defined). Otherwise this variable will
 // be `undefined`. References to some native types (`Math`, `Array`,
@@ -2155,12 +2154,8 @@ function makeNodash(options, undefined) {
 
 var Nodash = makeNodash();
 
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = Nodash;
-} else if (typeof define === 'function' && define.amd) {
-  define(Nodash.idf(Nodash));
-} else {
+module.exports = Nodash;
+
+if (typeof window !== 'undefined') {
   window.Nodash = Nodash;
 }
-
-}());

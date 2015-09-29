@@ -10,8 +10,6 @@ The functions are actually derived
 from the [***Haskell Prelude***](https://hackage.haskell.org/package/base-4.7.0.0/docs/Prelude.html)
 and emphasize a [functional programming style](https://www.cs.cmu.edu/~crary/819-f09/Backus78.pdf).
 
-
-
 A special trait of this library is that it discards some JavaScript concepts
 (like prototypes or optional arguments) to allow some (in the authors opinion)
 more useful ones (such as currying).
@@ -92,7 +90,7 @@ Nodash.install([ 'f_', global ]); → f_foldl(f_flip(f_cons), []);
 License
 -------
 
-    Copyright (c) 2015 Julian Fleischer
+    Copyright (c) 2015 Julian Alexander Fleischer
 
     Permission is hereby granted, free of charge, to any
     person obtaining a copy of this software and associated

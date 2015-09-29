@@ -8,20 +8,35 @@ the likes of [***underscore***](http://underscorejs.org/)
 or [***lodash***](https://lodash.com/).
 The functions are actually derived
 from the [***Haskell Prelude***](https://hackage.haskell.org/package/base-4.7.0.0/docs/Prelude.html)
-and emphasize a functional programming style.
+and emphasize a [functional programming style](https://www.cs.cmu.edu/~crary/819-f09/Backus78.pdf).
 
-A special
-trait of this library is that it discards some JavaScript concepts (like
-`this`) to allow some (in the authors opinion) more useful ones. Every function
-from this library can be thought of as *curried*, i.e. you can partially apply
-any function and get a function in return (on the other hand this means there are
-no optional arguments). Also you have a distinction between *lists* and *streams*
-and it can cope with *infinite streams*.
+
+
+A special trait of this library is that it discards some JavaScript concepts
+(like prototypes or optional arguments) to allow some (in the authors opinion)
+more useful ones (such as currying).
+
+Every function from this library can be thought of as *curried*, i.e. you can
+partially apply any function and get a function in return (on the other hand this
+means there are no optional arguments). It also supports *lists* which can be
+evaluated lazily and *infinite streams*.
 
 Browse through the
  [apidoc](https://scravy.github.io/nodash/apidoc.html),
  [benchmark](https://github.com/scravy/nodash/tree/master/benchmark/index.js), or
  [tests](https://github.com/scravy/nodash/tree/master/test) for examples.
+
+
+Example
+-------
+
+```JavaScript
+Nodash.install(global || window); // node or browser
+
+var reverse = foldl(flip(cons), []);
+
+console.log(reverse([1,2,3])); // → [3,2,1]
+```
 
 
 Usage
@@ -31,56 +46,48 @@ A port of the Haskell Prelude to JavaScript/NodeJS.
 
     npm install --save nodash
 
-Usage in Node, installed in `GLOBAL`:
 
-```JavaScript
-require('nodash').install(GLOBAL);
-
-var reverse = foldl(flip(cons), []);
-```
-
-Usage in Node, installed in `GLOBAL` but prefixed:
-
-```JavaScript
-require('nodash').install([ '$', GLOBAL ]);
-
-var reverse = $foldl($flip($cons), []);
-```
-
-Usage in Node, installed in `GLOBAL` but prefixed + postfixed:
-
-```JavaScript
-require('nodash').install([ '__', GLOBAL, '__' ]);
-
-var reverse = __foldl__(__flip__(__cons__), []);
-```
-
-Usage in Node:
+### in node
 
 ```JavaScript
 var Nodash = require('nodash');
-
-var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
 ```
 
-Usage in the browser:
 
-```JavaScript
+### in the browser
+
+```HTML
 <script src="nodash.js"></script>
 <script>
-// nodash is available in window.Nodash
-var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
-
-// you can use `Nodash.install()` like you would in node
-Nodash.install(window);
-
-var reverse2 = foldl(flip(cons, []));
-
-// also with prefix/postfix (a postfix only in the line below)
-Nodash.install([ window, '_' ]);
-
-var reverse3 = foldl_(flip_(cons_, []));
+    // Nodash is available in `window.Nodash`
+    document.write(Nodash.foldl(Nodash.flip(cons), []));
+</script>
 ```
+
+
+### in legacy browsers
+
+Just pull in `es5-shim` first:
+
+```HTML
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.13/es5-shim.js"></script>
+<script src="nodash.js"></script>
+```
+
+
+### `install(mountpoint)`
+
+It is possible to attach the Nodash functions directly
+to the global object (in fact, any object), optionally
+with a prefix or postfix:
+
+```JavaScript
+Nodash.install(global);           → foldl(flip(cons), []);
+Nodash.install([ '$', global ]);  → $foldl($flip($cons), []);
+Nodash.install([ global, '_' ]);  → foldl_(flip_(cons_), []);
+Nodash.install([ 'f_', global ]); → f_foldl(f_flip(f_cons), []);
+```
+
 
 License
 -------

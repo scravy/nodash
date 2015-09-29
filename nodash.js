@@ -4,83 +4,49 @@
 // be `undefined`. References to some native types (`Math`, `Array`,
 // `Object`) are kept here so that native objects can be distinguished
 // from local polyfills.
-var NativeSet    = typeof Set !== 'undefined' && Set;
 var NativeMath   = Math;
-var NativeString = String;
 
-//function install(Nodash, Math, Array, Object, dontUseNatives, refObj, undefined) {
-function makeNodash(options) {
+function makeNodash(undefined) {
   'use strict';
-
-  if (typeof undefined !== 'undefined') {
-    throw new Error('ES5 `undefined` behavior required.');
-  }
-  if (typeof Object.keys !== 'function' && Object.keys({ x: 7 })[0] !== 7) {
-    throw new Error('ES5 `Object.keys` required.');
-  }
-
-  options = options || {};
-
-  // This is the object the nodash functions will be attached to.
-  var Nodash = {};
-
-  // Use either the supplied objects from the arguments,
-  // or the references saved above.
-  var Math   = options.Math   || NativeMath;
-  var String = options.String || NativeString;
-
-  var keys = Object.keys;
-  var isArray = Array.isArray;
-
-  // `isObject` checks whether a thing is an object and neither an
-  // array nor null.
-  var isObject = function _isObject(obj) {
-    if (typeof obj === 'object') {
-      return obj !== null && !isArray(obj);
-    }
-    return false;
-  };
-
-  // Utility functions for checking basic JavaScript types.
+  
   function is(type, val)  { return val instanceof type; }
   function isFunction(x)  { return typeof x === 'function'; }
   function isString(x)    { return typeof x === 'string'; }
   function isNumber(x)    { return typeof x === 'number'; }
   function isBoolean(x)   { return typeof x === 'boolean'; }
+  function isUndefined(x) { return x === undefined; }
+
+  if (!isFunction(Object.keys) || Object.keys({ x: 7 })[0] !== 'x') {
+    throw new Error('ES5 `Object.keys` required (es5-shim will do).');
+  }
+  if (!isFunction(Array.isArray) || !Array.isArray([])) {
+    throw new Error('ES5 `Array.isArray` required (es5-shim will do).');
+  }
+
+  var keys = Object.keys;
+  var isArray = Array.isArray;
+  var Set = require('./lib/Set');
+
+  function isObject(obj) {
+    if (typeof obj === 'object') {
+      return obj !== null && !isArray(obj);
+    }
+    return false;
+  }
+
+  // This is the object the nodash functions will be attached to.
+  var Nodash = {};
+
+  
   function isNodash(f)    { return isFunction(f) && f.__isNodash; }
   function isNumeric(x)   { return /^[0-9]+$/.test(x); }
-  function isUndefined(x) { return x === undefined; }
   function isInteger(x) {
-    return isNumber(x) && !isNaN(x) && x - Math.floor(x) === 0 && x !== Infinity && x !== -Infinity;
+    return isNumber(x) && !isNaN(x) && x - Math.floor(x) === 0 &&
+      x !== Infinity && x !== -Infinity;
   }
-
-  // Either use the native set or (if `dontUseNatives` is `true` or
-  // there is no native set implementation) a drop-in replacement.
-  // It reproduces only the actually used functionality, which is
-  // `add` and `has`. It uses the keys of an object to simulate the Set.
-  var Set = (!options.dontUseNatives && NativeSet) || (function () {
-    
-    var Set = function () {
-      this.xs = {};
-    };
-
-    Set.prototype.add = function _Set_add(value) {
-      this.xs[value] = true;
-      return this;
-    };
-
-    Set.prototype.has = function _Set_has(value) {
-      return this.xs[value] === true;
-    };
-
-    return Set;
-  }());
 
   // A function to postpone an action on the event queue
-  var trampoline = function (f) { setTimeout(f, 0); };
-  if (!options.dontUseNatives && typeof(setImmediate) === 'function') {
-    trampoline = setImmediate;
-  }
+  var setImmediate = require('timers').setImmediate;
 
   // The identity function that returns what was passed in unaltered.
   function id(x) { return x; }
@@ -1606,9 +1572,9 @@ function makeNodash(options) {
       try {
         var callback = Nodash.last(arguments);
         var result = f.apply(null, Nodash.init(arguments));
-        trampoline(function () { callback(null, result); });
+        setImmediate(function () { callback(null, result); });
       } catch (e) {
-        trampoline(function () { callback(e); });
+        setImmediate(function () { callback(e); });
       }
     };
   });
@@ -1676,7 +1642,7 @@ function makeNodash(options) {
 
     function mkError(message) {
       return function (callback) {
-        trampoline(function () {
+        setImmediate(function () {
           callback(message);
         });
       };
@@ -1813,7 +1779,7 @@ function makeNodash(options) {
 
         args.push(callback);
 
-        trampoline(function _executeTask() {
+        setImmediate(function _executeTask() {
           if (dependenciesFailed && !task.func.runOnError) {
             callback({ message: 'dependencies failed' });
           } else {

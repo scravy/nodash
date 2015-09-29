@@ -27,7 +27,6 @@ sourcemaps = require('gulp-sourcemaps'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
         fs = require('fs'),
-    apidoc = require('./documentation.js'),
 browserify = require('browserify'),
   filesize = require('filesize'),
       gulp = require('gulp');
@@ -72,7 +71,7 @@ gulp.task('gzip', [ 'browserify' ], function (done) {
 });
 
 gulp.task('lint', function (done) {
-  gulp.src([ 'nodash.js', 'test/*.js', 'benchmark/*.js' ])
+  gulp.src([ 'nodash.js', 'lib/*.js', 'test/*.js', 'benchmark/*.js' ])
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
       .pipe(jshint.reporter('fail'))
@@ -133,13 +132,7 @@ gulp.task('styles', function (done) {
 });
 
 gulp.task('apidoc', [ 'styles', 'lint' ], function (done) {
-  var library = require('./nodash.js');
-
-  gulp.src('site/apidoc.mustache')
-      .pipe(mustache(apidoc(library.metadata)))
-      .pipe(rename({ extname: '.html' }))
-      .pipe(gulp.dest('dist/'))
-      .on('finish', done);
+  done();
 });
 
 gulp.task('site', [ 'build', 'docco', 'apidoc' ], function (done) {

@@ -19,93 +19,15 @@ function makeNodash(undefined) {
 
   register('curried', require('./lib/curried.js'));
 
-  register(require('./lib/types.js'));
-  register(require('./lib/functions.js'));
+  register(require('./lib/types'));
+  register(require('./lib/functions'));
+
+  register(require('./lib/Thunk'));
+  register(require('./lib/List'));
 
   var Set = require('./lib/Set');
 
-  // A handy shorthand to reduce a list to a string.
-  function arrayToString(x) { return x.join(''); }
-
-
-  // **Thunks**
-
-  function Thunk(generator) {
-    var self = this;
-    this.get = function () {
-      var value = generator();
-      this.get = function () {
-        return value;
-      };
-      return value;
-    };
-  }
-
-  function isThunk(x) {
-    return Nodash.is(Thunk, x);
-  }
-
-  function resolveThunk(x) {
-    if (isThunk(x)) {
-      return x.get();
-    }
-    return x;
-  }
   
-  // **Lists**
-
-  // group('Lists');
-  
-  function List(head, tail) {
-    var self = this;
-    this.head = function () {
-      if (isThunk(head)) {
-        var value = head.get();
-        self.head = head.get;
-        return value;
-      }
-      return head;
-    };
-    this.tail = function () {
-      if (isThunk(tail)) {
-        var value = tail.get();
-        self.tail = tail.get;
-        return value;
-      }
-      return tail;
-    };
-    this.isEmpty = Nodash.idf(false);
-  }
-  List.prototype = {
-    isEmpty: Nodash.idf(false)
-  };
-  register('List', List);
-
-  var emptyList = new List();
-  emptyList.isEmpty = Nodash.idf(true);
-
-  register('singleton', function (x) { return new List(x, emptyList); });
-
-  register('emptyList', function () { return emptyList; });
-
-  function listToArray(xs) {
-    if (isThunk(xs)) {
-      xs = xs.get();
-    }
-    var array = [];
-    each(function (x) {
-      array.push(x);
-    }, xs);
-    return array;
-  }
-  register('listToArray', listToArray);
-
-  var listToString = Nodash.compose(arrayToString, listToArray);
-  register('listToString', listToString);
-  
-
-  // **Functions for working with boolean functions**
-
   // group('Boolean');
 
   register('&&', 'AND', function _AND(a, b) { return a && b; });
@@ -494,7 +416,7 @@ function makeNodash(undefined) {
   // group('Streams');
 
   function Stream(generator) {
-    var thunk = new Thunk(generator);
+    var thunk = new Nodash.Thunk(generator);
     var self = this;
     this.head = function () {
       var value = thunk.get().fst();
@@ -507,7 +429,7 @@ function makeNodash(undefined) {
       return value;
     };
   }
-  Stream.prototype = new List();
+  Stream.prototype = new Nodash.List();
   Stream.prototype.isEmpty = Nodash.idf(false);
   register('Stream', Stream);
 
@@ -518,31 +440,31 @@ function makeNodash(undefined) {
 
   function lazy(val) {
     if (Nodash.isFunction(val)) {
-      return new Thunk(val);
+      return new Nodash.Thunk(val);
     }
     if (!Nodash.isArray(val) && !Nodash.isString(val)) {
       return;
     }
     function generator(i) {
       if (i < val.length) {
-        return new List(val[i], new Thunk(function () {
+        return new Nodash.List(val[i], new Nodash.Thunk(function () {
           return generator(i + 1);
         }));
       }
-      return emptyList;
+      return Nodash.emptyList();
     }
     return generator(0);
   }
   register('lazy', lazy);
 
   function each(f, xs) {
-    if (isThunk(f)) {
+    if (Nodash.is(Nodash.Thunk, f)) {
       f = f.get();
     }
-    if (isThunk(xs)) {
+    if (Nodash.is(Nodash.Thunk, xs)) {
       xs = xs.get();
     }
-    if (Nodash.is(List, xs)) {
+    if (Nodash.is(Nodash.List, xs)) {
       while (!xs.isEmpty()) {
         f(xs.head());
         xs = xs.tail();
@@ -619,8 +541,8 @@ function makeNodash(undefined) {
   // group('Collections');
 
   register(':', 'cons', function _cons(x, xs) {
-    if (Nodash.is(List, xs)) {
-      return new List(x, xs);
+    if (Nodash.is(Nodash.List, xs)) {
+      return new Nodash.List(x, xs);
     }
     var zs = [x];
     [].push.apply(zs, xs);
@@ -650,7 +572,7 @@ function makeNodash(undefined) {
       for (i = 0; i < xs.length; i++) {
         ys.push(f(xs[i]));
       }
-      return arrayToString(ys);
+      return Nodash.arrayToString(ys);
     }
     ys = {};
     var ks = Object.keys(xs);
@@ -669,7 +591,7 @@ function makeNodash(undefined) {
           ys.push(xs[i]);
         }
       }
-      return Nodash.isString(xs) ? arrayToString(ys) : ys;
+      return Nodash.isString(xs) ? Nodash.arrayToString(ys) : ys;
     }
     ys = {};
     var ks = Object.keys(xs);
@@ -682,7 +604,7 @@ function makeNodash(undefined) {
   });
 
   register('head', function _head(xs) {
-    if (Nodash.is(List, xs)) {
+    if (Nodash.is(Nodash.List, xs)) {
       return xs.head();
     }
     return xs[0];
@@ -693,7 +615,7 @@ function makeNodash(undefined) {
   });
 
   register('tail', function _tail(xs) {
-    if (Nodash.is(List, xs)) {
+    if (Nodash.is(Nodash.List, xs)) {
       return xs.tail();
     }
     if (Nodash.isString(xs)) {
@@ -710,7 +632,7 @@ function makeNodash(undefined) {
   });
 
   function isEmpty(xs) {
-    if (Nodash.is(List, xs) && xs.isEmpty()) {
+    if (Nodash.is(Nodash.List, xs) && xs.isEmpty()) {
       return true;
     }
     if (Nodash.isArray(xs) || Nodash.isString(xs)) {
@@ -753,9 +675,9 @@ function makeNodash(undefined) {
     }
     function generator(i, xs) {
       if (i <= 0 || xs.isEmpty()) {
-        return emptyList;
+        return Nodash.emptyList();
       }
-      return new List(xs.head(), new Thunk(function () {
+      return new Nodash.List(xs.head(), new Nodash.Thunk(function () {
         return generator(i-1, xs.tail());
       }));
     }
@@ -1024,7 +946,7 @@ function makeNodash(undefined) {
       j += 1;
     } while (current.length > 0 && zs.push(current));
     if (Nodash.isString(xss[0])) {
-      zs = Nodash.map(arrayToString, zs);
+      zs = Nodash.map(Nodash.arrayToString, zs);
     }
     return zs;
   });
@@ -1115,7 +1037,7 @@ function makeNodash(undefined) {
       (p(xs[i]) ? as : bs).push(xs[i]);
     }
     if (Nodash.isString(xs)) {
-      return tuple(arrayToString(as), arrayToString(bs));
+      return tuple(Nodash.arrayToString(as), Nodash.arrayToString(bs));
     }
     return tuple(as, bs);
   });
@@ -1171,7 +1093,7 @@ function makeNodash(undefined) {
         zs.push(xs[i]);
       }
     }
-    return Nodash.isString(xs) ? arrayToString(zs) : zs;
+    return Nodash.isString(xs) ? Nodash.arrayToString(zs) : zs;
   });
 
   register('union', function _union(xs, ys) {
@@ -1265,7 +1187,7 @@ function makeNodash(undefined) {
       last = xs[i];
     }
     zs.push(current);
-    return Nodash.isString(xs) ? Nodash.map(arrayToString, zs) : zs;
+    return Nodash.isString(xs) ? Nodash.map(Nodash.arrayToString, zs) : zs;
   });
 
   register('group', Nodash.groupBy(Nodash.eq));

@@ -46,7 +46,6 @@ Usage
 npm install --save nodash
 ```
 
-
 ```JavaScript
 var Nodash = require('nodash');
 ```

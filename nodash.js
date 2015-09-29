@@ -21,62 +21,16 @@ function makeNodash(undefined) {
 
   register(require('./lib/types'));
   register(require('./lib/functions'));
-
+  
   register(require('./lib/Thunk'));
+  register(require('./lib/Tuple'));
   register(require('./lib/List'));
 
+  register(require('./lib/boolean'));
+    
   var Set = require('./lib/Set');
 
-  
-  // group('Boolean');
 
-  register('&&', 'AND', function _AND(a, b) { return a && b; });
-
-  register('||', 'OR', function _OR(a, b) { return a || b; });
-
-  register('not', function _not(value) { return !value; });
-
-  register('bool', function _bool(yes, no, bool) {
-    return bool ? yes : no;
-  });
-
-
-  // **Tuples**
-  
-  // group('Tuples');
-
-  function Tuple(fst, snd) {
-    this.fst = Nodash.idf(fst);
-    this.snd = Nodash.idf(snd);
-  }
-  register('Tuple', Tuple);
-
-  function fst(t) {
-    return t.fst();
-  }
-  register('fst', fst);
-
-  function snd(t) {
-    return t.snd();
-  }
-  register('snd', snd);
-
-  function tuple(fst, snd) {
-    return new Tuple(fst, snd);
-  }
-  register(',', 'tuple', 'pair', tuple);
-
-  function tuple3(fst, snd, third) {
-    return tuple(fst, tuple(snd, third));
-  }
-  register(',,', 'tuple3', tuple3);
-
-  function tuple4(fst, snd, third, fourth) {
-    return tuple3(fst, snd, tuple(third, fourth));
-  }
-  register(',,,', 'tuple4', tuple4);
-
-  
   // **Eq**
   
   // group('Comparisons');
@@ -94,7 +48,7 @@ function makeNodash(undefined) {
       if (a.constructor !== b.constructor) {
         return false;
       }
-      if (Nodash.is(Tuple, a)) {
+      if (Nodash.is(Nodash.Tuple, a)) {
         return Nodash.eq(Nodash.fst(a), Nodash.fst(b)) && Nodash.eq(Nodash.snd(a), Nodash.snd(b));
       }
       var k = Nodash.union(Object.keys(a), Object.keys(b));
@@ -493,7 +447,7 @@ function makeNodash(undefined) {
     function generator(seed) {
       return function () {
         var newSeed = f(seed);
-        return tuple(seed, generator(newSeed));
+        return Nodash.tuple(seed, generator(newSeed));
       };
     }
     return stream(generator(seed));
@@ -508,7 +462,7 @@ function makeNodash(undefined) {
         ys = xs;
       }
       return function () {
-        return tuple(ys.head(), generator(ys.tail()));
+        return Nodash.tuple(ys.head(), generator(ys.tail()));
       };
     }
     return stream(generator(xs));
@@ -691,7 +645,7 @@ function makeNodash(undefined) {
   register('drop', drop);
 
   register('splitAt', function _splitAt(n, xs) {
-    return tuple(take(n, xs), drop(n, xs));
+    return Nodash.tuple(take(n, xs), drop(n, xs));
   });
 
   register('takeWhile', function _takeWhile(p, xs) {
@@ -715,7 +669,7 @@ function makeNodash(undefined) {
     while (i < xs.length && p(xs[i])) {
         i++;
     }
-    return tuple(xs.slice(0, i), xs.slice(i));
+    return Nodash.tuple(xs.slice(0, i), xs.slice(i));
   });
 
   register('break_', 'break', function _break(p, xs) {
@@ -723,7 +677,7 @@ function makeNodash(undefined) {
     while (i < xs.length && !p(xs[i])) {
       i++;
     }
-    return tuple(xs.slice(0, i), xs.slice(i));
+    return Nodash.tuple(xs.slice(0, i), xs.slice(i));
   });
 
   register('elem', function _elem(x, xs) {
@@ -1037,9 +991,9 @@ function makeNodash(undefined) {
       (p(xs[i]) ? as : bs).push(xs[i]);
     }
     if (Nodash.isString(xs)) {
-      return tuple(Nodash.arrayToString(as), Nodash.arrayToString(bs));
+      return Nodash.tuple(Nodash.arrayToString(as), Nodash.arrayToString(bs));
     }
-    return tuple(as, bs);
+    return Nodash.tuple(as, bs);
   });
 
   register('findIndex', function _elemIndex(p, xs) {
@@ -1318,7 +1272,7 @@ function makeNodash(undefined) {
   ));
 
   register('partitionEithers', function _partitionEithers(xs) {
-    return tuple(Nodash.lefts(xs), Nodash.rights(xs));
+    return Nodash.tuple(Nodash.lefts(xs), Nodash.rights(xs));
   });
 
 

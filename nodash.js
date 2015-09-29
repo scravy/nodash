@@ -20,7 +20,6 @@ function makeNodash(undefined) {
   register('curried', require('./lib/curried.js'));
 
   register(require('./lib/types.js'));
-
   register(require('./lib/functions.js'));
 
   var Set = require('./lib/Set');

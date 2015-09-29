@@ -40,12 +40,12 @@ console.log(reverse([1,2,3])); // → [3,2,1]
 Usage
 -----
 
-A port of the Haskell Prelude to JavaScript/NodeJS.
-
-    npm install --save nodash
-
-
 ### in node
+
+```
+npm install --save nodash
+```
+
 
 ```JavaScript
 var Nodash = require('nodash');

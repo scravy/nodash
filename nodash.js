@@ -13,6 +13,9 @@ function makeNodash(options) {
   if (typeof Array.isArray !== 'function' || !Array.isArray([])) {
     throw new Error('ES5 `Array.isArray` required (es5-shim will do).');
   }
+  if (typeof Array.prototype.forEach !== 'function') {
+    throw new Error('ES5 `Array.prototype.forEach` required (es5-shim will do).');
+  }
 
   // This is the object the nodash functions will be attached to.
   var Nodash = {};
@@ -39,6 +42,7 @@ function makeNodash(options) {
   register(require('./lib/floating'));
   register(require('./lib/realfrac'));
   register(require('./lib/numeric'));
+  register(require('./lib/Stream'));
 
   var Set = require('./lib/Set');
 
@@ -47,106 +51,7 @@ function makeNodash(options) {
   /* ... */
 
 
-  // group('Streams');
 
-  function Stream(generator) {
-    var thunk = new Nodash.Thunk(generator);
-    var self = this;
-    this.head = function () {
-      var value = thunk.get().fst();
-      self.head = Nodash.idf(value);
-      return value;
-    };
-    this.tail = function () {
-      var value = new Stream(thunk.get().snd());
-      self.tail = Nodash.idf(value);
-      return value;
-    };
-  }
-  Stream.prototype = new Nodash.List();
-  Stream.prototype.isEmpty = Nodash.idf(false);
-  register('Stream', Stream);
-
-  function stream(generator) {
-    return new Stream(generator);
-  }
-  register('stream', stream);
-
-  function lazy(val) {
-    if (Nodash.isFunction(val)) {
-      return new Nodash.Thunk(val);
-    }
-    if (!Nodash.isArray(val) && !Nodash.isString(val)) {
-      return;
-    }
-    function generator(i) {
-      if (i < val.length) {
-        return new Nodash.List(val[i], new Nodash.Thunk(function () {
-          return generator(i + 1);
-        }));
-      }
-      return Nodash.emptyList();
-    }
-    return generator(0);
-  }
-  register('lazy', lazy);
-
-  function each(f, xs) {
-    if (Nodash.is(Nodash.Thunk, f)) {
-      f = f.get();
-    }
-    if (Nodash.is(Nodash.Thunk, xs)) {
-      xs = xs.get();
-    }
-    if (Nodash.is(Nodash.List, xs)) {
-      while (!xs.isEmpty()) {
-        f(xs.head());
-        xs = xs.tail();
-      }
-    } else if (Nodash.isArray(xs) || Nodash.isString(xs)) {
-      for (var i = 0; i < xs.length; i++) {
-        f(xs[i], i);
-      }
-    } else if (Nodash.isObject(xs)) {
-      var ks = Object.keys(xs);
-      for (var j = 0; j < ks.length; j += 1) {
-        f(xs[ks[j]], ks[j]);
-      }
-    }
-  }
-  register('each', each);
-
-  register('repeat', function (x) {
-    function generator() {
-      return Nodash.tuple(x, generator);
-    }
-    return stream(generator);
-  });
-
-  register('iterate', function (f, seed) {
-    function generator(seed) {
-      return function () {
-        var newSeed = f(seed);
-        return Nodash.tuple(seed, generator(newSeed));
-      };
-    }
-    return stream(generator(seed));
-  });
-
-  register('cycle', function (xs) {
-    if (Nodash.isArray(xs)) {
-      xs = lazy(xs);
-    }
-    function generator(ys) {
-      if (ys.isEmpty()) {
-        ys = xs;
-      }
-      return function () {
-        return Nodash.tuple(ys.head(), generator(ys.tail()));
-      };
-    }
-    return stream(generator(xs));
-  });
 
   
   // group('Strings');
@@ -962,7 +867,7 @@ function makeNodash(options) {
 
   register('values', function _values(object) {
     var values = [];
-    each(function (value) {
+    Nodash.each(function (value) {
       values.push(value);
     }, object);
     return values;
@@ -1004,7 +909,7 @@ function makeNodash(options) {
     if (Nodash.isArray(specification)) {
       var prev = null;
       var newSpec = {};
-      each(function (func, taskName) {
+      Nodash.each(function (func, taskName) {
         newSpec[taskName] = prev === null ? func : [ prev, func ];
         prev = taskName;
       }, specification);
@@ -1015,7 +920,7 @@ function makeNodash(options) {
     var initial = [];
 
     // prepare tasks specification.
-    each(function (spec, name) {
+    Nodash.each(function (spec, name) {
       var dependencies = [];
       var func = null;
       if (Nodash.isArray(spec)) {
@@ -1034,7 +939,7 @@ function makeNodash(options) {
         depends: {},
         enables: tasks[name] ? tasks[name].enables : {}
       };
-      each(function (dependency) {
+      Nodash.each(function (dependency) {
         task.depends[dependency] = true;
         if (!tasks[dependency]) {
             tasks[dependency] = { enables: {} };
@@ -1046,8 +951,8 @@ function makeNodash(options) {
 
     // check spec for unmet dependencies
     var unmetDependencies = [];
-    each(function (task, taskName) {
-      each(function (_, dependency) {
+    Nodash.each(function (task, taskName) {
+      Nodash.each(function (_, dependency) {
         if (!specification[dependency]) {
           unmetDependencies.push([ taskName, dependency ]);
         }
@@ -1074,7 +979,7 @@ function makeNodash(options) {
     }
 
     // build initial set
-    each(function (task, taskName) {
+    Nodash.each(function (task, taskName) {
       if (Nodash.isEmpty(task.depends)) {
         initial.push(taskName);
       }
@@ -1089,7 +994,7 @@ function makeNodash(options) {
 
     // check spec for cycles
     var cycles = [];
-    each(function (taskName) {
+    Nodash.each(function (taskName) {
 
       var visited = {};
       var path = [];
@@ -1100,7 +1005,7 @@ function makeNodash(options) {
           cycles.push(Nodash.map(Nodash.id, path));
         } else {
           visited[node] = true;
-          each(visit, Object.keys(tasks[node].enables));
+          Nodash.each(visit, Object.keys(tasks[node].enables));
         }
         delete visited[path.pop()];
       }
@@ -1137,7 +1042,7 @@ function makeNodash(options) {
           }
 
           // clean up results if need be
-          each(function (_, dependency) {
+          Nodash.each(function (_, dependency) {
             results[dependency].toGo -= 1;
             if (results[dependency].toGo === 0) {
               delete results[dependency];
@@ -1147,12 +1052,12 @@ function makeNodash(options) {
           toGo -= 1;
           if (toGo === 0) {
             // clean results object
-            each(function (result) {
+            Nodash.each(function (result) {
               delete result.toGo;
             }, results);
             callback(null, results);
           } else {
-            each(function (_, next) {
+            Nodash.each(function (_, next) {
               delete depends[next][taskName];
               if (isEmpty(depends[next])) {
                 execute(next);
@@ -1175,7 +1080,7 @@ function makeNodash(options) {
 
         if (dependenciesFailed && Nodash.isFunction(task.func.runOnError)) {
           var tempResult = {};
-          each(function (dependency) {
+          Nodash.each(function (dependency) {
             var result = results[dependency];
             var stubResult = {};
             if (result.error) {
@@ -1210,11 +1115,11 @@ function makeNodash(options) {
         });
       }
 
-      each(function (task, taskName) {
+      Nodash.each(function (task, taskName) {
         depends[taskName] = Nodash.clone(task.depends);
       }, tasks);
 
-      each(execute, initial);
+      Nodash.each(execute, initial);
     };
   });
 
@@ -1278,7 +1183,7 @@ function makeNodash(options) {
       }
       mountpoint = mountpoint[0] || {};
     }
-    each(function (func, name) {
+    Nodash.each(function (func, name) {
       if (!Nodash.isNodash(func)) {
         return;
       }

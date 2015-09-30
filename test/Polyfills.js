@@ -76,18 +76,11 @@ describe('Polyfills', function () {
 describe('Polyfills (`Set` missing)', function () {
 
     var P;
-    var NativeSet;
 
     before(function () {
-        NativeSet = global.Set;
-        global.Set = false;
         P = require('../nodash').install({});
     });
 
-    after(function () {
-        global.Set = NativeSet;
-    });
-    
     it('nub', function () {
         assert.deepEqual([1,2,4], P.nub([1,1,2,4,4,4]));
     });
@@ -104,16 +97,9 @@ describe('Polyfills (`Set` missing)', function () {
 describe('Polyfills (`Set` available)', function () {
 
     var P;
-    var NativeSet;
 
     before(function () {
-        NativeSet = global.Set;
-        global.Set = require('../lib/Set');
         P = require('../nodash').install({});
-    });
-
-    after(function () {
-        global.Set = NativeSet;
     });
     
     it('nub', function () {

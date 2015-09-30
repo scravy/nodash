@@ -22,19 +22,15 @@ describe('Polyfills', function () {
 
     var P;
     var NativeMath;
-    var NativeSet;
 
     before(function () {
         NativeMath = global.Math;
         global.Math = DumbMath;
-        NativeSet = global.Set;
-        global.Set = false;
         P = require('../nodash').install({});
     });
 
     after(function () {
         global.Math = NativeMath;
-        global.Set = NativeSet;
     });
 
     it('sinh', function () {
@@ -82,6 +78,22 @@ describe('Polyfills', function () {
         assert.strictEqual(-1, P.signum(-9.5));        
         assert.strictEqual(0, P.signum(0));
     });
+});
+
+describe('Polyfills (`Set` missing)', function () {
+
+    var P;
+    var NativeSet;
+
+    before(function () {
+        NativeSet = global.Set;
+        global.Set = false;
+        P = require('../nodash').install({});
+    });
+
+    after(function () {
+        global.Set = NativeSet;
+    });
     
     it('nub', function () {
         assert.deepEqual([1,2,4], P.nub([1,1,2,4,4,4]));
@@ -96,3 +108,30 @@ describe('Polyfills', function () {
     });
 });
 
+describe('Polyfills (`Set` available)', function () {
+
+    var P;
+    var NativeSet;
+
+    before(function () {
+        NativeSet = global.Set;
+        global.Set = require('../lib/Set');
+        P = require('../nodash').install({});
+    });
+
+    after(function () {
+        global.Set = NativeSet;
+    });
+    
+    it('nub', function () {
+        assert.deepEqual([1,2,4], P.nub([1,1,2,4,4,4]));
+    });
+
+    it('union', function () {
+        assert.deepEqual([1,2,4], P.union([1,2], [2,4]));
+    });
+
+    it('intersect', function () {
+        assert.deepEqual([3,2], P.intersect([1,3,2], [5,2,3,4]));
+    });
+});

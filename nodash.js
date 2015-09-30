@@ -1,6 +1,6 @@
 /* vim: set et sw=2 ts=2: */
 
-function makeNodash(options, undefined) {
+function makeNodash(options) {
   'use strict';
 
   options = options || {};
@@ -17,7 +17,7 @@ function makeNodash(options, undefined) {
   // This is the object the nodash functions will be attached to.
   var Nodash = {};
   
-  var register = require('./lib/register')(Nodash);
+  var register = require('./lib/register')(Nodash, options);
 
   register('curried', require('./lib/curried.js'));
 
@@ -36,7 +36,7 @@ function makeNodash(options, undefined) {
   register(require('./lib/num'));
   register(require('./lib/integral'));
   register(require('./lib/fractional'));
-  register(require('./lib/floating')(options.Math || Math));
+  register(require('./lib/floating'));
   register(require('./lib/realfrac'));
   register(require('./lib/numeric'));
 

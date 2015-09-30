@@ -22,29 +22,19 @@ describe('Polyfills', function () {
 
     var P;
     var NativeMath;
+    var NativeSet;
 
     before(function () {
         NativeMath = global.Math;
         global.Math = DumbMath;
+        NativeSet = global.Set;
+        global.Set = false;
         P = require('../nodash').install({});
     });
 
     after(function () {
         global.Math = NativeMath;
-    });
-
-    it('isArray in map', function () {
-        var plus1 = P.map(P.plus(1));
-        assert.deepEqual([2, 3, 4], plus1([1, 2, 3]));
-    });
-
-    it('isArray in map /w object', function () {
-        var plus1 = P.map(P.plus(1));
-        assert.deepEqual({ a: 2, b: 3 }, plus1({ a: 1, b: 2 }));
-        var a = { x: 3 };
-        var b = Object.create(a);
-        b.z = 19;
-        assert.deepEqual({ z: 20 }, plus1(b));
+        global.Set = NativeSet;
     });
 
     it('sinh', function () {
@@ -106,43 +96,3 @@ describe('Polyfills', function () {
     });
 });
 
-describe('Polyfills /w enum bug', function () {
-
-    var P;
-
-    before(function () {
-        P = require('../nodash').install({}, {
-            Math: DumbMath,
-            Array: {},
-            Object: {},
-            dontUseNatives: true,
-            refObj: {}
-        });
-    });
-
-    it('isArray in map', function () {
-        var plus1 = P.map(P.plus(1));
-        assert.deepEqual([2, 3, 4], plus1([1, 2, 3]));
-    });
-
-    it('isArray in map /w object', function () {
-        var plus1 = P.map(P.plus(1));
-        assert.deepEqual({ a: 2, b: 3 }, plus1({ a: 1, b: 2 }));
-        var a = { x: 3 };
-        var b = Object.create(a);
-        b.toString = 19;
-        assert.deepEqual({ toString: 20 }, plus1(b));
-    });
-
-    it('nub', function () {
-        assert.deepEqual([1,2,4], P.nub([1,1,2,4,4,4]));
-    });
-
-    it('union', function () {
-        assert.deepEqual([1,2,4], P.union([1,2], [2,4]));
-    });
-
-    it('intersect', function () {
-        assert.deepEqual([3,2], P.intersect([1,3,2], [5,2,3,4]));
-    });
-});

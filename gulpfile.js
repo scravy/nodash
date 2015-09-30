@@ -55,7 +55,7 @@ gulp.task('browserify', [ 'lint' ], function (done) {
     .pipe(source('nodash.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(uglify({ compressor: { global_defs: { group: true } } }))
+    .pipe(uglify({}))
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist'))
@@ -164,6 +164,7 @@ gulp.task('build', [ 'browserify', 'testm', 'gzip' ]);
 gulp.task('default', [ 'build', ], function (done) {
 
   var minified = filesize(fs.statSync('dist/nodash.min.js').size);
+  var gzipped = filesize(fs.statSync('dist/nodash.min.js.gz').size);
 
   console.log(chalk.white((function(){/*
   CHECKMARK Your library has been built, Sir!
@@ -171,13 +172,14 @@ gulp.task('default', [ 'build', ], function (done) {
   You can find the minified version in the dist/ folder
   (there's also some documentation in that folder).
   It passed all test cases and achieved a good code coverage.
-  In total it is a whopping MINIFIED minified. Note that the
-  minified version has also been dragged through all the test
-  cases and passed without a doubt.
+  In total it is a whopping MINIFIED minified (GZIPPED gzipped).
+  Note that the minified version has also been dragged through
+  all the test cases and passed without a doubt.
   */}).toString()
       .slice(14, -3)
       .replace('CHECKMARK', chalk.green('✓'))
       .replace('MINIFIED', chalk.yellow(minified))
+      .replace('GZIPPED', chalk.yellow(gzipped))
   ));
 
 });

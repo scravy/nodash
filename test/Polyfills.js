@@ -21,16 +21,9 @@ var assert = require('../util/assert');
 describe('Polyfills', function () {
 
     var P;
-    var NativeMath;
 
     before(function () {
-        NativeMath = global.Math;
-        global.Math = DumbMath;
-        P = require('../nodash').install({});
-    });
-
-    after(function () {
-        global.Math = NativeMath;
+        P = require('../nodash').install({}, { Math: DumbMath });
     });
 
     it('sinh', function () {

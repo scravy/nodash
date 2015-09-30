@@ -1,7 +1,9 @@
 /* vim: set et sw=2 ts=2: */
 
-function makeNodash(undefined) {
+function makeNodash(options, undefined) {
   'use strict';
+
+  options = options || {};
 
   // Basic ECMA Script 5 checks (if these fail pull in `es5-shim`).
 
@@ -34,7 +36,7 @@ function makeNodash(undefined) {
   register(require('./lib/num'));
   register(require('./lib/integral'));
   register(require('./lib/fractional'));
-  register(require('./lib/floating'));
+  register(require('./lib/floating')(options.Math || Math));
   register(require('./lib/realfrac'));
   register(require('./lib/numeric'));
 

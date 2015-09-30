@@ -21,14 +21,16 @@ var assert = require('../util/assert');
 describe('Polyfills', function () {
 
     var P;
+    var NativeMath;
 
     before(function () {
-        P = require('../nodash').install({}, {
-            Math: DumbMath,
-            Array: {},
-            Object: {},
-            dontUseNatives: true
-        });
+        NativeMath = global.Math;
+        global.Math = DumbMath;
+        P = require('../nodash').install({});
+    });
+
+    after(function () {
+        global.Math = NativeMath;
     });
 
     it('isArray in map', function () {

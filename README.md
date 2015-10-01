@@ -85,6 +85,12 @@ Nodash.install([ global, '_' ]);  → foldl_(flip_(cons_), []);
 Nodash.install([ 'f_', global ]); → f_foldl(f_flip(f_cons), []);
 ```
 
+Both a prefix and a postfix works too:
+
+```JavaScript
+Nodash.install([ '__', global, '__' ]); → __foldl__(__flip__(__cons__), []);
+```
+
 
 License
 -------

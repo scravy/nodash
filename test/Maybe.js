@@ -42,15 +42,14 @@ describe('Maybe', function () {
     });
 
     it("listToMaybe", function () {
-        assert.strictEqual(9, listToMaybe([ 9, 10 ]));
-        assert.strictEqual(true, isJust(listToMaybe([ 13 ])));
-        assert.strictEqual(true, isNothing(listToMaybe([])));
+        assert.strictEqual(9, listToMaybe(singleton(9)));
+        assert.strictEqual(17, listToMaybe(cons(17, singleton(13))));
+        assert.strictEqual(true, isNothing(listToMaybe(emptyList())));
     });
 
     it("maybeToList", function () {
-        assert.deepEqual([ 9 ], maybeToList(9));
-        assert.deepEqual([ ], maybeToList(null));
-        assert.deepEqual([ ], maybeToList(undefined));
+        assert.strictEqual(emptyList(), maybeToList(null));
+        assert.strictEqual(emptyList(), maybeToList(undefined));
     });
 
     it("catMaybes", function () {

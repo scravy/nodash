@@ -47,53 +47,13 @@ function makeNodash(options) {
   register(require('./lib/object'));
   register(require('./lib/collection'));
   
-  //register(require('./lib/Maybe'));
+  register(require('./lib/Maybe'));
   register(require('./lib/Either'));
 
   
   // RealFloat
 
   /* ... */
-
-
-  /* Maybe */
-
-  register('maybe', function _maybe(def, fun, maybe) {
-    if (maybe === undefined || maybe === null) {
-      return def;
-    }
-    return fun(maybe);
-  });
-
-  register('isJust', function _isJust(value) {
-    return value !== undefined && value !== null;
-  });
-
-  register('isNothing', function _isNothing(value) {
-    return value === undefined || value === null;
-  });
-
-  register('fromMaybe', function _fromMaybe(def, maybe) {
-    if (maybe === undefined || maybe === null) {
-      return def;
-    }
-    return maybe;
-  });
-
-  register('listToMaybe', function _listToMaybe(xs) {
-    return xs[0];
-  });
-
-  register('maybeToList', function _maybeToList(maybe) {
-    if (maybe === undefined || maybe === null) {
-      return [];
-    }
-    return [maybe];
-  });
-
-  register('catMaybes', Nodash.filter(Nodash.isJust));
-
-  register('mapMaybe', Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map));
 
 
   // group('Nodash');

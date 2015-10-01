@@ -1,6 +1,7 @@
 Changelog
 =========
 
+
 v0.3 "Amdahl"
 -------------
 
@@ -8,6 +9,7 @@ v0.3 "Amdahl"
 + supports almost all of Haskell 2010s `Prelude` (except for some delicate stuff like curry, uncurry)
 + has its own mechanism for currying/uncurrying/partially applying JavaScript functions
 + also covers some of the functions from `Data.List`
+
 
 v0.4 "Babbage"
 --------------
@@ -20,6 +22,7 @@ v0.4 "Babbage"
 + should play nice with AMD loaders now too
 + 3.7 KB minified + gzipped
 
+
 v0.5 "Curry"
 ------------
 
@@ -31,6 +34,7 @@ v0.5 "Curry"
 + 4.5 KB minified + gzipped
 + list functions work equally well with strings
 + some functions also play nice with objects (`filter`, `map`, `transpose`, ...)
+
 
 v0.6 "Dijkstra"
 ----------------
@@ -47,6 +51,7 @@ v0.6 "Dijkstra"
 
 + Changed name from `node-prelude` to `nodash`.
 
+
 v0.7 "Eich"
 -----------
 
@@ -60,6 +65,7 @@ v0.7 "Eich"
 ### v0.7.1
 
 + Added a lot documentation.
+
 
 v0.8 "Floyd"
 ------------
@@ -83,6 +89,7 @@ which is only available in NodeJS. This patch fixes that.
   + allows for specifying an array as mountpoint with pre- and postfixes
   which are added to the names of the functions.
   + shows up in the API doc now.
+
 
 v0.9 "Gosling"
 --------------
@@ -113,6 +120,7 @@ v0.9 "Gosling"
 
 + *experimental:* `curry` and `uncurry` added
 
+
 v0.10 "Hollerith"
 -----------------
 
@@ -124,8 +132,6 @@ v0.10 "Hollerith"
   - `stream` takes a generator now and generates a `Stream`
   - Functions dealing with old streams are updated to handle `List` and `Stream`
   - `List` and `Stream` have laziness built in by using `Thunk` internally
-+ `Maybe` is now a proper type
-  - Functions dealing with `Maybe` are updated accordingly
 + `Either` is now a proper type
   - Functions dealing with `Either` are updated accordingly
 + `consume` and `consumeString` removed in favor of `listToArray` and `listToString`
@@ -140,12 +146,18 @@ v0.10 "Hollerith"
 + `Tuple` added
   - has the methods `fst` and `snd`
   - Triples are tuples of tuples `(a, (b, c))`
-+ `Maybe` type added
-+ `Either` type added
++ `Either` type added, with constructors `Left` and `Right`
 + `isInteger` added - checks whether something is an integral number
 + `isBoolean` added - checks whether something is a boolean
 + `isUndefined` added - checks whether something is undefined
 + `is` added - flipped shorthand version of `instanceof`
+
+**Other Changes:**
++ Nodash is now built using [browserify](https://github.com/substack/node-browserify)
++ Legacy code like shims for `Array.isArray` and `Object.keys` were removed
+  - If you want to support pre-ES5 environments pull in [es5-shim](https://github.com/es-shims/es5-shim)
++ The documentation system has been revamped
+
 
 v0.11 "Ichbiah"
 ---------------

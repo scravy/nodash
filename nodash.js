@@ -46,8 +46,11 @@ function makeNodash(options) {
   register(require('./lib/control'));
   register(require('./lib/object'));
   register(require('./lib/collection'));
+  
+  //register(require('./lib/Maybe'));
+  register(require('./lib/Either'));
 
-
+  
   // RealFloat
 
   /* ... */
@@ -91,67 +94,6 @@ function makeNodash(options) {
   register('catMaybes', Nodash.filter(Nodash.isJust));
 
   register('mapMaybe', Nodash.compose2(Nodash.filter(Nodash.isJust), Nodash.map));
-
-
-  /* Either */
-
-  register('either', function _either(afun, bfun, either) {
-    var left = either.left || either[0];
-    if (left) {
-      return afun(left);
-    }
-    var right = either.right || either[1];
-    if (right) {
-      return bfun(right);
-    }
-    return null;
-  });
-
-  register('Left', function _Left(value) {
-    return { left: value };
-  });
-
-  register('Right', function _Right(value) {
-    return { right: value };
-  });
-
-  register('isLeft', function _isLeft(val) {
-    return val.left !== undefined ||
-      (val[0] !== undefined && val[0] !== null);
-  });
-
-  register('isRight', function _isRight(val) {
-    return (val.right !== undefined || val[1] !== undefined) &&
-      !Nodash.isLeft(val);
-  });
-
-  register('fromLeft', function _fromLeft(val) {
-    if (val.left !== undefined) {
-      return val.left;
-    }
-    return val[0];
-  });
-
-  register('fromRight', function _fromRight(val) {
-    if (val.right !== undefined) {
-      return val.right;
-    }
-    return val[1];
-  });
-
-  register('lefts', Nodash.compose(
-              Nodash.map(Nodash.fromLeft),
-              Nodash.filter(Nodash.isLeft)
-  ));
-
-  register('rights', Nodash.compose(
-              Nodash.map(Nodash.fromRight),
-              Nodash.filter(Nodash.isRight)
-  ));
-
-  register('partitionEithers', function _partitionEithers(xs) {
-    return Nodash.tuple(Nodash.lefts(xs), Nodash.rights(xs));
-  });
 
 
   // group('Nodash');

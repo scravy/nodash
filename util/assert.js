@@ -12,6 +12,6 @@ module.exports.deepEqual = function (expected, actual) {
     assert.deepEqual(actual, expected);
 };
 
-module.exports.throws = function (error, block) {
-    assert.throws(block, error);
+module.exports.throws = function (block) {
+    assert.throws(block);
 };

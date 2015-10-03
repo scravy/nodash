@@ -51,13 +51,6 @@ function makeNodash(options) {
   register(require('./lib/Either'));
 
   
-  // RealFloat
-
-  /* ... */
-
-
-  // group('Nodash');
-
   register('isNodash', function (thing) { return !!thing.__isNodash; });
 
   register('install', function _install(mountpoint) {

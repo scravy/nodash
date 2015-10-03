@@ -1,7 +1,7 @@
 var P = require('../nodash').install(GLOBAL);
 var assert = require('../util/assert');
 
-describe('Types', function () {
+describe('type', function () {
 
     it('isUndefined /w undefined', function () {
         assert.strictEqual(true, isUndefined(undefined));
@@ -93,4 +93,46 @@ describe('Types', function () {
         assert.strictEqual(false, isArray(null));
     });
 
+    it('typeOf /w undefined', function () {
+        assert.strictEqual(undefined, typeOf(undefined));
+    });
+
+    it('typeOf /w null', function () {
+        assert.strictEqual(null, typeOf(null));
+    });
+
+    it('typeOf /w Number', function () {
+        assert.strictEqual(Number, typeOf(7));
+        assert.strictEqual(Number, typeOf(Infinity));
+        assert.strictEqual(Number, typeOf(NaN));
+    });
+
+    it('typeOf /w Boolean', function () {
+        assert.strictEqual(Boolean, typeOf(true));
+        assert.strictEqual(Boolean, typeOf(false));
+    });
+
+    it('typeOf /w String', function () {
+        assert.strictEqual(String, typeOf(''));
+    });
+
+    it('typeOf /w Array', function () {
+        assert.strictEqual(Array, typeOf([]));
+    });
+
+    it('typeOf /w Object', function () {
+        assert.strictEqual(Object, typeOf({}));
+    });
+
+    it('typeOf /w Function', function () {
+        assert.strictEqual(Function, typeOf(Array.isArray));
+    });
+
+    it('typeOf /w Date', function () {
+        assert.strictEqual(Date, typeOf(new Date()));
+    });
+
+    it('typeOf /w RegExp', function () {
+        assert.strictEqual(RegExp, typeOf(/[a-z]/));
+    });
 });

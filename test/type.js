@@ -94,45 +94,43 @@ describe('type', function () {
     });
 
     it('typeOf /w undefined', function () {
-        assert.strictEqual(undefined, typeOf(undefined));
+        assert.strictEqual('undefined', typeOf(undefined));
     });
 
     it('typeOf /w null', function () {
-        assert.strictEqual(null, typeOf(null));
+        assert.strictEqual('null', typeOf(null));
     });
 
     it('typeOf /w Number', function () {
-        assert.strictEqual(Number, typeOf(7));
-        assert.strictEqual(Number, typeOf(Infinity));
-        assert.strictEqual(Number, typeOf(NaN));
+        assert.strictEqual('number', typeOf(7));
+        assert.strictEqual('number', typeOf(Infinity));
+    });
+    
+    it('typeOf /w NaN', function () {
+        assert.strictEqual('not-a-number', typeOf(NaN));
     });
 
     it('typeOf /w Boolean', function () {
-        assert.strictEqual(Boolean, typeOf(true));
-        assert.strictEqual(Boolean, typeOf(false));
+        assert.strictEqual('boolean', typeOf(true));
+        assert.strictEqual('boolean', typeOf(false));
     });
 
     it('typeOf /w String', function () {
-        assert.strictEqual(String, typeOf(''));
+        assert.strictEqual('string', typeOf(''));
     });
 
     it('typeOf /w Array', function () {
-        assert.strictEqual(Array, typeOf([]));
+        assert.strictEqual('array', typeOf([]));
     });
 
     it('typeOf /w Object', function () {
-        assert.strictEqual(Object, typeOf({}));
+        assert.strictEqual('object', typeOf({}));
+        assert.strictEqual('object', typeOf(/[a-z]+/));
+        assert.strictEqual('object', typeOf(new Date()));
     });
 
     it('typeOf /w Function', function () {
-        assert.strictEqual(Function, typeOf(Array.isArray));
+        assert.strictEqual('function', typeOf(Array.isArray));
     });
 
-    it('typeOf /w Date', function () {
-        assert.strictEqual(Date, typeOf(new Date()));
-    });
-
-    it('typeOf /w RegExp', function () {
-        assert.strictEqual(RegExp, typeOf(/[a-z]/));
-    });
 });

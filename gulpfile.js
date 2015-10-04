@@ -71,7 +71,7 @@ gulp.task('gzip', [ 'browserify' ], function (done) {
 });
 
 gulp.task('lint', function (done) {
-  gulp.src([ 'nodash.js', 'lib/*.js', 'test/*.js', 'benchmark/*.js' ])
+  gulp.src([ 'nodash.js', 'lib/**/*.js', 'test/**/*.js', 'benchmark/*.js' ])
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
       .pipe(jshint.reporter('fail'))
@@ -80,16 +80,16 @@ gulp.task('lint', function (done) {
 });
 
 gulp.task('coverage', [ 'lint' ], function (done) {
-  gulp.src([ 'nodash.js', 'lib/*.js' ])
+  gulp.src([ 'nodash.js', 'lib/**/*.js' ])
       .pipe(istanbul())
       .pipe(istanbul.hookRequire())
       .on('error', errorHandler)
       .on('finish', function () {
-        gulp.src('test/*.js')
+        gulp.src('test/**/*.js')
             .pipe(mocha())
             .pipe(istanbul.writeReports({ dir: 'dist/coverage/' }))
             .on('finish', done);
-    });
+      });
 });
 
 // test library as is

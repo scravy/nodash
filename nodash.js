@@ -46,7 +46,7 @@ function makeNodash(options) {
   register(require('./lib/control'));
   register(require('./lib/object'));
 
-  register(require('./lib/collection/fold'));
+  register(require('./lib/c/fold'));
   register(require('./lib/collection'));
   
   register(require('./lib/Maybe'));
@@ -60,6 +60,9 @@ function makeNodash(options) {
     var nodashObject = Nodash;
     var prefix = '';
     var postfix = '';
+    if (!mountpoint) {
+      return Nodash;
+    }
     if (options) {
       nodashObject = makeNodash(options);
     }
@@ -81,6 +84,8 @@ function makeNodash(options) {
     return mountpoint;
   });
 
+  Object.freeze(Nodash);
+  
   return Nodash;
 }
 

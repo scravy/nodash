@@ -99,7 +99,7 @@ describe('Polyfills (`Set` available)', function () {
     var P;
 
     before(function () {
-        P = require('../nodash').install({});
+        P = require('../nodash').install({}, { Set: require('../lib/Set') });
     });
     
     it('nub', function () {

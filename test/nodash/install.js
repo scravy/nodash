@@ -80,6 +80,7 @@ describe('nodash.install()', function () {
     var x = Nodash.install([ '$', {} ]);
     var count = 0;
     for (var name in Nodash) {
+      if (name[0] === '_') continue;
       assert.strictEqual(Nodash[name], x['$' + name]);
       count += 1;
     }
@@ -91,6 +92,7 @@ describe('nodash.install()', function () {
     var x = Nodash.install([ {}, '_' ]);
     var count = 0;
     for (var name in Nodash) {
+      if (name[0] === '_') continue;
       assert.strictEqual(Nodash[name], x[name + '_']);
       count += 1;
     }
@@ -102,6 +104,7 @@ describe('nodash.install()', function () {
     var x = Nodash.install([ '__', {}, '__' ]);
     var count = 0;
     for (var name in Nodash) {
+      if (name[0] === '_') continue;
       assert.strictEqual(Nodash[name], x['__' + name + '__']);
       count += 1;
     }

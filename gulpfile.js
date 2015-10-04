@@ -74,7 +74,7 @@ gulp.task('gzip', [ 'browserify' ], function (done) {
 });
 
 gulp.task('lint', function (done) {
-  gulp.src([ 'nodash.js', 'lib/**/*.js', 'test/**/*.js', 'benchmark/*.js' ])
+  gulp.src([ 'nodash.js', 'lib/**/*.js', 'util/**/*.js', 'test/**/*.js', 'benchmark/*.js' ])
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
       .pipe(jshint.reporter('fail'))
@@ -147,11 +147,14 @@ gulp.task('styles', function (done) {
 gulp.task('apidoc', [ 'styles', 'lint' ], function (done) {
   var apidoc = require('./util/apidoc');
 
-  gulp.src('site/apidoc.mustache')
-      .pipe(mustache(apidoc()))
-      .pipe(rename({ extname: ".html" }))
-      .pipe(gulp.dest('dist/'))
-      .on('finish', done);
+  apidoc('./doc', function (error, documentationData) {
+    gulp.src('site/apidoc.mustache')
+        .pipe(mustache(documentationData))
+        .pipe(rename({ extname: ".html" }))
+        .pipe(gulp.dest('dist/'))
+        .on('finish', done);
+  });
+
 });
 
 gulp.task('site', [ 'build', 'docco', 'apidoc' ], function (done) {

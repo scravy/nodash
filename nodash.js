@@ -73,6 +73,9 @@ function makeNodash(options) {
       mountpoint = mountpoint[0] || {};
     }
     Nodash.each(function (func, name) {
+      if (name[0] === '_') {
+        return;
+      }
       var key = prefix + name + postfix;
       if (!(key in mountpoint)) {
         mountpoint[key] = func;

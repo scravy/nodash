@@ -2,7 +2,7 @@
 /* jshint node: true */
 "use strict";
 
-require('../nodash.js').install(GLOBAL);
+var N = require('../nodash.js');
 
 var chalk = require('chalk');
 var sprintf = require('sprintf').sprintf;
@@ -38,7 +38,7 @@ function timeExecutions(options, func, callback) {
   function nextIteration() {
     i += 1;
     
-    var args = map(invoke, options.args || []);
+    var args = N.map(N.invoke, options.args || []);
     var result = timeExecution(func, args);
     
     if (typeof result !== 'number') {
@@ -62,15 +62,15 @@ function timeExecutions(options, func, callback) {
       }
     } else {
       if (options.median) {
-        results.sort(compare);
+        results.sort(N.compare);
       }
 
       callback({
         min: min,
         max: max,
         avg: avg,
-        median: results[floor(results.length / 2)]
-      });      
+        median: results[N.floor(results.length / 2)]
+      });
     }
   }
 
@@ -81,8 +81,8 @@ function groupResults(results) {
 
   var groupedResults = {};
 
-  each(function (result, key) {
-    if (isInfixOf('\0', key)) {
+  N.each(function (result, key) {
+    if (N.isInfixOf('\0', key)) {
       key = key.split('\0');
       if (!groupedResults[key[0]]) {
         groupedResults[key[0]] = {};
@@ -99,24 +99,24 @@ function groupResults(results) {
 function timeSuite(options, suite, callback) {
   var plan = {};
 
-  each(function (spec, name) {
+  N.each(function (spec, name) {
 
-    if (isFunction(spec)) {
+    if (N.isFunction(spec)) {
       plan[name] = function (done) {
         timeExecutions(options, spec, done);
       };
-    } else if (isObject(spec)) {
+    } else if (N.isObject(spec)) {
       var args = [];
       for (var i = 0 ;; i += 1) {
-        if (!isFunction(spec[i])) {
+        if (!N.isFunction(spec[i])) {
           break;
         }
         args[i] = spec[i];
       }
-      var groupOptions = clone(options);
+      var groupOptions = N.clone(options);
       groupOptions.args = args;
 
-      each(function (spec, group) {
+      N.each(function (spec, group) {
         if (/^[0-9]+$/.test(group)) {
           return;
         }
@@ -138,7 +138,7 @@ function timeSuite(options, suite, callback) {
     delay: 1,
     __warmUp: true
   }, suite, function () {
-    run(plan, function (results) {
+    N.run(plan, function (results) {
       callback(groupResults(results));
     });
   });
@@ -146,17 +146,17 @@ function timeSuite(options, suite, callback) {
 
 function printResults(results) {
 
-  each(function (results, group) {
+  N.each(function (results, group) {
 
-    var averages = values(map(select('result.avg'), results));
-    var best = minimum(averages);
-    var worst = maximum(averages);
+    var averages = N.values(N.map(N.select('result.avg'), results));
+    var best = N.minimum(averages);
+    var worst = N.maximum(averages);
 
     console.log('');
     console.log(chalk.gray(sprintf(
       "%-22s %6s %8s %8s %8s %8s", group, "%", "AVG", "MEDIAN", "MIN", "MAX")));
 
-    each(function (result, key) {
+    N.each(function (result, key) {
       if (result.error) {
         console.log(sprintf("  %s %s",
             chalk.white(key), chalk.red("(errored)")));

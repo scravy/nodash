@@ -6,18 +6,18 @@ describe('tail', function () {
   var assert = require('../../../util/assert.js');
   var Nodash = require('../../../nodash');
 
-  var head = Nodash.head;
+  var tail = Nodash.tail;
 
   it('tail /w array', function () {
     assert.deepEqual([2, 3], tail([1, 2, 3]));
   });
 
   it('tail /w list', function () {
-    assert.deepEqual([2, 3], listToArray(tail(Nodash.arrayToList([1, 2, 3]))));
+    assert.deepEqual([2, 3], Nodash.listToArray(tail(Nodash.arrayToList([1, 2, 3]))));
   });
 
   it('tail /w string', function () {
-    assert.strictEqual('bc', listToString(tail(Nodash.lazy('abc'))));
+    assert.strictEqual('bc', tail('abc'));
   });
 });
 

@@ -106,11 +106,11 @@ gulp.task('test', [ 'coverage' ], function (done) {
 
 // test browserified + minified library
 gulp.task('testm', [ 'test', 'browserify' ], function (done) {
-  gulp.src('test/*.js')
+  gulp.src('test/**/*.js')
       .pipe(replace('../nodash', '../nodash-testm.js'))
       .pipe(gulp.dest('testm/'))
       .on('finish', function () {
-        gulp.src('testm/*.js')
+        gulp.src('testm/**/*.js')
             .pipe(mocha())
             .on('error', errorHandler)
             .once('end', done);

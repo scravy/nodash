@@ -14,15 +14,16 @@ var jshint = require('gulp-jshint'),
   mustache = require('gulp-mustache'),
 preprocess = require('gulp-preprocess'),
 sourcemaps = require('gulp-sourcemaps'),
+ filenames = require('gulp-filenames'),
   markdown = require('gulp-markdown'),
   istanbul = require('gulp-istanbul'),
   enforcer = require('gulp-istanbul-enforcer'),
    replace = require('gulp-replace'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
-     docco = require('gulp-docco'),
       less = require('gulp-less'),
       gzip = require('gulp-gzip'),
+     docco = require('docco'),
      chalk = require('chalk'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
@@ -42,6 +43,8 @@ var lessOptions = {
 };
 
 var npmPackage = require('./package.json');
+
+var sources = [ 'nodash.js', 'lib/**/*.js' ];
 
 function errorHandler(err) {
   console.log(chalk.red(err.message));
@@ -80,7 +83,7 @@ gulp.task('lint', function (done) {
 });
 
 gulp.task('coverage', [ 'lint' ], function (done) {
-  gulp.src([ 'nodash.js', 'lib/**/*.js' ])
+  gulp.src(sources)
       .pipe(istanbul())
       .pipe(istanbul.hookRequire())
       .on('error', errorHandler)
@@ -108,7 +111,6 @@ gulp.task('test', [ 'coverage' ], function (done) {
 gulp.task('testm', [ 'test', 'browserify' ], function (done) {
   gulp.src('test/**/*.js')
       .pipe(replace('../nodash', '../nodash-testm.js'))
-      .pipe(gulp.dest('testm/'))
       .on('finish', function () {
         gulp.src('testm/**/*.js')
             .pipe(mocha())
@@ -118,10 +120,21 @@ gulp.task('testm', [ 'test', 'browserify' ], function (done) {
 });
 
 gulp.task('docco', [ 'lint' ], function (done) {
-  gulp.src('nodash.js')
-      .pipe(docco())
-      .pipe(gulp.dest('dist/docco/'))
-      .on('finish', done);
+  gulp.src(sources)
+      .pipe(filenames('javascript'))
+      .pipe(gulp.dest('./trash'))
+      .on('finish', function () {
+
+        var args = [
+          'node', 'docco',
+          '-o', 'dist/docco',
+          '-l', 'classic'
+        ].concat(filenames.get('javascript', 'full'));
+
+        docco.run(args);
+        
+        done();
+      });
 });
 
 gulp.task('styles', function (done) {

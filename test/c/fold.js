@@ -15,4 +15,11 @@ describe('c/fold', function () {
         assert.deepEqual([1, 2, 3], listToArray(map(plus(1), lazy([0, 1, 2]))));
     });
 
+    it('++', function () {
+        assert.deepEqual(
+            [1, 2, 3, 4],
+            listToArray(append(lazy([1, 2]), lazy([3, 4])))
+        );
+    });
+
  });

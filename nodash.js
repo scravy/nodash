@@ -55,7 +55,7 @@ function makeNodash(options) {
   
   register('isNodash', function (thing) { return !!thing.__isNodash; });
 
-  register('install', function _install(mountpoint) {
+  register('install', function (mountpoint) {
     var options = arguments[1];
     var nodashObject = Nodash;
     var prefix = '';
@@ -83,6 +83,9 @@ function makeNodash(options) {
     }, nodashObject);
     return mountpoint;
   });
+
+  delete Nodash.Thunk;
+  delete Nodash.resolveThunk;
 
   Object.freeze(Nodash);
   

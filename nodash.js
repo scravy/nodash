@@ -7,14 +7,10 @@ function makeNodash(options) {
 
   // Basic ECMA Script 5 checks (if these fail pull in `es5-shim`).
 
-  if (typeof Object.keys !== 'function' || Object.keys({ x: 7 })[0] !== 'x') {
-    throw new Error('ES5 `Object.keys` required (es5-shim will do).');
-  }
-  if (typeof Array.isArray !== 'function' || !Array.isArray([])) {
-    throw new Error('ES5 `Array.isArray` required (es5-shim will do).');
-  }
-  if (typeof Array.prototype.forEach !== 'function') {
-    throw new Error('ES5 `Array.prototype.forEach` required (es5-shim will do).');
+  if (typeof Object.keys !== 'function' || Object.keys({ x: 7 })[0] !== 'x' ||
+      typeof Array.isArray !== 'function' || !Array.isArray([]) ||
+      typeof Array.prototype.forEach !== 'function') {
+    throw new Error('ES5 environment required (`es5-shim` will do).');
   }
 
   // This is the object the nodash functions will be attached to.
@@ -56,8 +52,6 @@ function makeNodash(options) {
   register(require('./lib/Either'));
 
   
-  register('isNodash', function (thing) { return !!thing.__isNodash; });
-
   register('install', function (mountpoint) {
     var options = arguments[1];
     var nodashObject = Nodash;
@@ -79,10 +73,10 @@ function makeNodash(options) {
       mountpoint = mountpoint[0] || {};
     }
     Nodash.each(function (func, name) {
-      if (!Nodash.isNodash(func)) {
-        return;
+      var key = prefix + name + postfix;
+      if (!(key in mountpoint)) {
+        mountpoint[key] = func;
       }
-      mountpoint[prefix + name + postfix] = func;
     }, nodashObject);
     return mountpoint;
   });

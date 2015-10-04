@@ -7,7 +7,11 @@ describe('typeOf', function () {
   var Nodash = require('../../nodash');
 
   var Obj = Object;
-  
+ 
+  function gen() {
+    return Nodash.tuple(Math.random(), gen);
+  }
+
   var data = {
     'string': [
       '', '123', String(3)
@@ -31,10 +35,13 @@ describe('typeOf', function () {
       undefined
     ],
     'list': [
-      Nodash.emptyList(), Nodash.singleton(4711), new List(0, Nodash.emptyList())
+      Nodash.emptyList(),
+      Nodash.singleton(4711),
+      new List(0, Nodash.emptyList()),
+      Nodash.arrayToList([4, 0, 17, 20])
     ],
     'stream': [
-      Nodash.stream(function () { return Math.random(); })
+      Nodash.stream(gen)
     ],
     'thunk': [
       Nodash.lazy(function () { return Math.random(); })

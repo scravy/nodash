@@ -132,7 +132,13 @@ gulp.task('styles', function (done) {
 });
 
 gulp.task('apidoc', [ 'styles', 'lint' ], function (done) {
-  done();
+  var apidoc = require('./util/apidoc');
+
+  gulp.src('site/apidoc.mustache')
+      .pipe(mustache(apidoc()))
+      .pipe(rename({ extname: ".html" }))
+      .pipe(gulp.dest('dist/'))
+      .on('finish', done);
 });
 
 gulp.task('site', [ 'build', 'docco', 'apidoc' ], function (done) {

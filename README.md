@@ -2,6 +2,9 @@ nodash
 ======
 
 [![Build Status](https://travis-ci.org/scravy/nodash.svg?branch=master)](https://travis-ci.org/scravy/nodash)
+[![Dependencies](https://david-dm.org/scravy/nodash.svg)](https://david-dm.org/scravy/nodash#info=dependencies&view=table)
+[![Dependencies](https://david-dm.org/scravy/nodash/dev-status.svg)](https://david-dm.org/scravy/nodash#info=devDependencies&view=table)
+
 
 ***nodash*** offers you a rich set of library functions, comparable to
 the likes of [***underscore***](http://underscorejs.org/)

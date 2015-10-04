@@ -15,11 +15,11 @@ describe('Tuple', function () {
   });
 
   it('.fst() should give first component', function () {
-    assert.strictEqual(17, Nodash.Tuple(17, 19).fst());
+    assert.strictEqual(17, Nodash.tuple(17, 19).fst());
   });
 
   it('.snd() should give second component', function () {
-    assert.strictEqual(19, Nodash.Tuple(17, 19).snd());
+    assert.strictEqual(19, Nodash.tuple(17, 19).snd());
   });
 
 });

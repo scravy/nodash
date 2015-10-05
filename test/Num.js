@@ -3,14 +3,20 @@ var assert = require('../util/assert');
 
 describe('Num', function () {
 
-    it('add', function () {
+    it('plus', function () {
         assert.strictEqual(10, plus(4, 6));
+    });
+
+    it('add', function () {
         assert.strictEqual(10, add(6, 4));
     });
 
-    it('sub', function () {
+    it('minus', function () {
         assert.strictEqual(-2, minus(4, 6));
-        assert.strictEqual(2, sub(6, 4));
+    });
+
+    it('subtract', function () {
+        assert.strictEqual(-2, subtract(6, 4));
     });
 
     it('mul', function () {

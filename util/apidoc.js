@@ -18,11 +18,15 @@ marked.setOptions({
 });
 
 function formatSource(func, name) {
-  var source = N.lines(func.toString().replace(/Nodash\./g, ""));
-  source[0] = source[0].replace(/^function +\(/, 'function ' + name + '(');
+  var source = func.toString();
+  if (source.indexOf('__fn__') > -1) {
+    return highlight('var ' + name + ' = /* this is a composed function */');
+  }
+  var sourceLines = N.lines(source.replace(/Nodash\./g, ""));
+  sourceLines[0] = sourceLines[0].replace(/^function +\(/, 'function ' + name + '(');
   var indent = N.minimum(N.map(N.compose(N.length, N.takeWhile(N.eq(' '))),
-                         N.filter(N.compose(N.not, N.isEmpty), N.tail(source))));
-  return highlight(N.unlines(N.cons(N.head(source), N.map(N.drop(indent), N.tail(source)))));
+                         N.filter(N.compose(N.not, N.isEmpty), N.tail(sourceLines))));
+  return highlight(N.unlines(N.cons(N.head(sourceLines), N.map(N.drop(indent), N.tail(sourceLines)))));
 }
 
 module.exports = function (dir, callback) {

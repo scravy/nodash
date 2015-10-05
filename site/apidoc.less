@@ -1,6 +1,6 @@
 /* vim: set et sw=2 ts=2: */
 
-@sidebar-width: 200px;
+@sidebar-width: 240px;
 @search-height: 40px;
 @search-padding: 8px;
 @ornament-color: maroon;
@@ -23,6 +23,10 @@ div.search {
     border-radius: 15px;
     width: @sidebar-width - (@search-padding * 2);
   }
+}
+
+.alias {
+  margin-left: 5px;
 }
 
 div.sidebar {
@@ -60,17 +64,6 @@ div.sidebar {
     color: white;
   }
 
-  span.alias {
-    font-size: .83em;
-    background: silver;
-    color: black;
-    padding: 1px;
-    border-radius: 4px;
-    padding-left: 4px;
-    padding-right: 4px;
-    margin-left: 5px;
-  }
-
   h6 {
     font-size: 1em;
   }
@@ -82,17 +75,6 @@ div.content {
 
   h1 {
     border-bottom: 1px solid @ornament-color;
-  }
-
-  .alias {
-    background: silver;
-    color: black;
-    border: 3px solid white;
-    border-radius: 1em;
-    padding-left: .5em;
-    padding-right: .5em;
-    vertical-align: middle;
-    line-height: 1em;
   }
 }
 

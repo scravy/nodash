@@ -35,5 +35,5 @@ describe('Stream', function () {
     assert.strictEqual(8, xs.tail().head());
     assert.strictEqual(8, xs.tail().head());
   });
-  
+
 });

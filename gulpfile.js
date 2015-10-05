@@ -122,7 +122,7 @@ gulp.task('testm', [ 'test', 'browserify' ], function (done) {
 gulp.task('docco', [ 'lint' ], function (done) {
   gulp.src(sources)
       .pipe(filenames('javascript'))
-      .pipe(gulp.dest('./trash'))
+      .pipe(gulp.dest('./dist/source'))
       .on('finish', function () {
 
         var args = [

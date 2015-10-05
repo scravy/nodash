@@ -9,11 +9,21 @@ var DirectoryWalker = require('directorywalker');
 var N = require('../nodash');
 var chalk = require('chalk');
 
+function highlight(source, language) {
+  return highlightjs.highlight(language || 'js', source).value;
+}
+
 marked.setOptions({
-  highlight: function (code) {
-    return highlightjs.highlight('js', code).value;
-  }
+  highlight: highlight
 });
+
+function formatSource(func, name) {
+  var source = N.lines(func.toString().replace(/Nodash\./g, ""));
+  source[0] = source[0].replace(/^function +\(/, 'function ' + name + '(');
+  var indent = N.minimum(N.map(N.compose(N.length, N.takeWhile(N.eq(' '))),
+                         N.filter(N.compose(N.not, N.isEmpty), N.tail(source))));
+  return highlight(N.unlines(N.cons(N.head(source), N.map(N.drop(indent), N.tail(source)))));
+}
 
 module.exports = function (dir, callback) {
 
@@ -25,15 +35,17 @@ module.exports = function (dir, callback) {
 
     var functions = {};
     var groups = {};
+    var unclassified = {};
 
     var errors = 0;
 
     N.each(function (func, name) {
-        if (N[name]) {            
+        if (N[name]) {
             functions[name] = {
                 name: name,
-                source: func.definition.toString()
+                source: formatSource(func.definition, name)
             };
+            unclassified[name] = true;
         }
     }, N.__metadata);
 
@@ -45,12 +57,13 @@ module.exports = function (dir, callback) {
         var group = path.dirname(title);
 
         groups[group] = groups[group] || {
-            id: group,
+            id: group.replace(/[^a-z0-9]+/ig, '-'),
             name: group,
             functions: {}
         };
         if (func !== 'index') {
             groups[group].functions[func] = null;
+            delete unclassified[func];
         }
 
         if (!(func in functions) && func !== 'index') {
@@ -61,7 +74,7 @@ module.exports = function (dir, callback) {
 
         switch (path.extname(title)) {
             case '.hs':
-                functions[func].haskellDef = fs.readFileSync(file, 'utf8');
+                functions[func].haskellDef = highlight(fs.readFileSync(file, 'utf8').trim(), 'haskell');
                 break;
             case '.json':
                 try {
@@ -100,10 +113,16 @@ module.exports = function (dir, callback) {
             throw new Error(errors + ' errors while processing doc directory `' + dir + '`');
         }
 
-        var gs = [];        
+        groups['(unclassified)'] = {
+          id: 'unclassified',
+          name: '(unclassified)',
+          functions: unclassified
+        };
+
+        var gs = [];
         N.each(function (group) {
             var fs = [];
-            N.each(function (_, key) {
+            N.each(function (key) {
                 var f = functions[key];
                 f.aliases = [];
                 N.__metadata[key].aliases.forEach(function (alias) {
@@ -112,7 +131,9 @@ module.exports = function (dir, callback) {
                     }
                 });
                 fs.push(f);
-            }, group.functions);
+            }, N.sortBy(function (a, b) {
+              return N.compare(a.toLowerCase(), b.toLowerCase());
+            }, N.keys(group.functions)));
             group.functions = fs;
 
             gs.push(group);

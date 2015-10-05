@@ -151,6 +151,7 @@ v0.10 "Hollerith"
 + `isBoolean` added - checks whether something is a boolean
 + `isUndefined` added - checks whether something is undefined
 + `is` added - flipped shorthand version of `instanceof`
++ `range` and `rangeStep` added - returns lazy lists for the given range
 
 **Other Changes:**
 + Nodash is now built using [browserify](https://github.com/substack/node-browserify)

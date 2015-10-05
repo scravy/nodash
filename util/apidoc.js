@@ -138,12 +138,10 @@ module.exports = function (dir, callback) {
 
             gs.push(group);
         }, groups);
-        
-        setImmediate(callback.bind(null, null, {
-            version: pkg.version,
-            groups: gs
-        }));
-
+       
+        pkg.groups = gs;
+ 
+        setImmediate(callback.bind(null, null, pkg));
     });
 
     walker.walk(dir);

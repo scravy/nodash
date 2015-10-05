@@ -12,7 +12,6 @@ var jshint = require('gulp-jshint'),
      mocha = require('gulp-mocha'),
    ghPages = require('gulp-gh-pages'),
   mustache = require('gulp-mustache'),
-preprocess = require('gulp-preprocess'),
 sourcemaps = require('gulp-sourcemaps'),
  filenames = require('gulp-filenames'),
   markdown = require('gulp-markdown'),
@@ -110,7 +109,8 @@ gulp.task('test', [ 'coverage' ], function (done) {
 // test browserified + minified library
 gulp.task('testm', [ 'test', 'browserify' ], function (done) {
   gulp.src('test/**/*.js')
-      .pipe(replace('../nodash', '../nodash-testm.js'))
+      .pipe(replace('../nodash', '../nodash-testm'))
+      .pipe(gulp.dest('testm'))
       .on('finish', function () {
         gulp.src('testm/**/*.js')
             .pipe(mocha())
@@ -162,15 +162,14 @@ gulp.task('site', [ 'build', 'docco', 'apidoc' ], function (done) {
       .pipe(markdown({ }))
       .pipe(gulp.dest('dist/'))
       .on('finish', function () {
-        var variables = {
-          MINIFIED_SIZE: filesize(fs.statSync('dist/nodash.min.js').size),
-          GZIPPED_SIZE: filesize(fs.statSync('dist/nodash.min.js.gz').size),
-          VERSION: npmPackage.version,
-          TODAY: new Date().toISOString().substring(0, 10)
-        };
+      
+        npmPackage.readme = fs.readFileSync('./dist/README.html', 'utf8');
+        npmPackage.minifiedSize = filesize(fs.statSync('dist/nodash.min.js').size);
+        npmPackage.gzippedSize = filesize(fs.statSync('dist/nodash.min.js.gz').size);
+        npmPackage.today = new Date().toISOString().substring(0, 10);
 
         gulp.src('site/*.html')
-            .pipe(preprocess({ context: variables }))
+            .pipe(mustache(npmPackage))
             .pipe(gulp.dest('dist/'))
             .on('finish', done);
       });

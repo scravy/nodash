@@ -58,7 +58,6 @@
   },
   "dependencies": {
     "docco": "^0.7.0",
-    "gulp-preprocess": "^1.2.0",
     "knuth-morris-pratt": "^1.0.0"
   }
 }

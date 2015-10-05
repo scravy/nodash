@@ -47,6 +47,14 @@
 <h3 id="f-{{name}}">{{name}} <small>{{#aliases}}<span class="alias">{{.}}</span>{{/aliases}}</small></h2>
 <div class="section">
 {{&description}}
+
+{{#haskellDef}}
+<p>Haskell Definition:</p>
+<pre>
+{{& haskellDef}}
+</pre>
+{{/haskellDef}}
+
 {{#source}}
 <p>Source:</p>
 <pre>

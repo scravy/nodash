@@ -23,17 +23,19 @@ module.exports = function (dir, callback) {
         fileFilter: N.async(N.compose(/./.test.bind(/\.(md|json|hs)$/), path.extname))
     });
 
-    var groupsMarkdown = {};
-    var groupsJsondata = {};
-    
-    var markdown = {};
-    var jsondata = {};
-    var haskellDefs = {};
-
     var functions = {};
     var groups = {};
 
     var errors = 0;
+
+    N.each(function (func, name) {
+        if (N[name]) {            
+            functions[name] = {
+                name: name,
+                source: func.definition.toString()
+            };
+        }
+    }, N.__metadata);
 
     walker.on('file', function (file) {
 
@@ -45,15 +47,13 @@ module.exports = function (dir, callback) {
         groups[group] = groups[group] || {
             id: group,
             name: group,
-            functions: []
+            functions: {}
         };
-        groups[group].functions.push(func);
+        if (func !== 'index') {
+            groups[group].functions[func] = null;
+        }
 
-        functions[func] = functions[func] || {
-            name: func
-        };
-
-        if (!(func in N.__metadata) && func !== 'index') {
+        if (!(func in functions) && func !== 'index') {
             console.log(chalk.yellow('Warning:'), file, 'does not correspond to any function');
             errors += 1;
             return;
@@ -67,7 +67,7 @@ module.exports = function (dir, callback) {
                 try {
                     var description = JSON.parse(fs.readFileSync(file), 'utf8');
                     if (func === 'index') {
-                        groupsJsondata[group].groupMeta = description;
+                        groups[group].groupMeta = description;
                     } else {
                         functions[func].meta = description;
                     }
@@ -99,44 +99,32 @@ module.exports = function (dir, callback) {
         if (errors) {
             throw new Error(errors + ' errors while processing doc directory `' + dir + '`');
         }
+
+        var gs = [];        
+        N.each(function (group) {
+            var fs = [];
+            N.each(function (_, key) {
+                var f = functions[key];
+                f.aliases = [];
+                N.__metadata[key].aliases.forEach(function (alias) {
+                    if (alias !== f.name) {
+                        f.aliases.push(alias);
+                    }
+                });
+                fs.push(f);
+            }, group.functions);
+            group.functions = fs;
+
+            gs.push(group);
+        }, groups);
         
-        N.pipe([
+        setImmediate(callback.bind(null, null, {
+            version: pkg.version,
+            groups: gs
+        }));
 
-            N.idf(N.__metadata),
-
-            N.map(function (func, name) {
-
-                return {
-                    name: name
-                };
-            }),
-
-            N.id
-            //console.log
-
-        ]);
     });
 
     walker.walk(dir);
-
-
-    setImmediate(callback.bind(null, null, {
-        version: pkg.version,
-        groups: [
-            {
-                id: 'group',
-                name: 'Group',
-                primer: '[PRIMER]',
-                functions: [
-                    {
-                        name: 'function',
-                        aliases: [ 'one', 'two', 'three' ],
-                        description: '[DESCRIPTION]',
-                        source: '[SOURCE]'
-                    }
-                ]
-            }
-        ]
-    }));
 
 };

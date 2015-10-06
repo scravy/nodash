@@ -6,8 +6,11 @@ var fs = require('fs');
 var path = require('path');
 var highlightjs = require('highlight.js');
 var DirectoryWalker = require('directorywalker');
-var N = require('../nodash');
 var chalk = require('chalk');
+
+var Nodash = require('../nodash');
+
+Nodash.install(['_', global]);
 
 function highlight(source, language) {
   return highlightjs.highlight(language || 'js', source).value;
@@ -22,11 +25,49 @@ function formatSource(func, name) {
   if (source.indexOf('__fn__') > -1) {
     return highlight('var ' + name + ' = /* this is a composed function */');
   }
-  var sourceLines = N.lines(source.replace(/Nodash\./g, ""));
+  var sourceLines = _lines(source.replace(/Nodash\./g, ""));
   sourceLines[0] = sourceLines[0].replace(/^function +\(/, 'function ' + name + '(');
-  var indent = N.minimum(N.map(N.compose(N.length, N.takeWhile(N.eq(' '))),
-                         N.filter(N.compose(N.not, N.isEmpty), N.tail(sourceLines))));
-  return highlight(N.unlines(N.cons(N.head(sourceLines), N.map(N.drop(indent), N.tail(sourceLines)))));
+  var indent = _minimum(_map(_compose(_length, _takeWhile(_eq(' '))),
+                         _filter(_compose(_not, _isEmpty), _tail(sourceLines))));
+  return highlight(_unlines(_cons(_head(sourceLines), _map(_drop(indent), _tail(sourceLines)))));
+}
+
+function complianceWithHaskellPrelude() {
+  var functions = _filter(
+      _compose(_not, _isEmpty),
+      _lines(fs.readFileSync('./doc/prelude.txt', 'utf8'))
+  );
+
+  var listFunctions = _filter(
+      _compose(_not, _isEmpty),
+      _lines(fs.readFileSync('./doc/data.list.txt', 'utf8'))
+  );
+
+  var breakUp = _map(_break(_eq(' ')));
+  var functionsAndNotes = breakUp(functions);
+  var listFunctionsAndNotes = breakUp(listFunctions);
+
+  var functionsInPrelude = _map(_fst, functionsAndNotes);
+  var functionsInDataList = _map(_fst, listFunctionsAndNotes);
+
+  var allDesiredFunctions = _union(functionsInPrelude, functionsInDataList);
+
+  var functionsInNodash = _concat(_map(_select('aliases'), _values(Nodash.__metadata)));
+
+  var functionsInBoth = _intersect(functionsInPrelude, functionsInNodash);
+
+  return {
+    functionsInBoth: functionsInBoth,
+      
+    functionsMissing:
+      _difference(functionsInPrelude, functionsInNodash),
+    
+    functionsInNodashOnly:
+      _keys(_filter(
+          _compose(_not, _compose(_any(_flip(_elem)(allDesiredFunctions)), _select('aliases'))),
+          Nodash.__metadata
+      ))
+  }
 }
 
 module.exports = function (dir, callback) {
@@ -34,7 +75,7 @@ module.exports = function (dir, callback) {
     var pkg = require('../package.json');
 
     var walker = new DirectoryWalker({
-        fileFilter: N.async(N.compose(/./.test.bind(/\.(md|json|hs)$/), path.extname))
+        fileFilter: _async(_compose(/./.test.bind(/\.(md|json|hs)$/), path.extname))
     });
 
     var functions = {};
@@ -43,7 +84,7 @@ module.exports = function (dir, callback) {
 
     var errors = 0;
 
-    N.each(function (func, name) {
+    _each(function (func, name) {
         if (N[name]) {
             functions[name] = {
                 name: name,
@@ -51,7 +92,7 @@ module.exports = function (dir, callback) {
             };
             unclassified[name] = true;
         }
-    }, N.__metadata);
+    }, Nodash.__metadata);
 
     walker.on('file', function (file) {
 
@@ -82,7 +123,7 @@ module.exports = function (dir, callback) {
                 break;
             case '.json':
                 try {
-                    var description = JSON.parse(fs.readFileSync(file), 'utf8');
+                    var description = JSO_parse(fs.readFileSync(file), 'utf8');
                     if (func === 'index') {
                         groups[group].groupMeta = description;
                     } else {
@@ -124,20 +165,20 @@ module.exports = function (dir, callback) {
         };
 
         var gs = [];
-        N.each(function (group) {
+        _each(function (group) {
             var fs = [];
-            N.each(function (key) {
+            _each(function (key) {
                 var f = functions[key];
                 f.aliases = [];
-                N.__metadata[key].aliases.forEach(function (alias) {
+                Nodash.__metadata[key].aliases.forEach(function (alias) {
                     if (alias !== f.name) {
                         f.aliases.push(alias);
                     }
                 });
                 fs.push(f);
-            }, N.sortBy(function (a, b) {
-              return N.compare(a.toLowerCase(), b.toLowerCase());
-            }, N.keys(group.functions)));
+            }, _sortBy(function (a, b) {
+              return _compare(a.toLowerCase(), b.toLowerCase());
+            }, _keys(group.functions)));
             group.functions = fs;
 
             gs.push(group);
@@ -151,3 +192,5 @@ module.exports = function (dir, callback) {
     walker.walk(dir);
 
 };
+
+module.exports.complianceWithHaskellPrelude = complianceWithHaskellPrelude;

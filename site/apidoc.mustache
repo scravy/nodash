@@ -38,6 +38,10 @@
 
 <h1>nodash {{version}} <small>api documentation</small></h1>
 
+<p>This is the API documentation for nodash {{version}}.</p>
+
+<p>Don't miss the <a href="#Appendix">Appendix</a>.</p>
+
 {{#groups}}
 
 <h2 id="g-{{id}}">{{name}}</h1>
@@ -75,6 +79,34 @@
 {{/functions}}
 
 {{/groups}}
+
+
+<h1 id="Appendix">Appendix</h1>
+
+{{#coverageInfo}}
+<h2>Coverage of Haskell Prelude</h2>
+
+<h3>Prelude functions supported in Nodash</h3>
+<ul>
+{{#functionsInBoth}}
+  <li>{{.}}</li>
+{{/functionsInBoth}}
+</ul>
+
+<h3>Prelude functions missing from Nodash</h3>
+<ul>
+{{#functionsMissing}}
+  <li>{{.}}</li>
+{{/functionsMissing}}
+</ul>
+
+<h3>Nodash-specific additions</h3>
+<ul>
+{{#functionsInNodashOnly}}
+  <li>{{.}}</li>
+{{/functionsInNodashOnly}}
+</ul>
+{{/coverageInfo}}
 
 </div>
 

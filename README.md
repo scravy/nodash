@@ -27,6 +27,8 @@ Browse through the
  [benchmark](https://github.com/scravy/nodash/tree/master/benchmark/index.js), or
  [tests](https://github.com/scravy/nodash/tree/master/test) for examples.
 
+For a list of which prelude functions are covered see the
+[apidoc appendix](http://scravy.github.io/nodash/apidoc.html#Appendix).
 
 Example
 -------

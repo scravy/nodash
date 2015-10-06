@@ -1,5 +1,5 @@
 /* vim: set et sw=2 ts=2: */
-'use strict';
+// jshint undef: false
 
 var marked = require('marked');
 var fs = require('fs');
@@ -56,7 +56,7 @@ function complianceWithHaskellPrelude() {
 
   var functionsInBoth = _intersect(functionsInPrelude, functionsInNodash);
 
-  return {
+  return _map(_sort, {
     functionsInBoth: functionsInBoth,
       
     functionsMissing:
@@ -67,7 +67,7 @@ function complianceWithHaskellPrelude() {
           _compose(_not, _compose(_any(_flip(_elem)(allDesiredFunctions)), _select('aliases'))),
           Nodash.__metadata
       ))
-  }
+  });
 }
 
 module.exports = function (dir, callback) {
@@ -85,7 +85,7 @@ module.exports = function (dir, callback) {
     var errors = 0;
 
     _each(function (func, name) {
-        if (N[name]) {
+        if (Nodash[name]) {
             functions[name] = {
                 name: name,
                 source: formatSource(func.definition, name)
@@ -123,7 +123,7 @@ module.exports = function (dir, callback) {
                 break;
             case '.json':
                 try {
-                    var description = JSO_parse(fs.readFileSync(file), 'utf8');
+                    var description = JSON.parse(fs.readFileSync(file), 'utf8');
                     if (func === 'index') {
                         groups[group].groupMeta = description;
                     } else {
@@ -186,6 +186,8 @@ module.exports = function (dir, callback) {
        
         pkg.groups = gs;
  
+        pkg.coverageInfo = complianceWithHaskellPrelude();
+
         setImmediate(callback.bind(null, null, pkg));
     });
 

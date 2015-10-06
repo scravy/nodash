@@ -1,3 +1,4 @@
 {
-    "prelude": true
+    "prelude": true,
+    "preludeName": "&&"
 }

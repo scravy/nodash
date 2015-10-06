@@ -44,10 +44,19 @@
 {{& primer}}
 
 {{#functions}}
-<div class="function well">
+<div class="function well" id="f-{{name}}">
 
-  <h3 id="f-{{name}}">
-    {{name}} <small>{{#aliases}}<span class="alias label label-primary">{{.}}</span>{{/aliases}}</small>
+  <h3>
+    {{name}}
+    <small>
+      {{#aliases}}<span class="alias label label-primary">{{.}}</span>{{/aliases}}
+      {{#meta.prelude}}
+        <span class="label label-warning">Prelude:
+        {{#meta.preludeName}}{{.}}{{/meta.preludeName}}
+        {{^meta.preludeName}}{{name}}{{/meta.preludeName}}
+        </span>
+      {{/meta.prelude}}
+    </small>
   </h3>
 
   {{& documentation}}

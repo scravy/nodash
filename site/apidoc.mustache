@@ -44,25 +44,25 @@
 {{& primer}}
 
 {{#functions}}
-<h3 id="f-{{name}}">{{name}} <small>{{#aliases}}<span class="alias label label-primary">{{.}}</span>{{/aliases}}</small></h2>
-<div class="section">
-{{&description}}
+<div class="function well">
 
-{{#haskellDef}}
-<p>Haskell Definition:</p>
-<pre>
-{{& haskellDef}}
-</pre>
-{{/haskellDef}}
+  <h3 id="f-{{name}}">
+    {{name}} <small>{{#aliases}}<span class="alias label label-primary">{{.}}</span>{{/aliases}}</small>
+  </h3>
 
-{{#source}}
-<p>Source:</p>
-<pre>
-{{& source}}
-</pre>
-{{/source}}
+  {{& documentation}}
+
+  {{#haskellDef}}
+  <p>Haskell Definition:</p>
+  <pre>{{& haskellDef}}</pre>
+  {{/haskellDef}}
+
+  {{#source}}
+  <p>Source:</p>
+  <pre>{{& source}}</pre>
+  {{/source}}
+
 </div>
-
 {{/functions}}
 
 {{/groups}}

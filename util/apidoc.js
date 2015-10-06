@@ -100,7 +100,7 @@ module.exports = function (dir, callback) {
                     if (func === 'index') {
                         groups[group].primer = data;
                     } else {
-                        functions[func].description = data;
+                        functions[func].documentation = data;
                     }
                 } catch (err) {
                     console.log(chalk.red('Error:', file, 'can not be rendered'));

@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">nodash/lib/coll/base.js</span></h1>
     <h2>
-        Statements: <span class="metric">95.83% <small>(92 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">93.85% <small>(61 / 65)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(96 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(65 / 65)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">100% <small>(26 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">95.83% <small>(92 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(96 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">nodash/lib/coll/</a> &#187; base.js</div>
@@ -273,7 +273,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">9</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -282,7 +282,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -309,7 +309,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">6</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
@@ -317,7 +317,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -326,7 +326,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">6</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -335,7 +335,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -401,7 +401,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">16</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -410,7 +410,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -511,8 +511,8 @@ module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
         return xs + ys;
       case 'array':
         return [].concat.call(xs, ys);
-<span class="branch-4 cbranch-no" title="branch not covered" >      default:</span>
-<span class="cstat-no" title="statement not covered" >        error(TypeError);</span>
+      default:
+        error(TypeError);
     }
   }
   
@@ -546,8 +546,8 @@ module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
         case 'list':
         case 'stream':
           return xs.head();
-<span class="branch-4 cbranch-no" title="branch not covered" >        default:</span>
-<span class="cstat-no" title="statement not covered" >          error(TypeError);</span>
+        default:
+          error(TypeError);
       }
     },
 &nbsp;
@@ -564,8 +564,8 @@ module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
         case 'list':
         case 'stream':
           return xs.tail();
-<span class="branch-4 cbranch-no" title="branch not covered" >        default:</span>
-<span class="cstat-no" title="statement not covered" >          error(TypeError);</span>
+        default:
+          error(TypeError);
       }
     },
 &nbsp;
@@ -639,8 +639,8 @@ module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
         case 'list':
         case 'stream':
           return takeGenerator(n, xs);
-<span class="branch-4 cbranch-no" title="branch not covered" >        default:</span>
-<span class="cstat-no" title="statement not covered" >          error(TypeError);</span>
+        default:
+          error(TypeError);
       }
     },
 &nbsp;
@@ -720,7 +720,7 @@ module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 08 2015 00:49:19 GMT+0200 (CEST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 08 2015 01:36:33 GMT+0200 (CEST)</div>
 </div>
 <script src="../../../prettify.js"></script>
 <script>

@@ -194,8 +194,8 @@
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
 <span class="hljs-pi">'use strict'</span>;
 
-<span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'Thunk'</span>, <span class="hljs-string">'List'</span>, <span class="hljs-string">'idf'</span>, <span class="hljs-string">'tuple'</span>, <span class="hljs-string">'typeOf'</span>,
-  <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Thunk, List, idf, tuple, typeOf</span>) </span>{
+<span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'Thunk'</span>, <span class="hljs-string">'List'</span>, <span class="hljs-string">'idf'</span>, <span class="hljs-string">'tuple'</span>, <span class="hljs-string">'typeOf'</span>, <span class="hljs-string">'freeze'</span>, <span class="hljs-string">'create'</span>,
+  <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Thunk, List, idf, tuple, typeOf, freeze, create</span>) </span>{
 
   <span class="hljs-keyword">var</span> Nodash = <span class="hljs-keyword">this</span>;
 
@@ -222,6 +222,8 @@
   Stream.prototype.toString = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">'[object Stream head='</span> + <span class="hljs-keyword">this</span>.head() + <span class="hljs-string">']'</span>;
   };
+
+  freeze(Stream);
 
   <span class="hljs-keyword">return</span> {
 

@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">nodash/lib/register.js</span></h1>
     <h2>
-        Statements: <span class="metric">100% <small>(43 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(42 / 42)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">86.36% <small>(19 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">100% <small>(43 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(41 / 41)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">nodash/lib/</a> &#187; register.js</div>
@@ -126,8 +126,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">21</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">135</span>
@@ -144,21 +143,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">65</span>
 <span class="cline-any cline-yes">65</span>
 <span class="cline-any cline-yes">65</span>
-<span class="cline-any cline-yes">230</span>
+<span class="cline-any cline-yes">250</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">65</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,7 +196,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1080</span>
-<span class="cline-any cline-yes">1080</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,7 +204,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1080</span>
 <span class="cline-any cline-yes">1355</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,8 +218,7 @@ module.exports = function (Nodash, options) {
 &nbsp;
   Nodash.__metadata = {};
 &nbsp;
-  function noOp() {}
-  noOp();
+  function id(x) { return x; }
 &nbsp;
   function registerLib(object) {
     Object.keys(object).forEach(function (key) {
@@ -240,10 +239,13 @@ module.exports = function (Nodash, options) {
       },
 &nbsp;
     freeze:
-      Object.freeze || <span class="branch-1 cbranch-no" title="branch not covered" >noOp,</span>
+      Object.freeze || <span class="branch-1 cbranch-no" title="branch not covered" >id,</span>
 &nbsp;
-    noOp:
-      noOp
+    create:
+      Object.create || <span class="branch-1 cbranch-no" title="branch not covered" >id,</span>
+&nbsp;
+    id:
+      id
   };
 &nbsp;
   function registerInjected(array) {
@@ -285,18 +287,16 @@ module.exports = function (Nodash, options) {
         break;
       }
     }
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (name) {
-      Nodash.__metadata[name] = {
-        aliases: aliases,
-        definition: func 
-      };
-      if (!/^[A-Z]/.test(name)) {
-        func = curried(func);
-      }
-      aliases.forEach(function (alias) {
-        Nodash[alias] = func;
-      });
+    Nodash.__metadata[name] = {
+      aliases: aliases,
+      definition: func 
+    };
+    if (!/^[A-Z]/.test(name)) {
+      func = curried(func);
     }
+    aliases.forEach(function (alias) {
+      Nodash[alias] = func;
+    });
   }
 &nbsp;
   return register;
@@ -306,7 +306,7 @@ module.exports = function (Nodash, options) {
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 08 2015 00:49:19 GMT+0200 (CEST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 08 2015 01:36:33 GMT+0200 (CEST)</div>
 </div>
 <script src="../../prettify.js"></script>
 <script>

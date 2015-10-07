@@ -1,8 +1,8 @@
 /* vim: set et sw=2 ts=2: */
 'use strict';
 
-module.exports = [ 'Thunk', 'List', 'idf', 'tuple', 'typeOf',
-  function (Thunk, List, idf, tuple, typeOf) {
+module.exports = [ 'Thunk', 'List', 'idf', 'tuple', 'typeOf', 'freeze', 'create',
+  function (Thunk, List, idf, tuple, typeOf, freeze, create) {
 
   var Nodash = this;
 
@@ -29,6 +29,8 @@ module.exports = [ 'Thunk', 'List', 'idf', 'tuple', 'typeOf',
   Stream.prototype.toString = function () {
     return '[object Stream head=' + this.head() + ']';
   };
+
+  freeze(Stream);
 
   return {
 

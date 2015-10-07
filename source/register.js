@@ -7,8 +7,7 @@ module.exports = function (Nodash, options) {
 
   Nodash.__metadata = {};
 
-  function noOp() {}
-  noOp();
+  function id(x) { return x; }
 
   function registerLib(object) {
     Object.keys(object).forEach(function (key) {
@@ -29,10 +28,13 @@ module.exports = function (Nodash, options) {
       },
 
     freeze:
-      Object.freeze || noOp,
+      Object.freeze || id,
 
-    noOp:
-      noOp
+    create:
+      Object.create || id,
+
+    id:
+      id
   };
 
   function registerInjected(array) {
@@ -74,18 +76,16 @@ module.exports = function (Nodash, options) {
         break;
       }
     }
-    if (name) {
-      Nodash.__metadata[name] = {
-        aliases: aliases,
-        definition: func 
-      };
-      if (!/^[A-Z]/.test(name)) {
-        func = curried(func);
-      }
-      aliases.forEach(function (alias) {
-        Nodash[alias] = func;
-      });
+    Nodash.__metadata[name] = {
+      aliases: aliases,
+      definition: func 
+    };
+    if (!/^[A-Z]/.test(name)) {
+      func = curried(func);
     }
+    aliases.forEach(function (alias) {
+      Nodash[alias] = func;
+    });
   }
 
   return register;

@@ -200,8 +200,7 @@
 
   Nodash.__metadata = {};
 
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noOp</span>(<span class="hljs-params"></span>) </span>{}
-  noOp();
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">id</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> x; }
 
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">registerLib</span>(<span class="hljs-params">object</span>) </span>{
     <span class="hljs-built_in">Object</span>.keys(object).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">key</span>) </span>{
@@ -222,10 +221,13 @@
       },
 
     freeze:
-      <span class="hljs-built_in">Object</span>.freeze || noOp,
+      <span class="hljs-built_in">Object</span>.freeze || id,
 
-    noOp:
-      noOp
+    create:
+      <span class="hljs-built_in">Object</span>.create || id,
+
+    id:
+      id
   };
 
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">registerInjected</span>(<span class="hljs-params">array</span>) </span>{
@@ -267,18 +269,16 @@
         <span class="hljs-keyword">break</span>;
       }
     }
-    <span class="hljs-keyword">if</span> (name) {
-      Nodash.__metadata[name] = {
-        aliases: aliases,
-        definition: func 
-      };
-      <span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/^[A-Z]/</span>.test(name)) {
-        func = curried(func);
-      }
-      aliases.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">alias</span>) </span>{
-        Nodash[alias] = func;
-      });
+    Nodash.__metadata[name] = {
+      aliases: aliases,
+      definition: func 
+    };
+    <span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/^[A-Z]/</span>.test(name)) {
+      func = curried(func);
     }
+    aliases.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">alias</span>) </span>{
+      Nodash[alias] = func;
+    });
   }
 
   <span class="hljs-keyword">return</span> register;

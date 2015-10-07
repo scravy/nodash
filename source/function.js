@@ -1,15 +1,13 @@
 /* vim: set et sw=2 ts=2: */
 'use strict';
 
-module.exports = [ 'curried', function (curried) {
+module.exports = [ 'curried', 'id', function (curried, id) {
 
   var Nodash = this;
 
   return {
 
-    id: function (x) {
-      return x;
-    },
+    id: id,
 
     idf: function (x) {
       return function () {

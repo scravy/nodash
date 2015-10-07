@@ -1709,16 +1709,15 @@ but this function is exposing that method as a function.</p>
 </code></pre>
 <p><code>fst</code> and <code>snd</code> are functional forms of <code>.fst()</code> and <code>.snd()</code>.</p>
 <p><code>tuple</code> is a convenience method for omitting <code>new</code>:</p>
-<p><code>`JavaScript
-var t = tuple(4711, 8080);
-console.log(fst(t)); // 4711
-console.log(snd(t)); // 8080
-var extractFirsts = map(fst);
-console.log(extractFirsts([
-    tuple(4711, 8080),
-    tuple(3000, 4444)
-])); // [ 4711, 3000 ]
-`→</code></p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">var</span> t = tuple(<span class="hljs-number">4711</span>, <span class="hljs-number">8080</span>);
+<span class="hljs-built_in">console</span>.log(fst(t)); <span class="hljs-comment">// 4711</span>
+<span class="hljs-built_in">console</span>.log(snd(t)); <span class="hljs-comment">// 8080</span>
+<span class="hljs-keyword">var</span> extractFirsts = map(fst);
+<span class="hljs-built_in">console</span>.log(extractFirsts([
+    tuple(<span class="hljs-number">4711</span>, <span class="hljs-number">8080</span>),
+    tuple(<span class="hljs-number">3000</span>, <span class="hljs-number">4444</span>)
+])); <span class="hljs-comment">// [ 4711, 3000 ]</span>
+</code></pre>
 
 
 

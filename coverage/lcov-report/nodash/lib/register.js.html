@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">nodash/lib/register.js</span></h1>
     <h2>
-        Statements: <span class="metric">100% <small>(48 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">87.5% <small>(21 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">100% <small>(9 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">100% <small>(48 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(43 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">86.36% <small>(19 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(43 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">nodash/lib/</a> &#187; register.js</div>
@@ -111,7 +111,13 @@
 84
 85
 86
-87</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+87
+88
+89
+90
+91
+92
+93</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,24 +135,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">65</span>
 <span class="cline-any cline-yes">65</span>
 <span class="cline-any cline-yes">65</span>
-<span class="cline-any cline-yes">220</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10</span>
-<span class="cline-any cline-yes">10</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15</span>
-<span class="cline-any cline-yes">15</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">190</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">230</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">65</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -215,24 +227,30 @@ module.exports = function (Nodash, options) {
     });
   }
 &nbsp;
+  var specialInjections = {
+    Set:
+      options.Set || (typeof Set !== 'undefined' &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >Set </span>|| require('./Set')),
+&nbsp;
+    Math:
+      options.Math || Math,
+&nbsp;
+    error:
+      function (Err, message) {
+        throw new Err(message);
+      },
+&nbsp;
+    freeze:
+      Object.freeze || <span class="branch-1 cbranch-no" title="branch not covered" >noOp,</span>
+&nbsp;
+    noOp:
+      noOp
+  };
+&nbsp;
   function registerInjected(array) {
     var func = array.pop();
     var args = [];
     array.forEach(function (arg) {
-      switch (arg) {
-        case 'Set':
-          args.push(options.Set ||
-            (typeof Set !== 'undefined' &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >Set </span>|| require('./Set')));
-          break;
-        case 'Math':
-          args.push(options.Math || Math);
-          break;
-        case 'freeze':
-          args.push(Object.freeze || <span class="branch-1 cbranch-no" title="branch not covered" >noOp)</span>;
-          break;
-        default:
-          args.push(Nodash[arg]);
-      }
+      args.push(arg in specialInjections ? specialInjections[arg] : Nodash[arg]);
     });
     register(func.apply(Nodash, args));
   }
@@ -288,7 +306,7 @@ module.exports = function (Nodash, options) {
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Oct 07 2015 22:58:55 GMT+0200 (CEST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 08 2015 00:49:19 GMT+0200 (CEST)</div>
 </div>
 <script src="../../prettify.js"></script>
 <script>

@@ -16,24 +16,30 @@ module.exports = function (Nodash, options) {
     });
   }
 
+  var specialInjections = {
+    Set:
+      options.Set || (typeof Set !== 'undefined' && Set || require('./Set')),
+
+    Math:
+      options.Math || Math,
+
+    error:
+      function (Err, message) {
+        throw new Err(message);
+      },
+
+    freeze:
+      Object.freeze || noOp,
+
+    noOp:
+      noOp
+  };
+
   function registerInjected(array) {
     var func = array.pop();
     var args = [];
     array.forEach(function (arg) {
-      switch (arg) {
-        case 'Set':
-          args.push(options.Set ||
-            (typeof Set !== 'undefined' && Set || require('./Set')));
-          break;
-        case 'Math':
-          args.push(options.Math || Math);
-          break;
-        case 'freeze':
-          args.push(Object.freeze || noOp);
-          break;
-        default:
-          args.push(Nodash[arg]);
-      }
+      args.push(arg in specialInjections ? specialInjections[arg] : Nodash[arg]);
     });
     register(func.apply(Nodash, args));
   }

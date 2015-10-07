@@ -1,8 +1,8 @@
 /* vim: set et sw=2 ts=2: */
 'use strict';
 
-module.exports = [ 'List', 'lazy', 'typeOf',
-  function (List, lazy, typeOf) {
+module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
+  function (List, lazy, typeOf, error, Thunk) {
 
   var Nodash = this;
 
@@ -24,9 +24,20 @@ module.exports = [ 'List', 'lazy', 'typeOf',
         return xs + ys;
       case 'array':
         return [].concat.call(xs, ys);
+      default:
+        error(TypeError);
     }
   }
   
+  function takeGenerator(n, xs) {
+    if (n <= 0 || xs.isEmpty()) {
+      return Nodash.emptyList();
+    }
+    return new List(xs.head(), new Thunk(function () {
+      return takeGenerator(n - 1, xs.tail());
+    }));
+  }
+
   return {
  
     ': cons': function (x, xs) {
@@ -41,10 +52,16 @@ module.exports = [ 'List', 'lazy', 'typeOf',
     '++ append': append,
 
     head: function (xs) {
-      if (Nodash.is(List, xs)) {
-        return xs.head();
+      switch (typeOf(xs)) {
+        case 'array':
+        case 'string':
+          return xs[0];
+        case 'list':
+        case 'stream':
+          return xs.head();
+        default:
+          error(TypeError);
       }
-      return xs[0];
     },
 
     last: function (xs) {
@@ -52,13 +69,17 @@ module.exports = [ 'List', 'lazy', 'typeOf',
     },
 
     tail: function (xs) {
-      if (Nodash.is(List, xs)) {
-        return xs.tail();
+      switch (typeOf(xs)) {
+        case 'array':
+          return [].slice.call(xs, 1);
+        case 'string':
+          return "".slice.call(xs, 1);
+        case 'list':
+        case 'stream':
+          return xs.tail();
+        default:
+          error(TypeError);
       }
-      if (Nodash.isString(xs)) {
-        return xs.slice(1);
-      }
-      return [].slice.call(xs, 1);
     },
 
     init: function (xs) {
@@ -69,23 +90,40 @@ module.exports = [ 'List', 'lazy', 'typeOf',
     },
 
     'isEmpty null_': function (xs) {
-      if (Nodash.is(List, xs) && xs.isEmpty()) {
-        return true;
+      switch (typeOf(xs)) {
+        case 'array':
+        case 'string':
+          return xs.length === 0;
+        case 'list':
+        case 'stream':
+          return xs.isEmpty();
+        default:
+          for (var _ in xs) {
+            return false;
+          }
+          return true;
       }
-      if (Nodash.isArray(xs) || Nodash.isString(xs)) {
-        return xs.length === 0;
-      }
-      for (var _ in xs) {
-        return false;
-      }
-      return true;
     },
 
     length: function (xs) {
-      if (Nodash.isObject(xs)) {
-        return Object.keys(xs).length;
+      switch (typeOf(xs)) {
+        case 'array':
+        case 'string':
+          return xs.length;
+        case 'list':
+          var count = 0;
+          while (!xs.isEmpty()) {
+            count += 1;
+            xs = xs.tail();
+          }
+          return count;
+        case 'stream':
+          return Infinity;
+        case 'object':
+          return Object.keys(xs).length;
+        default:
+          error(TypeError);
       }
-      return xs.length;
     },
 
     select: function (path, object) {
@@ -106,18 +144,17 @@ module.exports = [ 'List', 'lazy', 'typeOf',
     },
 
     take: function (n, xs) {
-      if (Nodash.isArray(xs) || Nodash.isString(xs)) {
-        return xs.slice(0, n);
+      switch (typeOf(xs)) {
+        case 'string':
+          return "".slice.call(xs, 0, n);
+        case 'array':
+          return [].slice.call(xs, 0, n);
+        case 'list':
+        case 'stream':
+          return takeGenerator(n, xs);
+        default:
+          error(TypeError);
       }
-      function generator(i, xs) {
-        if (i <= 0 || xs.isEmpty()) {
-          return Nodash.emptyList();
-        }
-        return new List(xs.head(), new Nodash.Thunk(function () {
-          return generator(i-1, xs.tail());
-        }));
-      }
-      return generator(n, xs);
     },
 
     drop: function (n, xs) {

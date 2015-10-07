@@ -65,6 +65,11 @@ function complianceWithHaskellPrelude() {
   var functionsInBoth = _intersect(functionsInPrelude, functionsInNodash);
 
   return _map(_sort, {
+    
+    allDesiredFunctions: allDesiredFunctions,
+
+    functionsInPrelude: functionsInPrelude,
+
     functionsInBoth: functionsInBoth,
       
     functionsMissing:
@@ -172,6 +177,8 @@ module.exports = function (dir, callback) {
           functions: unclassified
         };
 
+        pkg.coverageInfo = complianceWithHaskellPrelude();
+
         var gs = [];
         _each(function (group) {
             var fs = [];
@@ -181,6 +188,10 @@ module.exports = function (dir, callback) {
                 Nodash.__metadata[key].aliases.forEach(function (alias) {
                     if (alias !== f.name) {
                         f.aliases.push(alias);
+                    }
+                    var properAlias = alias.replace(/_$/, '');
+                    if (_elem(properAlias, pkg.coverageInfo.allDesiredFunctions)) {
+                        f.preludeName = properAlias;
                     }
                 });
                 fs.push(f);
@@ -193,8 +204,6 @@ module.exports = function (dir, callback) {
         }, groups);
        
         pkg.groups = gs;
- 
-        pkg.coverageInfo = complianceWithHaskellPrelude();
 
         setImmediate(callback.bind(null, null, pkg));
     });

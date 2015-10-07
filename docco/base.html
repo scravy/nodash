@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>base.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="Either.html">
+                Either.js
+              </a>
+            
+              
+              <a class="source" href="List.html">
+                List.js
+              </a>
+            
+              
+              <a class="source" href="Maybe.html">
+                Maybe.js
+              </a>
+            
+              
+              <a class="source" href="Set.html">
+                Set.js
+              </a>
+            
+              
+              <a class="source" href="Stream.html">
+                Stream.js
+              </a>
+            
+              
+              <a class="source" href="Thunk.html">
+                Thunk.js
+              </a>
+            
+              
+              <a class="source" href="Tuple.html">
+                Tuple.js
+              </a>
+            
+              
+              <a class="source" href="boolean.html">
+                boolean.js
+              </a>
+            
+              
+              <a class="source" href="char.html">
+                char.js
+              </a>
+            
+              
+              <a class="source" href="base.html">
+                base.js
+              </a>
+            
+              
+              <a class="source" href="fold.html">
+                fold.js
+              </a>
+            
+              
+              <a class="source" href="map.html">
+                map.js
+              </a>
+            
+              
+              <a class="source" href="zipWith.html">
+                zipWith.js
+              </a>
+            
+              
+              <a class="source" href="collection.html">
+                collection.js
+              </a>
+            
+              
+              <a class="source" href="control.html">
+                control.js
+              </a>
+            
+              
+              <a class="source" href="curried.html">
+                curried.js
+              </a>
+            
+              
+              <a class="source" href="eq.html">
+                eq.js
+              </a>
+            
+              
+              <a class="source" href="floating.html">
+                floating.js
+              </a>
+            
+              
+              <a class="source" href="fractional.html">
+                fractional.js
+              </a>
+            
+              
+              <a class="source" href="function.html">
+                function.js
+              </a>
+            
+              
+              <a class="source" href="integral.html">
+                integral.js
+              </a>
+            
+              
+              <a class="source" href="num.html">
+                num.js
+              </a>
+            
+              
+              <a class="source" href="numeric.html">
+                numeric.js
+              </a>
+            
+              
+              <a class="source" href="object.html">
+                object.js
+              </a>
+            
+              
+              <a class="source" href="ord.html">
+                ord.js
+              </a>
+            
+              
+              <a class="source" href="realfrac.html">
+                realfrac.js
+              </a>
+            
+              
+              <a class="source" href="register.html">
+                register.js
+              </a>
+            
+              
+              <a class="source" href="string.html">
+                string.js
+              </a>
+            
+              
+              <a class="source" href="type.html">
+                type.js
+              </a>
+            
+              
+              <a class="source" href="nodash.html">
+                nodash.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>base.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
+<span class="hljs-pi">'use strict'</span>;
+
+<span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'List'</span>, <span class="hljs-string">'lazy'</span>, <span class="hljs-string">'typeOf'</span>,
+  <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">List, lazy, typeOf</span>) </span>{
+
+  <span class="hljs-keyword">var</span> Nodash = <span class="hljs-keyword">this</span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">appendList</span>(<span class="hljs-params">xs, ys</span>) </span>{
+    <span class="hljs-keyword">if</span> (xs.isEmpty()) {
+      <span class="hljs-keyword">return</span> ys;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(xs.head(), lazy(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> appendList(xs.tail(), ys);
+    }));
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">append</span>(<span class="hljs-params">xs, ys</span>) </span>{
+    <span class="hljs-keyword">switch</span> (typeOf(xs)) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">'list'</span>:
+      <span class="hljs-keyword">case</span> <span class="hljs-string">'stream'</span>:
+        <span class="hljs-keyword">return</span> appendList(xs, ys);
+      <span class="hljs-keyword">case</span> <span class="hljs-string">'string'</span>:
+        <span class="hljs-keyword">return</span> xs + ys;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">'array'</span>:
+        <span class="hljs-keyword">return</span> [].concat.call(xs, ys);
+    }
+  }
+  
+  <span class="hljs-keyword">return</span> {
+ 
+    <span class="hljs-string">': cons'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, xs</span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.is(List, xs)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(x, xs);
+      }
+      <span class="hljs-keyword">var</span> zs = [].slice.call(xs);
+      zs.unshift(x);
+      <span class="hljs-keyword">return</span> zs;
+    },
+
+    <span class="hljs-string">'++ append'</span>: append,
+
+    head: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xs</span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.is(List, xs)) {
+        <span class="hljs-keyword">return</span> xs.head();
+      }
+      <span class="hljs-keyword">return</span> xs[<span class="hljs-number">0</span>];
+    },
+
+    last: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xs</span>) </span>{
+      <span class="hljs-keyword">return</span> xs[xs.length - <span class="hljs-number">1</span>];
+    },
+
+    tail: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xs</span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.is(List, xs)) {
+        <span class="hljs-keyword">return</span> xs.tail();
+      }
+      <span class="hljs-keyword">if</span> (Nodash.isString(xs)) {
+        <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">1</span>);
+      }
+      <span class="hljs-keyword">return</span> [].slice.call(xs, <span class="hljs-number">1</span>);
+    },
+
+    init: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xs</span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.isString(xs)) {
+        <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">0</span>, xs.length - <span class="hljs-number">1</span>);
+      }
+      <span class="hljs-keyword">return</span> [].slice.call(xs, <span class="hljs-number">0</span>, xs.length - <span class="hljs-number">1</span>);
+    },
+
+    <span class="hljs-string">'isEmpty null_'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xs</span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.is(List, xs) &amp;&amp; xs.isEmpty()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+      }
+      <span class="hljs-keyword">if</span> (Nodash.isArray(xs) || Nodash.isString(xs)) {
+        <span class="hljs-keyword">return</span> xs.length === <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> _ <span class="hljs-keyword">in</span> xs) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    },
+
+    length: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xs</span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.isObject(xs)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.keys(xs).length;
+      }
+      <span class="hljs-keyword">return</span> xs.length;
+    },
+
+    select: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">path, object</span>) </span>{
+      <span class="hljs-keyword">return</span> Nodash.foldl(Nodash.at, object, path.split(<span class="hljs-regexp">/\./</span>));
+    },
+
+    <span class="hljs-string">'!! at AT'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xs, ix</span>) </span>{
+      <span class="hljs-keyword">if</span> (xs === <span class="hljs-literal">undefined</span>) {
+        <span class="hljs-keyword">return</span> xs;
+      }
+      <span class="hljs-keyword">return</span> xs[ix];
+    },
+
+    reverse: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xs</span>) </span>{
+      <span class="hljs-keyword">var</span> zs = Nodash.isString(xs) ? <span class="hljs-string">''</span>.split.call(xs, <span class="hljs-string">''</span>) : [].slice.call(xs);
+      zs.reverse();
+      <span class="hljs-keyword">return</span> Nodash.isString(xs) ? zs.join(<span class="hljs-string">''</span>) : zs;
+    },
+
+    take: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n, xs</span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.isArray(xs) || Nodash.isString(xs)) {
+        <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">0</span>, n);
+      }
+      <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generator</span>(<span class="hljs-params">i, xs</span>) </span>{
+        <span class="hljs-keyword">if</span> (i &lt;= <span class="hljs-number">0</span> || xs.isEmpty()) {
+          <span class="hljs-keyword">return</span> Nodash.emptyList();
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(xs.head(), <span class="hljs-keyword">new</span> Nodash.Thunk(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+          <span class="hljs-keyword">return</span> generator(i-<span class="hljs-number">1</span>, xs.tail());
+        }));
+      }
+      <span class="hljs-keyword">return</span> generator(n, xs);
+    },
+
+    drop: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n, xs</span>) </span>{
+      <span class="hljs-keyword">return</span> xs.slice(n);
+    },
+
+    splitAt: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n, xs</span>) </span>{
+      <span class="hljs-keyword">return</span> Nodash.tuple(Nodash.take(n, xs), Nodash.drop(n, xs));
+    },
+
+    takeWhile: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">p, xs</span>) </span>{
+      <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
+        i++;
+      }
+      <span class="hljs-keyword">return</span> xs.slice(<span class="hljs-number">0</span>, i);
+    },
+
+    dropWhile: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">p, xs</span>) </span>{
+      <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
+        i++;
+      }
+      <span class="hljs-keyword">return</span> xs.slice(i);
+    },
+
+    span: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">p, xs</span>) </span>{
+      <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; p(xs[i])) {
+          i++;
+      }
+      <span class="hljs-keyword">return</span> Nodash.tuple(xs.slice(<span class="hljs-number">0</span>, i), xs.slice(i));
+    },
+
+    <span class="hljs-string">'break_ break'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">p, xs</span>) </span>{
+      <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span> (i &lt; xs.length &amp;&amp; !p(xs[i])) {
+        i++;
+      }
+      <span class="hljs-keyword">return</span> Nodash.tuple(xs.slice(<span class="hljs-number">0</span>, i), xs.slice(i));
+    },
+
+    elem: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, xs</span>) </span>{
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+        <span class="hljs-keyword">if</span> (Nodash.eq(xs[i], x)) {
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    },
+
+    notElem: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, xs</span>) </span>{
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+        <span class="hljs-keyword">if</span> (Nodash.eq(xs[i], x)) {
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    },
+
+    lookup: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, xs</span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.isArray(xs)) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+          <span class="hljs-keyword">if</span> (xs[i] &amp;&amp; Nodash.eq(xs[i][<span class="hljs-number">0</span>], x)) {
+            <span class="hljs-keyword">return</span> xs[i][<span class="hljs-number">1</span>];
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> xs[x];
+    }
+
+  };
+}];</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

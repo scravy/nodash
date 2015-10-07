@@ -23,7 +23,7 @@
   <h1>nodash <small>Functional JavaScript Utility Library</small></h1>
 
   <p>
-    Bleeding edge: 0.9.2, as of 2015-09-03.
+    Bleeding edge: 0.10.1, as of 2015-10-07.
   </p>
 </div>
 
@@ -32,65 +32,66 @@
     <div class="col-sm-9">
         <div class="readme">
 <h1 id="nodash">nodash</h1>
-<p><a href="https://travis-ci.org/scravy/nodash"><img src="https://travis-ci.org/scravy/nodash.svg?branch=master" alt="Build Status"></a></p>
+<p><a href="https://travis-ci.org/scravy/nodash"><img src="https://travis-ci.org/scravy/nodash.svg?branch=master" alt="Build Status"></a>
+<a href="https://david-dm.org/scravy/nodash#info=dependencies&amp;view=table"><img src="https://david-dm.org/scravy/nodash.svg" alt="Dependencies"></a>
+<a href="https://david-dm.org/scravy/nodash#info=devDependencies&amp;view=table"><img src="https://david-dm.org/scravy/nodash/dev-status.svg" alt="Dependencies"></a></p>
 <p><strong><em>nodash</em></strong> offers you a rich set of library functions, comparable to
 the likes of <a href="http://underscorejs.org/"><strong><em>underscore</em></strong></a>
 or <a href="https://lodash.com/"><strong><em>lodash</em></strong></a>.
 The functions are actually derived
 from the <a href="https://hackage.haskell.org/package/base-4.7.0.0/docs/Prelude.html"><strong><em>Haskell Prelude</em></strong></a>
-and emphasize a functional programming style.</p>
-<p>A special
-trait of this library is that it discards some JavaScript concepts (like
-<code>this</code>) to allow some (in the authors opinion) more useful ones. Every function
-from this library can be thought of as <em>curried</em>, i.e. you can partially apply
-any function and get a function in return (on the other hand this means there are
-no optional arguments). Also you have a distinction between <em>lists</em> and <em>streams</em>
-and it can cope with <em>infinite streams</em>.</p>
+and emphasize a <a href="https://www.cs.cmu.edu/~crary/819-f09/Backus78.pdf">functional programming style</a>.</p>
+<p>A special trait of this library is that it discards some JavaScript concepts
+(like prototypes or optional arguments) to allow some (in the authors opinion)
+more useful ones (such as currying).</p>
+<p>Every function from this library can be thought of as <em>curried</em>, i.e. you can
+partially apply any function and get a function in return (on the other hand this
+means there are no optional arguments). It also supports <em>lists</em> which can be
+evaluated lazily and <em>infinite streams</em>.</p>
 <p>Browse through the
  <a href="https://scravy.github.io/nodash/apidoc.html">apidoc</a>,
  <a href="https://github.com/scravy/nodash/tree/master/benchmark/index.js">benchmark</a>, or
  <a href="https://github.com/scravy/nodash/tree/master/test">tests</a> for examples.</p>
+<p>For a list of which prelude functions are covered see the
+<a href="http://scravy.github.io/nodash/apidoc.html#Appendix">apidoc appendix</a>.</p>
+<h2 id="example">Example</h2>
+<pre><code class="lang-JavaScript">Nodash.install(global || <span class="hljs-built_in">window</span>); <span class="hljs-comment">// node or browser</span>
+
+<span class="hljs-keyword">var</span> reverse = foldl(flip(cons), []);
+
+<span class="hljs-built_in">console</span>.log(reverse([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])); <span class="hljs-comment">// → [3,2,1]</span>
+</code></pre>
 <h2 id="usage">Usage</h2>
-<p>A port of the Haskell Prelude to JavaScript/NodeJS.</p>
+<h3 id="in-node">in node</h3>
 <pre><code>npm install --save nodash
-</code></pre><p>Usage in Node, installed in <code>GLOBAL</code>:</p>
-<pre><code class="lang-JavaScript">require(&#39;nodash&#39;).install(GLOBAL);
-
-var reverse = foldl(flip(cons), []);
+</code></pre><pre><code class="lang-JavaScript"><span class="hljs-keyword">var</span> Nodash = <span class="hljs-built_in">require</span>(<span class="hljs-string">'nodash'</span>);
 </code></pre>
-<p>Usage in Node, installed in <code>GLOBAL</code> but prefixed:</p>
-<pre><code class="lang-JavaScript">require(&#39;nodash&#39;).install([ &#39;$&#39;, GLOBAL ]);
-
-var reverse = $foldl($flip($cons), []);
+<h3 id="in-the-browser">in the browser</h3>
+<pre><code class="lang-HTML"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"nodash.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-comment">// Nodash is available in `window.Nodash`</span>
+    <span class="hljs-built_in">document</span>.write(Nodash.foldl(Nodash.flip(cons), []));
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 </code></pre>
-<p>Usage in Node, installed in <code>GLOBAL</code> but prefixed + postfixed:</p>
-<pre><code class="lang-JavaScript">require(&#39;nodash&#39;).install([ &#39;__&#39;, GLOBAL, &#39;__&#39; ]);
-
-var reverse = __foldl__(__flip__(__cons__), []);
+<h3 id="in-legacy-browsers">in legacy browsers</h3>
+<p>Just pull in <code>es5-shim</code> first:</p>
+<pre><code class="lang-HTML"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.13/es5-shim.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"nodash.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 </code></pre>
-<p>Usage in Node:</p>
-<pre><code class="lang-JavaScript">var Nodash = require(&#39;nodash&#39;);
-
-var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
+<h3 id="-install-mountpoint-"><code>install(mountpoint)</code></h3>
+<p>It is possible to attach the Nodash functions directly
+to the global object (in fact, any object), optionally
+with a prefix or postfix:</p>
+<pre><code class="lang-JavaScript">Nodash.install(global);           → foldl(flip(cons), []);
+Nodash.install([ <span class="hljs-string">'$'</span>, global ]);  → $foldl($flip($cons), []);
+Nodash.install([ global, <span class="hljs-string">'_'</span> ]);  → foldl_(flip_(cons_), []);
+Nodash.install([ <span class="hljs-string">'f_'</span>, global ]); → f_foldl(f_flip(f_cons), []);
 </code></pre>
-<p>Usage in the browser:</p>
-<pre><code class="lang-JavaScript">&lt;script src=&quot;nodash.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-// nodash is available in window.Nodash
-var reverse = Nodash.foldl(Nodash.flip(Nodash.cons), []);
-
-// you can use `Nodash.install()` like you would in node
-Nodash.install(window);
-
-var reverse2 = foldl(flip(cons, []));
-
-// also with prefix/postfix (a postfix only in the line below)
-Nodash.install([ window, &#39;_&#39; ]);
-
-var reverse3 = foldl_(flip_(cons_, []));
+<p>Both a prefix and a postfix works too:</p>
+<pre><code class="lang-JavaScript">Nodash.install([ <span class="hljs-string">'__'</span>, global, <span class="hljs-string">'__'</span> ]); → __foldl__(__flip__(__cons__), []);
 </code></pre>
 <h2 id="license">License</h2>
-<pre><code>Copyright (c) <span class="hljs-number">2015</span> Julian Fleischer
+<pre><code>Copyright (c) <span class="hljs-number">2015</span> Julian Alexander Fleischer
 
 Permission is hereby granted, free <span class="hljs-keyword">of</span> charge, to any
 person obtaining a copy <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span> software and associated
@@ -137,7 +138,7 @@ IN THE SOFTWARE.
             <li><a href="docco/nodash.html">
                 annotated source
             </a></li>
-            <li><a href="coverage/lcov-report/nodash/nodash.js.html">
+            <li><a href="coverage/lcov-report/index.html">
                 coverage report
             </a></li>
         </ul>
@@ -152,11 +153,11 @@ IN THE SOFTWARE.
         <ul class="list-unstyled small" style="line-height: 1.8em;">
             <li><a href="nodash.min.js">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                nodash.min.js (21.93 kB)
+                nodash.min.js (26.21 kB)
             </a></li>
             <li><a href="nodash.min.js.gz">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                nodash.min.js.gz (6.63 kB)
+                nodash.min.js.gz (8.02 kB)
             </a></li>
             <li><a href="nodash.min.js.map">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
@@ -170,7 +171,7 @@ IN THE SOFTWARE.
 
 </div>
 
-<a href="https://github.com/scravy/nodash"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+<a href="https:&#x2F;&#x2F;github.com&#x2F;scravy&#x2F;nodash.git"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 </script>

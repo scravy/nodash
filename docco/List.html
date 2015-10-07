@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>List.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="Either.html">
+                Either.js
+              </a>
+            
+              
+              <a class="source" href="List.html">
+                List.js
+              </a>
+            
+              
+              <a class="source" href="Maybe.html">
+                Maybe.js
+              </a>
+            
+              
+              <a class="source" href="Set.html">
+                Set.js
+              </a>
+            
+              
+              <a class="source" href="Stream.html">
+                Stream.js
+              </a>
+            
+              
+              <a class="source" href="Thunk.html">
+                Thunk.js
+              </a>
+            
+              
+              <a class="source" href="Tuple.html">
+                Tuple.js
+              </a>
+            
+              
+              <a class="source" href="boolean.html">
+                boolean.js
+              </a>
+            
+              
+              <a class="source" href="char.html">
+                char.js
+              </a>
+            
+              
+              <a class="source" href="base.html">
+                base.js
+              </a>
+            
+              
+              <a class="source" href="fold.html">
+                fold.js
+              </a>
+            
+              
+              <a class="source" href="map.html">
+                map.js
+              </a>
+            
+              
+              <a class="source" href="zipWith.html">
+                zipWith.js
+              </a>
+            
+              
+              <a class="source" href="collection.html">
+                collection.js
+              </a>
+            
+              
+              <a class="source" href="control.html">
+                control.js
+              </a>
+            
+              
+              <a class="source" href="curried.html">
+                curried.js
+              </a>
+            
+              
+              <a class="source" href="eq.html">
+                eq.js
+              </a>
+            
+              
+              <a class="source" href="floating.html">
+                floating.js
+              </a>
+            
+              
+              <a class="source" href="fractional.html">
+                fractional.js
+              </a>
+            
+              
+              <a class="source" href="function.html">
+                function.js
+              </a>
+            
+              
+              <a class="source" href="integral.html">
+                integral.js
+              </a>
+            
+              
+              <a class="source" href="num.html">
+                num.js
+              </a>
+            
+              
+              <a class="source" href="numeric.html">
+                numeric.js
+              </a>
+            
+              
+              <a class="source" href="object.html">
+                object.js
+              </a>
+            
+              
+              <a class="source" href="ord.html">
+                ord.js
+              </a>
+            
+              
+              <a class="source" href="realfrac.html">
+                realfrac.js
+              </a>
+            
+              
+              <a class="source" href="register.html">
+                register.js
+              </a>
+            
+              
+              <a class="source" href="string.html">
+                string.js
+              </a>
+            
+              
+              <a class="source" href="type.html">
+                type.js
+              </a>
+            
+              
+              <a class="source" href="nodash.html">
+                nodash.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>List.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
+
+<span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'Thunk'</span>, <span class="hljs-string">'idf'</span>, <span class="hljs-string">'freeze'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Thunk, idf, freeze</span>) </span>{
+
+  <span class="hljs-keyword">var</span> Nodash = <span class="hljs-keyword">this</span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">List</span>(<span class="hljs-params">head, tail</span>) </span>{
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">this</span>.head = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.is(Thunk, head)) {
+        <span class="hljs-keyword">var</span> value = head.get();
+        self.head = head.get;
+        <span class="hljs-keyword">return</span> value;
+      }
+      <span class="hljs-keyword">return</span> head;
+    };
+    <span class="hljs-keyword">this</span>.tail = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (Nodash.is(Thunk, tail)) {
+        <span class="hljs-keyword">var</span> value = tail.get();
+        self.tail = tail.get;
+        <span class="hljs-keyword">return</span> value;
+      }
+      <span class="hljs-keyword">return</span> tail;
+    };
+  }
+  List.__type = <span class="hljs-string">'list'</span>;
+  List.prototype.isEmpty = idf(<span class="hljs-literal">false</span>);
+  List.prototype.toString = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'[object List '</span> + listToArray(<span class="hljs-keyword">this</span>) + <span class="hljs-string">']'</span>;
+  };
+  List.prototype.forEach = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">f</span>) </span>{
+    <span class="hljs-keyword">var</span> xs = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">while</span> (!xs.isEmpty()) {
+      f(xs.head());
+      xs = xs.tail();
+    }
+  };
+
+  <span class="hljs-keyword">var</span> emptyList = <span class="hljs-keyword">new</span> List();
+  emptyList.isEmpty = idf(<span class="hljs-literal">true</span>);
+
+  freeze(emptyList);
+
+  List.emptyList = emptyList;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">arrayToString</span>(<span class="hljs-params">array</span>) </span>{
+    <span class="hljs-keyword">return</span> array.join(<span class="hljs-string">''</span>);
+  }
+  
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">listToArray</span>(<span class="hljs-params">xs</span>) </span>{
+    <span class="hljs-keyword">var</span> array = [];
+    Nodash.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) </span>{
+      array.push(x);
+    }, xs);
+    <span class="hljs-keyword">return</span> array;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rangeStep</span>(<span class="hljs-params">step, from, to</span>) </span>{
+    step = from &lt; to ? step : -step;
+    to = step &gt; <span class="hljs-number">0</span> ? <span class="hljs-built_in">Math</span>.floor(to) : <span class="hljs-built_in">Math</span>.ceil(to);
+    <span class="hljs-keyword">var</span> current = from;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>{
+      current += step;
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(current, current === to ? emptyList : <span class="hljs-keyword">new</span> Thunk(gen));
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(from, <span class="hljs-keyword">new</span> Thunk(gen));
+  }
+
+  <span class="hljs-keyword">return</span> {
+
+    List: List,
+
+    singleton: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(thing, emptyList);
+    },
+
+    emptyList: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> emptyList;
+    },
+
+    arrayToString: arrayToString,
+
+    listToArray: listToArray,
+    
+    listToString: Nodash.compose(arrayToString, listToArray),
+
+    rangeStep: rangeStep,
+
+    <span class="hljs-string">'.. range'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">from, to</span>) </span>{
+      <span class="hljs-keyword">return</span> rangeStep(<span class="hljs-number">1</span>, from, to);
+    }
+  };
+}];</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

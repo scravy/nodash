@@ -16,8 +16,16 @@ function highlight(source, language) {
   return highlightjs.highlight(language || 'js', source).value;
 }
 
+var renderer = new marked.Renderer();
+
+renderer.table = function (header, body) {
+    return '<table class="table">' + header + body + '</table>';
+};
+
 marked.setOptions({
-  highlight: highlight
+  highlight: highlight,
+  gfm: true,
+  renderer: renderer
 });
 
 function formatSource(func, name) {

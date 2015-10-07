@@ -33,4 +33,4 @@ console.log(extractFirsts([
     tuple(4711, 8080),
     tuple(3000, 4444)
 ])); // [ 4711, 3000 ]
-`→``
+```

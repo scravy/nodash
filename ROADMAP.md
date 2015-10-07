@@ -14,3 +14,5 @@
   + nubBy
   + unionBy
   + intersectBy
+- Support List everywhere where Array is supported
+- Move all test cases to the updated format of v0.10

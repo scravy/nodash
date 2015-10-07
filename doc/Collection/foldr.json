@@ -1,8 +1,0 @@
-{
-    "prelude": true,
-    "worksWith": {
-        "array": true,
-        "string": true,
-        "list": true
-    }
-}

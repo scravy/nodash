@@ -19,5 +19,12 @@ describe('head', function () {
   it('head /w string', function () {
     assert.strictEqual('a', head(Nodash.lazy('abc')));
   });
+  
+  it('throws if no collection type was passed', function () {
+    assert.throws(function () {
+      head();
+    });
+  });
+  
 });
 

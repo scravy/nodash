@@ -19,5 +19,12 @@ describe('tail', function () {
   it('tail /w string', function () {
     assert.strictEqual('bc', tail('abc'));
   });
+
+  it('throws if no collection type was passed', function () {
+    assert.throws(function () {
+      tail();
+    });
+  });
+  
 });
 

@@ -32,5 +32,11 @@ describe('take', function () {
     assert.deepEqual([1, 2, 3], listToArray(take(3, range(1, 5))));
   });
 
+  it('throws if no collection type was passed', function () {
+    assert.throws(function () {
+      take();
+    });
+  });
+  
 });
 

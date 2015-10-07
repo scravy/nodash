@@ -3,7 +3,7 @@ var assert = require('../util/assert');
 
 describe('Eq', function () {
 
-    it("eq", function () {
+    it('eq', function () {
         assert.strictEqual(true, eq(0, 0));
         assert.strictEqual(true, flip(eq)(0, 0));
         assert.strictEqual(true, eq('hello', 'hello'));
@@ -12,7 +12,7 @@ describe('Eq', function () {
         assert.strictEqual(false, flip(eq)(0, 10));
     });
 
-    it("eq /w Tuple", function () {
+    it('eq /w Tuple', function () {
         assert.strictEqual(true, eq(tuple(1, 3), tuple(1, 3)));
         assert.strictEqual(false, eq(tuple(1, 3), tuple(3, 1)));
         assert.strictEqual(true, eq(tuple3(1, 3, 9), tuple3(1, 3, 9)));
@@ -21,14 +21,18 @@ describe('Eq', function () {
         assert.strictEqual(false, eq(tuple4(1, 3, 9, 27), tuple4(1, 3, 9, 81)));
     });
 
-    it("eq /w object", function () {
+    it('eq /w List', function () {
+        assert.strictEqual(true, eq(lazy([1, 2, 3]), lazy([1, 2, 3])));
+    });
+
+    it('eq /w object', function () {
         assert.strictEqual(true, eq({}, {}));
         assert.strictEqual(true, eq({ a: 7 }, { a: 7 }));
         assert.strictEqual(false, eq({ a: 7 }, {}));
         assert.strictEqual(false, eq(tuple3(1, 2, 3), new Date()));
     });
 
-    it("neq", function () {
+    it('neq', function () {
         assert.strictEqual(false, neq(0, 0));
         assert.strictEqual(false, flip(neq)(0, 0));
         assert.strictEqual(false, neq('hello', 'hello'));

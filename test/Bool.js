@@ -8,9 +8,9 @@ describe('Bool', function () {
     });
 
     it("bool", function () {
-        assert.strictEqual(17, bool(17, 21, true));
-        assert.strictEqual(21, bool(17, 21, false));
-        assert.strictEqual(21, bool(17, 21, 0));
-        assert.strictEqual(17, bool(17, 21, {}));
+        assert.strictEqual(21, bool(17, 21, true));
+        assert.strictEqual(17, bool(17, 21, false));
+        assert.strictEqual(17, bool(17, 21, 0));
+        assert.strictEqual(21, bool(17, 21, {}));
     });
 });

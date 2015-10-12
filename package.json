@@ -57,6 +57,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "knuth-morris-pratt": "^1.0.0"
+    "knuth-morris-pratt": "^1.0.0",
+    "steinhaus-johnson-trotter": "^1.0.0"
   }
 }

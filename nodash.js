@@ -87,7 +87,9 @@ function makeNodash(options) {
   delete Nodash.Thunk;
   delete Nodash.resolveThunk;
   
-  register(['freeze', function (freeze) { freeze(Nodash); return {}; }]);
+  register(['freeze', function (freeze) {
+    freeze(Nodash); return {};
+  }]);
   
   return Nodash;
 }

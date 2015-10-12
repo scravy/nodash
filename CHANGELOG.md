@@ -159,6 +159,23 @@ v0.10 "Hollerith"
   - If you want to support pre-ES5 environments pull in [es5-shim](https://github.com/es-shims/es5-shim)
 + The documentation system has been revamped
 
+### v0.10.1
+
++ Fixed: Documentation showed up the package.json description for functions which do not have documentation yet.
++ `reduceLeft` and `reduceRight` introduced as aliases for `foldl` and `foldr`.
+
+### v0.10.2
+
++ `eq` was not working properly with Tuples and not with Lists at all. Fixed.
++ `eq` uses now `Nodash.typeOf` instead of JavaScripts `typeof`
++ Added methods for converting objects into arrays of tuples and vice versa
++ Documentation improved
+
+### v0.10.3
+
++ Increased code coverage
++ Better support for Lists/Streams in head/tail/length/take
+
 
 v0.11 "Ichbiah"
 ---------------

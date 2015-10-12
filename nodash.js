@@ -46,6 +46,7 @@ function makeNodash(options) {
   register(require('./lib/coll/fold'));
   register(require('./lib/coll/base'));
   register(require('./lib/coll/zipWith'));
+  register(require('./lib/coll/extra'));
   register(require('./lib/collection'));
   
   register(require('./lib/Maybe'));

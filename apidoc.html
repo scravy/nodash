@@ -63,6 +63,18 @@
     <span class="name">foldr</span>
     <span class="alias label label-primary">reduceRight</span>
   </a></li>
+  <li><a href="#f-isInfixOf">
+    <span class="name">isInfixOf</span>
+    
+  </a></li>
+  <li><a href="#f-isPrefixOf">
+    <span class="name">isPrefixOf</span>
+    
+  </a></li>
+  <li><a href="#f-isSuffixOf">
+    <span class="name">isSuffixOf</span>
+    
+  </a></li>
   <li><a href="#f-permutations">
     <span class="name">permutations</span>
     
@@ -490,10 +502,6 @@
     <span class="name">isFunction</span>
     
   </a></li>
-  <li><a href="#f-isInfixOf">
-    <span class="name">isInfixOf</span>
-    
-  </a></li>
   <li><a href="#f-isInteger">
     <span class="name">isInteger</span>
     
@@ -530,20 +538,12 @@
     <span class="name">isObject</span>
     
   </a></li>
-  <li><a href="#f-isPrefixOf">
-    <span class="name">isPrefixOf</span>
-    
-  </a></li>
   <li><a href="#f-isRight">
     <span class="name">isRight</span>
     
   </a></li>
   <li><a href="#f-isString">
     <span class="name">isString</span>
-    
-  </a></li>
-  <li><a href="#f-isSuffixOf">
-    <span class="name">isSuffixOf</span>
     
   </a></li>
   <li><a href="#f-isUndefined">
@@ -1265,6 +1265,86 @@ of a structure.</p>
       }
       <span class="hljs-keyword">return</span> f(foldr(f, x, xs.tail()), xs.head());
   }
+}</pre>
+
+</div>
+<div class="function well" id="f-isInfixOf">
+
+  <h3>
+    isInfixOf
+    <small>
+      
+        <span class="label label-warning">Prelude: isInfixOf</span>
+    </small>
+  </h3>
+
+  <p><code>[a] → [a] → Boolean</code></p>
+<p>The isInfixOf function takes two lists and returns <code>true</code>
+iff the first list is contained, wholly and intact, anywhere
+within the second.</p>
+<p>It uses an implementation of the
+<a href="https://github.com/nodash/knuth-morris-pratt">Knuth-Morris-Pratt algorithm</a>
+and works with both strings and arrays.</p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInfixOf</span>(<span class="hljs-params">infix, string</span>) </span>{
+  <span class="hljs-keyword">return</span> indexOf(infix, string) &gt;= <span class="hljs-number">0</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isPrefixOf">
+
+  <h3>
+    isPrefixOf
+    <small>
+      
+        <span class="label label-warning">Prelude: isPrefixOf</span>
+    </small>
+  </h3>
+
+  <p><code>[a] → [a] → Boolean</code></p>
+<p>The isPrefixOf function takes two lists and returns <code>true</code>
+iff the first list is a prefix of the second.</p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPrefixOf</span>(<span class="hljs-params">prefix, string</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; prefix.length; j++) {
+    <span class="hljs-keyword">if</span> (string[j] !== prefix[j]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isSuffixOf">
+
+  <h3>
+    isSuffixOf
+    <small>
+      
+        <span class="label label-warning">Prelude: isSuffixOf</span>
+    </small>
+  </h3>
+
+  <p><code>[a] → [a] → Boolean</code></p>
+<p>The isSuffixOf function takes two lists and returns <code>true</code>
+iff the first list is a suffix of the second.</p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isSuffixOf</span>(<span class="hljs-params">suffix, string</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; suffix.length; i++) {
+    <span class="hljs-keyword">if</span> (string[string.length - suffix.length + i] !== suffix[i]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }</pre>
 
 </div>
@@ -3800,25 +3880,6 @@ for Symbols.</p>
 }</pre>
 
 </div>
-<div class="function well" id="f-isInfixOf">
-
-  <h3>
-    isInfixOf
-    <small>
-      
-        <span class="label label-warning">Prelude: isInfixOf</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInfixOf</span>(<span class="hljs-params">infix, string</span>) </span>{
-  <span class="hljs-keyword">return</span> indexOf(infix, string) &gt;= <span class="hljs-number">0</span>;
-}</pre>
-
-</div>
 <div class="function well" id="f-isInteger">
 
   <h3>
@@ -3996,30 +4057,6 @@ for Symbols.</p>
 }</pre>
 
 </div>
-<div class="function well" id="f-isPrefixOf">
-
-  <h3>
-    isPrefixOf
-    <small>
-      
-        <span class="label label-warning">Prelude: isPrefixOf</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPrefixOf</span>(<span class="hljs-params">prefix, string</span>) </span>{
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; prefix.length; j++) {
-    <span class="hljs-keyword">if</span> (string[j] !== prefix[j]) {
-      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    }
-  }
-  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-}</pre>
-
-</div>
 <div class="function well" id="f-isRight">
 
   <h3>
@@ -4051,30 +4088,6 @@ for Symbols.</p>
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isString</span>(<span class="hljs-params">thing</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> thing === <span class="hljs-string">'string'</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-isSuffixOf">
-
-  <h3>
-    isSuffixOf
-    <small>
-      
-        <span class="label label-warning">Prelude: isSuffixOf</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isSuffixOf</span>(<span class="hljs-params">suffix, string</span>) </span>{
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; suffix.length; i++) {
-    <span class="hljs-keyword">if</span> (string[string.length - suffix.length + i] !== suffix[i]) {
-      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    }
-  }
-  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }</pre>
 
 </div>

@@ -84,33 +84,6 @@
     
   </a></li>
 </ul>
-<h6><a href="#g-List">List</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-arrayToString">
-    <span class="name">arrayToString</span>
-    
-  </a></li>
-  <li><a href="#f-List">
-    <span class="name">List</span>
-    
-  </a></li>
-  <li><a href="#f-listToArray">
-    <span class="name">listToArray</span>
-    
-  </a></li>
-  <li><a href="#f-listToString">
-    <span class="name">listToString</span>
-    
-  </a></li>
-  <li><a href="#f-range">
-    <span class="name">range</span>
-    <span class="alias label label-primary">..</span>
-  </a></li>
-  <li><a href="#f-rangeStep">
-    <span class="name">rangeStep</span>
-    
-  </a></li>
-</ul>
 <h6><a href="#g-Math">Math</a></h6>
 <ul class="list-unstyled">
   <li><a href="#f-abs">
@@ -139,6 +112,33 @@
   </a></li>
   <li><a href="#f-tanh">
     <span class="name">tanh</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-List">List</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-arrayToString">
+    <span class="name">arrayToString</span>
+    
+  </a></li>
+  <li><a href="#f-List">
+    <span class="name">List</span>
+    
+  </a></li>
+  <li><a href="#f-listToArray">
+    <span class="name">listToArray</span>
+    
+  </a></li>
+  <li><a href="#f-listToString">
+    <span class="name">listToString</span>
+    
+  </a></li>
+  <li><a href="#f-range">
+    <span class="name">range</span>
+    <span class="alias label label-primary">..</span>
+  </a></li>
+  <li><a href="#f-rangeStep">
+    <span class="name">rangeStep</span>
     
   </a></li>
 </ul>
@@ -1415,6 +1415,166 @@ list is passed.</p>
 </div>
 
 
+<h2 id="g-Math">Math</h1>
+
+
+<div class="function well" id="f-abs">
+
+  <h3>
+    abs
+    <small>
+      
+        <span class="label label-warning">Prelude: abs</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">abs</span> x | x &gt;= <span class="hljs-number">0</span> = x
+      | x &lt;  <span class="hljs-number">0</span> = -x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abs</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-logBase">
+
+  <h3>
+    logBase
+    <small>
+      
+        <span class="label label-warning">Prelude: logBase</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">logBase</span> x y = log y / log x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logBase</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(a) / <span class="hljs-built_in">Math</span>.log(b);
+}</pre>
+
+</div>
+<div class="function well" id="f-pow">
+
+  <h3>
+    pow
+    <small>
+      <span class="alias label label-primary">**</span><span class="alias label label-primary">^</span><span class="alias label label-primary">^^</span>
+        <span class="label label-warning">Prelude: ^^</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">x</span> ** y = exp (log x * y)</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pow</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-recip">
+
+  <h3>
+    recip
+    <small>
+      
+        <span class="label label-warning">Prelude: recip</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">recip</span> = <span class="hljs-number">1</span> / x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recip</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / x;
+}</pre>
+
+</div>
+<div class="function well" id="f-signum">
+
+  <h3>
+    signum
+    <small>
+      
+        <span class="label label-warning">Prelude: signum</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">signum</span> x | x &gt;  <span class="hljs-number">0</span> = <span class="hljs-number">1</span>
+         | x == <span class="hljs-number">0</span> = <span class="hljs-number">0</span>
+         | x &lt;  <span class="hljs-number">0</span> = -<span class="hljs-number">1</span></pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">signum</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-tan">
+
+  <h3>
+    tan
+    <small>
+      
+        <span class="label label-warning">Prelude: tan</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">tan</span> x = sin x / cos x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tan</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-tanh">
+
+  <h3>
+    tanh
+    <small>
+      
+        <span class="label label-warning">Prelude: tanh</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">tanh</span> x = sinh x / cosh x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tanh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">Infinity</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x));
+  }
+}</pre>
+
+</div>
+
+
 <h2 id="g-List">List</h1>
 
 
@@ -1578,166 +1738,6 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(current, current === to ? emptyList : <span class="hljs-keyword">new</span> Thunk(gen));
   }
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(from, <span class="hljs-keyword">new</span> Thunk(gen));
-}</pre>
-
-</div>
-
-
-<h2 id="g-Math">Math</h1>
-
-
-<div class="function well" id="f-abs">
-
-  <h3>
-    abs
-    <small>
-      
-        <span class="label label-warning">Prelude: abs</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">abs</span> x | x &gt;= <span class="hljs-number">0</span> = x
-      | x &lt;  <span class="hljs-number">0</span> = -x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abs</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-logBase">
-
-  <h3>
-    logBase
-    <small>
-      
-        <span class="label label-warning">Prelude: logBase</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">logBase</span> x y = log y / log x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logBase</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(a) / <span class="hljs-built_in">Math</span>.log(b);
-}</pre>
-
-</div>
-<div class="function well" id="f-pow">
-
-  <h3>
-    pow
-    <small>
-      <span class="alias label label-primary">**</span><span class="alias label label-primary">^</span><span class="alias label label-primary">^^</span>
-        <span class="label label-warning">Prelude: ^^</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">x</span> ** y = exp (log x * y)</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pow</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-recip">
-
-  <h3>
-    recip
-    <small>
-      
-        <span class="label label-warning">Prelude: recip</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">recip</span> = <span class="hljs-number">1</span> / x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recip</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / x;
-}</pre>
-
-</div>
-<div class="function well" id="f-signum">
-
-  <h3>
-    signum
-    <small>
-      
-        <span class="label label-warning">Prelude: signum</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">signum</span> x | x &gt;  <span class="hljs-number">0</span> = <span class="hljs-number">1</span>
-         | x == <span class="hljs-number">0</span> = <span class="hljs-number">0</span>
-         | x &lt;  <span class="hljs-number">0</span> = -<span class="hljs-number">1</span></pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">signum</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === <span class="hljs-number">0</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-  }
-  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-tan">
-
-  <h3>
-    tan
-    <small>
-      
-        <span class="label label-warning">Prelude: tan</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">tan</span> x = sin x / cos x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tan</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-tanh">
-
-  <h3>
-    tanh
-    <small>
-      
-        <span class="label label-warning">Prelude: tanh</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">tanh</span> x = sinh x / cosh x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tanh</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">Infinity</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
-    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
-  } <span class="hljs-keyword">else</span> {
-    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x));
-  }
 }</pre>
 
 </div>

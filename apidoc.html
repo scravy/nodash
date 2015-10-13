@@ -1434,9 +1434,10 @@ list is passed.</p>
     </small>
   </h3>
 
-  <p>apply func arg = func arg</p>
+  
 
-
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">apply</span> func arg = func arg</pre>
 
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">apply</span>(<span class="hljs-params">f, x</span>) </span>{
@@ -1454,8 +1455,16 @@ list is passed.</p>
     </small>
   </h3>
 
-  
+  <p><code>(b → c) → (a → b) → a → c</code></p>
+<p>Function composition.</p>
+<p>Example:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">var</span> f = compose(plus(<span class="hljs-number">10</span>), times(<span class="hljs-number">2</span>));
+f(<span class="hljs-number">3</span>) === <span class="hljs-number">16</span>
+</code></pre>
 
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">compose</span> g f = \x -&gt; g (f x)</pre>
 
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compose</span>(<span class="hljs-params">f, g, x</span>) </span>{
@@ -1533,7 +1542,14 @@ list is passed.</p>
     </small>
   </h3>
 
-  
+  <p><code>(a → b → c) → (b → a → c)</code></p>
+<p><code>flip(f)</code> takes its (first) two arguments in the reverse order of <code>f</code>.</p>
+<p>Example:</p>
+<pre><code class="lang-JavaScript">minus(<span class="hljs-number">10</span>, <span class="hljs-number">8</span>) === <span class="hljs-number">2</span>
+<span class="hljs-keyword">var</span> subtract = flip(minus)
+subtract(<span class="hljs-number">10</span>, <span class="hljs-number">8</span>) === -<span class="hljs-number">2</span>
+</code></pre>
+
 
   <p>Haskell Definition:</p>
   <pre><span class="hljs-title">flip</span> f = \a b -&gt; f b a</pre>
@@ -1556,7 +1572,12 @@ list is passed.</p>
     </small>
   </h3>
 
-  
+  <p><code>a → a</code></p>
+<p>Identity function.</p>
+<p>Example:</p>
+<pre><code class="lang-JavaScript">id(<span class="hljs-number">7</span>) === <span class="hljs-number">7</span>
+</code></pre>
+
 
   <p>Haskell Definition:</p>
   <pre><span class="hljs-title">id</span> = \x -&gt; x</pre>
@@ -1612,8 +1633,18 @@ list is passed.</p>
     </small>
   </h3>
 
-  
+  <p><code>(b → b → c) → (a → b) → a → a → c</code></p>
+<p>Example:</p>
+<pre><code class="lang-JavaScript"><span class="hljs-keyword">var</span> xs = [
+    { firstName: <span class="hljs-string">'Jonathan'</span>, secondName: <span class="hljs-string">'Müller'</span> },
+    { firstName: <span class="hljs-string">'Benjamin'</span>, secondName: <span class="hljs-string">'Bamboo'</span> }
+];
+<span class="hljs-keyword">var</span> sortByFirstName = sortBy(on(compare, select(<span class="hljs-string">'firstName'</span>)), xs);
+</code></pre>
 
+
+  <p>Haskell Definition:</p>
+  <pre>(.*.) `on` f = \x y -&gt; f x .*. f y</pre>
 
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on</span>(<span class="hljs-params">g, f, a, b</span>) </span>{

@@ -460,19 +460,8 @@
     <span class="name">tanh</span>
     
   </a></li>
-</ul>
-<h6><a href="#g-Object">Object</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-each">
-    <span class="name">each</span>
-    
-  </a></li>
-  <li><a href="#f-keys">
-    <span class="name">keys</span>
-    
-  </a></li>
-  <li><a href="#f-values">
-    <span class="name">values</span>
+  <li><a href="#f-truncate">
+    <span class="name">truncate</span>
     
   </a></li>
 </ul>
@@ -496,6 +485,21 @@
   </a></li>
   <li><a href="#f-until">
     <span class="name">until</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Object">Object</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-each">
+    <span class="name">each</span>
+    
+  </a></li>
+  <li><a href="#f-keys">
+    <span class="name">keys</span>
+    
+  </a></li>
+  <li><a href="#f-values">
+    <span class="name">values</span>
     
   </a></li>
 </ul>
@@ -922,10 +926,6 @@
     <span class="name">transpose</span>
     
   </a></li>
-  <li><a href="#f-truncate">
-    <span class="name">truncate</span>
-    
-  </a></li>
   <li><a href="#f-union">
     <span class="name">union</span>
     
@@ -936,9 +936,9 @@
 
 <div class="content">
 
-<h1>nodash 0.11.0 <small>api documentation</small></h1>
+<h1>nodash 0.11.1 <small>api documentation</small></h1>
 
-<p>This is the API documentation for nodash 0.11.0.</p>
+<p>This is the API documentation for nodash 0.11.1.</p>
 
 <p>Don't miss the <a href="#Appendix">Appendix</a>.</p>
 
@@ -2872,7 +2872,13 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
     </small>
   </h3>
 
-  
+  <p><code>Number → Number</code></p>
+<p>Returns the absolute (positive, non-negative) value of a number.</p>
+<p>Example:</p>
+<pre><code class="lang-JavaScript">abs(<span class="hljs-number">9</span>) === <span class="hljs-number">9</span>
+abs(-<span class="hljs-number">3</span>) === <span class="hljs-number">3</span>
+</code></pre>
+
 
   <p>Haskell Definition:</p>
   <pre><span class="hljs-title">abs</span> x | x &gt;= <span class="hljs-number">0</span> = x
@@ -3031,6 +3037,7 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
   </h3>
 
   <p><code>Number → Number</code></p>
+<p><code>ceiling x</code> returns the least integer not less than <code>x</code>.</p>
 
 
 
@@ -3165,6 +3172,7 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
   </h3>
 
   <p><code>Number → Number</code></p>
+<p><code>floor x</code> returns the greatest integer not greater than <code>x</code>.</p>
 
 
 
@@ -3413,6 +3421,11 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
   </h3>
 
   <p><code>Number → (Number, Number)</code></p>
+<p><code>properFraction</code> takes a real fractional
+number <code>x</code> and returns a pair <code>(n, f)</code> such that <code>x = n + f</code>,
+and: <code>n</code> is an integral number with the same sign as <code>x</code>;
+and <code>f</code> is a fraction with the same type and sign as <code>x</code>,
+and with absolute value less than 1.</p>
 
 
 
@@ -3516,6 +3529,8 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
   </h3>
 
   <p><code>Number → Number</code></p>
+<p><code>round x</code> returns the nearest integer to <code>x</code>; the even
+integer if <code>x</code> is equidistant between two integers.</p>
 
 
 
@@ -3668,78 +3683,30 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 }</pre>
 
 </div>
-
-
-<h2 id="g-Object">Object</h1>
-
-
-<div class="function well" id="f-each">
+<div class="function well" id="f-truncate">
 
   <h3>
-    each
+    truncate
     <small>
       
+        <span class="label label-warning">Prelude: truncate</span>
     </small>
   </h3>
 
-  
+  <p><code>Number → Number</code></p>
+<p><code>truncate x</code> returns the integer nearest <code>x</code> between zero and <code>x</code>.</p>
+
 
 
   <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">each</span>(<span class="hljs-params">f, xs</span>) </span>{
-  <span class="hljs-keyword">if</span> (is(List, xs)) {
-    <span class="hljs-keyword">while</span> (!xs.isEmpty()) {
-      f(xs.head());
-      xs = xs.tail();
-    }
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
-      f(xs[i], i);
-    }
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isObject(xs)) {
-    <span class="hljs-keyword">var</span> ks = <span class="hljs-built_in">Object</span>.keys(xs);
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; ks.length; j += <span class="hljs-number">1</span>) {
-      f(xs[ks[j]], ks[j]);
-    }
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">truncate</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">switch</span> (signum(x)) {
+  <span class="hljs-keyword">case</span> -<span class="hljs-number">1</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.ceil(x);
+  <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(x);
   }
-}</pre>
-
-</div>
-<div class="function well" id="f-keys">
-
-  <h3>
-    keys
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keys</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-values">
-
-  <h3>
-    values
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">values</span>(<span class="hljs-params">object</span>) </span>{
-  <span class="hljs-keyword">var</span> values = [];
-  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
-    values.push(value);
-  }, object);
-  <span class="hljs-keyword">return</span> values;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</pre>
 
 </div>
@@ -3887,6 +3854,81 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
     v = f(v);
   }
   <span class="hljs-keyword">return</span> v;
+}</pre>
+
+</div>
+
+
+<h2 id="g-Object">Object</h1>
+
+
+<div class="function well" id="f-each">
+
+  <h3>
+    each
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">each</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (is(List, xs)) {
+    <span class="hljs-keyword">while</span> (!xs.isEmpty()) {
+      f(xs.head());
+      xs = xs.tail();
+    }
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      f(xs[i], i);
+    }
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isObject(xs)) {
+    <span class="hljs-keyword">var</span> ks = <span class="hljs-built_in">Object</span>.keys(xs);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; ks.length; j += <span class="hljs-number">1</span>) {
+      f(xs[ks[j]], ks[j]);
+    }
+  }
+}</pre>
+
+</div>
+<div class="function well" id="f-keys">
+
+  <h3>
+    keys
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keys</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-values">
+
+  <h3>
+    values
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">values</span>(<span class="hljs-params">object</span>) </span>{
+  <span class="hljs-keyword">var</span> values = [];
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
+    values.push(value);
+  }, object);
+  <span class="hljs-keyword">return</span> values;
 }</pre>
 
 </div>
@@ -6466,31 +6508,6 @@ for Symbols.</p>
     zs = map(arrayToString, zs);
   }
   <span class="hljs-keyword">return</span> zs;
-}</pre>
-
-</div>
-<div class="function well" id="f-truncate">
-
-  <h3>
-    truncate
-    <small>
-      
-        <span class="label label-warning">Prelude: truncate</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">truncate</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">switch</span> (signum(x)) {
-  <span class="hljs-keyword">case</span> -<span class="hljs-number">1</span>:
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.ceil(x);
-  <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(x);
-  }
-  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</pre>
 
 </div>

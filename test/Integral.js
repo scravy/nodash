@@ -18,10 +18,10 @@ describe('Integral', function () {
     });
 
     it('divMod', function () {
-        assert.deepEqual([1,1], divMod(9, 8));
-        assert.deepEqual([-2,7], divMod(-9, 8));
-        assert.deepEqual([-2,-7], divMod(9, -8));
-        assert.deepEqual([1,-1], divMod(-9, -8));
+        assert(eq(tuple(1, 1), divMod(9, 8)));
+        assert(eq(tuple(-2, 7), divMod(-9, 8)));
+        assert(eq(tuple(-2, -7), divMod(9, -8)));
+        assert(eq(tuple(1, -1), divMod(-9, -8)));
     });
 
     it('quot', function () {
@@ -39,10 +39,10 @@ describe('Integral', function () {
     });
 
     it('quotRem', function () {
-        assert.deepEqual([1,1], quotRem(9, 8));
-        assert.deepEqual([-1,-1], quotRem(-9, 8));
-        assert.deepEqual([-1,1], quotRem(9, -8));
-        assert.deepEqual([1,-1], quotRem(-9, -8));
+        assert(eq(tuple(1, 1), quotRem(9, 8)));
+        assert(eq(tuple(-1, -1), quotRem(-9, 8)));
+        assert(eq(tuple(-1, 1), quotRem(9, -8)));
+        assert(eq(tuple(1, -1), quotRem(-9, -8)));
     });
 
 

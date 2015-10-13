@@ -1,4 +1,4 @@
-`new List(head, tail)`
+`new List(head, tail) :: a → [a] → [a]`
 
 Lists are immutable singly-linked sequences.
 

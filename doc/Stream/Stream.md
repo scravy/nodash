@@ -1,4 +1,4 @@
-`new Stream(head, tail) :: a → [a] → [a]`
+`new Stream(generator)`
 
 Streams are immutable, lazily evaluated, infinite [Lists](#f-List).
 

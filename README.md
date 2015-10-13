@@ -30,6 +30,9 @@ Browse through the
 For a list of which prelude functions are covered see the
 [apidoc appendix](http://scravy.github.io/nodash/apidoc.html#Appendix).
 
+Nodash is available via [npm](https://www.npmjs.com/package/nodash).
+
+
 Example
 -------
 

@@ -1,6 +1,6 @@
 {
   "name": "node-prelude",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A port of the Haskell Prelude to JavaScript/NodeJS",
   "main": "prelude.js",
   "scripts": {

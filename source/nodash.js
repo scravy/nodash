@@ -85,6 +85,8 @@ function makeNodash(options) {
     return mountpoint;
   });
 
+  register('register', register);
+
   delete Nodash.Thunk;
   delete Nodash.resolveThunk;
   

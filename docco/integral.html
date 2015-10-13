@@ -198,7 +198,7 @@
             
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
 
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+<span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'tuple'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">tuple</span>) </span>{
 
   <span class="hljs-keyword">var</span> Nodash = <span class="hljs-keyword">this</span>;
 
@@ -224,15 +224,15 @@
     },
     
     divMod: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>)  </span>{
-      <span class="hljs-keyword">return</span> [Nodash.div(a, b), Nodash.mod(a, b)];
+      <span class="hljs-keyword">return</span> tuple(Nodash.div(a, b), Nodash.mod(a, b));
     },
 
     quotRem: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
-      <span class="hljs-keyword">return</span> [Nodash.quot(a, b), Nodash.rem(a, b)];
+      <span class="hljs-keyword">return</span> tuple(Nodash.quot(a, b), Nodash.rem(a, b));
     }
 
   };
-};</pre></div></div>
+}];</pre></div></div>
             
         </li>
         

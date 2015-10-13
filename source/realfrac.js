@@ -1,6 +1,7 @@
 /* vim: set et sw=2 ts=2: */
 
-module.exports = [ 'Math', 'signum', function (Math, signum) {
+module.exports = [ 'Math', 'signum', 'tuple',
+  function (Math, signum, tuple) {
 
   var truncate = Math.trunc || function (x) {
     switch (signum(x)) {
@@ -21,7 +22,7 @@ module.exports = [ 'Math', 'signum', function (Math, signum) {
 
     properFraction: function (x) {
       var num = truncate(x);
-      return [ num, -(num - x) ];
+      return tuple(num, -(num - x));
     },
 
     truncate: truncate,

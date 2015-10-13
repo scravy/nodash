@@ -1,6 +1,6 @@
 /* vim: set et sw=2 ts=2: */
 
-module.exports = function () {
+module.exports = [ 'tuple', function (tuple) {
 
   var Nodash = this;
 
@@ -26,12 +26,12 @@ module.exports = function () {
     },
     
     divMod: function (a, b)  {
-      return [Nodash.div(a, b), Nodash.mod(a, b)];
+      return tuple(Nodash.div(a, b), Nodash.mod(a, b));
     },
 
     quotRem: function (a, b) {
-      return [Nodash.quot(a, b), Nodash.rem(a, b)];
+      return tuple(Nodash.quot(a, b), Nodash.rem(a, b));
     }
 
   };
-};
+}];

@@ -19,25 +19,6 @@
 
 <div class="sidebar">
 
-<h6><a href="#g-Boolean">Boolean</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-AND">
-    <span class="name">AND</span>
-    <span class="alias label label-primary">&amp;&amp;</span>
-  </a></li>
-  <li><a href="#f-bool">
-    <span class="name">bool</span>
-    
-  </a></li>
-  <li><a href="#f-not">
-    <span class="name">not</span>
-    
-  </a></li>
-  <li><a href="#f-OR">
-    <span class="name">OR</span>
-    <span class="alias label label-primary">||</span>
-  </a></li>
-</ul>
 <h6><a href="#g-Char">Char</a></h6>
 <ul class="list-unstyled">
   <li><a href="#f-chr">
@@ -67,6 +48,25 @@
   <li><a href="#f-ord">
     <span class="name">ord</span>
     
+  </a></li>
+</ul>
+<h6><a href="#g-Boolean">Boolean</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-AND">
+    <span class="name">AND</span>
+    <span class="alias label label-primary">&amp;&amp;</span>
+  </a></li>
+  <li><a href="#f-bool">
+    <span class="name">bool</span>
+    
+  </a></li>
+  <li><a href="#f-not">
+    <span class="name">not</span>
+    
+  </a></li>
+  <li><a href="#f-OR">
+    <span class="name">OR</span>
+    <span class="alias label label-primary">||</span>
   </a></li>
 </ul>
 <h6><a href="#g-Control">Control</a></h6>
@@ -235,6 +235,10 @@
     <span class="name">arrayToString</span>
     
   </a></li>
+  <li><a href="#f-lazy">
+    <span class="name">lazy</span>
+    <span class="alias label label-primary">arrayToList</span>
+  </a></li>
   <li><a href="#f-List">
     <span class="name">List</span>
     
@@ -257,29 +261,6 @@
   </a></li>
   <li><a href="#f-singleton">
     <span class="name">singleton</span>
-    
-  </a></li>
-</ul>
-<h6><a href="#g-Maybe">Maybe</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-catMaybes">
-    <span class="name">catMaybes</span>
-    
-  </a></li>
-  <li><a href="#f-isJust">
-    <span class="name">isJust</span>
-    
-  </a></li>
-  <li><a href="#f-isNothing">
-    <span class="name">isNothing</span>
-    
-  </a></li>
-  <li><a href="#f-maybe">
-    <span class="name">maybe</span>
-    
-  </a></li>
-  <li><a href="#f-maybeToList">
-    <span class="name">maybeToList</span>
     
   </a></li>
 </ul>
@@ -439,6 +420,44 @@
   </a></li>
   <li><a href="#f-tanh">
     <span class="name">tanh</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Maybe">Maybe</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-catMaybes">
+    <span class="name">catMaybes</span>
+    
+  </a></li>
+  <li><a href="#f-isJust">
+    <span class="name">isJust</span>
+    
+  </a></li>
+  <li><a href="#f-isNothing">
+    <span class="name">isNothing</span>
+    
+  </a></li>
+  <li><a href="#f-mapMaybe">
+    <span class="name">mapMaybe</span>
+    
+  </a></li>
+  <li><a href="#f-maybe">
+    <span class="name">maybe</span>
+    
+  </a></li>
+  <li><a href="#f-maybeToList">
+    <span class="name">maybeToList</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Nodash">Nodash</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-install">
+    <span class="name">install</span>
+    
+  </a></li>
+  <li><a href="#f-register">
+    <span class="name">register</span>
     
   </a></li>
 </ul>
@@ -747,10 +766,6 @@
     <span class="name">insertBy</span>
     
   </a></li>
-  <li><a href="#f-install">
-    <span class="name">install</span>
-    
-  </a></li>
   <li><a href="#f-intercalate">
     <span class="name">intercalate</span>
     
@@ -766,10 +781,6 @@
   <li><a href="#f-last">
     <span class="name">last</span>
     
-  </a></li>
-  <li><a href="#f-lazy">
-    <span class="name">lazy</span>
-    <span class="alias label label-primary">arrayToList</span>
   </a></li>
   <li><a href="#f-length">
     <span class="name">length</span>
@@ -794,10 +805,6 @@
   <li><a href="#f-map">
     <span class="name">map</span>
     <span class="alias label label-primary">fmap</span>
-  </a></li>
-  <li><a href="#f-mapMaybe">
-    <span class="name">mapMaybe</span>
-    
   </a></li>
   <li><a href="#f-max">
     <span class="name">max</span>
@@ -936,6 +943,171 @@
 <p>Don't miss the <a href="#Appendix">Appendix</a>.</p>
 
 
+<h2 id="g-Char">Char</h1>
+
+
+<div class="function well" id="f-chr">
+
+  <h3>
+    chr
+    <small>
+      
+    </small>
+  </h3>
+
+  <p><code>Integer → Char</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chr</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>.fromCharCode(x);
+}</pre>
+
+</div>
+<div class="function well" id="f-isAsciiLetter">
+
+  <h3>
+    isAsciiLetter
+    <small>
+      
+    </small>
+  </h3>
+
+  <p><code>String → Boolean</code></p>
+<p>Determines whether the given String or Character is an ascii letter, that is: Matching the regular expression <code>/^[a-zA-Z]+$/</code>.</p>
+<p>Example:</p>
+<pre><code class="lang-JavaScript">isAsciiLetter(<span class="hljs-string">'X'</span>) === <span class="hljs-literal">true</span>
+isAsciiLetter(<span class="hljs-string">'@'</span>) === <span class="hljs-literal">false</span>
+isAsciiLetter(<span class="hljs-string">'8'</span>) === <span class="hljs-literal">false</span>
+</code></pre>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[a-zA-Z]+$/</span>.test(x);
+}</pre>
+
+</div>
+<div class="function well" id="f-isLetter">
+
+  <h3>
+    isLetter
+    <small>
+      
+    </small>
+  </h3>
+
+  <p><code>Char → Boolean</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLetter</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
+  <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isLower">
+
+  <h3>
+    isLower
+    <small>
+      
+    </small>
+  </h3>
+
+  <p><code>String → Boolean</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLower</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
+  <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i] || x[i] !== xLower[i]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isNumeric">
+
+  <h3>
+    isNumeric
+    <small>
+      <span class="alias label label-primary">isDigit</span>
+    </small>
+  </h3>
+
+  <p><code>Something → Boolean</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumeric</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[0-9]+$/</span>.test(thing);
+}</pre>
+
+</div>
+<div class="function well" id="f-isUpper">
+
+  <h3>
+    isUpper
+    <small>
+      
+    </small>
+  </h3>
+
+  <p><code>String → Boolean</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isUpper</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
+  <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i] || x[i] !== xUpper[i]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-ord">
+
+  <h3>
+    ord
+    <small>
+      
+    </small>
+  </h3>
+
+  <p><code>Char → Integer</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ord</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> x.charCodeAt(<span class="hljs-number">0</span>);
+}</pre>
+
+</div>
+
+
 <h2 id="g-Boolean">Boolean</h1>
 
 
@@ -949,9 +1121,10 @@
     </small>
   </h3>
 
-  <p><code>Bool → Bool → Bool</code></p>
+  <p><code>Boolean → Boolean → Boolean</code></p>
 <p>Boolean &quot;and&quot;. This is effectively just making the <code>&amp;&amp;</code> operator
 available as a curried function.</p>
+<p>Not to be confused with the lower case <a href="#f-and">and</a>.</p>
 <p>Example:</p>
 <pre><code class="lang-JavaScript">AND(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>) === <span class="hljs-literal">true</span>
 AND(<span class="hljs-literal">false</span>)(<span class="hljs-literal">true</span>) === <span class="hljs-literal">false</span>
@@ -1031,9 +1204,10 @@ foldl(AND, <span class="hljs-literal">true</span>, [ <span class="hljs-literal">
     </small>
   </h3>
 
-  <p><code>Bool → Bool → Bool</code></p>
+  <p><code>Boolean → Boolean → Boolean</code></p>
 <p>Booleanm &quot;or&quot;. This is effectively just making the <code>&amp;&amp;</code> operator
 available as a curried function.</p>
+<p>Not to be confused with the lower case <a href="#f-or">or</a>.</p>
 <p>Example:</p>
 <pre><code class="lang-JavaScript">OR(<span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>) === <span class="hljs-literal">true</span>
 OR(<span class="hljs-literal">false</span>)(<span class="hljs-literal">false</span>) === <span class="hljs-literal">false</span>
@@ -1048,165 +1222,6 @@ foldl(OR, <span class="hljs-literal">false</span>, [ <span class="hljs-literal">
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">OR</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">return</span> a || b;
-}</pre>
-
-</div>
-
-
-<h2 id="g-Char">Char</h1>
-
-
-<div class="function well" id="f-chr">
-
-  <h3>
-    chr
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chr</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>.fromCharCode(x);
-}</pre>
-
-</div>
-<div class="function well" id="f-isAsciiLetter">
-
-  <h3>
-    isAsciiLetter
-    <small>
-      
-    </small>
-  </h3>
-
-  <p><code>String → Bool</code></p>
-<p>Determines whether the given String or Character is an ascii letter, that is: Matching the regular expression <code>/^[a-zA-Z]+$/</code>.</p>
-<p>Example:</p>
-<pre><code class="lang-JavaScript">isAsciiLetter(<span class="hljs-string">'X'</span>) === <span class="hljs-literal">true</span>
-isAsciiLetter(<span class="hljs-string">'@'</span>) === <span class="hljs-literal">false</span>
-isAsciiLetter(<span class="hljs-string">'8'</span>) === <span class="hljs-literal">false</span>
-</code></pre>
-
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isAsciiLetter</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[a-zA-Z]+$/</span>.test(x);
-}</pre>
-
-</div>
-<div class="function well" id="f-isLetter">
-
-  <h3>
-    isLetter
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLetter</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
-  <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
-    <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i]) {
-      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    }
-  }
-  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-isLower">
-
-  <h3>
-    isLower
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLower</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
-  <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
-    <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i] || x[i] !== xLower[i]) {
-      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    }
-  }
-  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-isNumeric">
-
-  <h3>
-    isNumeric
-    <small>
-      <span class="alias label label-primary">isDigit</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumeric</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[0-9]+$/</span>.test(thing);
-}</pre>
-
-</div>
-<div class="function well" id="f-isUpper">
-
-  <h3>
-    isUpper
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isUpper</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">var</span> xUpper = x.toUpperCase();
-  <span class="hljs-keyword">var</span> xLower = x.toLowerCase();
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i += <span class="hljs-number">1</span>) {
-    <span class="hljs-keyword">if</span> (xUpper[i] === xLower[i] || x[i] !== xUpper[i]) {
-      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    }
-  }
-  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-ord">
-
-  <h3>
-    ord
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ord</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> x.charCodeAt(<span class="hljs-number">0</span>);
 }</pre>
 
 </div>
@@ -1232,7 +1247,7 @@ isAsciiLetter(<span class="hljs-string">'8'</span>) === <span class="hljs-litera
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">try</span> {
       <span class="hljs-keyword">var</span> callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-built_in">arguments</span>.length - <span class="hljs-number">1</span>];
-      <span class="hljs-keyword">var</span> result = f.apply(<span class="hljs-literal">null</span>, init(<span class="hljs-built_in">arguments</span>));
+      <span class="hljs-keyword">var</span> result = f.apply(<span class="hljs-literal">null</span>, [].slice.call(<span class="hljs-built_in">arguments</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">arguments</span>.length - <span class="hljs-number">1</span>));
       setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(<span class="hljs-literal">null</span>, result); });
     } <span class="hljs-keyword">catch</span> (e) {
       setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(e); });
@@ -2033,7 +2048,8 @@ list is passed.</p>
     </small>
   </h3>
 
-  
+  <p><code>Either a b → Boolean</code></p>
+
 
 
   <p>Source:</p>
@@ -2049,7 +2065,8 @@ list is passed.</p>
     </small>
   </h3>
 
-  
+  <p><code>Either a b → Boolean</code></p>
+
 
 
   <p>Source:</p>
@@ -2425,6 +2442,35 @@ subtract(<span class="hljs-number">10</span>, <span class="hljs-number">8</span>
 }</pre>
 
 </div>
+<div class="function well" id="f-lazy">
+
+  <h3>
+    lazy
+    <small>
+      <span class="alias label label-primary">arrayToList</span>
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lazy</span>(<span class="hljs-params">val</span>) </span>{
+  <span class="hljs-keyword">if</span> (isFunction(val)) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Thunk(val);
+  }
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generator</span>(<span class="hljs-params">i</span>) </span>{
+    <span class="hljs-keyword">if</span> (i &lt; val.length) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(val[i], <span class="hljs-keyword">new</span> Thunk(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> generator(i + <span class="hljs-number">1</span>);
+      }));
+    }
+    <span class="hljs-keyword">return</span> emptyList();
+  }
+  <span class="hljs-keyword">return</span> generator(<span class="hljs-number">0</span>);
+}</pre>
+
+</div>
 <div class="function well" id="f-List">
 
   <h3>
@@ -2590,6 +2636,817 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 </div>
 
 
+<h2 id="g-Math">Math</h1>
+
+
+<div class="function well" id="f-abs">
+
+  <h3>
+    abs
+    <small>
+      
+        <span class="label label-warning">Prelude: abs</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">abs</span> x | x &gt;= <span class="hljs-number">0</span> = x
+      | x &lt;  <span class="hljs-number">0</span> = -x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abs</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-acos">
+
+  <h3>
+    acos
+    <small>
+      
+        <span class="label label-warning">Prelude: acos</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">acos</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-acosh">
+
+  <h3>
+    acosh
+    <small>
+      
+        <span class="label label-warning">Prelude: acosh</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">acosh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(x + <span class="hljs-built_in">Math</span>.sqrt(x * x - <span class="hljs-number">1</span>));
+}</pre>
+
+</div>
+<div class="function well" id="f-add">
+
+  <h3>
+    add
+    <small>
+      <span class="alias label label-primary">+</span><span class="alias label label-primary">ADD</span><span class="alias label label-primary">plus</span><span class="alias label label-primary">PLUS</span>
+        <span class="label label-warning">Prelude: +</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}</pre>
+
+</div>
+<div class="function well" id="f-asin">
+
+  <h3>
+    asin
+    <small>
+      
+        <span class="label label-warning">Prelude: asin</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asin</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-asinh">
+
+  <h3>
+    asinh
+    <small>
+      
+        <span class="label label-warning">Prelude: asinh</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asinh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
+    <span class="hljs-keyword">return</span> x;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(x + <span class="hljs-built_in">Math</span>.sqrt(x * x + <span class="hljs-number">1</span>));
+  }
+}</pre>
+
+</div>
+<div class="function well" id="f-atan">
+
+  <h3>
+    atan
+    <small>
+      
+        <span class="label label-warning">Prelude: atan</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">atan</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-atanh">
+
+  <h3>
+    atanh
+    <small>
+      
+        <span class="label label-warning">Prelude: atanh</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">atanh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log((<span class="hljs-number">1</span> + x) / (<span class="hljs-number">1</span> - x)) / <span class="hljs-number">2</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-ceiling">
+
+  <h3>
+    ceiling
+    <small>
+      
+        <span class="label label-warning">Prelude: ceiling</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ceil</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-cos">
+
+  <h3>
+    cos
+    <small>
+      
+        <span class="label label-warning">Prelude: cos</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cos</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-cosh">
+
+  <h3>
+    cosh
+    <small>
+      
+        <span class="label label-warning">Prelude: cosh</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cosh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-div">
+
+  <h3>
+    div
+    <small>
+      
+        <span class="label label-warning">Prelude: div</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">div</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(a / b);
+}</pre>
+
+</div>
+<div class="function well" id="f-divMod">
+
+  <h3>
+    divMod
+    <small>
+      
+        <span class="label label-warning">Prelude: divMod</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → (Number, Number)</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">divMod</span>(<span class="hljs-params">a, b</span>)  </span>{
+  <span class="hljs-keyword">return</span> tuple(div(a, b), mod(a, b));
+}</pre>
+
+</div>
+<div class="function well" id="f-even">
+
+  <h3>
+    even
+    <small>
+      
+        <span class="label label-warning">Prelude: even</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Bool</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">even</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) === <span class="hljs-number">0</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-exp">
+
+  <h3>
+    exp
+    <small>
+      
+        <span class="label label-warning">Prelude: exp</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exp</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-floor">
+
+  <h3>
+    floor
+    <small>
+      
+        <span class="label label-warning">Prelude: floor</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">floor</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-frac">
+
+  <h3>
+    frac
+    <small>
+      <span class="alias label label-primary">&#x2F;</span>
+        <span class="label label-warning">Prelude: &#x2F;</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">frac</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a / b;
+}</pre>
+
+</div>
+<div class="function well" id="f-gcd">
+
+  <h3>
+    gcd
+    <small>
+      
+        <span class="label label-warning">Prelude: gcd</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gcd</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">var</span> c;
+  <span class="hljs-keyword">while</span> (b !== <span class="hljs-number">0</span>) {
+    c = rem(a, b);
+    a = b;
+    b = c;
+  }
+  <span class="hljs-keyword">return</span> a;
+}</pre>
+
+</div>
+<div class="function well" id="f-lcm">
+
+  <h3>
+    lcm
+    <small>
+      
+        <span class="label label-warning">Prelude: lcm</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lcm</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">if</span> (a === <span class="hljs-number">0</span> || b === <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(quot(a, gcd(a, b)) * b);
+}</pre>
+
+</div>
+<div class="function well" id="f-log">
+
+  <h3>
+    log
+    <small>
+      
+        <span class="label label-warning">Prelude: log</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-logBase">
+
+  <h3>
+    logBase
+    <small>
+      
+        <span class="label label-warning">Prelude: logBase</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">logBase</span> x y = log y / log x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logBase</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(a) / <span class="hljs-built_in">Math</span>.log(b);
+}</pre>
+
+</div>
+<div class="function well" id="f-minus">
+
+  <h3>
+    minus
+    <small>
+      <span class="alias label label-primary">-</span><span class="alias label label-primary">MINUS</span>
+        <span class="label label-warning">Prelude: -</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">minus</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a - b;
+}</pre>
+
+</div>
+<div class="function well" id="f-mod">
+
+  <h3>
+    mod
+    <small>
+      
+        <span class="label label-warning">Prelude: mod</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mod</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">var</span> q = quot(a, b);
+  <span class="hljs-keyword">var</span> r = rem(a, b);
+  <span class="hljs-keyword">return</span> signum(r) == -signum(b) ? r + b : r;
+}</pre>
+
+</div>
+<div class="function well" id="f-mul">
+
+  <h3>
+    mul
+    <small>
+      <span class="alias label label-primary">*</span><span class="alias label label-primary">MUL</span><span class="alias label label-primary">times</span><span class="alias label label-primary">TIMES</span>
+        <span class="label label-warning">Prelude: *</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mul</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a * b;
+}</pre>
+
+</div>
+<div class="function well" id="f-negate">
+
+  <h3>
+    negate
+    <small>
+      
+        <span class="label label-warning">Prelude: negate</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">negate</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> -x;
+}</pre>
+
+</div>
+<div class="function well" id="f-odd">
+
+  <h3>
+    odd
+    <small>
+      
+        <span class="label label-warning">Prelude: odd</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Boolean</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">odd</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) !== <span class="hljs-number">0</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-pow">
+
+  <h3>
+    pow
+    <small>
+      <span class="alias label label-primary">**</span><span class="alias label label-primary">^</span><span class="alias label label-primary">^^</span>
+        <span class="label label-warning">Prelude: ^^</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">x</span> ** y = exp (log x * y)</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pow</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-properFraction">
+
+  <h3>
+    properFraction
+    <small>
+      
+        <span class="label label-warning">Prelude: properFraction</span>
+    </small>
+  </h3>
+
+  <p><code>Number → (Number, Number)</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">properFraction</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> num = truncate(x);
+  <span class="hljs-keyword">return</span> tuple(num, -(num - x));
+}</pre>
+
+</div>
+<div class="function well" id="f-quot">
+
+  <h3>
+    quot
+    <small>
+      
+        <span class="label label-warning">Prelude: quot</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quot</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">var</span> r = a / b;
+  <span class="hljs-keyword">return</span> r &gt;= <span class="hljs-number">0</span> ? <span class="hljs-built_in">Math</span>.floor(r) : <span class="hljs-built_in">Math</span>.ceil(r);
+}</pre>
+
+</div>
+<div class="function well" id="f-quotRem">
+
+  <h3>
+    quotRem
+    <small>
+      
+        <span class="label label-warning">Prelude: quotRem</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → (Number, Number)</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quotRem</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> tuple(quot(a, b), rem(a, b));
+}</pre>
+
+</div>
+<div class="function well" id="f-recip">
+
+  <h3>
+    recip
+    <small>
+      
+        <span class="label label-warning">Prelude: recip</span>
+    </small>
+  </h3>
+
+  
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">recip</span> = <span class="hljs-number">1</span> / x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recip</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / x;
+}</pre>
+
+</div>
+<div class="function well" id="f-rem">
+
+  <h3>
+    rem
+    <small>
+      
+        <span class="label label-warning">Prelude: rem</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rem</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a % b;
+}</pre>
+
+</div>
+<div class="function well" id="f-round">
+
+  <h3>
+    round
+    <small>
+      
+        <span class="label label-warning">Prelude: round</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">round</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> fraction = properFraction(x);
+  <span class="hljs-keyword">var</span> n = fraction[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">var</span> m = fraction[<span class="hljs-number">1</span>] &lt; <span class="hljs-number">0</span> ? n - <span class="hljs-number">1</span> : n + <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">switch</span> (signum(<span class="hljs-built_in">Math</span>.abs(fraction[<span class="hljs-number">1</span>]) - <span class="hljs-number">0.5</span>)) {
+    <span class="hljs-keyword">case</span> -<span class="hljs-number">1</span>:
+      <span class="hljs-keyword">return</span> n;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+      <span class="hljs-keyword">return</span> n % <span class="hljs-number">2</span> === <span class="hljs-number">0</span> ? n : m;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+      <span class="hljs-keyword">return</span> m;
+  }
+}</pre>
+
+</div>
+<div class="function well" id="f-signum">
+
+  <h3>
+    signum
+    <small>
+      
+        <span class="label label-warning">Prelude: signum</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">signum</span> x | x &gt;  <span class="hljs-number">0</span> = <span class="hljs-number">1</span>
+         | x == <span class="hljs-number">0</span> = <span class="hljs-number">0</span>
+         | x &lt;  <span class="hljs-number">0</span> = -<span class="hljs-number">1</span></pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">signum</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-sin">
+
+  <h3>
+    sin
+    <small>
+      
+        <span class="label label-warning">Prelude: sin</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sin</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-sqrt">
+
+  <h3>
+    sqrt
+    <small>
+      
+        <span class="label label-warning">Prelude: sqrt</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sqrt</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-sub">
+
+  <h3>
+    sub
+    <small>
+      <span class="alias label label-primary">subtract</span>
+        <span class="label label-warning">Prelude: subtract</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sub</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> b - a;
+}</pre>
+
+</div>
+<div class="function well" id="f-tan">
+
+  <h3>
+    tan
+    <small>
+      
+        <span class="label label-warning">Prelude: tan</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">tan</span> x = sin x / cos x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tan</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-tanh">
+
+  <h3>
+    tanh
+    <small>
+      
+        <span class="label label-warning">Prelude: tanh</span>
+    </small>
+  </h3>
+
+  <p><code>Number → Number</code></p>
+
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">tanh</span> x = sinh x / cosh x</pre>
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tanh</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">Infinity</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x));
+  }
+}</pre>
+
+</div>
+
+
 <h2 id="g-Maybe">Maybe</h1>
 
 
@@ -2645,6 +3502,22 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 }</pre>
 
 </div>
+<div class="function well" id="f-mapMaybe">
+
+  <h3>
+    mapMaybe
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-keyword">var</span> mapMaybe = <span class="hljs-comment">/* this is a composed function */</span></pre>
+
+</div>
 <div class="function well" id="f-maybe">
 
   <h3>
@@ -2690,36 +3563,15 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 </div>
 
 
-<h2 id="g-Math">Math</h1>
+<h2 id="g-Nodash">Nodash</h1>
 
 
-<div class="function well" id="f-abs">
+<div class="function well" id="f-install">
 
   <h3>
-    abs
+    install
     <small>
       
-        <span class="label label-warning">Prelude: abs</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">abs</span> x | x &gt;= <span class="hljs-number">0</span> = x
-      | x &lt;  <span class="hljs-number">0</span> = -x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abs</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-acos">
-
-  <h3>
-    acos
-    <small>
-      
-        <span class="label label-warning">Prelude: acos</span>
     </small>
   </h3>
 
@@ -2727,340 +3579,45 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 
 
   <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">acos</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-acosh">
-
-  <h3>
-    acosh
-    <small>
-      
-        <span class="label label-warning">Prelude: acosh</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">acosh</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(x + <span class="hljs-built_in">Math</span>.sqrt(x * x - <span class="hljs-number">1</span>));
-}</pre>
-
-</div>
-<div class="function well" id="f-add">
-
-  <h3>
-    add
-    <small>
-      <span class="alias label label-primary">+</span><span class="alias label label-primary">ADD</span><span class="alias label label-primary">plus</span><span class="alias label label-primary">PLUS</span>
-        <span class="label label-warning">Prelude: +</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> a + b;
-}</pre>
-
-</div>
-<div class="function well" id="f-asin">
-
-  <h3>
-    asin
-    <small>
-      
-        <span class="label label-warning">Prelude: asin</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asin</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-asinh">
-
-  <h3>
-    asinh
-    <small>
-      
-        <span class="label label-warning">Prelude: asinh</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asinh</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
-    <span class="hljs-keyword">return</span> x;
-  } <span class="hljs-keyword">else</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(x + <span class="hljs-built_in">Math</span>.sqrt(x * x + <span class="hljs-number">1</span>));
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">install</span>(<span class="hljs-params">mountpoint</span>) </span>{
+  <span class="hljs-keyword">var</span> options = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
+  <span class="hljs-keyword">var</span> nodashObject = Nodash;
+  <span class="hljs-keyword">var</span> prefix = <span class="hljs-string">''</span>;
+  <span class="hljs-keyword">var</span> postfix = <span class="hljs-string">''</span>;
+  <span class="hljs-keyword">if</span> (!mountpoint) {
+    <span class="hljs-keyword">return</span> Nodash;
   }
-}</pre>
-
-</div>
-<div class="function well" id="f-atan">
-
-  <h3>
-    atan
-    <small>
-      
-        <span class="label label-warning">Prelude: atan</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">atan</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-atanh">
-
-  <h3>
-    atanh
-    <small>
-      
-        <span class="label label-warning">Prelude: atanh</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">atanh</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log((<span class="hljs-number">1</span> + x) / (<span class="hljs-number">1</span> - x)) / <span class="hljs-number">2</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-ceiling">
-
-  <h3>
-    ceiling
-    <small>
-      
-        <span class="label label-warning">Prelude: ceiling</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ceil</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-cos">
-
-  <h3>
-    cos
-    <small>
-      
-        <span class="label label-warning">Prelude: cos</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cos</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-cosh">
-
-  <h3>
-    cosh
-    <small>
-      
-        <span class="label label-warning">Prelude: cosh</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cosh</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x)) / <span class="hljs-number">2</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-div">
-
-  <h3>
-    div
-    <small>
-      
-        <span class="label label-warning">Prelude: div</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">div</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(a / b);
-}</pre>
-
-</div>
-<div class="function well" id="f-divMod">
-
-  <h3>
-    divMod
-    <small>
-      
-        <span class="label label-warning">Prelude: divMod</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">divMod</span>(<span class="hljs-params">a, b</span>)  </span>{
-  <span class="hljs-keyword">return</span> [div(a, b), mod(a, b)];
-}</pre>
-
-</div>
-<div class="function well" id="f-even">
-
-  <h3>
-    even
-    <small>
-      
-        <span class="label label-warning">Prelude: even</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">even</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) === <span class="hljs-number">0</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-exp">
-
-  <h3>
-    exp
-    <small>
-      
-        <span class="label label-warning">Prelude: exp</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exp</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-floor">
-
-  <h3>
-    floor
-    <small>
-      
-        <span class="label label-warning">Prelude: floor</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">floor</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-frac">
-
-  <h3>
-    frac
-    <small>
-      <span class="alias label label-primary">&#x2F;</span>
-        <span class="label label-warning">Prelude: &#x2F;</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">frac</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> a / b;
-}</pre>
-
-</div>
-<div class="function well" id="f-gcd">
-
-  <h3>
-    gcd
-    <small>
-      
-        <span class="label label-warning">Prelude: gcd</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gcd</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">var</span> c;
-  <span class="hljs-keyword">while</span> (b !== <span class="hljs-number">0</span>) {
-    c = rem(a, b);
-    a = b;
-    b = c;
+  <span class="hljs-keyword">if</span> (options) {
+    nodashObject = makeNodash(options);
   }
-  <span class="hljs-keyword">return</span> a;
-}</pre>
-
-</div>
-<div class="function well" id="f-lcm">
-
-  <h3>
-    lcm
-    <small>
-      
-        <span class="label label-warning">Prelude: lcm</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lcm</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">if</span> (a === <span class="hljs-number">0</span> || b === <span class="hljs-number">0</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">if</span> (isArray(mountpoint)) {
+    <span class="hljs-keyword">if</span> (isString(mountpoint[<span class="hljs-number">0</span>])) {
+      prefix = [].shift.call(mountpoint);
+    }
+    <span class="hljs-keyword">if</span> (isString(mountpoint[<span class="hljs-number">1</span>])) {
+      postfix = mountpoint[<span class="hljs-number">1</span>];
+    }
+    mountpoint = mountpoint[<span class="hljs-number">0</span>] || {};
   }
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(quot(a, gcd(a, b)) * b);
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">func, name</span>) </span>{
+    <span class="hljs-keyword">if</span> (name[<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>) {
+      <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">var</span> key = prefix + name + postfix;
+    <span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> mountpoint)) {
+      mountpoint[key] = func;
+    }
+  }, nodashObject);
+  <span class="hljs-keyword">return</span> mountpoint;
 }</pre>
 
 </div>
-<div class="function well" id="f-log">
+<div class="function well" id="f-register">
 
   <h3>
-    log
+    register
     <small>
       
-        <span class="label label-warning">Prelude: log</span>
     </small>
   </h3>
 
@@ -3068,398 +3625,46 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 
 
   <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-logBase">
-
-  <h3>
-    logBase
-    <small>
-      
-        <span class="label label-warning">Prelude: logBase</span>
-    </small>
-  </h3>
-
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> args = [].slice.call(<span class="hljs-built_in">arguments</span>);
   
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">logBase</span> x y = log y / log x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logBase</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.log(a) / <span class="hljs-built_in">Math</span>.log(b);
-}</pre>
-
-</div>
-<div class="function well" id="f-minus">
-
-  <h3>
-    minus
-    <small>
-      <span class="alias label label-primary">-</span><span class="alias label label-primary">MINUS</span>
-        <span class="label label-warning">Prelude: -</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">minus</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> a - b;
-}</pre>
-
-</div>
-<div class="function well" id="f-mod">
-
-  <h3>
-    mod
-    <small>
-      
-        <span class="label label-warning">Prelude: mod</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mod</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">var</span> q = quot(a, b);
-  <span class="hljs-keyword">var</span> r = rem(a, b);
-  <span class="hljs-keyword">return</span> signum(r) == -signum(b) ? r + b : r;
-}</pre>
-
-</div>
-<div class="function well" id="f-mul">
-
-  <h3>
-    mul
-    <small>
-      <span class="alias label label-primary">*</span><span class="alias label label-primary">MUL</span><span class="alias label label-primary">times</span><span class="alias label label-primary">TIMES</span>
-        <span class="label label-warning">Prelude: *</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mul</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> a * b;
-}</pre>
-
-</div>
-<div class="function well" id="f-negate">
-
-  <h3>
-    negate
-    <small>
-      
-        <span class="label label-warning">Prelude: negate</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">negate</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> -x;
-}</pre>
-
-</div>
-<div class="function well" id="f-odd">
-
-  <h3>
-    odd
-    <small>
-      
-        <span class="label label-warning">Prelude: odd</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">odd</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> (x % <span class="hljs-number">2</span>) !== <span class="hljs-number">0</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-pow">
-
-  <h3>
-    pow
-    <small>
-      <span class="alias label label-primary">**</span><span class="alias label label-primary">^</span><span class="alias label label-primary">^^</span>
-        <span class="label label-warning">Prelude: ^^</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">x</span> ** y = exp (log x * y)</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pow</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-properFraction">
-
-  <h3>
-    properFraction
-    <small>
-      
-        <span class="label label-warning">Prelude: properFraction</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">properFraction</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">var</span> num = truncate(x);
-  <span class="hljs-keyword">return</span> [ num, -(num - x) ];
-}</pre>
-
-</div>
-<div class="function well" id="f-quot">
-
-  <h3>
-    quot
-    <small>
-      
-        <span class="label label-warning">Prelude: quot</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quot</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">var</span> r = a / b;
-  <span class="hljs-keyword">return</span> r &gt;= <span class="hljs-number">0</span> ? <span class="hljs-built_in">Math</span>.floor(r) : <span class="hljs-built_in">Math</span>.ceil(r);
-}</pre>
-
-</div>
-<div class="function well" id="f-quotRem">
-
-  <h3>
-    quotRem
-    <small>
-      
-        <span class="label label-warning">Prelude: quotRem</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quotRem</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> [quot(a, b), rem(a, b)];
-}</pre>
-
-</div>
-<div class="function well" id="f-recip">
-
-  <h3>
-    recip
-    <small>
-      
-        <span class="label label-warning">Prelude: recip</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">recip</span> = <span class="hljs-number">1</span> / x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recip</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / x;
-}</pre>
-
-</div>
-<div class="function well" id="f-rem">
-
-  <h3>
-    rem
-    <small>
-      
-        <span class="label label-warning">Prelude: rem</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rem</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> a % b;
-}</pre>
-
-</div>
-<div class="function well" id="f-round">
-
-  <h3>
-    round
-    <small>
-      
-        <span class="label label-warning">Prelude: round</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">round</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">var</span> fraction = properFraction(x);
-  <span class="hljs-keyword">var</span> n = fraction[<span class="hljs-number">0</span>];
-  <span class="hljs-keyword">var</span> m = fraction[<span class="hljs-number">1</span>] &lt; <span class="hljs-number">0</span> ? n - <span class="hljs-number">1</span> : n + <span class="hljs-number">1</span>;
-  <span class="hljs-keyword">switch</span> (signum(<span class="hljs-built_in">Math</span>.abs(fraction[<span class="hljs-number">1</span>]) - <span class="hljs-number">0.5</span>)) {
-    <span class="hljs-keyword">case</span> -<span class="hljs-number">1</span>:
-      <span class="hljs-keyword">return</span> n;
-    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
-      <span class="hljs-keyword">return</span> n % <span class="hljs-number">2</span> === <span class="hljs-number">0</span> ? n : m;
-    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
-      <span class="hljs-keyword">return</span> m;
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">typeof</span> args[<span class="hljs-number">0</span>]) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'object'</span>:
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(args[<span class="hljs-number">0</span>])) {
+        registerInjected(args[<span class="hljs-number">0</span>].slice());
+      } <span class="hljs-keyword">else</span> {
+        registerLib(args[<span class="hljs-number">0</span>]);
+      }
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'function'</span>:
+      register(args[<span class="hljs-number">0</span>].call(Nodash));
+      <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-keyword">return</span>;
   }
-}</pre>
-
-</div>
-<div class="function well" id="f-signum">
-
-  <h3>
-    signum
-    <small>
-      
-        <span class="label label-warning">Prelude: signum</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">signum</span> x | x &gt;  <span class="hljs-number">0</span> = <span class="hljs-number">1</span>
-         | x == <span class="hljs-number">0</span> = <span class="hljs-number">0</span>
-         | x &lt;  <span class="hljs-number">0</span> = -<span class="hljs-number">1</span></pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">signum</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === <span class="hljs-number">0</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">var</span> func = args.pop();
+  <span class="hljs-keyword">var</span> aliases = [];
+  args.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arg</span>) </span>{
+    [].push.apply(aliases, arg.split(<span class="hljs-regexp">/ +/</span>));
+  });
+  <span class="hljs-keyword">var</span> name = <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; aliases.length; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^[a-z0-9]+$/i</span>.test(aliases[i])) {
+      name = aliases[i];
+      <span class="hljs-keyword">break</span>;
+    }
   }
-  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-sin">
-
-  <h3>
-    sin
-    <small>
-      
-        <span class="label label-warning">Prelude: sin</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sin</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-sqrt">
-
-  <h3>
-    sqrt
-    <small>
-      
-        <span class="label label-warning">Prelude: sqrt</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sqrt</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-sub">
-
-  <h3>
-    sub
-    <small>
-      <span class="alias label label-primary">subtract</span>
-        <span class="label label-warning">Prelude: subtract</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sub</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> b - a;
-}</pre>
-
-</div>
-<div class="function well" id="f-tan">
-
-  <h3>
-    tan
-    <small>
-      
-        <span class="label label-warning">Prelude: tan</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">tan</span> x = sin x / cos x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tan</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-tanh">
-
-  <h3>
-    tanh
-    <small>
-      
-        <span class="label label-warning">Prelude: tanh</span>
-    </small>
-  </h3>
-
-  
-
-  <p>Haskell Definition:</p>
-  <pre><span class="hljs-title">tanh</span> x = sinh x / cosh x</pre>
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tanh</span>(<span class="hljs-params">x</span>) </span>{
-  <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">Infinity</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x === -<span class="hljs-literal">Infinity</span>) {
-    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
-  } <span class="hljs-keyword">else</span> {
-    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x));
+  __metadata[name] = {
+    aliases: aliases,
+    definition: func 
+  };
+  <span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/^[A-Z]/</span>.test(name)) {
+    func = curried(func);
   }
+  aliases.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">alias</span>) </span>{
+    Nodash[alias] = func;
+  });
 }</pre>
 
 </div>
@@ -5304,52 +5509,6 @@ for Symbols.</p>
 }</pre>
 
 </div>
-<div class="function well" id="f-install">
-
-  <h3>
-    install
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">install</span>(<span class="hljs-params">mountpoint</span>) </span>{
-  <span class="hljs-keyword">var</span> options = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
-  <span class="hljs-keyword">var</span> nodashObject = Nodash;
-  <span class="hljs-keyword">var</span> prefix = <span class="hljs-string">''</span>;
-  <span class="hljs-keyword">var</span> postfix = <span class="hljs-string">''</span>;
-  <span class="hljs-keyword">if</span> (!mountpoint) {
-    <span class="hljs-keyword">return</span> Nodash;
-  }
-  <span class="hljs-keyword">if</span> (options) {
-    nodashObject = makeNodash(options);
-  }
-  <span class="hljs-keyword">if</span> (isArray(mountpoint)) {
-    <span class="hljs-keyword">if</span> (isString(mountpoint[<span class="hljs-number">0</span>])) {
-      prefix = [].shift.call(mountpoint);
-    }
-    <span class="hljs-keyword">if</span> (isString(mountpoint[<span class="hljs-number">1</span>])) {
-      postfix = mountpoint[<span class="hljs-number">1</span>];
-    }
-    mountpoint = mountpoint[<span class="hljs-number">0</span>] || {};
-  }
-  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">func, name</span>) </span>{
-    <span class="hljs-keyword">if</span> (name[<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>) {
-      <span class="hljs-keyword">return</span>;
-    }
-    <span class="hljs-keyword">var</span> key = prefix + name + postfix;
-    <span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> mountpoint)) {
-      mountpoint[key] = func;
-    }
-  }, nodashObject);
-  <span class="hljs-keyword">return</span> mountpoint;
-}</pre>
-
-</div>
 <div class="function well" id="f-intercalate">
 
   <h3>
@@ -5457,35 +5616,6 @@ for Symbols.</p>
     <span class="hljs-keyword">default</span>:
       error(<span class="hljs-built_in">TypeError</span>);
   }
-}</pre>
-
-</div>
-<div class="function well" id="f-lazy">
-
-  <h3>
-    lazy
-    <small>
-      <span class="alias label label-primary">arrayToList</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lazy</span>(<span class="hljs-params">val</span>) </span>{
-  <span class="hljs-keyword">if</span> (isFunction(val)) {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Thunk(val);
-  }
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generator</span>(<span class="hljs-params">i</span>) </span>{
-    <span class="hljs-keyword">if</span> (i &lt; val.length) {
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(val[i], <span class="hljs-keyword">new</span> Thunk(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-        <span class="hljs-keyword">return</span> generator(i + <span class="hljs-number">1</span>);
-      }));
-    }
-    <span class="hljs-keyword">return</span> emptyList();
-  }
-  <span class="hljs-keyword">return</span> generator(<span class="hljs-number">0</span>);
 }</pre>
 
 </div>
@@ -5651,22 +5781,6 @@ for Symbols.</p>
       <span class="hljs-keyword">return</span> ys;
   }
 }</pre>
-
-</div>
-<div class="function well" id="f-mapMaybe">
-
-  <h3>
-    mapMaybe
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-keyword">var</span> mapMaybe = <span class="hljs-comment">/* this is a composed function */</span></pre>
 
 </div>
 <div class="function well" id="f-max">
@@ -6687,6 +6801,7 @@ for Symbols.</p>
   <li>pipe</li>
   <li>range</li>
   <li>rangeStep</li>
+  <li>register</li>
   <li>resolveThunk</li>
   <li>rights</li>
   <li>run</li>

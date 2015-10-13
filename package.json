@@ -58,6 +58,6 @@
   },
   "dependencies": {
     "knuth-morris-pratt": "^1.0.0",
-    "steinhaus-johnson-trotter": "^1.0.0"
+    "steinhaus-johnson-trotter": "^1.1.0"
   }
 }

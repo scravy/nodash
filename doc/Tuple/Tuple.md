@@ -1,14 +1,14 @@
-`new Tuple(fist, second)`
+`new Tuple(first, second) :: a → b → (a, b)`
 
 Tuples are immutable pairs of a first and a second components.
 
 Methods:
 
 <dl>
-    <dt>.fst()</dt>
+    <dt>.fst() → a</dt>
     <dd>Retrieves the first component of this tuple.</dd>
 
-    <dt>.snd()</dt>
+    <dt>.snd() → b</dt>
     <dd>Retrieves the second component of this tuple.</dd>
 </dl>
 

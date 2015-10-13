@@ -1,5 +1,5 @@
 /* vim: set et sw=2 ts=2: */
-// jshint undef: false
+/* jshint undef: false, maxcomplexity: 11, strict: false */
 
 var marked = require('marked');
 var fs = require('fs');

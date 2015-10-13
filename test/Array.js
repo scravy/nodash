@@ -160,7 +160,7 @@ describe('Arrays', function () {
     it('filter /w string', function () {
         assert.deepEqual("", filter(constant(false), "abc"));
         assert.deepEqual("bcbc", filter(function (x) {
-            return x == 'b' || x == 'c';
+            return x === 'b' || x === 'c';
         }, "abcdabcd"));
     });
 

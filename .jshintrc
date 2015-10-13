@@ -1,6 +1,14 @@
 {
     "node": true,
     "undef": true,
+    "curly": true,
+    "eqeqeq": true,
+    "futurehostile": true,
+    "maxcomplexity": 10,
+    "noarg": true,
+    "nocomma": true,
+    "shadow": "inner",
+    "strict": true,
     "predef": [
         "Set",
         "setTimeout",

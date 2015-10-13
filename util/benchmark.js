@@ -1,6 +1,6 @@
 /* vim: set et sw=2 ts=2: */
-/* jshint node: true */
-"use strict";
+/* jshint node: true, undef: false */
+'use strict';
 
 var N = require('../nodash.js');
 

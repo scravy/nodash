@@ -45,7 +45,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.4.1",
+    "gulp-uglify": "^1.4.2",
     "highlight.js": "^8.8.0",
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-clean-css": "^1.5.1",

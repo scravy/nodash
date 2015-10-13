@@ -69,6 +69,11 @@
               </a>
             
               
+              <a class="source" href="extra.html">
+                extra.js
+              </a>
+            
+              
               <a class="source" href="fold.html">
                 fold.js
               </a>
@@ -203,7 +208,7 @@
     <span class="hljs-keyword">async</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">f</span>) </span>{
       <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">try</span> {
-          <span class="hljs-keyword">var</span> callback = Nodash.last(<span class="hljs-built_in">arguments</span>);
+          <span class="hljs-keyword">var</span> callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-built_in">arguments</span>.length - <span class="hljs-number">1</span>];
           <span class="hljs-keyword">var</span> result = f.apply(<span class="hljs-literal">null</span>, Nodash.init(<span class="hljs-built_in">arguments</span>));
           setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(<span class="hljs-literal">null</span>, result); });
         } <span class="hljs-keyword">catch</span> (e) {

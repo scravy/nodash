@@ -65,7 +65,22 @@ module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
     },
 
     last: function (xs) {
-      return xs[xs.length - 1];
+      switch (typeOf(xs)) {
+        case 'array':
+        case 'string':
+          return xs[xs.length - 1];
+        case 'list':
+          if (xs.isEmpty()) {
+            return undefined;
+          }
+          for (var ts = xs.tail(); !ts.isEmpty();) {
+              xs = xs.tail();
+              ts = xs.tail();
+          }
+          return xs.head();
+        default:
+          error(TypeError);
+      }
     },
 
     tail: function (xs) {

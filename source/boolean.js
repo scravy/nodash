@@ -14,7 +14,7 @@ module.exports = {
     return !value;
   },
 
-  bool: function (yes, no, bool) {
+  bool: function (no, yes, bool) {
     return bool ? yes : no;
   }
 

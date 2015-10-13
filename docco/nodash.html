@@ -69,6 +69,11 @@
               </a>
             
               
+              <a class="source" href="extra.html">
+                extra.js
+              </a>
+            
+              
               <a class="source" href="fold.html">
                 fold.js
               </a>
@@ -263,6 +268,7 @@
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/coll/fold'</span>));
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/coll/base'</span>));
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/coll/zipWith'</span>));
+  register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/coll/extra'</span>));
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/collection'</span>));
   
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/Maybe'</span>));
@@ -304,7 +310,9 @@
   <span class="hljs-keyword">delete</span> Nodash.Thunk;
   <span class="hljs-keyword">delete</span> Nodash.resolveThunk;
   
-  register([<span class="hljs-string">'freeze'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">freeze</span>) </span>{ freeze(Nodash); <span class="hljs-keyword">return</span> {}; }]);
+  register([<span class="hljs-string">'freeze'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">freeze</span>) </span>{
+    freeze(Nodash); <span class="hljs-keyword">return</span> {};
+  }]);
   
   <span class="hljs-keyword">return</span> Nodash;
 }

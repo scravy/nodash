@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>fractional.js</title>
+  <title>extra.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -181,7 +181,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>fractional.js</h1>
+                  <h1>extra.js</h1>
               </div>
           </li>
         
@@ -199,17 +199,46 @@
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
 <span class="hljs-pi">'use strict'</span>;
 
-<span class="hljs-built_in">module</span>.exports = {
+<span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'List'</span>, <span class="hljs-string">'Thunk'</span>, <span class="hljs-string">'emptyList'</span>, <span class="hljs-string">'isUndefined'</span>, <span class="hljs-string">'listToArray'</span>, <span class="hljs-string">'typeOf'</span>, <span class="hljs-string">'error'</span>,
+  <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">List, Thunk, emptyList, isUndefined, listToArray, typeOf, error</span>) </span>{
 
-  <span class="hljs-string">'/ frac'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
-    <span class="hljs-keyword">return</span> a / b;
-  },
+  <span class="hljs-keyword">var</span> Nodash = <span class="hljs-keyword">this</span>;
 
-  recip: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / x;
+  <span class="hljs-keyword">var</span> sjt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'steinhaus-johnson-trotter'</span>);
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateList</span>(<span class="hljs-params">thing</span>) </span>{
+    <span class="hljs-keyword">var</span> generator = sjt(thing);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Thunk(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> next = generator();
+        <span class="hljs-keyword">if</span> (isUndefined(next)) {
+          <span class="hljs-keyword">return</span> emptyList();
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(next, gen());
+      });
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(thing, gen());
   }
+
+  <span class="hljs-keyword">return</span> {
+
+    permutations: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{
+      <span class="hljs-keyword">switch</span> (typeOf(thing)) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'array'</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'string'</span>:
+          <span class="hljs-keyword">return</span> sjt.all(thing);
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'list'</span>:
+          <span class="hljs-keyword">return</span> generateList(listToArray(thing));
+        <span class="hljs-keyword">default</span>:
+          error(<span class="hljs-built_in">TypeError</span>);
+      }
+    }
+
+  };
   
-};</pre></div></div>
+}];</pre></div></div>
             
         </li>
         

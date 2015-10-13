@@ -63,6 +63,10 @@
     <span class="name">foldr</span>
     <span class="alias label label-primary">reduceRight</span>
   </a></li>
+  <li><a href="#f-permutations">
+    <span class="name">permutations</span>
+    
+  </a></li>
   <li><a href="#f-sum">
     <span class="name">sum</span>
     
@@ -904,9 +908,9 @@
 
 <div class="content">
 
-<h1>nodash 0.10.3 <small>api documentation</small></h1>
+<h1>nodash 0.11.0 <small>api documentation</small></h1>
 
-<p>This is the API documentation for nodash 0.10.3.</p>
+<p>This is the API documentation for nodash 0.11.0.</p>
 
 <p>Don't miss the <a href="#Appendix">Appendix</a>.</p>
 
@@ -953,11 +957,17 @@ foldl(AND, <span class="hljs-literal">true</span>, [ <span class="hljs-literal">
     </small>
   </h3>
 
-  
+  <p><code>Boolean → Boolean → Boolean</code></p>
+<p>Fold on <code>Boolean</code>. <code>bool(x, y, c)</code> evaluates to <code>x</code> if <code>c</code> is <code>false</code> and to <code>y</code> otherwise.</p>
 
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">bool</span> no yes condition = <span class="hljs-keyword">case</span> condition <span class="hljs-keyword">of</span>
+  <span class="hljs-type">True</span> -&gt; yes
+  <span class="hljs-type">False</span> -&gt; no</pre>
 
   <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bool</span>(<span class="hljs-params">yes, no, bool</span>) </span>{
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bool</span>(<span class="hljs-params">no, yes, bool</span>) </span>{
   <span class="hljs-keyword">return</span> bool ? yes : no;
 }</pre>
 
@@ -972,8 +982,17 @@ foldl(AND, <span class="hljs-literal">true</span>, [ <span class="hljs-literal">
     </small>
   </h3>
 
-  
+  <p><code>Boolean → Boolean</code></p>
+<p>Negates a boolean value.</p>
+<p>This is basically JavaScripts unary prefix operator <code>!</code> defined as a function.</p>
+<p>Example:</p>
+<pre><code class="lang-JavaScript">not(<span class="hljs-literal">true</span>) === <span class="hljs-literal">false</span>
+</code></pre>
 
+
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-title">not</span> <span class="hljs-type">False</span> = <span class="hljs-type">True</span>
+<span class="hljs-title">not</span> _     = <span class="hljs-type">False</span></pre>
 
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">not</span>(<span class="hljs-params">value</span>) </span>{
@@ -1245,6 +1264,49 @@ of a structure.</p>
         <span class="hljs-keyword">return</span> x;
       }
       <span class="hljs-keyword">return</span> f(foldr(f, x, xs.tail()), xs.head());
+  }
+}</pre>
+
+</div>
+<div class="function well" id="f-permutations">
+
+  <h3>
+    permutations
+    <small>
+      
+        <span class="label label-warning">Prelude: permutations</span>
+    </small>
+  </h3>
+
+  <p><code>[a] → [[a]]</code></p>
+<p>Generates a list of <a href="https://en.wikipedia.org/wiki/Permutation">permutations</a>
+using the
+<a href="https://github.com/nodash/steinhaus-johnson-trotter">Steinhaus-Johnson-Trotter</a>
+algorithm.</p>
+<p>This function returns an array of all the permutations if
+an array or a string is passed, or a lazily evaluated list if a
+list is passed.</p>
+<p>Example using a string:</p>
+<pre><code class="lang-JavaScript">permutations(<span class="hljs-string">'abc'</span>)
+<span class="hljs-comment">// → [ 'abc', 'acb', 'cab', 'cba', 'bca', 'bac' ]</span>
+</code></pre>
+<p>Example using a list:</p>
+<pre><code class="lang-JavaScript">permutations(lazy([ <span class="hljs-number">7</span>, <span class="hljs-number">4</span> ]))
+<span class="hljs-comment">// → [ [ 7, 4 ], [ 4, 7 ] ]</span>
+</code></pre>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">permutations</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">switch</span> (typeOf(thing)) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'array'</span>:
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'string'</span>:
+      <span class="hljs-keyword">return</span> sjt.all(thing);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'list'</span>:
+      <span class="hljs-keyword">return</span> generateList(listToArray(thing));
+    <span class="hljs-keyword">default</span>:
+      error(<span class="hljs-built_in">TypeError</span>);
   }
 }</pre>
 
@@ -1720,6 +1782,8 @@ but this function is exposing that method as a function.</p>
 </code></pre>
 
 
+  <p>Haskell Definition:</p>
+  <pre><span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">Tuple</span> a b = <span class="hljs-type">Tuple</span> <span class="hljs-container">{ <span class="hljs-title">fst</span> :: <span class="hljs-title">a</span>, <span class="hljs-title">snd</span> :: <span class="hljs-title">b</span> }</span></span></pre>
 
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Tuple</span>(<span class="hljs-params">fst, snd</span>) </span>{
@@ -2038,7 +2102,7 @@ for Symbols.</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async</span>(<span class="hljs-params">f</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">try</span> {
-      <span class="hljs-keyword">var</span> callback = last(<span class="hljs-built_in">arguments</span>);
+      <span class="hljs-keyword">var</span> callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-built_in">arguments</span>.length - <span class="hljs-number">1</span>];
       <span class="hljs-keyword">var</span> result = f.apply(<span class="hljs-literal">null</span>, init(<span class="hljs-built_in">arguments</span>));
       setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(<span class="hljs-literal">null</span>, result); });
     } <span class="hljs-keyword">catch</span> (e) {
@@ -4113,7 +4177,22 @@ for Symbols.</p>
 
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">last</span>(<span class="hljs-params">xs</span>) </span>{
-  <span class="hljs-keyword">return</span> xs[xs.length - <span class="hljs-number">1</span>];
+  <span class="hljs-keyword">switch</span> (typeOf(xs)) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'array'</span>:
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'string'</span>:
+      <span class="hljs-keyword">return</span> xs[xs.length - <span class="hljs-number">1</span>];
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'list'</span>:
+      <span class="hljs-keyword">if</span> (xs.isEmpty()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+      }
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> ts = xs.tail(); !ts.isEmpty();) {
+          xs = xs.tail();
+          ts = xs.tail();
+      }
+      <span class="hljs-keyword">return</span> xs.head();
+    <span class="hljs-keyword">default</span>:
+      error(<span class="hljs-built_in">TypeError</span>);
+  }
 }</pre>
 
 </div>

@@ -46,6 +46,7 @@ function makeNodash(options) {
   register(require('./lib/coll/fold'));
   register(require('./lib/coll/base'));
   register(require('./lib/coll/zipWith'));
+  register(require('./lib/coll/extra'));
   register(require('./lib/collection'));
   
   register(require('./lib/Maybe'));
@@ -87,7 +88,9 @@ function makeNodash(options) {
   delete Nodash.Thunk;
   delete Nodash.resolveThunk;
   
-  register(['freeze', function (freeze) { freeze(Nodash); return {}; }]);
+  register(['freeze', function (freeze) {
+    freeze(Nodash); return {};
+  }]);
   
   return Nodash;
 }

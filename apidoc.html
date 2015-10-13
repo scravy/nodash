@@ -69,6 +69,21 @@
     
   </a></li>
 </ul>
+<h6><a href="#g-Control">Control</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-async">
+    <span class="name">async</span>
+    
+  </a></li>
+  <li><a href="#f-pipe">
+    <span class="name">pipe</span>
+    
+  </a></li>
+  <li><a href="#f-run">
+    <span class="name">run</span>
+    
+  </a></li>
+</ul>
 <h6><a href="#g-Collection">Collection</a></h6>
 <ul class="list-unstyled">
   <li><a href="#f-all">
@@ -129,17 +144,6 @@
   </a></li>
   <li><a href="#f-zipWith4">
     <span class="name">zipWith4</span>
-    
-  </a></li>
-</ul>
-<h6><a href="#g-Control">Control</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-pipe">
-    <span class="name">pipe</span>
-    
-  </a></li>
-  <li><a href="#f-run">
-    <span class="name">run</span>
     
   </a></li>
 </ul>
@@ -253,6 +257,29 @@
   </a></li>
   <li><a href="#f-singleton">
     <span class="name">singleton</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Maybe">Maybe</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-catMaybes">
+    <span class="name">catMaybes</span>
+    
+  </a></li>
+  <li><a href="#f-isJust">
+    <span class="name">isJust</span>
+    
+  </a></li>
+  <li><a href="#f-isNothing">
+    <span class="name">isNothing</span>
+    
+  </a></li>
+  <li><a href="#f-maybe">
+    <span class="name">maybe</span>
+    
+  </a></li>
+  <li><a href="#f-maybeToList">
+    <span class="name">maybeToList</span>
     
   </a></li>
 </ul>
@@ -415,29 +442,6 @@
     
   </a></li>
 </ul>
-<h6><a href="#g-Maybe">Maybe</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-catMaybes">
-    <span class="name">catMaybes</span>
-    
-  </a></li>
-  <li><a href="#f-isJust">
-    <span class="name">isJust</span>
-    
-  </a></li>
-  <li><a href="#f-isNothing">
-    <span class="name">isNothing</span>
-    
-  </a></li>
-  <li><a href="#f-maybe">
-    <span class="name">maybe</span>
-    
-  </a></li>
-  <li><a href="#f-maybeToList">
-    <span class="name">maybeToList</span>
-    
-  </a></li>
-</ul>
 <h6><a href="#g-Object">Object</a></h6>
 <ul class="list-unstyled">
   <li><a href="#f-each">
@@ -586,10 +590,6 @@
   <li><a href="#f-append">
     <span class="name">append</span>
     <span class="alias label label-primary">++</span>
-  </a></li>
-  <li><a href="#f-async">
-    <span class="name">async</span>
-    
   </a></li>
   <li><a href="#f-at">
     <span class="name">at</span>
@@ -1212,6 +1212,321 @@ isAsciiLetter(<span class="hljs-string">'8'</span>) === <span class="hljs-litera
 </div>
 
 
+<h2 id="g-Control">Control</h1>
+
+
+<div class="function well" id="f-async">
+
+  <h3>
+    async
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">var</span> callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-built_in">arguments</span>.length - <span class="hljs-number">1</span>];
+      <span class="hljs-keyword">var</span> result = f.apply(<span class="hljs-literal">null</span>, init(<span class="hljs-built_in">arguments</span>));
+      setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(<span class="hljs-literal">null</span>, result); });
+    } <span class="hljs-keyword">catch</span> (e) {
+      setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(e); });
+    }
+  };
+}</pre>
+
+</div>
+<div class="function well" id="f-pipe">
+
+  <h3>
+    pipe
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pipe</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> functions, intermediateResult, callback;
+  <span class="hljs-keyword">var</span> error = <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">if</span> (isArray(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>])) {
+    functions = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];
+    callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
+  } <span class="hljs-keyword">else</span> {
+    functions = <span class="hljs-built_in">arguments</span>;
+  }
+  <span class="hljs-keyword">if</span> (functions.length &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">if</span> (isFunction(functions[<span class="hljs-number">0</span>])) {
+      intermediateResult = functions[<span class="hljs-number">0</span>]();
+    } <span class="hljs-keyword">else</span> {
+      intermediateResult = functions[<span class="hljs-number">0</span>];
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; functions.length; i += <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">try</span> {
+        intermediateResult = functions[i](intermediateResult);
+      } <span class="hljs-keyword">catch</span> (err) {
+        error = err;
+      }
+    }
+  }
+  <span class="hljs-keyword">if</span> (isFunction(callback)) {
+    callback(error, intermediateResult);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error) {
+    <span class="hljs-keyword">throw</span> error;
+  }
+  <span class="hljs-keyword">return</span> intermediateResult;
+}</pre>
+
+</div>
+<div class="function well" id="f-run">
+
+  <h3>
+    run
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params">specification</span>) </span>{
+  <span class="hljs-comment">// this function does its own currying.</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length == <span class="hljs-number">2</span>) {
+    run(specification)(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-comment">// if spec is an array, translate to object spec</span>
+  <span class="hljs-keyword">if</span> (isArray(specification)) {
+    <span class="hljs-keyword">var</span> prev = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">var</span> newSpec = {};
+    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">func, taskName</span>) </span>{
+      newSpec[taskName] = prev === <span class="hljs-literal">null</span> ? func : [ prev, func ];
+      prev = taskName;
+    }, specification);
+    specification = newSpec;
+  }
+
+  <span class="hljs-keyword">var</span> tasks = {};
+  <span class="hljs-keyword">var</span> initial = [];
+
+  <span class="hljs-comment">// prepare tasks specification.</span>
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">spec, name</span>) </span>{
+    <span class="hljs-keyword">var</span> dependencies = [];
+    <span class="hljs-keyword">var</span> func = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (isArray(spec)) {
+      dependencies = init(spec);
+      func = last(spec);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">if</span> (isArray(spec.depends)) {
+        dependencies = spec.depends;
+      }
+      func = spec;
+    }
+
+    <span class="hljs-keyword">var</span> task = {
+      func: func,
+      args: dependencies,
+      depends: {},
+      enables: tasks[name] ? tasks[name].enables : {}
+    };
+    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+      task.depends[dependency] = <span class="hljs-literal">true</span>;
+      <span class="hljs-keyword">if</span> (!tasks[dependency]) {
+          tasks[dependency] = { enables: {} };
+      }
+      tasks[dependency].enables[name] = <span class="hljs-literal">true</span>;
+    }, dependencies);
+    tasks[name] = task;
+  }, specification);
+
+  <span class="hljs-comment">// check spec for unmet dependencies</span>
+  <span class="hljs-keyword">var</span> unmetDependencies = [];
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
+    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, dependency</span>) </span>{
+      <span class="hljs-keyword">if</span> (!specification[dependency]) {
+        unmetDependencies.push([ taskName, dependency ]);
+      }
+    }, task.depends);
+  }, tasks);
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mkError</span>(<span class="hljs-params">message</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) </span>{
+      setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        callback(message);
+      });
+    };
+  }
+
+  <span class="hljs-keyword">if</span> (!isEmpty(unmetDependencies)) {
+    <span class="hljs-keyword">return</span> mkError({
+      message: <span class="hljs-string">'unmet dependencies'</span>,
+      details: map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">detail</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'`'</span> +
+          detail[<span class="hljs-number">0</span>] + <span class="hljs-string">'` depends on `'</span> +
+          detail[<span class="hljs-number">1</span>] + <span class="hljs-string">'` which is not defined'</span>;
+      }, unmetDependencies)
+    });
+  }
+
+  <span class="hljs-comment">// build initial set</span>
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
+    <span class="hljs-keyword">if</span> (isEmpty(task.depends)) {
+      initial.push(taskName);
+    }
+  }, tasks);
+
+  <span class="hljs-keyword">if</span> (isEmpty(initial)) {
+    <span class="hljs-keyword">return</span> mkError({
+      message: <span class="hljs-string">'no initial task'</span>,
+      details: <span class="hljs-string">'There is no task without any dependencies.'</span>
+    });
+  }
+
+  <span class="hljs-comment">// check spec for cycles</span>
+  <span class="hljs-keyword">var</span> cycles = [];
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">taskName</span>) </span>{
+
+    <span class="hljs-keyword">var</span> visited = {};
+    <span class="hljs-keyword">var</span> path = [];
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">visit</span>(<span class="hljs-params">node</span>) </span>{
+      path.push(node);
+      <span class="hljs-keyword">if</span> (visited[node]) {
+        cycles.push(map(id, path));
+      } <span class="hljs-keyword">else</span> {
+        visited[node] = <span class="hljs-literal">true</span>;
+        each(visit, <span class="hljs-built_in">Object</span>.keys(tasks[node].enables));
+      }
+      <span class="hljs-keyword">delete</span> visited[path.pop()];
+    }
+
+    visit(taskName);
+
+  }, initial);
+
+  <span class="hljs-keyword">if</span> (!isEmpty(cycles)) {
+    cycles = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cycle</span>) </span>{
+      cycle = dropWhile(NEQ(last(cycle)), cycle);
+      <span class="hljs-keyword">return</span> reverse(cycle);
+    }, cycles);
+    <span class="hljs-keyword">return</span> mkError({
+      message: <span class="hljs-string">'cycle detected'</span>,
+      details: map(intercalate(<span class="hljs-string">' -&gt; '</span>), cycles)
+    });
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_runTasks</span>(<span class="hljs-params">callback</span>) </span>{
+
+    <span class="hljs-keyword">var</span> depends = {},
+        toGo = length(tasks),
+        results = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
+      <span class="hljs-keyword">return</span> { toGo: length(task.enables) };
+    }, tasks);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callbackHandle</span>(<span class="hljs-params">taskName</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error, result</span>) </span>{
+        <span class="hljs-keyword">if</span> (!error) {
+          results[taskName].result = result;
+        } <span class="hljs-keyword">else</span> {
+          results[taskName].error = error;
+        }
+
+        <span class="hljs-comment">// clean up results if need be</span>
+        each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, dependency</span>) </span>{
+          results[dependency].toGo -= <span class="hljs-number">1</span>;
+          <span class="hljs-keyword">if</span> (results[dependency].toGo === <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">delete</span> results[dependency];
+          }
+        }, tasks[taskName].depends);
+
+        toGo -= <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span> (toGo === <span class="hljs-number">0</span>) {
+          <span class="hljs-comment">// clean results object</span>
+          each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>{
+            <span class="hljs-keyword">delete</span> result.toGo;
+          }, results);
+          callback(<span class="hljs-literal">null</span>, results);
+        } <span class="hljs-keyword">else</span> {
+          each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, next</span>) </span>{
+            <span class="hljs-keyword">delete</span> depends[next][taskName];
+            <span class="hljs-keyword">if</span> (isEmpty(depends[next])) {
+              execute(next);
+            }
+          }, tasks[taskName].enables);
+        }
+      };
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">execute</span>(<span class="hljs-params">taskName</span>) </span>{
+      <span class="hljs-keyword">var</span> task = tasks[taskName],
+          callback = callbackHandle(taskName),
+          dependenciesFailed = <span class="hljs-literal">false</span>,
+          args = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+            <span class="hljs-keyword">if</span> (results[dependency].error) {
+              dependenciesFailed = <span class="hljs-literal">true</span>;
+            }
+            <span class="hljs-keyword">return</span> results[dependency].result;
+          }, task.args);
+
+      <span class="hljs-keyword">if</span> (dependenciesFailed &amp;&amp; isFunction(task.func.runOnError)) {
+        <span class="hljs-keyword">var</span> tempResult = {};
+        each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+          <span class="hljs-keyword">var</span> result = results[dependency];
+          <span class="hljs-keyword">var</span> stubResult = {};
+          <span class="hljs-keyword">if</span> (result.error) {
+            stubResult.error = result.error;
+          } <span class="hljs-keyword">else</span> {
+            stubResult.result = result.result;
+          }
+          tempResult[dependency] = stubResult;
+        }, task.args);
+        tempResult = task.func.runOnError(tempResult) || tempResult;
+        args = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
+          <span class="hljs-keyword">return</span> tempResult[dependency].result;
+        }, task.args);
+      }
+
+      args.push(callback);
+
+      setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_executeTask</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span> (dependenciesFailed &amp;&amp; !task.func.runOnError) {
+          callback({ message: <span class="hljs-string">'dependencies failed'</span> });
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-keyword">var</span> f = task.func;
+          <span class="hljs-keyword">if</span> (isObject(f)) {
+            f = f.func;
+          }
+          <span class="hljs-keyword">try</span> {
+            f.apply(<span class="hljs-literal">null</span>, args);
+          } <span class="hljs-keyword">catch</span> (e) {
+            callback(e);
+          }
+        }
+      });
+    }
+
+    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
+      depends[taskName] = clone(task.depends);
+    }, tasks);
+
+    each(execute, initial);
+  };
+}</pre>
+
+</div>
+
+
 <h2 id="g-Collection">Collection</h1>
 <p>Nodash knows four different types of collections:</p>
 <ul>
@@ -1683,295 +1998,6 @@ list is passed.</p>
     zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i]);
   }
   <span class="hljs-keyword">return</span> zs;
-}</pre>
-
-</div>
-
-
-<h2 id="g-Control">Control</h1>
-
-
-<div class="function well" id="f-pipe">
-
-  <h3>
-    pipe
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pipe</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> functions, intermediateResult, callback;
-  <span class="hljs-keyword">var</span> error = <span class="hljs-literal">null</span>;
-  <span class="hljs-keyword">if</span> (isArray(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>])) {
-    functions = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];
-    callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
-  } <span class="hljs-keyword">else</span> {
-    functions = <span class="hljs-built_in">arguments</span>;
-  }
-  <span class="hljs-keyword">if</span> (functions.length &gt; <span class="hljs-number">0</span>) {
-    <span class="hljs-keyword">if</span> (isFunction(functions[<span class="hljs-number">0</span>])) {
-      intermediateResult = functions[<span class="hljs-number">0</span>]();
-    } <span class="hljs-keyword">else</span> {
-      intermediateResult = functions[<span class="hljs-number">0</span>];
-    }
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; functions.length; i += <span class="hljs-number">1</span>) {
-      <span class="hljs-keyword">try</span> {
-        intermediateResult = functions[i](intermediateResult);
-      } <span class="hljs-keyword">catch</span> (err) {
-        error = err;
-      }
-    }
-  }
-  <span class="hljs-keyword">if</span> (isFunction(callback)) {
-    callback(error, intermediateResult);
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error) {
-    <span class="hljs-keyword">throw</span> error;
-  }
-  <span class="hljs-keyword">return</span> intermediateResult;
-}</pre>
-
-</div>
-<div class="function well" id="f-run">
-
-  <h3>
-    run
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params">specification</span>) </span>{
-  <span class="hljs-comment">// this function does its own currying.</span>
-  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length == <span class="hljs-number">2</span>) {
-    run(specification)(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]);
-    <span class="hljs-keyword">return</span>;
-  }
-
-  <span class="hljs-comment">// if spec is an array, translate to object spec</span>
-  <span class="hljs-keyword">if</span> (isArray(specification)) {
-    <span class="hljs-keyword">var</span> prev = <span class="hljs-literal">null</span>;
-    <span class="hljs-keyword">var</span> newSpec = {};
-    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">func, taskName</span>) </span>{
-      newSpec[taskName] = prev === <span class="hljs-literal">null</span> ? func : [ prev, func ];
-      prev = taskName;
-    }, specification);
-    specification = newSpec;
-  }
-
-  <span class="hljs-keyword">var</span> tasks = {};
-  <span class="hljs-keyword">var</span> initial = [];
-
-  <span class="hljs-comment">// prepare tasks specification.</span>
-  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">spec, name</span>) </span>{
-    <span class="hljs-keyword">var</span> dependencies = [];
-    <span class="hljs-keyword">var</span> func = <span class="hljs-literal">null</span>;
-    <span class="hljs-keyword">if</span> (isArray(spec)) {
-      dependencies = init(spec);
-      func = last(spec);
-    } <span class="hljs-keyword">else</span> {
-      <span class="hljs-keyword">if</span> (isArray(spec.depends)) {
-        dependencies = spec.depends;
-      }
-      func = spec;
-    }
-
-    <span class="hljs-keyword">var</span> task = {
-      func: func,
-      args: dependencies,
-      depends: {},
-      enables: tasks[name] ? tasks[name].enables : {}
-    };
-    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
-      task.depends[dependency] = <span class="hljs-literal">true</span>;
-      <span class="hljs-keyword">if</span> (!tasks[dependency]) {
-          tasks[dependency] = { enables: {} };
-      }
-      tasks[dependency].enables[name] = <span class="hljs-literal">true</span>;
-    }, dependencies);
-    tasks[name] = task;
-  }, specification);
-
-  <span class="hljs-comment">// check spec for unmet dependencies</span>
-  <span class="hljs-keyword">var</span> unmetDependencies = [];
-  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
-    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, dependency</span>) </span>{
-      <span class="hljs-keyword">if</span> (!specification[dependency]) {
-        unmetDependencies.push([ taskName, dependency ]);
-      }
-    }, task.depends);
-  }, tasks);
-
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mkError</span>(<span class="hljs-params">message</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) </span>{
-      setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-        callback(message);
-      });
-    };
-  }
-
-  <span class="hljs-keyword">if</span> (!isEmpty(unmetDependencies)) {
-    <span class="hljs-keyword">return</span> mkError({
-      message: <span class="hljs-string">'unmet dependencies'</span>,
-      details: map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">detail</span>) </span>{
-        <span class="hljs-keyword">return</span> <span class="hljs-string">'`'</span> +
-          detail[<span class="hljs-number">0</span>] + <span class="hljs-string">'` depends on `'</span> +
-          detail[<span class="hljs-number">1</span>] + <span class="hljs-string">'` which is not defined'</span>;
-      }, unmetDependencies)
-    });
-  }
-
-  <span class="hljs-comment">// build initial set</span>
-  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
-    <span class="hljs-keyword">if</span> (isEmpty(task.depends)) {
-      initial.push(taskName);
-    }
-  }, tasks);
-
-  <span class="hljs-keyword">if</span> (isEmpty(initial)) {
-    <span class="hljs-keyword">return</span> mkError({
-      message: <span class="hljs-string">'no initial task'</span>,
-      details: <span class="hljs-string">'There is no task without any dependencies.'</span>
-    });
-  }
-
-  <span class="hljs-comment">// check spec for cycles</span>
-  <span class="hljs-keyword">var</span> cycles = [];
-  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">taskName</span>) </span>{
-
-    <span class="hljs-keyword">var</span> visited = {};
-    <span class="hljs-keyword">var</span> path = [];
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">visit</span>(<span class="hljs-params">node</span>) </span>{
-      path.push(node);
-      <span class="hljs-keyword">if</span> (visited[node]) {
-        cycles.push(map(id, path));
-      } <span class="hljs-keyword">else</span> {
-        visited[node] = <span class="hljs-literal">true</span>;
-        each(visit, <span class="hljs-built_in">Object</span>.keys(tasks[node].enables));
-      }
-      <span class="hljs-keyword">delete</span> visited[path.pop()];
-    }
-
-    visit(taskName);
-
-  }, initial);
-
-  <span class="hljs-keyword">if</span> (!isEmpty(cycles)) {
-    cycles = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cycle</span>) </span>{
-      cycle = dropWhile(NEQ(last(cycle)), cycle);
-      <span class="hljs-keyword">return</span> reverse(cycle);
-    }, cycles);
-    <span class="hljs-keyword">return</span> mkError({
-      message: <span class="hljs-string">'cycle detected'</span>,
-      details: map(intercalate(<span class="hljs-string">' -&gt; '</span>), cycles)
-    });
-  }
-
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_runTasks</span>(<span class="hljs-params">callback</span>) </span>{
-
-    <span class="hljs-keyword">var</span> depends = {},
-        toGo = length(tasks),
-        results = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
-      <span class="hljs-keyword">return</span> { toGo: length(task.enables) };
-    }, tasks);
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callbackHandle</span>(<span class="hljs-params">taskName</span>) </span>{
-      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error, result</span>) </span>{
-        <span class="hljs-keyword">if</span> (!error) {
-          results[taskName].result = result;
-        } <span class="hljs-keyword">else</span> {
-          results[taskName].error = error;
-        }
-
-        <span class="hljs-comment">// clean up results if need be</span>
-        each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, dependency</span>) </span>{
-          results[dependency].toGo -= <span class="hljs-number">1</span>;
-          <span class="hljs-keyword">if</span> (results[dependency].toGo === <span class="hljs-number">0</span>) {
-            <span class="hljs-keyword">delete</span> results[dependency];
-          }
-        }, tasks[taskName].depends);
-
-        toGo -= <span class="hljs-number">1</span>;
-        <span class="hljs-keyword">if</span> (toGo === <span class="hljs-number">0</span>) {
-          <span class="hljs-comment">// clean results object</span>
-          each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>{
-            <span class="hljs-keyword">delete</span> result.toGo;
-          }, results);
-          callback(<span class="hljs-literal">null</span>, results);
-        } <span class="hljs-keyword">else</span> {
-          each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, next</span>) </span>{
-            <span class="hljs-keyword">delete</span> depends[next][taskName];
-            <span class="hljs-keyword">if</span> (isEmpty(depends[next])) {
-              execute(next);
-            }
-          }, tasks[taskName].enables);
-        }
-      };
-    }
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">execute</span>(<span class="hljs-params">taskName</span>) </span>{
-      <span class="hljs-keyword">var</span> task = tasks[taskName],
-          callback = callbackHandle(taskName),
-          dependenciesFailed = <span class="hljs-literal">false</span>,
-          args = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
-            <span class="hljs-keyword">if</span> (results[dependency].error) {
-              dependenciesFailed = <span class="hljs-literal">true</span>;
-            }
-            <span class="hljs-keyword">return</span> results[dependency].result;
-          }, task.args);
-
-      <span class="hljs-keyword">if</span> (dependenciesFailed &amp;&amp; isFunction(task.func.runOnError)) {
-        <span class="hljs-keyword">var</span> tempResult = {};
-        each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
-          <span class="hljs-keyword">var</span> result = results[dependency];
-          <span class="hljs-keyword">var</span> stubResult = {};
-          <span class="hljs-keyword">if</span> (result.error) {
-            stubResult.error = result.error;
-          } <span class="hljs-keyword">else</span> {
-            stubResult.result = result.result;
-          }
-          tempResult[dependency] = stubResult;
-        }, task.args);
-        tempResult = task.func.runOnError(tempResult) || tempResult;
-        args = map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dependency</span>) </span>{
-          <span class="hljs-keyword">return</span> tempResult[dependency].result;
-        }, task.args);
-      }
-
-      args.push(callback);
-
-      setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_executeTask</span>(<span class="hljs-params"></span>) </span>{
-        <span class="hljs-keyword">if</span> (dependenciesFailed &amp;&amp; !task.func.runOnError) {
-          callback({ message: <span class="hljs-string">'dependencies failed'</span> });
-        } <span class="hljs-keyword">else</span> {
-          <span class="hljs-keyword">var</span> f = task.func;
-          <span class="hljs-keyword">if</span> (isObject(f)) {
-            f = f.func;
-          }
-          <span class="hljs-keyword">try</span> {
-            f.apply(<span class="hljs-literal">null</span>, args);
-          } <span class="hljs-keyword">catch</span> (e) {
-            callback(e);
-          }
-        }
-      });
-    }
-
-    each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">task, taskName</span>) </span>{
-      depends[taskName] = clone(task.depends);
-    }, tasks);
-
-    each(execute, initial);
-  };
 }</pre>
 
 </div>
@@ -2559,6 +2585,106 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">singleton</span>(<span class="hljs-params">thing</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(thing, emptyList);
+}</pre>
+
+</div>
+
+
+<h2 id="g-Maybe">Maybe</h1>
+
+
+<div class="function well" id="f-catMaybes">
+
+  <h3>
+    catMaybes
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-keyword">var</span> catMaybes = <span class="hljs-comment">/* this is a composed function */</span></pre>
+
+</div>
+<div class="function well" id="f-isJust">
+
+  <h3>
+    isJust
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isJust</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> thing !== <span class="hljs-literal">null</span> &amp;&amp; thing !== <span class="hljs-literal">undefined</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isNothing">
+
+  <h3>
+    isNothing
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNothing</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> !isJust(thing);
+}</pre>
+
+</div>
+<div class="function well" id="f-maybe">
+
+  <h3>
+    maybe
+    <small>
+      
+        <span class="label label-warning">Prelude: maybe</span>
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybe</span>(<span class="hljs-params">def, fun, value</span>) </span>{
+  <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span> || value === <span class="hljs-literal">undefined</span>) {
+    <span class="hljs-keyword">return</span> def;
+  }
+  <span class="hljs-keyword">return</span> fun(value);
+}</pre>
+
+</div>
+<div class="function well" id="f-maybeToList">
+
+  <h3>
+    maybeToList
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybeToList</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">if</span> (isJust(thing)) {
+    <span class="hljs-keyword">return</span> singleton(thing);
+  }
+  <span class="hljs-keyword">return</span> emptyList();
 }</pre>
 
 </div>
@@ -3334,106 +3460,6 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
   } <span class="hljs-keyword">else</span> {
     <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.exp(x) - <span class="hljs-built_in">Math</span>.exp(-x)) / (<span class="hljs-built_in">Math</span>.exp(x) + <span class="hljs-built_in">Math</span>.exp(-x));
   }
-}</pre>
-
-</div>
-
-
-<h2 id="g-Maybe">Maybe</h1>
-
-
-<div class="function well" id="f-catMaybes">
-
-  <h3>
-    catMaybes
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-keyword">var</span> catMaybes = <span class="hljs-comment">/* this is a composed function */</span></pre>
-
-</div>
-<div class="function well" id="f-isJust">
-
-  <h3>
-    isJust
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isJust</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">return</span> thing !== <span class="hljs-literal">null</span> &amp;&amp; thing !== <span class="hljs-literal">undefined</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-isNothing">
-
-  <h3>
-    isNothing
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNothing</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">return</span> !isJust(thing);
-}</pre>
-
-</div>
-<div class="function well" id="f-maybe">
-
-  <h3>
-    maybe
-    <small>
-      
-        <span class="label label-warning">Prelude: maybe</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybe</span>(<span class="hljs-params">def, fun, value</span>) </span>{
-  <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span> || value === <span class="hljs-literal">undefined</span>) {
-    <span class="hljs-keyword">return</span> def;
-  }
-  <span class="hljs-keyword">return</span> fun(value);
-}</pre>
-
-</div>
-<div class="function well" id="f-maybeToList">
-
-  <h3>
-    maybeToList
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybeToList</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">if</span> (isJust(thing)) {
-    <span class="hljs-keyword">return</span> singleton(thing);
-  }
-  <span class="hljs-keyword">return</span> emptyList();
 }</pre>
 
 </div>
@@ -4285,32 +4311,6 @@ for Symbols.</p>
     <span class="hljs-keyword">default</span>:
       error(<span class="hljs-built_in">TypeError</span>);
   }
-}</pre>
-
-</div>
-<div class="function well" id="f-async">
-
-  <h3>
-    async
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async</span>(<span class="hljs-params">f</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">try</span> {
-      <span class="hljs-keyword">var</span> callback = <span class="hljs-built_in">arguments</span>[<span class="hljs-built_in">arguments</span>.length - <span class="hljs-number">1</span>];
-      <span class="hljs-keyword">var</span> result = f.apply(<span class="hljs-literal">null</span>, init(<span class="hljs-built_in">arguments</span>));
-      setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(<span class="hljs-literal">null</span>, result); });
-    } <span class="hljs-keyword">catch</span> (e) {
-      setImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ callback(e); });
-    }
-  };
 }</pre>
 
 </div>

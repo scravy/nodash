@@ -80,7 +80,9 @@ describe('nodash.install()', function () {
     var x = Nodash.install([ '$', {} ]);
     var count = 0;
     for (var name in Nodash) {
-      if (name[0] === '_') continue;
+      if (name[0] === '_') {
+        continue;
+      }
       assert.strictEqual(Nodash[name], x['$' + name]);
       count += 1;
     }

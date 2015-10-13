@@ -127,6 +127,10 @@
     <span class="name">zipWith3</span>
     
   </a></li>
+  <li><a href="#f-zipWith4">
+    <span class="name">zipWith4</span>
+    
+  </a></li>
 </ul>
 <h6><a href="#g-Control">Control</a></h6>
 <ul class="list-unstyled">
@@ -245,6 +249,10 @@
   </a></li>
   <li><a href="#f-rangeStep">
     <span class="name">rangeStep</span>
+    
+  </a></li>
+  <li><a href="#f-singleton">
+    <span class="name">singleton</span>
     
   </a></li>
 </ul>
@@ -407,25 +415,6 @@
     
   </a></li>
 </ul>
-<h6><a href="#g-Stream">Stream</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-cycle">
-    <span class="name">cycle</span>
-    
-  </a></li>
-  <li><a href="#f-iterate">
-    <span class="name">iterate</span>
-    
-  </a></li>
-  <li><a href="#f-repeat">
-    <span class="name">repeat</span>
-    
-  </a></li>
-  <li><a href="#f-Stream">
-    <span class="name">Stream</span>
-    <span class="alias label label-primary">stream</span>
-  </a></li>
-</ul>
 <h6><a href="#g-Maybe">Maybe</a></h6>
 <ul class="list-unstyled">
   <li><a href="#f-catMaybes">
@@ -446,6 +435,44 @@
   </a></li>
   <li><a href="#f-maybeToList">
     <span class="name">maybeToList</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Object">Object</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-each">
+    <span class="name">each</span>
+    
+  </a></li>
+  <li><a href="#f-keys">
+    <span class="name">keys</span>
+    
+  </a></li>
+  <li><a href="#f-values">
+    <span class="name">values</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Stream">Stream</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-cycle">
+    <span class="name">cycle</span>
+    
+  </a></li>
+  <li><a href="#f-iterate">
+    <span class="name">iterate</span>
+    
+  </a></li>
+  <li><a href="#f-repeat">
+    <span class="name">repeat</span>
+    
+  </a></li>
+  <li><a href="#f-Stream">
+    <span class="name">Stream</span>
+    <span class="alias label label-primary">stream</span>
+  </a></li>
+  <li><a href="#f-until">
+    <span class="name">until</span>
     
   </a></li>
 </ul>
@@ -485,6 +512,10 @@
   <li><a href="#f-Tuple">
     <span class="name">Tuple</span>
     
+  </a></li>
+  <li><a href="#f-tuple">
+    <span class="name">tuple</span>
+    <span class="alias label label-primary">,</span>
   </a></li>
   <li><a href="#f-tuple3">
     <span class="name">tuple3</span>
@@ -616,10 +647,6 @@
     <span class="name">dropWhile</span>
     
   </a></li>
-  <li><a href="#f-each">
-    <span class="name">each</span>
-    
-  </a></li>
   <li><a href="#f-either">
     <span class="name">either</span>
     
@@ -736,10 +763,6 @@
     <span class="name">intersperse</span>
     
   </a></li>
-  <li><a href="#f-keys">
-    <span class="name">keys</span>
-    
-  </a></li>
   <li><a href="#f-last">
     <span class="name">last</span>
     
@@ -852,10 +875,6 @@
     <span class="name">select</span>
     
   </a></li>
-  <li><a href="#f-singleton">
-    <span class="name">singleton</span>
-    
-  </a></li>
   <li><a href="#f-sinh">
     <span class="name">sinh</span>
     
@@ -900,24 +919,8 @@
     <span class="name">truncate</span>
     
   </a></li>
-  <li><a href="#f-tuple">
-    <span class="name">tuple</span>
-    <span class="alias label label-primary">,</span>
-  </a></li>
   <li><a href="#f-union">
     <span class="name">union</span>
-    
-  </a></li>
-  <li><a href="#f-until">
-    <span class="name">until</span>
-    
-  </a></li>
-  <li><a href="#f-values">
-    <span class="name">values</span>
-    
-  </a></li>
-  <li><a href="#f-zipWith4">
-    <span class="name">zipWith4</span>
     
   </a></li>
 </ul>
@@ -1654,6 +1657,30 @@ list is passed.</p>
   <span class="hljs-keyword">var</span> zs = [];
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
     zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i]);
+  }
+  <span class="hljs-keyword">return</span> zs;
+}</pre>
+
+</div>
+<div class="function well" id="f-zipWith4">
+
+  <h3>
+    zipWith4
+    <small>
+      
+        <span class="label label-warning">Prelude: zipWith4</span>
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">zipWith4</span>(<span class="hljs-params">f, as, bs, cs, ds</span>) </span>{
+  <span class="hljs-keyword">var</span> length = minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length]);
+  <span class="hljs-keyword">var</span> zs = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+    zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i]);
   }
   <span class="hljs-keyword">return</span> zs;
 }</pre>
@@ -2517,6 +2544,24 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 }</pre>
 
 </div>
+<div class="function well" id="f-singleton">
+
+  <h3>
+    singleton
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">singleton</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(thing, emptyList);
+}</pre>
+
+</div>
 
 
 <h2 id="g-Math">Math</h1>
@@ -3294,6 +3339,181 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 </div>
 
 
+<h2 id="g-Maybe">Maybe</h1>
+
+
+<div class="function well" id="f-catMaybes">
+
+  <h3>
+    catMaybes
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-keyword">var</span> catMaybes = <span class="hljs-comment">/* this is a composed function */</span></pre>
+
+</div>
+<div class="function well" id="f-isJust">
+
+  <h3>
+    isJust
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isJust</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> thing !== <span class="hljs-literal">null</span> &amp;&amp; thing !== <span class="hljs-literal">undefined</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isNothing">
+
+  <h3>
+    isNothing
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNothing</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> !isJust(thing);
+}</pre>
+
+</div>
+<div class="function well" id="f-maybe">
+
+  <h3>
+    maybe
+    <small>
+      
+        <span class="label label-warning">Prelude: maybe</span>
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybe</span>(<span class="hljs-params">def, fun, value</span>) </span>{
+  <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span> || value === <span class="hljs-literal">undefined</span>) {
+    <span class="hljs-keyword">return</span> def;
+  }
+  <span class="hljs-keyword">return</span> fun(value);
+}</pre>
+
+</div>
+<div class="function well" id="f-maybeToList">
+
+  <h3>
+    maybeToList
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybeToList</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">if</span> (isJust(thing)) {
+    <span class="hljs-keyword">return</span> singleton(thing);
+  }
+  <span class="hljs-keyword">return</span> emptyList();
+}</pre>
+
+</div>
+
+
+<h2 id="g-Object">Object</h1>
+
+
+<div class="function well" id="f-each">
+
+  <h3>
+    each
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">each</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (is(List, xs)) {
+    <span class="hljs-keyword">while</span> (!xs.isEmpty()) {
+      f(xs.head());
+      xs = xs.tail();
+    }
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      f(xs[i], i);
+    }
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isObject(xs)) {
+    <span class="hljs-keyword">var</span> ks = <span class="hljs-built_in">Object</span>.keys(xs);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; ks.length; j += <span class="hljs-number">1</span>) {
+      f(xs[ks[j]], ks[j]);
+    }
+  }
+}</pre>
+
+</div>
+<div class="function well" id="f-keys">
+
+  <h3>
+    keys
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keys</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-values">
+
+  <h3>
+    values
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">values</span>(<span class="hljs-params">object</span>) </span>{
+  <span class="hljs-keyword">var</span> values = [];
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
+    values.push(value);
+  }, object);
+  <span class="hljs-keyword">return</span> values;
+}</pre>
+
+</div>
+
+
 <h2 id="g-Stream">Stream</h1>
 
 
@@ -3417,17 +3637,13 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 }</pre>
 
 </div>
-
-
-<h2 id="g-Maybe">Maybe</h1>
-
-
-<div class="function well" id="f-catMaybes">
+<div class="function well" id="f-until">
 
   <h3>
-    catMaybes
+    until
     <small>
       
+        <span class="label label-warning">Prelude: until</span>
     </small>
   </h3>
 
@@ -3435,85 +3651,11 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 
 
   <p>Source:</p>
-  <pre><span class="hljs-keyword">var</span> catMaybes = <span class="hljs-comment">/* this is a composed function */</span></pre>
-
-</div>
-<div class="function well" id="f-isJust">
-
-  <h3>
-    isJust
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isJust</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">return</span> thing !== <span class="hljs-literal">null</span> &amp;&amp; thing !== <span class="hljs-literal">undefined</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-isNothing">
-
-  <h3>
-    isNothing
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNothing</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">return</span> !isJust(thing);
-}</pre>
-
-</div>
-<div class="function well" id="f-maybe">
-
-  <h3>
-    maybe
-    <small>
-      
-        <span class="label label-warning">Prelude: maybe</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybe</span>(<span class="hljs-params">def, fun, value</span>) </span>{
-  <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span> || value === <span class="hljs-literal">undefined</span>) {
-    <span class="hljs-keyword">return</span> def;
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">until</span>(<span class="hljs-params">p, f, v</span>) </span>{
+  <span class="hljs-keyword">while</span> (!p(v)) {
+    v = f(v);
   }
-  <span class="hljs-keyword">return</span> fun(value);
-}</pre>
-
-</div>
-<div class="function well" id="f-maybeToList">
-
-  <h3>
-    maybeToList
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybeToList</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">if</span> (isJust(thing)) {
-    <span class="hljs-keyword">return</span> singleton(thing);
-  }
-  <span class="hljs-keyword">return</span> emptyList();
+  <span class="hljs-keyword">return</span> v;
 }</pre>
 
 </div>
@@ -3736,6 +3878,25 @@ but this function is exposing that method as a function.</p>
   <span class="hljs-keyword">this</span>.snd = idf(snd);
 
   freeze(<span class="hljs-keyword">this</span>);
+}</pre>
+
+</div>
+<div class="function well" id="f-tuple">
+
+  <h3>
+    tuple
+    <small>
+      <span class="alias label label-primary">,</span>
+        <span class="label label-warning">Prelude: ,</span>
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tuple</span>(<span class="hljs-params">first, second</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Tuple(first, second);
 }</pre>
 
 </div>
@@ -4480,38 +4641,6 @@ for Symbols.</p>
     i++;
   }
   <span class="hljs-keyword">return</span> xs.slice(i);
-}</pre>
-
-</div>
-<div class="function well" id="f-each">
-
-  <h3>
-    each
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">each</span>(<span class="hljs-params">f, xs</span>) </span>{
-  <span class="hljs-keyword">if</span> (is(List, xs)) {
-    <span class="hljs-keyword">while</span> (!xs.isEmpty()) {
-      f(xs.head());
-      xs = xs.tail();
-    }
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
-      f(xs[i], i);
-    }
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isObject(xs)) {
-    <span class="hljs-keyword">var</span> ks = <span class="hljs-built_in">Object</span>.keys(xs);
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; ks.length; j += <span class="hljs-number">1</span>) {
-      f(xs[ks[j]], ks[j]);
-    }
-  }
 }</pre>
 
 </div>
@@ -5297,22 +5426,6 @@ for Symbols.</p>
 }</pre>
 
 </div>
-<div class="function well" id="f-keys">
-
-  <h3>
-    keys
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keys</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
 <div class="function well" id="f-last">
 
   <h3>
@@ -5967,24 +6080,6 @@ for Symbols.</p>
 }</pre>
 
 </div>
-<div class="function well" id="f-singleton">
-
-  <h3>
-    singleton
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">singleton</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(thing, emptyList);
-}</pre>
-
-</div>
 <div class="function well" id="f-sinh">
 
   <h3>
@@ -6285,25 +6380,6 @@ for Symbols.</p>
 }</pre>
 
 </div>
-<div class="function well" id="f-tuple">
-
-  <h3>
-    tuple
-    <small>
-      <span class="alias label label-primary">,</span>
-        <span class="label label-warning">Prelude: ,</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tuple</span>(<span class="hljs-params">first, second</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Tuple(first, second);
-}</pre>
-
-</div>
 <div class="function well" id="f-union">
 
   <h3>
@@ -6330,74 +6406,6 @@ for Symbols.</p>
     <span class="hljs-keyword">if</span> (!set.has(ys[i])) {
       zs.push(ys[i]);
     }
-  }
-  <span class="hljs-keyword">return</span> zs;
-}</pre>
-
-</div>
-<div class="function well" id="f-until">
-
-  <h3>
-    until
-    <small>
-      
-        <span class="label label-warning">Prelude: until</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">until</span>(<span class="hljs-params">p, f, v</span>) </span>{
-  <span class="hljs-keyword">while</span> (!p(v)) {
-    v = f(v);
-  }
-  <span class="hljs-keyword">return</span> v;
-}</pre>
-
-</div>
-<div class="function well" id="f-values">
-
-  <h3>
-    values
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">values</span>(<span class="hljs-params">object</span>) </span>{
-  <span class="hljs-keyword">var</span> values = [];
-  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
-    values.push(value);
-  }, object);
-  <span class="hljs-keyword">return</span> values;
-}</pre>
-
-</div>
-<div class="function well" id="f-zipWith4">
-
-  <h3>
-    zipWith4
-    <small>
-      
-        <span class="label label-warning">Prelude: zipWith4</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">zipWith4</span>(<span class="hljs-params">f, as, bs, cs, ds</span>) </span>{
-  <span class="hljs-keyword">var</span> length = minimum([<span class="hljs-keyword">as</span>.length, bs.length, cs.length, ds.length]);
-  <span class="hljs-keyword">var</span> zs = [];
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
-    zs[i] = f(<span class="hljs-keyword">as</span>[i], bs[i], cs[i], ds[i]);
   }
   <span class="hljs-keyword">return</span> zs;
 }</pre>

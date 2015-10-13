@@ -1,4 +1,4 @@
-`String → Bool`
+`String → Boolean`
 
 Determines whether the given String or Character is an ascii letter, that is: Matching the regular expression `/^[a-zA-Z]+$/`.
 

@@ -1,0 +1,1 @@
+`Char → Integer`

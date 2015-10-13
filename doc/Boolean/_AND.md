@@ -1,7 +1,9 @@
-`Bool → Bool → Bool`
+`Boolean → Boolean → Boolean`
 
 Boolean "and". This is effectively just making the `&&` operator
 available as a curried function.
+
+Not to be confused with the lower case [and](#f-and).
 
 Example:
 

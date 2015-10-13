@@ -1,6 +1,6 @@
 /* vim: set et sw=2 ts=2: */
 
-describe('', function () {
+describe('last', function () {
   'use strict';
 
   var assert = require('../../../util/assert.js');

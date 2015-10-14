@@ -6,7 +6,6 @@ function makeNodash(options) {
   options = options || {};
 
   // Basic ECMA Script 5 checks (if these fail pull in `es5-shim`).
-
   if (typeof Object.keys !== 'function' || Object.keys({ x: 7 })[0] !== 'x' ||
       typeof Array.isArray !== 'function' || !Array.isArray([]) ||
       typeof Array.prototype.forEach !== 'function') {
@@ -41,6 +40,7 @@ function makeNodash(options) {
   register(require('./lib/string'));
   register(require('./lib/control'));
   register(require('./lib/object'));
+  register(require('./lib/match'));
 
   register(require('./lib/coll/map'));
   register(require('./lib/coll/fold'));

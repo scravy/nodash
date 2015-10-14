@@ -180,10 +180,18 @@ v0.10 "Hollerith"
 v0.11 "Ichbiah"
 ---------------
 
++ Added `permutations` function
++ Added dependency on [nodash/steinhaus-johnson-trotter](https://github.com/nodash/steinhaus-johnson-trotter)
+
+### v0.11.1
+
++ Fixed the definitions of some functions (proper tuples as return values, async does not leak arguments, etc.)
++ experimentally exporting `register` too
++ added some documentation
 
 
 v0.12 "Joy"
 -----------
 
-
-
++ Added `match` function
++ Cleaned up the code

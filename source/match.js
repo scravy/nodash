@@ -31,7 +31,6 @@ module.exports = function () {
 
   function matchR(pattern, arg, result) {
     var patternType = typeof pattern;
-    var argType = typeof arg;
 
     switch (patternType) {
       case 'string':
@@ -50,7 +49,6 @@ module.exports = function () {
 
   return {
     match: function (pattern, arg) {
-      var argType = typeof arg;
       for (var i = 0; i < pattern.length; i += 1) {
         var result = {};
         var p = pattern[i];

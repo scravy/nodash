@@ -7,6 +7,8 @@ describe('typeOf', function () {
   var Nodash = require('../../nodash');
 
   var Obj = Object;
+  var Str = String;
+  var Num = Number;
  
   function gen() {
     return Nodash.tuple(Math.random(), gen);
@@ -14,16 +16,22 @@ describe('typeOf', function () {
 
   var data = {
     'string': [
-      '', '123', String(3)
+      '', '123', String(3), new Str('woop woop')
     ],
     'array': [
       [], [ 1, 2, 3 ], new Array(17)
     ],
     'object': [
-      new Date(), /[a-z]/, {}, new Obj(), Object.create({})
+      {}, new Obj(), Object.create({})
+    ],
+    'date': [
+      new Date()
+    ],
+    'regexp': [
+      /a/, new RegExp('a+')
     ],
     'number': [
-      Infinity, -Infinity, 0, 17, Math.pow(2, 32) - 1, Math.PI
+      Infinity, -Infinity, 0, 17, Math.pow(2, 32) - 1, Math.PI, new Num(10)
     ],
     'not-a-number': [
       NaN

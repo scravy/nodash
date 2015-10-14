@@ -3,6 +3,8 @@ var assert = require('../util/assert');
 
 describe('type', function () {
 
+    var Str = String;
+
     it('isUndefined /w undefined', function () {
         assert.strictEqual(true, isUndefined(undefined));
     });
@@ -21,6 +23,37 @@ describe('type', function () {
 
     it('isBoolean /w undefined', function () {
         assert.strictEqual(false, isBoolean(undefined));
+    });
+
+    it('isDate /w new Date()', function () {
+        assert.strictEqual(true, isDate(new Date()));
+    });
+
+    it('isDate /w Date.now()', function () {
+        assert.strictEqual(false, isDate(Date.now()));
+    });
+
+    it('isNull /w null', function () {
+        assert(isNull(null));
+    });
+
+    it('isString /w new String', function () {
+        assert(isString(new Str('')));
+    });
+
+    it('isRegExp /w /a+/', function () {
+        assert.strictEqual(true, isRegExp(/a+/));
+    });
+
+    it('isArguments /w arguments', function () {
+        function x() {
+            return arguments;
+        }
+        assert(isArguments(x()));
+    });
+
+    it('isRegExp /w \'a+\'', function () {
+        assert.strictEqual(false, isRegExp('a+'));
     });
 
     it('isBoolean /w object', function () {
@@ -125,8 +158,6 @@ describe('type', function () {
 
     it('typeOf /w Object', function () {
         assert.strictEqual('object', typeOf({}));
-        assert.strictEqual('object', typeOf(/[a-z]+/));
-        assert.strictEqual('object', typeOf(new Date()));
     });
 
     it('typeOf /w Function', function () {

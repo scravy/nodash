@@ -129,6 +129,11 @@
               </a>
             
               
+              <a class="source" href="match.html">
+                match.js
+              </a>
+            
+              
               <a class="source" href="num.html">
                 num.js
               </a>
@@ -197,13 +202,14 @@
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
+<span class="hljs-pi">'use strict'</span>;
 
 <span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'idf'</span>, <span class="hljs-string">'is'</span>, <span class="hljs-string">'map'</span>, <span class="hljs-string">'compose'</span>, <span class="hljs-string">'filter'</span>,
   <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">idf, is, map, compose, filter</span>) </span>{
 
   <span class="hljs-keyword">var</span> Nodash = <span class="hljs-keyword">this</span>;
 
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fail</span>(<span class="hljs-params"></span>) </span>{}
+  <span class="hljs-keyword">var</span> fail = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{};
 
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Either</span>(<span class="hljs-params"></span>) </span>{
     fail();

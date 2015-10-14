@@ -1,4 +1,5 @@
 /* vim: set et sw=2 ts=2: */
+'use strict';
 
 module.exports = [ 'idf', 'is', 'compose', 'compose2', 'filter', 'map', 'List', 'singleton', 'emptyList',
   function (idf, is, compose, compose2, filter, map, List, singleton, emptyList) {

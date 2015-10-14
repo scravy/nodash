@@ -1,4 +1,5 @@
 /* vim: set et sw=2 ts=2: */
+'use strict';
 
 module.exports = [ 'Math', 'signum', 'tuple',
   function (Math, signum, tuple) {

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>string.js</title>
+  <title>match.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -186,7 +186,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>string.js</h1>
+                  <h1>match.js</h1>
               </div>
           </li>
         
@@ -204,27 +204,68 @@
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
 <span class="hljs-pi">'use strict'</span>;
 
-<span class="hljs-built_in">module</span>.exports = {
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
 
-  lines: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">string</span>) </span>{
-    <span class="hljs-keyword">var</span> result = string.split(<span class="hljs-regexp">/\n/</span>);
-    <span class="hljs-keyword">if</span> (result[result.length - <span class="hljs-number">1</span>].length === <span class="hljs-number">0</span>) {
-      <span class="hljs-keyword">delete</span> result[result.length - <span class="hljs-number">1</span>];
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">matchString</span>(<span class="hljs-params">pattern, arg, result</span>) </span>{
+    <span class="hljs-keyword">if</span> (pattern[<span class="hljs-number">0</span>] === <span class="hljs-string">'$'</span>) {
+      <span class="hljs-keyword">if</span> (pattern[<span class="hljs-number">1</span>] === <span class="hljs-string">'$'</span>) {
+        pattern = pattern.slice(<span class="hljs-number">1</span>);
+      } <span class="hljs-keyword">else</span> {
+        result[pattern] = arg;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+      }
     }
-    <span class="hljs-keyword">return</span> result;
-  },
-
-  unlines: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">lines</span>) </span>{
-    <span class="hljs-keyword">return</span> lines.join(<span class="hljs-string">'\n'</span>);
-  },
-
-  words: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">string</span>) </span>{
-    <span class="hljs-keyword">return</span> string.split(<span class="hljs-regexp">/[\n\r\v\t ]/</span>);
-  },
-
-  unwords: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">words</span>) </span>{
-    <span class="hljs-keyword">return</span> words.join(<span class="hljs-string">' '</span>);
+    <span class="hljs-keyword">return</span> pattern === arg;
   }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">matchObject</span>(<span class="hljs-params">pattern, arg, result</span>) </span>{
+    <span class="hljs-keyword">if</span> (pattern === <span class="hljs-literal">null</span> || arg === <span class="hljs-literal">null</span> || arg === <span class="hljs-literal">undefined</span>) {
+      <span class="hljs-keyword">return</span> pattern === arg;
+    }
+    <span class="hljs-keyword">var</span> keys = <span class="hljs-built_in">Object</span>.keys(pattern);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; keys.length; i += <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">var</span> key = keys[i];
+      <span class="hljs-keyword">if</span> (!matchR(pattern[key], arg[key], result)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">matchR</span>(<span class="hljs-params">pattern, arg, result</span>) </span>{
+    <span class="hljs-keyword">var</span> patternType = <span class="hljs-keyword">typeof</span> pattern;
+    <span class="hljs-keyword">var</span> argType = <span class="hljs-keyword">typeof</span> arg;
+
+    <span class="hljs-keyword">switch</span> (patternType) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">'string'</span>:
+        <span class="hljs-keyword">return</span> matchString(pattern, arg, result);
+      <span class="hljs-keyword">case</span> <span class="hljs-string">'object'</span>:
+        <span class="hljs-keyword">return</span> matchObject(pattern, arg, result);
+      <span class="hljs-keyword">case</span> <span class="hljs-string">'number'</span>:
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isNaN</span>(pattern) &amp;&amp; <span class="hljs-built_in">isNaN</span>(arg)) {
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+        <span class="hljs-comment">/* falls through */</span>
+      <span class="hljs-keyword">default</span>:
+        <span class="hljs-keyword">return</span> pattern === arg;
+    }
+  }
+
+  <span class="hljs-keyword">return</span> {
+    match: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">pattern, arg</span>) </span>{
+      <span class="hljs-keyword">var</span> argType = <span class="hljs-keyword">typeof</span> arg;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; pattern.length; i += <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">var</span> result = {};
+        <span class="hljs-keyword">var</span> p = pattern[i];
+        <span class="hljs-keyword">if</span> (matchR(p[<span class="hljs-number">0</span>], arg, result)) {
+          <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> p[<span class="hljs-number">1</span>] === <span class="hljs-string">'function'</span>) {
+            <span class="hljs-keyword">return</span> p[<span class="hljs-number">1</span>](result);
+          }
+          <span class="hljs-keyword">return</span> p[<span class="hljs-number">1</span>];
+        }
+      }
+    }
+  };
 
 };</pre></div></div>
             

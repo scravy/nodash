@@ -1,7 +1,7 @@
 /* vim: set et sw=2 ts=2: */
+'use strict';
 
 module.exports = function (Nodash, options) {
-  'use strict';
 
   var curried = require('./curried');
 

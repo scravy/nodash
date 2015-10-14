@@ -264,44 +264,6 @@
     
   </a></li>
 </ul>
-<h6><a href="#g-Maybe">Maybe</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-catMaybes">
-    <span class="name">catMaybes</span>
-    
-  </a></li>
-  <li><a href="#f-isJust">
-    <span class="name">isJust</span>
-    
-  </a></li>
-  <li><a href="#f-isNothing">
-    <span class="name">isNothing</span>
-    
-  </a></li>
-  <li><a href="#f-mapMaybe">
-    <span class="name">mapMaybe</span>
-    
-  </a></li>
-  <li><a href="#f-maybe">
-    <span class="name">maybe</span>
-    
-  </a></li>
-  <li><a href="#f-maybeToList">
-    <span class="name">maybeToList</span>
-    
-  </a></li>
-</ul>
-<h6><a href="#g-Nodash">Nodash</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-install">
-    <span class="name">install</span>
-    
-  </a></li>
-  <li><a href="#f-register">
-    <span class="name">register</span>
-    
-  </a></li>
-</ul>
 <h6><a href="#g-Math">Math</a></h6>
 <ul class="list-unstyled">
   <li><a href="#f-abs">
@@ -465,6 +427,66 @@
     
   </a></li>
 </ul>
+<h6><a href="#g-Nodash">Nodash</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-install">
+    <span class="name">install</span>
+    
+  </a></li>
+  <li><a href="#f-register">
+    <span class="name">register</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Maybe">Maybe</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-catMaybes">
+    <span class="name">catMaybes</span>
+    
+  </a></li>
+  <li><a href="#f-isJust">
+    <span class="name">isJust</span>
+    
+  </a></li>
+  <li><a href="#f-isNothing">
+    <span class="name">isNothing</span>
+    
+  </a></li>
+  <li><a href="#f-mapMaybe">
+    <span class="name">mapMaybe</span>
+    
+  </a></li>
+  <li><a href="#f-maybe">
+    <span class="name">maybe</span>
+    
+  </a></li>
+  <li><a href="#f-maybeToList">
+    <span class="name">maybeToList</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Object">Object</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-each">
+    <span class="name">each</span>
+    
+  </a></li>
+  <li><a href="#f-keys">
+    <span class="name">keys</span>
+    
+  </a></li>
+  <li><a href="#f-values">
+    <span class="name">values</span>
+    
+  </a></li>
+</ul>
+<h6><a href="#g-Pattern">Pattern</a></h6>
+<ul class="list-unstyled">
+  <li><a href="#f-match">
+    <span class="name">match</span>
+    
+  </a></li>
+</ul>
 <h6><a href="#g-Stream">Stream</a></h6>
 <ul class="list-unstyled">
   <li><a href="#f-cycle">
@@ -485,21 +507,6 @@
   </a></li>
   <li><a href="#f-until">
     <span class="name">until</span>
-    
-  </a></li>
-</ul>
-<h6><a href="#g-Object">Object</a></h6>
-<ul class="list-unstyled">
-  <li><a href="#f-each">
-    <span class="name">each</span>
-    
-  </a></li>
-  <li><a href="#f-keys">
-    <span class="name">keys</span>
-    
-  </a></li>
-  <li><a href="#f-values">
-    <span class="name">values</span>
     
   </a></li>
 </ul>
@@ -782,6 +789,22 @@
     <span class="name">intersperse</span>
     
   </a></li>
+  <li><a href="#f-isArguments">
+    <span class="name">isArguments</span>
+    
+  </a></li>
+  <li><a href="#f-isDate">
+    <span class="name">isDate</span>
+    
+  </a></li>
+  <li><a href="#f-isNull">
+    <span class="name">isNull</span>
+    
+  </a></li>
+  <li><a href="#f-isRegExp">
+    <span class="name">isRegExp</span>
+    
+  </a></li>
   <li><a href="#f-last">
     <span class="name">last</span>
     
@@ -936,9 +959,9 @@
 
 <div class="content">
 
-<h1>nodash 0.11.1 <small>api documentation</small></h1>
+<h1>nodash 0.12.0 <small>api documentation</small></h1>
 
-<p>This is the API documentation for nodash 0.11.1.</p>
+<p>This is the API documentation for nodash 0.12.0.</p>
 
 <p>Don't miss the <a href="#Appendix">Appendix</a>.</p>
 
@@ -1941,7 +1964,7 @@ list is passed.</p>
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params">specification</span>) </span>{
   <span class="hljs-comment">// this function does its own currying.</span>
-  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length == <span class="hljs-number">2</span>) {
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">2</span>) {
     run(specification)(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]);
     <span class="hljs-keyword">return</span>;
   }
@@ -2636,229 +2659,6 @@ which are evaluated only if you call <code>.head()</code> or <code>.tail()</code
 </div>
 
 
-<h2 id="g-Maybe">Maybe</h1>
-
-
-<div class="function well" id="f-catMaybes">
-
-  <h3>
-    catMaybes
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-keyword">var</span> catMaybes = <span class="hljs-comment">/* this is a composed function */</span></pre>
-
-</div>
-<div class="function well" id="f-isJust">
-
-  <h3>
-    isJust
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isJust</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">return</span> thing !== <span class="hljs-literal">null</span> &amp;&amp; thing !== <span class="hljs-literal">undefined</span>;
-}</pre>
-
-</div>
-<div class="function well" id="f-isNothing">
-
-  <h3>
-    isNothing
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNothing</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">return</span> !isJust(thing);
-}</pre>
-
-</div>
-<div class="function well" id="f-mapMaybe">
-
-  <h3>
-    mapMaybe
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-keyword">var</span> mapMaybe = <span class="hljs-comment">/* this is a composed function */</span></pre>
-
-</div>
-<div class="function well" id="f-maybe">
-
-  <h3>
-    maybe
-    <small>
-      
-        <span class="label label-warning">Prelude: maybe</span>
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybe</span>(<span class="hljs-params">def, fun, value</span>) </span>{
-  <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span> || value === <span class="hljs-literal">undefined</span>) {
-    <span class="hljs-keyword">return</span> def;
-  }
-  <span class="hljs-keyword">return</span> fun(value);
-}</pre>
-
-</div>
-<div class="function well" id="f-maybeToList">
-
-  <h3>
-    maybeToList
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybeToList</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">if</span> (isJust(thing)) {
-    <span class="hljs-keyword">return</span> singleton(thing);
-  }
-  <span class="hljs-keyword">return</span> emptyList();
-}</pre>
-
-</div>
-
-
-<h2 id="g-Nodash">Nodash</h1>
-
-
-<div class="function well" id="f-install">
-
-  <h3>
-    install
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">install</span>(<span class="hljs-params">mountpoint</span>) </span>{
-  <span class="hljs-keyword">var</span> options = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
-  <span class="hljs-keyword">var</span> nodashObject = Nodash;
-  <span class="hljs-keyword">var</span> prefix = <span class="hljs-string">''</span>;
-  <span class="hljs-keyword">var</span> postfix = <span class="hljs-string">''</span>;
-  <span class="hljs-keyword">if</span> (!mountpoint) {
-    <span class="hljs-keyword">return</span> Nodash;
-  }
-  <span class="hljs-keyword">if</span> (options) {
-    nodashObject = makeNodash(options);
-  }
-  <span class="hljs-keyword">if</span> (isArray(mountpoint)) {
-    <span class="hljs-keyword">if</span> (isString(mountpoint[<span class="hljs-number">0</span>])) {
-      prefix = [].shift.call(mountpoint);
-    }
-    <span class="hljs-keyword">if</span> (isString(mountpoint[<span class="hljs-number">1</span>])) {
-      postfix = mountpoint[<span class="hljs-number">1</span>];
-    }
-    mountpoint = mountpoint[<span class="hljs-number">0</span>] || {};
-  }
-  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">func, name</span>) </span>{
-    <span class="hljs-keyword">if</span> (name[<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>) {
-      <span class="hljs-keyword">return</span>;
-    }
-    <span class="hljs-keyword">var</span> key = prefix + name + postfix;
-    <span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> mountpoint)) {
-      mountpoint[key] = func;
-    }
-  }, nodashObject);
-  <span class="hljs-keyword">return</span> mountpoint;
-}</pre>
-
-</div>
-<div class="function well" id="f-register">
-
-  <h3>
-    register
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> args = [].slice.call(<span class="hljs-built_in">arguments</span>);
-  
-  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">1</span>) {
-    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">typeof</span> args[<span class="hljs-number">0</span>]) {
-    <span class="hljs-keyword">case</span> <span class="hljs-string">'object'</span>:
-      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(args[<span class="hljs-number">0</span>])) {
-        registerInjected(args[<span class="hljs-number">0</span>].slice());
-      } <span class="hljs-keyword">else</span> {
-        registerLib(args[<span class="hljs-number">0</span>]);
-      }
-      <span class="hljs-keyword">break</span>;
-    <span class="hljs-keyword">case</span> <span class="hljs-string">'function'</span>:
-      register(args[<span class="hljs-number">0</span>].call(Nodash));
-      <span class="hljs-keyword">break</span>;
-    }
-    <span class="hljs-keyword">return</span>;
-  }
-  <span class="hljs-keyword">var</span> func = args.pop();
-  <span class="hljs-keyword">var</span> aliases = [];
-  args.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arg</span>) </span>{
-    [].push.apply(aliases, arg.split(<span class="hljs-regexp">/ +/</span>));
-  });
-  <span class="hljs-keyword">var</span> name = <span class="hljs-literal">null</span>;
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; aliases.length; i += <span class="hljs-number">1</span>) {
-    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^[a-z0-9]+$/i</span>.test(aliases[i])) {
-      name = aliases[i];
-      <span class="hljs-keyword">break</span>;
-    }
-  }
-  __metadata[name] = {
-    aliases: aliases,
-    definition: func 
-  };
-  <span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/^[A-Z]/</span>.test(name)) {
-    func = curried(func);
-  }
-  aliases.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">alias</span>) </span>{
-    Nodash[alias] = func;
-  });
-}</pre>
-
-</div>
-
-
 <h2 id="g-Math">Math</h1>
 
 
@@ -3327,7 +3127,7 @@ abs(-<span class="hljs-number">3</span>) === <span class="hljs-number">3</span>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mod</span>(<span class="hljs-params">a, b</span>) </span>{
   <span class="hljs-keyword">var</span> q = quot(a, b);
   <span class="hljs-keyword">var</span> r = rem(a, b);
-  <span class="hljs-keyword">return</span> signum(r) == -signum(b) ? r + b : r;
+  <span class="hljs-keyword">return</span> signum(r) === -signum(b) ? r + b : r;
 }</pre>
 
 </div>
@@ -3712,6 +3512,346 @@ integer if <code>x</code> is equidistant between two integers.</p>
 </div>
 
 
+<h2 id="g-Nodash">Nodash</h1>
+
+
+<div class="function well" id="f-install">
+
+  <h3>
+    install
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">install</span>(<span class="hljs-params">mountpoint</span>) </span>{
+  <span class="hljs-keyword">var</span> options = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
+  <span class="hljs-keyword">var</span> nodashObject = Nodash;
+  <span class="hljs-keyword">var</span> prefix = <span class="hljs-string">''</span>;
+  <span class="hljs-keyword">var</span> postfix = <span class="hljs-string">''</span>;
+  <span class="hljs-keyword">if</span> (!mountpoint) {
+    <span class="hljs-keyword">return</span> Nodash;
+  }
+  <span class="hljs-keyword">if</span> (options) {
+    nodashObject = makeNodash(options);
+  }
+  <span class="hljs-keyword">if</span> (isArray(mountpoint)) {
+    <span class="hljs-keyword">if</span> (isString(mountpoint[<span class="hljs-number">0</span>])) {
+      prefix = [].shift.call(mountpoint);
+    }
+    <span class="hljs-keyword">if</span> (isString(mountpoint[<span class="hljs-number">1</span>])) {
+      postfix = mountpoint[<span class="hljs-number">1</span>];
+    }
+    mountpoint = mountpoint[<span class="hljs-number">0</span>] || {};
+  }
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">func, name</span>) </span>{
+    <span class="hljs-keyword">if</span> (name[<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>) {
+      <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">var</span> key = prefix + name + postfix;
+    <span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> mountpoint)) {
+      mountpoint[key] = func;
+    }
+  }, nodashObject);
+  <span class="hljs-keyword">return</span> mountpoint;
+}</pre>
+
+</div>
+<div class="function well" id="f-register">
+
+  <h3>
+    register
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> args = [].slice.call(<span class="hljs-built_in">arguments</span>);
+  
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">typeof</span> args[<span class="hljs-number">0</span>]) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'object'</span>:
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(args[<span class="hljs-number">0</span>])) {
+        registerInjected(args[<span class="hljs-number">0</span>].slice());
+      } <span class="hljs-keyword">else</span> {
+        registerLib(args[<span class="hljs-number">0</span>]);
+      }
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'function'</span>:
+      register(args[<span class="hljs-number">0</span>].call(Nodash));
+      <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-keyword">return</span>;
+  }
+  <span class="hljs-keyword">var</span> func = args.pop();
+  <span class="hljs-keyword">var</span> aliases = [];
+  args.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arg</span>) </span>{
+    [].push.apply(aliases, arg.split(<span class="hljs-regexp">/ +/</span>));
+  });
+  <span class="hljs-keyword">var</span> name = <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; aliases.length; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^[a-z0-9]+$/i</span>.test(aliases[i])) {
+      name = aliases[i];
+      <span class="hljs-keyword">break</span>;
+    }
+  }
+  __metadata[name] = {
+    aliases: aliases,
+    definition: func 
+  };
+  <span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/^[A-Z]/</span>.test(name)) {
+    func = curried(func);
+  }
+  aliases.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">alias</span>) </span>{
+    Nodash[alias] = func;
+  });
+}</pre>
+
+</div>
+
+
+<h2 id="g-Maybe">Maybe</h1>
+
+
+<div class="function well" id="f-catMaybes">
+
+  <h3>
+    catMaybes
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-keyword">var</span> catMaybes = <span class="hljs-comment">/* this is a composed function */</span></pre>
+
+</div>
+<div class="function well" id="f-isJust">
+
+  <h3>
+    isJust
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isJust</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> thing !== <span class="hljs-literal">null</span> &amp;&amp; thing !== <span class="hljs-literal">undefined</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isNothing">
+
+  <h3>
+    isNothing
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNothing</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> !isJust(thing);
+}</pre>
+
+</div>
+<div class="function well" id="f-mapMaybe">
+
+  <h3>
+    mapMaybe
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-keyword">var</span> mapMaybe = <span class="hljs-comment">/* this is a composed function */</span></pre>
+
+</div>
+<div class="function well" id="f-maybe">
+
+  <h3>
+    maybe
+    <small>
+      
+        <span class="label label-warning">Prelude: maybe</span>
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybe</span>(<span class="hljs-params">def, fun, value</span>) </span>{
+  <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span> || value === <span class="hljs-literal">undefined</span>) {
+    <span class="hljs-keyword">return</span> def;
+  }
+  <span class="hljs-keyword">return</span> fun(value);
+}</pre>
+
+</div>
+<div class="function well" id="f-maybeToList">
+
+  <h3>
+    maybeToList
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maybeToList</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">if</span> (isJust(thing)) {
+    <span class="hljs-keyword">return</span> singleton(thing);
+  }
+  <span class="hljs-keyword">return</span> emptyList();
+}</pre>
+
+</div>
+
+
+<h2 id="g-Object">Object</h1>
+
+
+<div class="function well" id="f-each">
+
+  <h3>
+    each
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">each</span>(<span class="hljs-params">f, xs</span>) </span>{
+  <span class="hljs-keyword">if</span> (is(List, xs)) {
+    <span class="hljs-keyword">while</span> (!xs.isEmpty()) {
+      f(xs.head());
+      xs = xs.tail();
+    }
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
+      f(xs[i], i);
+    }
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isObject(xs)) {
+    <span class="hljs-keyword">var</span> ks = <span class="hljs-built_in">Object</span>.keys(xs);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; ks.length; j += <span class="hljs-number">1</span>) {
+      f(xs[ks[j]], ks[j]);
+    }
+  }
+}</pre>
+
+</div>
+<div class="function well" id="f-keys">
+
+  <h3>
+    keys
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keys</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
+
+</div>
+<div class="function well" id="f-values">
+
+  <h3>
+    values
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">values</span>(<span class="hljs-params">object</span>) </span>{
+  <span class="hljs-keyword">var</span> values = [];
+  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
+    values.push(value);
+  }, object);
+  <span class="hljs-keyword">return</span> values;
+}</pre>
+
+</div>
+
+
+<h2 id="g-Pattern">Pattern</h1>
+
+
+<div class="function well" id="f-match">
+
+  <h3>
+    match
+    <small>
+      
+    </small>
+  </h3>
+
+  <p><code>MatchSpec → Any → MatchResult</code></p>
+<p><code>match(spec, value)</code> matches <code>value</code> against the <code>spec</code>, returning
+what was captured in the spec.</p>
+<p>A <code>MatchSpec</code> is an array of arrays. Every array in the spec
+must have two elements: <code>[ 0: Pattern, 1: Result ]</code>. The first
+<code>Pattern</code> that matches <code>value</code> will yield the associated <code>Result</code>.
+If <code>Result</code> is a function it will be invoked with an object of
+all captured variables in the <code>Pattern</code> and the result will be returned,
+otherwise the <code>Result</code> itself.</p>
+
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">match</span>(<span class="hljs-params">pattern, arg</span>) </span>{
+  <span class="hljs-keyword">var</span> argType = <span class="hljs-keyword">typeof</span> arg;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; pattern.length; i += <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">var</span> result = {};
+    <span class="hljs-keyword">var</span> p = pattern[i];
+    <span class="hljs-keyword">if</span> (matchR(p[<span class="hljs-number">0</span>], arg, result)) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> p[<span class="hljs-number">1</span>] === <span class="hljs-string">'function'</span>) {
+        <span class="hljs-keyword">return</span> p[<span class="hljs-number">1</span>](result);
+      }
+      <span class="hljs-keyword">return</span> p[<span class="hljs-number">1</span>];
+    }
+  }
+}</pre>
+
+</div>
+
+
 <h2 id="g-Stream">Stream</h1>
 
 
@@ -3854,81 +3994,6 @@ integer if <code>x</code> is equidistant between two integers.</p>
     v = f(v);
   }
   <span class="hljs-keyword">return</span> v;
-}</pre>
-
-</div>
-
-
-<h2 id="g-Object">Object</h1>
-
-
-<div class="function well" id="f-each">
-
-  <h3>
-    each
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">each</span>(<span class="hljs-params">f, xs</span>) </span>{
-  <span class="hljs-keyword">if</span> (is(List, xs)) {
-    <span class="hljs-keyword">while</span> (!xs.isEmpty()) {
-      f(xs.head());
-      xs = xs.tail();
-    }
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isArray(xs) || isString(xs)) {
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; xs.length; i++) {
-      f(xs[i], i);
-    }
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isObject(xs)) {
-    <span class="hljs-keyword">var</span> ks = <span class="hljs-built_in">Object</span>.keys(xs);
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; ks.length; j += <span class="hljs-number">1</span>) {
-      f(xs[ks[j]], ks[j]);
-    }
-  }
-}</pre>
-
-</div>
-<div class="function well" id="f-keys">
-
-  <h3>
-    keys
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keys</span>(<span class="hljs-params"></span>) </span>{ [native code] }</pre>
-
-</div>
-<div class="function well" id="f-values">
-
-  <h3>
-    values
-    <small>
-      
-    </small>
-  </h3>
-
-  
-
-
-  <p>Source:</p>
-  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">values</span>(<span class="hljs-params">object</span>) </span>{
-  <span class="hljs-keyword">var</span> values = [];
-  each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
-    values.push(value);
-  }, object);
-  <span class="hljs-keyword">return</span> values;
 }</pre>
 
 </div>
@@ -4425,7 +4490,7 @@ isArray(<span class="hljs-number">3</span>) === <span class="hljs-literal">false
 
   <p>Source:</p>
   <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isString</span>(<span class="hljs-params">thing</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> thing === <span class="hljs-string">'string'</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> thing === <span class="hljs-string">'string'</span> || toString.call(thing) === <span class="hljs-string">'[object String]'</span>;
 }</pre>
 
 </div>
@@ -4491,12 +4556,12 @@ for Symbols.</p>
     <span class="hljs-keyword">case</span> <span class="hljs-string">'number'</span>:
       <span class="hljs-keyword">return</span> <span class="hljs-built_in">isNaN</span>(thing) ? <span class="hljs-string">'not-a-number'</span> : <span class="hljs-string">'number'</span>;
     <span class="hljs-keyword">case</span> <span class="hljs-string">'object'</span>:
-      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(thing)) {
-        <span class="hljs-keyword">return</span> <span class="hljs-string">'array'</span>;
-      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (thing === <span class="hljs-literal">null</span>) {
-        <span class="hljs-keyword">return</span> <span class="hljs-string">'null'</span>;
+      <span class="hljs-keyword">var</span> exactType = toString.call(thing);
+      exactType = exactType.slice(<span class="hljs-number">8</span>, exactType.length - <span class="hljs-number">1</span>).toLowerCase();
+      <span class="hljs-keyword">if</span> (exactType === <span class="hljs-string">'object'</span> &amp;&amp; thing.constructor &amp;&amp; thing.constructor.__type) {
+        <span class="hljs-keyword">return</span> thing.constructor.__type;
       }
-      <span class="hljs-keyword">return</span> thing.constructor.__type || <span class="hljs-string">'object'</span>;
+      <span class="hljs-keyword">return</span> exactType;
     <span class="hljs-keyword">default</span>:
       <span class="hljs-keyword">return</span> type;
   }
@@ -5624,6 +5689,78 @@ for Symbols.</p>
     z.push(xs[i]);
   }
   <span class="hljs-keyword">return</span> z;
+}</pre>
+
+</div>
+<div class="function well" id="f-isArguments">
+
+  <h3>
+    isArguments
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isArguments</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> toString.call(thing) === <span class="hljs-string">'[object Arguments]'</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isDate">
+
+  <h3>
+    isDate
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDate</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> toString.call(thing) === <span class="hljs-string">'[object Date]'</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isNull">
+
+  <h3>
+    isNull
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNull</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> toString.call(thing) === <span class="hljs-string">'[object Null]'</span>;
+}</pre>
+
+</div>
+<div class="function well" id="f-isRegExp">
+
+  <h3>
+    isRegExp
+    <small>
+      
+    </small>
+  </h3>
+
+  
+
+
+  <p>Source:</p>
+  <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isRegExp</span>(<span class="hljs-params">thing</span>) </span>{
+  <span class="hljs-keyword">return</span> toString.call(thing) === <span class="hljs-string">'[object RegExp]'</span>;
 }</pre>
 
 </div>
@@ -6785,9 +6922,11 @@ for Symbols.</p>
   <li>install</li>
   <li>invoke</li>
   <li>is</li>
+  <li>isArguments</li>
   <li>isArray</li>
   <li>isAsciiLetter</li>
   <li>isBoolean</li>
+  <li>isDate</li>
   <li>isEmpty</li>
   <li>isFunction</li>
   <li>isInteger</li>
@@ -6796,9 +6935,11 @@ for Symbols.</p>
   <li>isLetter</li>
   <li>isLower</li>
   <li>isNothing</li>
+  <li>isNull</li>
   <li>isNumber</li>
   <li>isNumeric</li>
   <li>isObject</li>
+  <li>isRegExp</li>
   <li>isRight</li>
   <li>isString</li>
   <li>isUndefined</li>
@@ -6810,6 +6951,7 @@ for Symbols.</p>
   <li>listToMaybe</li>
   <li>listToString</li>
   <li>mapMaybe</li>
+  <li>match</li>
   <li>maybeToList</li>
   <li>objectToArray</li>
   <li>on</li>

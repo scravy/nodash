@@ -129,6 +129,11 @@
               </a>
             
               
+              <a class="source" href="match.html">
+                match.js
+              </a>
+            
+              
               <a class="source" href="num.html">
                 num.js
               </a>
@@ -197,6 +202,7 @@
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
+<span class="hljs-pi">'use strict'</span>;
 
 <span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'tuple'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">tuple</span>) </span>{
 
@@ -220,7 +226,7 @@
     mod: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
       <span class="hljs-keyword">var</span> q = Nodash.quot(a, b);
       <span class="hljs-keyword">var</span> r = Nodash.rem(a, b);
-      <span class="hljs-keyword">return</span> Nodash.signum(r) == -Nodash.signum(b) ? r + b : r;
+      <span class="hljs-keyword">return</span> Nodash.signum(r) === -Nodash.signum(b) ? r + b : r;
     },
     
     divMod: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>)  </span>{

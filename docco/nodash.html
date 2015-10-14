@@ -129,6 +129,11 @@
               </a>
             
               
+              <a class="source" href="match.html">
+                match.js
+              </a>
+            
+              
               <a class="source" href="num.html">
                 num.js
               </a>
@@ -216,8 +221,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Object</span>.keys !== <span class="hljs-string">'function'</span> || <span class="hljs-built_in">Object</span>.keys({ x: <span class="hljs-number">7</span> })[<span class="hljs-number">0</span>] !== <span class="hljs-string">'x'</span> ||
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Object</span>.keys !== <span class="hljs-string">'function'</span> || <span class="hljs-built_in">Object</span>.keys({ x: <span class="hljs-number">7</span> })[<span class="hljs-number">0</span>] !== <span class="hljs-string">'x'</span> ||
       <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Array</span>.isArray !== <span class="hljs-string">'function'</span> || !<span class="hljs-built_in">Array</span>.isArray([]) ||
       <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Array</span>.prototype.forEach !== <span class="hljs-string">'function'</span>) {
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'ES5 environment required (`es5-shim` will do).'</span>);
@@ -263,6 +267,7 @@
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/string'</span>));
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/control'</span>));
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/object'</span>));
+  register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/match'</span>));
 
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/coll/map'</span>));
   register(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/coll/fold'</span>));

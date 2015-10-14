@@ -1,11 +1,12 @@
 /* vim: set et sw=2 ts=2: */
+'use strict';
 
 module.exports = [ 'idf', 'is', 'map', 'compose', 'filter',
   function (idf, is, map, compose, filter) {
 
   var Nodash = this;
 
-  function fail() {}
+  var fail = function() {};
 
   function Either() {
     fail();

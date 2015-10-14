@@ -129,6 +129,11 @@
               </a>
             
               
+              <a class="source" href="match.html">
+                match.js
+              </a>
+            
+              
               <a class="source" href="num.html">
                 num.js
               </a>
@@ -197,10 +202,13 @@
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
+<span class="hljs-pi">'use strict'</span>;
 
 <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
 
   <span class="hljs-keyword">var</span> Nodash = <span class="hljs-keyword">this</span>;
+
+  <span class="hljs-keyword">var</span> toString = <span class="hljs-built_in">Object</span>.prototype.toString;
 
   <span class="hljs-keyword">return</span> {
 
@@ -210,12 +218,12 @@
         <span class="hljs-keyword">case</span> <span class="hljs-string">'number'</span>:
           <span class="hljs-keyword">return</span> <span class="hljs-built_in">isNaN</span>(thing) ? <span class="hljs-string">'not-a-number'</span> : <span class="hljs-string">'number'</span>;
         <span class="hljs-keyword">case</span> <span class="hljs-string">'object'</span>:
-          <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(thing)) {
-            <span class="hljs-keyword">return</span> <span class="hljs-string">'array'</span>;
-          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (thing === <span class="hljs-literal">null</span>) {
-            <span class="hljs-keyword">return</span> <span class="hljs-string">'null'</span>;
+          <span class="hljs-keyword">var</span> exactType = toString.call(thing);
+          exactType = exactType.slice(<span class="hljs-number">8</span>, exactType.length - <span class="hljs-number">1</span>).toLowerCase();
+          <span class="hljs-keyword">if</span> (exactType === <span class="hljs-string">'object'</span> &amp;&amp; thing.constructor &amp;&amp; thing.constructor.__type) {
+            <span class="hljs-keyword">return</span> thing.constructor.__type;
           }
-          <span class="hljs-keyword">return</span> thing.constructor.__type || <span class="hljs-string">'object'</span>;
+          <span class="hljs-keyword">return</span> exactType;
         <span class="hljs-keyword">default</span>:
           <span class="hljs-keyword">return</span> type;
       }
@@ -234,7 +242,7 @@
     },
 
     isString: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> thing === <span class="hljs-string">'string'</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> thing === <span class="hljs-string">'string'</span> || toString.call(thing) === <span class="hljs-string">'[object String]'</span>;
     },
 
     isFunction: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{
@@ -243,6 +251,22 @@
 
     isUndefined: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> thing === <span class="hljs-string">'undefined'</span>;
+    },
+
+    isRegExp: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{
+      <span class="hljs-keyword">return</span> toString.call(thing) === <span class="hljs-string">'[object RegExp]'</span>;
+    },
+
+    isDate: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{
+      <span class="hljs-keyword">return</span> toString.call(thing) === <span class="hljs-string">'[object Date]'</span>;
+    },
+
+    isNull: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{
+      <span class="hljs-keyword">return</span> toString.call(thing) === <span class="hljs-string">'[object Null]'</span>;
+    },
+
+    isArguments: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{
+      <span class="hljs-keyword">return</span> toString.call(thing) === <span class="hljs-string">'[object Arguments]'</span>;
     },
 
     isObject: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">thing</span>) </span>{

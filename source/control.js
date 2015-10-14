@@ -21,7 +21,7 @@ module.exports = function () {
 
     run: function (specification) {
       // this function does its own currying.
-      if (arguments.length == 2) {
+      if (arguments.length === 2) {
         Nodash.run(specification)(arguments[1]);
         return;
       }

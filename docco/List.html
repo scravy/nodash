@@ -129,6 +129,11 @@
               </a>
             
               
+              <a class="source" href="match.html">
+                match.js
+              </a>
+            
+              
               <a class="source" href="num.html">
                 num.js
               </a>
@@ -197,6 +202,7 @@
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
+<span class="hljs-pi">'use strict'</span>;
 
 <span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'Thunk'</span>, <span class="hljs-string">'idf'</span>, <span class="hljs-string">'freeze'</span>, <span class="hljs-string">'create'</span>,
   <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Thunk, idf, freeze, create</span>) </span>{
@@ -238,10 +244,10 @@
   <span class="hljs-keyword">var</span> emptyList = <span class="hljs-keyword">new</span> List();
   emptyList.isEmpty = idf(<span class="hljs-literal">true</span>);
 
+  List.emptyList = emptyList;
+
   freeze(emptyList);
   freeze(List);
-
-  List.emptyList = emptyList;
 
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">arrayToString</span>(<span class="hljs-params">array</span>) </span>{
     <span class="hljs-keyword">return</span> array.join(<span class="hljs-string">''</span>);

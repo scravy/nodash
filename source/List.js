@@ -1,4 +1,5 @@
 /* vim: set et sw=2 ts=2: */
+'use strict';
 
 module.exports = [ 'Thunk', 'idf', 'freeze', 'create',
   function (Thunk, idf, freeze, create) {
@@ -40,10 +41,10 @@ module.exports = [ 'Thunk', 'idf', 'freeze', 'create',
   var emptyList = new List();
   emptyList.isEmpty = idf(true);
 
+  List.emptyList = emptyList;
+
   freeze(emptyList);
   freeze(List);
-
-  List.emptyList = emptyList;
 
   function arrayToString(array) {
     return array.join('');

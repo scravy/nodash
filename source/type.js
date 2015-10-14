@@ -1,8 +1,11 @@
 /* vim: set et sw=2 ts=2: */
+'use strict';
 
 module.exports = function () {
 
   var Nodash = this;
+
+  var toString = Object.prototype.toString;
 
   return {
 
@@ -12,12 +15,12 @@ module.exports = function () {
         case 'number':
           return isNaN(thing) ? 'not-a-number' : 'number';
         case 'object':
-          if (Array.isArray(thing)) {
-            return 'array';
-          } else if (thing === null) {
-            return 'null';
+          var exactType = toString.call(thing);
+          exactType = exactType.slice(8, exactType.length - 1).toLowerCase();
+          if (exactType === 'object' && thing.constructor && thing.constructor.__type) {
+            return thing.constructor.__type;
           }
-          return thing.constructor.__type || 'object';
+          return exactType;
         default:
           return type;
       }
@@ -36,7 +39,7 @@ module.exports = function () {
     },
 
     isString: function (thing) {
-      return typeof thing === 'string';
+      return typeof thing === 'string' || toString.call(thing) === '[object String]';
     },
 
     isFunction: function (thing) {
@@ -45,6 +48,22 @@ module.exports = function () {
 
     isUndefined: function (thing) {
       return typeof thing === 'undefined';
+    },
+
+    isRegExp: function (thing) {
+      return toString.call(thing) === '[object RegExp]';
+    },
+
+    isDate: function (thing) {
+      return toString.call(thing) === '[object Date]';
+    },
+
+    isNull: function (thing) {
+      return toString.call(thing) === '[object Null]';
+    },
+
+    isArguments: function (thing) {
+      return toString.call(thing) === '[object Arguments]';
     },
 
     isObject: function (thing) {

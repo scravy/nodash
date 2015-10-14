@@ -1,6 +1,6 @@
 {
   "name": "nodash",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "description": "A port of the Haskell Prelude to JavaScript/NodeJS",
   "main": "nodash.js",
   "scripts": {
@@ -33,7 +33,7 @@
     "gulp": "^3.9.0",
     "gulp-esmangle": "^1.1.1",
     "gulp-filenames": "^2.0.0",
-    "gulp-gh-pages": "^0.5.2",
+    "gulp-gh-pages": "^0.5.3",
     "gulp-gzip": "^1.2.0",
     "gulp-istanbul": "^0.10.1",
     "gulp-istanbul-enforcer": "^1.0.3",

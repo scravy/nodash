@@ -195,3 +195,5 @@ v0.12 "Joy"
 
 + Added `match` function
 + Cleaned up the code
++ `isArguments`, `isDate`, `isNull`, `isRegExp` added
+

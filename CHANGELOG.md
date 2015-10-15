@@ -197,3 +197,14 @@ v0.12 "Joy"
 + Cleaned up the code
 + `isArguments`, `isDate`, `isNull`, `isRegExp` added
 
+
+v0.13 "Knuth"
+-------------
+
++ Added `classOf`
+
+
+v0.14 "Lovelace"
+----------------
+
+

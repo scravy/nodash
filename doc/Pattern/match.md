@@ -9,3 +9,19 @@ must have two elements: `[ 0: Pattern, 1: Result ]`. The first
 If `Result` is a function it will be invoked with an object of
 all captured variables in the `Pattern` and the result will be returned,
 otherwise the `Result` itself.
+
+Example:
+
+```JavaScript
+var matchJohn = match([
+  [ { firstName: 'John' }, 'John is a fine name' ],
+  [ { firstName: '$firstName' },
+    function (result) { return result.$firstName + ' is also a fine name'; } ]
+]);
+
+console.log(matchJohn({ firstName: 'John', lastName: 'Doe' }));
+// → 'John is a fine name'
+
+console.log(matchJohn({ firstName: 'Johnathan', lastName: 'Danes' }));
+// → 'Jonathan is also a fine name'
+```

@@ -22,9 +22,20 @@ partially apply any function and get a function in return (on the other hand thi
 means there are no optional arguments). It also supports *lists* which can be
 evaluated lazily and *infinite streams*.
 
+A tiny list of features:
+
+- [Curried functions](https://scravy.github.io/nodash/apidoc.html#f-curried)
+- [Pattern matching](https://scravy.github.io/nodash/apidoc.html#g-Pattern)
+- [Math library](https://scravy.github.io/nodash/apidoc.html#g-Math)
+  (equidistant `round`, consistent behavior across platforms, ...)
+- [Async control](https://scravy.github.io/nodash/apidoc.html#g-Control)
+- [Immutable Tuples](https://scravy.github.io/nodash/apidoc.html#g-Tuple)
+- [Lazy Lists](https://scravy.github.io/nodash/apidoc.html#g-List)
+- [Infinite Streams](https://scravy.github.io/nodash/apidoc.html#g-Stream)
+
 Browse through the
  [apidoc](https://scravy.github.io/nodash/apidoc.html),
- [benchmark](https://github.com/scravy/nodash/tree/master/benchmark/index.js), or
+ [gallery](https://scravy.github.io/nodash/examples.html), [benchmark](https://github.com/scravy/nodash/tree/master/benchmark/index.js), or
  [tests](https://github.com/scravy/nodash/tree/master/test) for examples.
 
 For a list of which prelude functions are covered see the

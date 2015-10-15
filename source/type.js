@@ -7,7 +7,14 @@ module.exports = function () {
 
   var toString = Object.prototype.toString;
 
+  function classOf(thing) {
+    var exactType = toString.call(thing);
+    return exactType.slice(8, exactType.length - 1).toLowerCase();
+  }
+
   return {
+
+    classOf: classOf,
 
     typeOf: function (thing) {
       var type = typeof thing;
@@ -15,8 +22,7 @@ module.exports = function () {
         case 'number':
           return isNaN(thing) ? 'not-a-number' : 'number';
         case 'object':
-          var exactType = toString.call(thing);
-          exactType = exactType.slice(8, exactType.length - 1).toLowerCase();
+          var exactType = classOf(thing);
           if (exactType === 'object' && thing.constructor && thing.constructor.__type) {
             return thing.constructor.__type;
           }

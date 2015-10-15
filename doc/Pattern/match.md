@@ -16,12 +16,13 @@ Example:
 var matchJohn = match([
   [ { firstName: 'John' }, 'John is a fine name' ],
   [ { firstName: '$firstName' },
-    function (result) { return result.$firstName + ' is also a fine name'; } ]
+    function (result) {
+      return result.$firstName + ' is also a fine name'; } ]
 ]);
 
 console.log(matchJohn({ firstName: 'John', lastName: 'Doe' }));
 // → 'John is a fine name'
 
-console.log(matchJohn({ firstName: 'Johnathan', lastName: 'Danes' }));
+console.log(matchJohn({ firstName: 'Johnathan', lastName: 'X' }));
 // → 'Jonathan is also a fine name'
 ```

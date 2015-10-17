@@ -1,4 +1,4 @@
-`Something → Bool`
+`Any → Boolean`
 
 Determines whether something is an array or not.
 This is exactly the same as `Array.isArray`.

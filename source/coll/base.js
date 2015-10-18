@@ -1,8 +1,8 @@
 /* vim: set et sw=2 ts=2: */
 'use strict';
 
-module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
-  function (List, lazy, typeOf, error, Thunk) {
+module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk', 'tuple', 'Stream',
+  function (List, lazy, typeOf, error, Thunk, tuple, Stream) {
 
   var Nodash = this;
 
@@ -18,7 +18,6 @@ module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
   function append(xs, ys) {
     switch (typeOf(xs)) {
       case 'list':
-      case 'stream':
         return appendList(xs, ys);
       case 'string':
         return xs + ys;
@@ -41,12 +40,22 @@ module.exports = [ 'List', 'lazy', 'typeOf', 'error', 'Thunk',
   return {
  
     ': cons': function (x, xs) {
-      if (Nodash.is(List, xs)) {
-        return new List(x, xs);
+      switch (typeOf(xs)) {
+        case 'array':
+          var zs = [].slice.call(xs);
+          zs.unshift(x);
+          return zs;
+        case 'string':
+          return x + xs;
+        case 'list':
+          return new List(x, xs);
+        case 'stream':
+          return new Stream(function () {
+            return tuple(x, xs);
+          }); 
+        default:
+          error(TypeError);
       }
-      var zs = [].slice.call(xs);
-      zs.unshift(x);
-      return zs;
     },
 
     '++ append': append,

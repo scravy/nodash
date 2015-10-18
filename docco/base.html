@@ -204,8 +204,8 @@
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* vim: set et sw=2 ts=2: */</span>
 <span class="hljs-pi">'use strict'</span>;
 
-<span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'List'</span>, <span class="hljs-string">'lazy'</span>, <span class="hljs-string">'typeOf'</span>, <span class="hljs-string">'error'</span>, <span class="hljs-string">'Thunk'</span>,
-  <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">List, lazy, typeOf, error, Thunk</span>) </span>{
+<span class="hljs-built_in">module</span>.exports = [ <span class="hljs-string">'List'</span>, <span class="hljs-string">'lazy'</span>, <span class="hljs-string">'typeOf'</span>, <span class="hljs-string">'error'</span>, <span class="hljs-string">'Thunk'</span>, <span class="hljs-string">'tuple'</span>, <span class="hljs-string">'Stream'</span>,
+  <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">List, lazy, typeOf, error, Thunk, tuple, Stream</span>) </span>{
 
   <span class="hljs-keyword">var</span> Nodash = <span class="hljs-keyword">this</span>;
 
@@ -221,7 +221,6 @@
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">append</span>(<span class="hljs-params">xs, ys</span>) </span>{
     <span class="hljs-keyword">switch</span> (typeOf(xs)) {
       <span class="hljs-keyword">case</span> <span class="hljs-string">'list'</span>:
-      <span class="hljs-keyword">case</span> <span class="hljs-string">'stream'</span>:
         <span class="hljs-keyword">return</span> appendList(xs, ys);
       <span class="hljs-keyword">case</span> <span class="hljs-string">'string'</span>:
         <span class="hljs-keyword">return</span> xs + ys;
@@ -244,12 +243,22 @@
   <span class="hljs-keyword">return</span> {
  
     <span class="hljs-string">': cons'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, xs</span>) </span>{
-      <span class="hljs-keyword">if</span> (Nodash.is(List, xs)) {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(x, xs);
+      <span class="hljs-keyword">switch</span> (typeOf(xs)) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'array'</span>:
+          <span class="hljs-keyword">var</span> zs = [].slice.call(xs);
+          zs.unshift(x);
+          <span class="hljs-keyword">return</span> zs;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'string'</span>:
+          <span class="hljs-keyword">return</span> x + xs;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'list'</span>:
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(x, xs);
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'stream'</span>:
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Stream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> tuple(x, xs);
+          }); 
+        <span class="hljs-keyword">default</span>:
+          error(<span class="hljs-built_in">TypeError</span>);
       }
-      <span class="hljs-keyword">var</span> zs = [].slice.call(xs);
-      zs.unshift(x);
-      <span class="hljs-keyword">return</span> zs;
     },
 
     <span class="hljs-string">'++ append'</span>: append,

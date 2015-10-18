@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">nodash/lib/Stream.js</span></h1>
     <h2>
-        Statements: <span class="metric">100% <small>(57 / 57)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">100% <small>(18 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(62 / 62)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(22 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">100% <small>(17 / 17)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">100% <small>(57 / 57)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(62 / 62)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">nodash/lib/</a> &#187; Stream.js</div>
@@ -130,7 +130,17 @@
 103
 104
 105
-106</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -139,20 +149,30 @@
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">72</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">69</span>
-<span class="cline-any cline-yes">69</span>
-<span class="cline-any cline-yes">69</span>
-<span class="cline-any cline-yes">57</span>
-<span class="cline-any cline-yes">57</span>
-<span class="cline-any cline-yes">57</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-yes">60</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">69</span>
-<span class="cline-any cline-yes">54</span>
-<span class="cline-any cline-yes">54</span>
-<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-yes">59</span>
+<span class="cline-any cline-yes">59</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56</span>
+<span class="cline-any cline-yes">56</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58</span>
+<span class="cline-any cline-yes">58</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
@@ -184,10 +204,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">329</span>
-<span class="cline-any cline-yes">13</span>
-<span class="cline-any cline-yes">30</span>
-<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">330</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">316</span>
 <span class="cline-any cline-yes">113</span>
@@ -203,9 +223,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">15</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -238,8 +258,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* vim: set et sw=2 ts=2: */
 'use strict';
 &nbsp;
-module.exports = [ 'Thunk', 'List', 'idf', 'tuple', 'typeOf', 'freeze', 'create',
-  function (Thunk, List, idf, tuple, typeOf, freeze, create) {
+module.exports = [ 'Thunk', 'List', 'idf', 'tuple', 'typeOf', 'freeze', 'error',
+  function (Thunk, List, idf, tuple, typeOf, freeze, error) {
 &nbsp;
   var Nodash = this;
 &nbsp;
@@ -255,7 +275,17 @@ module.exports = [ 'Thunk', 'List', 'idf', 'tuple', 'typeOf', 'freeze', 'create'
       return value;
     };
     this.tail = function () {
-      var value = new Stream(thunk.get().snd());
+      var value = thunk.get().snd();
+      switch (typeOf(value)) {
+        case 'list':
+        case 'stream':
+          break;
+        case 'function':
+          value = new Stream(value);
+          break;
+        default:
+          error(TypeError);
+      }
       self.tail = idf(value);
       return value;
     };
@@ -345,7 +375,7 @@ module.exports = [ 'Thunk', 'List', 'idf', 'tuple', 'typeOf', 'freeze', 'create'
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Oct 16 2015 00:34:35 GMT+0200 (CEST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Oct 18 2015 21:17:04 GMT+0200 (CEST)</div>
 </div>
 <script src="../../prettify.js"></script>
 <script>

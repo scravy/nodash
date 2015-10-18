@@ -18,6 +18,10 @@ describe('', function () {
     assert.deepEqual([ 'ab', 'ba' ], permutations('ab'));
   });
 
+  it('should generate the permutations for [\'a\', \'b\']', function () {
+    assert.deepEqual([ ['a', 'b'], ['b', 'a'] ], permutations(['a', 'b']));
+  });
+
   it('should throw if an invalid type is passed', function () {
     assert.throws(function () {
       permutations(null);

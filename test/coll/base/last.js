@@ -9,6 +9,7 @@ describe('last', function () {
   var last = Nodash.last;
   var lazy = Nodash.lazy;
   var repeat = Nodash.repeat;
+  var emptyList = Nodash.emptyList;
 
   it('should extract last element from a string', function () {
     assert.strictEqual('c', last('abc'));
@@ -20,6 +21,10 @@ describe('last', function () {
 
   it('should extract last element from a list', function () {
     assert.strictEqual(3, last(lazy([1, 2, 3])));
+  });
+
+  it('should return undefined for the empty list', function () {
+    assert.strictEqual(undefined, last(emptyList()));
   });
 
   it('should throw in case a stream is passed', function () {

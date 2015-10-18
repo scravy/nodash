@@ -202,6 +202,8 @@ v0.13 "Knuth"
 -------------
 
 + Added `classOf`
++ Support for lists and streams in `cons`
++ `Stream` supports more versatile generators now
 
 
 v0.14 "Lovelace"

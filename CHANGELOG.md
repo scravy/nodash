@@ -204,6 +204,7 @@ v0.13 "Knuth"
 + Added `classOf`
 + Support for lists and streams in `cons`
 + `Stream` supports more versatile generators now
++ `each` will now stop if the passed function returns `false`
 + Improved overall code coverage
 
 

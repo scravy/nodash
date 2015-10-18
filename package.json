@@ -41,7 +41,7 @@
     "gulp-less": "^3.0.3",
     "gulp-markdown": "^1.0.0",
     "gulp-mocha": "^2.1.3",
-    "gulp-mustache": "^1.1.2",
+    "gulp-mustache": "^2.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sourcemaps": "^1.6.0",

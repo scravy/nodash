@@ -62,7 +62,7 @@ describe('Polyfills', function () {
         assert.strictEqual(9, P.truncate(9.5));
         assert.strictEqual(-9, P.truncate(-9.5));
         assert.strictEqual(0, P.truncate(0.5));
-        assert.strictEqual(0, P.truncate(-0.5));
+        assert.strictEqual(-0, P.truncate(-0.5));
         assert.strictEqual(0, P.truncate(0));
     });
 

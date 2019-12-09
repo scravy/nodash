@@ -12,8 +12,8 @@ describe('RealFrac', function () {
 
     it('truncate', function () {
         assert.strictEqual(0, truncate(0.5));
-        assert.strictEqual(0, truncate(-0.5));
-        assert.strictEqual(0, truncate(-0));
+        assert.strictEqual(-0, truncate(-0.5));
+        assert.strictEqual(-0, truncate(-0));
     });
 
     it('round', function () {
@@ -26,7 +26,7 @@ describe('RealFrac', function () {
         assert.strictEqual(10, round(9.5));
         assert.strictEqual(-10, round(-9.5));
         assert.strictEqual(0, round(0.5));
-        assert.strictEqual(0, round(-0.5));
+        assert.strictEqual(-0, round(-0.5));
     });
 });
 
